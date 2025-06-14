@@ -6,25 +6,25 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 font-roboto",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 font-roboto relative overflow-hidden",
   {
     variants: {
       variant: {
-        default: "btn-gradient text-slate-900 font-bold hover:scale-105 shadow-lg",
+        default: "btn-gradient text-slate-900 font-bold hover:scale-105 shadow-lg transform hover:-translate-y-1 active:translate-y-0",
         destructive:
-          "bg-destructive text-destructive-foreground hover:bg-destructive/90 hover:scale-105",
+          "btn-gradient-destructive text-white font-bold hover:scale-105 shadow-lg transform hover:-translate-y-1 active:translate-y-0",
         outline:
-          "border border-input bg-background hover:bg-accent hover:text-accent-foreground hover:scale-105",
+          "border-2 border-wp-teal bg-transparent text-wp-teal hover:bg-wp-teal hover:text-slate-900 hover:scale-105 shadow-lg transform hover:-translate-y-1 active:translate-y-0 font-bold",
         secondary:
-          "bg-secondary text-secondary-foreground hover:bg-secondary/80 hover:scale-105",
-        ghost: "hover:bg-accent hover:text-accent-foreground hover:scale-105",
-        link: "text-primary underline-offset-4 hover:underline",
+          "btn-gradient-secondary text-white font-bold hover:scale-105 shadow-lg transform hover:-translate-y-1 active:translate-y-0",
+        ghost: "text-wp-teal hover:bg-wp-teal/20 hover:text-wp-teal hover:scale-105 font-bold",
+        link: "text-wp-teal underline-offset-4 hover:underline hover:scale-105 font-bold",
       },
       size: {
-        default: "h-10 px-4 py-2",
-        sm: "h-9 rounded-md px-3",
-        lg: "h-11 rounded-md px-8",
-        icon: "h-10 w-10",
+        default: "h-12 px-6 py-3",
+        sm: "h-10 rounded-md px-4 py-2",
+        lg: "h-14 rounded-md px-8 py-4 text-lg",
+        icon: "h-12 w-12",
       },
     },
     defaultVariants: {
