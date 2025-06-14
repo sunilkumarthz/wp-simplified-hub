@@ -2,180 +2,191 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Card, CardContent } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { Play, Clock, BookOpen } from 'lucide-react';
+import { useQuery } from '@tanstack/react-query';
+import { fetchAllPlaylists, type Playlist } from '@/services/api';
 
 const Playlists = () => {
-  const playlists = [
+  const { data: playlists = [], isLoading, error } = useQuery({
+    queryKey: ['playlists'],
+    queryFn: fetchAllPlaylists,
+  });
+
+  const playlistCategories = [
     {
-      id: 1,
-      title: "WordPress for Beginners",
-      description: "Complete guide to getting started with WordPress from absolute zero",
-      thumbnail: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=600&h=400&fit=crop",
-      videoCount: 25,
-      duration: "8h 30m",
-      difficulty: "Beginner",
-      topics: ["Installation", "Dashboard", "Posts & Pages", "Media", "Users"]
+      title: "WordPress Fundamentals",
+      description: "Essential knowledge for WordPress beginners",
+      count: 8
     },
     {
-      id: 2,
-      title: "Gutenberg Mastery",
-      description: "Master the WordPress block editor with advanced techniques and custom blocks",
-      thumbnail: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=600&h=400&fit=crop",
-      videoCount: 18,
-      duration: "6h 15m",
-      difficulty: "Intermediate",
-      topics: ["Block Editor", "Custom Blocks", "Patterns", "FSE", "Block Development"]
+      title: "Advanced Development",
+      description: "Deep dive into WordPress development",
+      count: 12
     },
     {
-      id: 3,
-      title: "WooCommerce Complete",
-      description: "Build professional e-commerce stores with WooCommerce",
-      thumbnail: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=600&h=400&fit=crop",
-      videoCount: 30,
-      duration: "12h 45m",
-      difficulty: "Intermediate",
-      topics: ["Store Setup", "Products", "Payment", "Shipping", "Marketing"]
+      title: "WooCommerce Mastery",
+      description: "Complete e-commerce solutions",
+      count: 15
     },
     {
-      id: 4,
-      title: "Theme Development",
-      description: "Create custom WordPress themes from scratch",
-      thumbnail: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&h=400&fit=crop",
-      videoCount: 22,
-      duration: "10h 20m",
-      difficulty: "Advanced",
-      topics: ["PHP", "Template Hierarchy", "Custom Fields", "Hooks", "Child Themes"]
-    },
-    {
-      id: 5,
-      title: "Plugin Development",
-      description: "Learn to build WordPress plugins and extend functionality",
-      thumbnail: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&h=400&fit=crop",
-      videoCount: 20,
-      duration: "9h 10m",
-      difficulty: "Advanced",
-      topics: ["Plugin Structure", "Hooks", "Database", "Admin Pages", "Security"]
-    },
-    {
-      id: 6,
-      title: "WordPress Security",
-      description: "Secure your WordPress sites against threats and vulnerabilities",
-      thumbnail: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop",
-      videoCount: 15,
-      duration: "5h 30m",
-      difficulty: "Intermediate",
-      topics: ["Security Plugins", "Backups", "SSL", "User Management", "Monitoring"]
+      title: "Performance & Security",
+      description: "Optimize and secure your WordPress site",
+      count: 6
     }
   ];
 
-  const getDifficultyColor = (difficulty: string) => {
-    switch (difficulty) {
-      case 'Beginner': return 'bg-green-500';
-      case 'Intermediate': return 'bg-yellow-500';
-      case 'Advanced': return 'bg-red-500';
-      default: return 'bg-slate-500';
-    }
-  };
-
   return (
-    <div className="min-h-screen bg-slate-900">
-      <Header />
+    <div className="min-h-screen bg-slate-900 relative overflow-hidden">
+      {/* Background Effects */}
+      <div className="absolute inset-0 wp-gradient-dark opacity-50"></div>
+      <div className="absolute top-20 left-10 w-72 h-72 bg-wp-teal/10 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-20 right-10 w-96 h-96 bg-wp-blue/10 rounded-full blur-3xl"></div>
       
-      {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-b from-slate-800 to-slate-900">
-        <div className="container mx-auto px-4 text-center">
-          <h1 className="text-5xl md:text-6xl font-baloo font-bold text-white mb-6">
-            WordPress <span className="text-gradient">Playlists</span>
-          </h1>
-          <p className="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
-            Structured learning paths designed to take you from beginner to WordPress expert. 
-            Each playlist is carefully curated to build your skills progressively.
-          </p>
-        </div>
-      </section>
+      <div className="relative z-10">
+        <Header />
+        
+        {/* Hero Section */}
+        <section className="py-20 text-center">
+          <div className="container mx-auto px-4">
+            <h1 className="text-5xl md:text-6xl font-baloo font-bold text-white mb-6">
+              WordPress <span className="text-gradient">Playlists</span>
+            </h1>
+            <p className="text-xl text-slate-300 max-w-3xl mx-auto font-roboto leading-relaxed mb-8">
+              Comprehensive learning paths designed to take you from beginner to expert. 
+              Each playlist is carefully curated to build your WordPress skills progressively.
+            </p>
+          </div>
+        </section>
 
-      {/* Playlists Grid */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {playlists.map((playlist, index) => (
-              <Card 
-                key={playlist.id} 
-                className="bg-slate-800 border-slate-700 hover:border-wp-teal/50 transition-all duration-300 hover:scale-[1.02] group overflow-hidden animate-fade-in"
-                style={{ animationDelay: `${index * 150}ms` }}
-              >
-                <CardContent className="p-0">
-                  <div className="flex flex-col md:flex-row">
-                    <div className="relative md:w-2/5">
+        {/* Categories Section */}
+        <section className="py-20">
+          <div className="container mx-auto px-4">
+            <h2 className="text-4xl font-baloo font-bold text-white mb-12 text-center">
+              Learning Categories
+            </h2>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+              {playlistCategories.map((category, index) => (
+                <Card key={index} className="bg-slate-800/50 border-slate-700 backdrop-blur-sm hover:bg-slate-800/70 transition-all duration-300 hover:scale-105">
+                  <CardContent className="p-6 text-center">
+                    <div className="w-12 h-12 bg-wp-teal rounded-lg flex items-center justify-center mx-auto mb-4">
+                      <BookOpen className="w-6 h-6 text-slate-900" />
+                    </div>
+                    <h3 className="text-lg font-baloo font-bold text-white mb-2">
+                      {category.title}
+                    </h3>
+                    <p className="text-slate-300 font-roboto text-sm mb-3 leading-relaxed">
+                      {category.description}
+                    </p>
+                    <Badge variant="secondary" className="bg-wp-teal/20 text-wp-teal">
+                      {category.count} Playlists
+                    </Badge>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Playlists Grid */}
+        <section className="py-20">
+          <div className="container mx-auto px-4">
+            <h2 className="text-4xl font-baloo font-bold text-white mb-12 text-center">
+              All Playlists
+            </h2>
+            
+            {isLoading && (
+              <div className="text-center py-12">
+                <div className="text-white font-roboto">Loading playlists...</div>
+              </div>
+            )}
+
+            {error && (
+              <div className="text-center py-12">
+                <div className="text-red-400 font-roboto">Failed to load playlists. Please try again later.</div>
+              </div>
+            )}
+
+            {playlists.length === 0 && !isLoading && !error && (
+              <div className="text-center py-12">
+                <div className="text-slate-400 font-roboto">No playlists available.</div>
+              </div>
+            )}
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {playlists.map((playlist, index) => (
+                <Card key={playlist.id || index} className="bg-slate-800/50 border-slate-700 backdrop-blur-sm hover:bg-slate-800/70 transition-all duration-300 group">
+                  <CardContent className="p-0">
+                    <div className="relative">
                       <img 
                         src={playlist.thumbnail} 
                         alt={playlist.title}
-                        className="w-full h-48 md:h-full object-cover"
+                        className="w-full h-48 object-cover rounded-t-lg"
                       />
-                      <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <div className="w-16 h-16 bg-wp-teal rounded-full flex items-center justify-center">
-                          <svg className="w-8 h-8 text-slate-900" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M8 5v14l11-7z"/>
-                          </svg>
-                        </div>
+                      <div className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <a 
+                          href={playlist.url} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="w-16 h-16 bg-wp-teal rounded-full flex items-center justify-center hover:scale-110 transition-transform"
+                        >
+                          <Play className="w-8 h-8 text-slate-900" />
+                        </a>
                       </div>
-                      <div className={`absolute top-4 left-4 ${getDifficultyColor(playlist.difficulty)} text-white text-sm px-3 py-1 rounded-full font-semibold`}>
-                        {playlist.difficulty}
+                      <div className="absolute top-2 right-2 bg-black/80 px-2 py-1 rounded text-white text-xs">
+                        {playlist.video_count} videos
                       </div>
                     </div>
                     
-                    <div className="p-6 md:w-3/5 flex flex-col justify-between">
-                      <div>
-                        <h3 className="font-baloo font-bold text-white text-2xl mb-3">
-                          {playlist.title}
-                        </h3>
-                        <p className="text-slate-300 mb-4 leading-relaxed">
-                          {playlist.description}
-                        </p>
-                        
-                        <div className="flex items-center justify-between text-slate-400 text-sm mb-4">
-                          <span className="flex items-center">
-                            <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 24 24">
-                              <path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"/>
-                            </svg>
-                            {playlist.videoCount} videos
-                          </span>
-                          <span className="flex items-center">
-                            <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 24 24">
-                              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-                            </svg>
-                            {playlist.duration}
-                          </span>
-                        </div>
-
-                        <div className="mb-4">
-                          <h4 className="font-semibold text-white text-sm mb-2">Topics Covered:</h4>
-                          <div className="flex flex-wrap gap-2">
-                            {playlist.topics.map((topic, topicIndex) => (
-                              <span 
-                                key={topicIndex}
-                                className="bg-slate-700 text-slate-300 text-xs px-2 py-1 rounded"
-                              >
-                                {topic}
-                              </span>
-                            ))}
-                          </div>
-                        </div>
+                    <div className="p-6">
+                      <div className="flex items-center justify-between mb-3">
+                        <Badge 
+                          variant="secondary" 
+                          className={`${
+                            playlist.difficulty === 'Beginner' ? 'bg-green-500/20 text-green-400' :
+                            playlist.difficulty === 'Intermediate' ? 'bg-yellow-500/20 text-yellow-400' :
+                            'bg-red-500/20 text-red-400'
+                          }`}
+                        >
+                          {playlist.difficulty}
+                        </Badge>
+                        <span className="flex items-center text-slate-400 text-sm font-roboto">
+                          <Clock className="w-4 h-4 mr-1" />
+                          {playlist.duration}
+                        </span>
                       </div>
                       
-                      <Button className="w-full bg-wp-teal hover:bg-wp-teal/90 text-slate-900 font-semibold">
-                        Start Learning
-                      </Button>
+                      <h3 className="text-xl font-baloo font-bold text-white mb-3 line-clamp-2">
+                        {playlist.title}
+                      </h3>
+                      <p className="text-slate-300 font-roboto text-sm mb-4 line-clamp-2">
+                        {playlist.description}
+                      </p>
+                      
+                      <div className="flex items-center justify-between">
+                        <span className="text-wp-teal font-roboto font-semibold text-sm">
+                          {playlist.video_count} Videos
+                        </span>
+                        <a 
+                          href={playlist.url} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="text-wp-teal hover:text-white transition-colors font-roboto text-sm font-medium"
+                        >
+                          Watch Now →
+                        </a>
+                      </div>
                     </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <Footer />
+        <Footer />
+      </div>
     </div>
   );
 };
