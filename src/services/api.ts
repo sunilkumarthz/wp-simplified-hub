@@ -31,6 +31,7 @@ export interface Podcast {
   description: string;
   thumbnail: string;
   audio_url: string;
+  url: string; // Added url property for consistency
   duration: string;
   published_date: string;
   guest: string;

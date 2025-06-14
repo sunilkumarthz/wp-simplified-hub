@@ -3,11 +3,11 @@ import Footer from '@/components/Footer';
 import Breadcrumb from '@/components/Breadcrumb';
 import SEOHead from '@/components/SEOHead';
 import { Card, CardContent } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
 import { Play, Clock, Eye } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
 import { fetchAllShorts, type Short } from '@/services/api';
 import { useState } from 'react';
-import Button from '@/components/ui/button';
 
 const Shorts = () => {
   const [displayCount, setDisplayCount] = useState(10);

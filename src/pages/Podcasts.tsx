@@ -4,11 +4,11 @@ import Breadcrumb from '@/components/Breadcrumb';
 import SEOHead from '@/components/SEOHead';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 import { Play, Clock, Mic, User } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
 import { fetchAllPodcasts, type Podcast } from '@/services/api';
 import { useState } from 'react';
-import Button from '@/components/ui/button';
 
 const Podcasts = () => {
   const [displayCount, setDisplayCount] = useState(10);
