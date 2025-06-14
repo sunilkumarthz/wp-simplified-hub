@@ -5,15 +5,15 @@ const CommunityInvolvement = () => {
   const events = [
     {
       year: "2025",
-      role: "AV Team",
-      event: "WordCamp Ahmedabad 5.0",
+      role: "Volunteer - A/V",
+      event: "WordCamp Ahmedabad 2025",
       location: "Ahmedabad",
       type: "volunteer",
       status: "upcoming"
     },
     {
       year: "2024",
-      role: "Photography Volunteer",
+      role: "Volunteer - Photography",
       event: "WordCamp Delhi 2024",
       location: "Delhi",
       type: "volunteer",
@@ -25,6 +25,14 @@ const CommunityInvolvement = () => {
       event: "WordCamp Nepal 2024",
       location: "Nepal",
       type: "speaker",
+      status: "completed"
+    },
+    {
+      year: "2024",
+      role: "Attendee",
+      event: "WordCamp Bengaluru 2024",
+      location: "Bengaluru",
+      type: "attendee",
       status: "completed"
     },
     {
@@ -46,10 +54,18 @@ const CommunityInvolvement = () => {
     {
       year: "2023",
       role: "Attendee",
-      event: "WordCamp Udaipur",
+      event: "WordCamp Udaipur 2023",
       location: "Udaipur",
       type: "attendee",
       status: "completed"
+    },
+    {
+      year: "2024",
+      role: "Meetup Organizer",
+      event: "WordPress Alwar",
+      location: "Alwar",
+      type: "organizer",
+      status: "ongoing"
     }
   ];
 
@@ -117,6 +133,9 @@ const CommunityInvolvement = () => {
                             <div className="text-wp-teal font-bold text-lg">{event.year}</div>
                             {event.status === 'upcoming' && (
                               <div className="text-yellow-400 text-xs font-semibold">Upcoming</div>
+                            )}
+                            {event.status === 'ongoing' && (
+                              <div className="text-green-400 text-xs font-semibold">Ongoing</div>
                             )}
                           </div>
                         </div>

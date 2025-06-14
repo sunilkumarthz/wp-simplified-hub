@@ -56,71 +56,87 @@ export interface ContactFormData {
 // API Functions
 export const fetchLatestVideos = async (): Promise<Video[]> => {
   try {
+    console.log('Fetching latest videos from:', `${BASE_URL}/videos/latest`);
     const response = await fetch(`${BASE_URL}/videos/latest`);
     if (!response.ok) {
-      throw new Error('Failed to fetch latest videos');
+      throw new Error(`Failed to fetch latest videos: ${response.status} ${response.statusText}`);
     }
-    return await response.json();
+    const data = await response.json();
+    console.log('Latest videos response:', data);
+    return Array.isArray(data) ? data : [];
   } catch (error) {
     console.error('Error fetching latest videos:', error);
-    throw error;
+    return [];
   }
 };
 
 export const fetchAllPlaylists = async (): Promise<Playlist[]> => {
   try {
+    console.log('Fetching playlists from:', `${BASE_URL}/playlists`);
     const response = await fetch(`${BASE_URL}/playlists`);
     if (!response.ok) {
-      throw new Error('Failed to fetch playlists');
+      throw new Error(`Failed to fetch playlists: ${response.status} ${response.statusText}`);
     }
-    return await response.json();
+    const data = await response.json();
+    console.log('Playlists response:', data);
+    return Array.isArray(data) ? data : [];
   } catch (error) {
     console.error('Error fetching playlists:', error);
-    throw error;
+    return [];
   }
 };
 
 export const fetchAllPodcasts = async (): Promise<Podcast[]> => {
   try {
+    console.log('Fetching podcasts from:', `${BASE_URL}/podcasts`);
     const response = await fetch(`${BASE_URL}/podcasts`);
     if (!response.ok) {
-      throw new Error('Failed to fetch podcasts');
+      throw new Error(`Failed to fetch podcasts: ${response.status} ${response.statusText}`);
     }
-    return await response.json();
+    const data = await response.json();
+    console.log('Podcasts response:', data);
+    return Array.isArray(data) ? data : [];
   } catch (error) {
     console.error('Error fetching podcasts:', error);
-    throw error;
+    return [];
   }
 };
 
 export const fetchAllShorts = async (): Promise<Short[]> => {
   try {
+    console.log('Fetching shorts from:', `${BASE_URL}/shorts`);
     const response = await fetch(`${BASE_URL}/shorts`);
     if (!response.ok) {
-      throw new Error('Failed to fetch shorts');
+      throw new Error(`Failed to fetch shorts: ${response.status} ${response.statusText}`);
     }
-    return await response.json();
+    const data = await response.json();
+    console.log('Shorts response:', data);
+    return Array.isArray(data) ? data : [];
   } catch (error) {
     console.error('Error fetching shorts:', error);
-    throw error;
+    return [];
   }
 };
 
 export const searchVideos = async (keyword: string): Promise<Video[]> => {
   try {
+    console.log('Searching videos with keyword:', keyword);
     const response = await fetch(`${BASE_URL}/videos/search?keyword=${encodeURIComponent(keyword)}`);
     if (!response.ok) {
-      throw new Error('Failed to search videos');
+      throw new Error(`Failed to search videos: ${response.status} ${response.statusText}`);
     }
-    return await response.json();
+    const data = await response.json();
+    console.log('Search videos response:', data);
+    return Array.isArray(data) ? data : [];
   } catch (error) {
     console.error('Error searching videos:', error);
-    throw error;
+    return [];
   }
 };
 
 export const submitContactForm = async (data: ContactFormData): Promise<{ success: boolean; message: string }> => {
   try {
+    console.log('Submitting contact form:', data);
     const response = await fetch(`${BASE_URL}/contact`, {
       method: 'POST',
       headers: {
@@ -130,12 +146,14 @@ export const submitContactForm = async (data: ContactFormData): Promise<{ succes
     });
     
     if (!response.ok) {
-      throw new Error('Failed to submit contact form');
+      throw new Error(`Failed to submit contact form: ${response.status} ${response.statusText}`);
     }
     
-    return await response.json();
+    const result = await response.json();
+    console.log('Contact form response:', result);
+    return result;
   } catch (error) {
     console.error('Error submitting contact form:', error);
-    throw error;
+    return { success: false, message: 'Failed to submit form. Please try again.' };
   }
 };
