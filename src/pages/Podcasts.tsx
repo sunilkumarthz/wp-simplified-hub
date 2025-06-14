@@ -68,7 +68,7 @@ const Podcasts = () => {
               <h1 className="text-5xl md:text-6xl font-baloo font-bold text-white mb-6">
                 WordPress <span className="text-gradient">Podcasts</span>
               </h1>
-              <Breadcrumb />
+              
               <p className="text-xl text-slate-300 max-w-3xl mx-auto font-roboto leading-relaxed mb-8 mt-6">
                 In-depth conversations with WordPress experts, developers, and community leaders. 
                 Gain insights, learn best practices, and stay updated with the latest in WordPress.
@@ -138,24 +138,9 @@ const Podcasts = () => {
                       <div className="p-6">
                         <h3 className="text-xl font-baloo font-bold text-white mb-3 line-clamp-2">
                           {podcast.title}
-                        </h3>
-                        <p className="text-slate-300 font-roboto text-sm mb-4 line-clamp-2">
-                          {podcast.description}
-                        </p>
-                        
-                        <div className="flex items-center justify-between text-slate-400 text-sm mb-4">
-                          {podcast.guest && (
-                            <span className="font-roboto">
-                              Guest: {podcast.guest}
-                            </span>
-                          )}
-                          {podcast.published_date && (
-                            <span className="font-roboto">{podcast.published_date}</span>
-                          )}
-                        </div>
-                        
+                        </h3>                       
                         <a 
-                          href={podcast.url} 
+                          href={podcast.videourl} 
                           target="_blank" 
                           rel="noopener noreferrer"
                           className="no-link-styles"

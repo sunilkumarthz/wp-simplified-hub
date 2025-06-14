@@ -75,7 +75,7 @@ const Shorts = () => {
               <h1 className="text-5xl md:text-6xl font-baloo font-bold text-white mb-6">
                 WordPress <span className="text-gradient">Shorts</span>
               </h1>
-              <Breadcrumb />
+              
               <p className="text-xl text-slate-300 max-w-3xl mx-auto font-roboto leading-relaxed mb-8 mt-6">
                 Quick, bite-sized WordPress tutorials and tips. Perfect for learning on the go 
                 and getting instant solutions to common WordPress challenges.

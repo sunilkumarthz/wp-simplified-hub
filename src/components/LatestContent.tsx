@@ -52,7 +52,7 @@ const LatestContent = () => {
                     />
                     <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                       <a 
-                        href={video.url} 
+                        href={video.videourl} 
                         target="_blank" 
                         rel="noopener noreferrer"
                         className="w-16 h-16 bg-wp-teal rounded-full flex items-center justify-center hover:scale-110 transition-transform"
@@ -60,23 +60,12 @@ const LatestContent = () => {
                         <Play className="w-6 h-6 text-slate-900 ml-1" />
                       </a>
                     </div>
-                    {video.duration && (
-                      <div className="absolute bottom-2 right-2 bg-black/80 text-white text-sm px-2 py-1 rounded">
-                        <Clock className="w-3 h-3 mr-1 inline" />
-                        {video.duration}
-                      </div>
-                    )}
+                    
                   </div>
                   <div className="p-6">
                     <h3 className="font-baloo font-semibold text-white text-lg mb-3 line-clamp-2">
                       {video.title}
                     </h3>
-                    <p className="text-slate-300 text-sm line-clamp-2 mb-3">
-                      {video.description}
-                    </p>
-                    {video.published_date && (
-                      <p className="text-slate-400 text-sm">{video.published_date}</p>
-                    )}
                   </div>
                 </CardContent>
               </Card>
@@ -106,21 +95,13 @@ const LatestContent = () => {
                     />
                     <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                       <a 
-                        href={short.url} 
+                        href={short.videourl} 
                         target="_blank" 
                         rel="noopener noreferrer"
                         className="w-12 h-12 bg-wp-teal rounded-full flex items-center justify-center hover:scale-110 transition-transform"
                       >
                         <Play className="w-5 h-5 text-slate-900" />
                       </a>
-                    </div>
-                    {short.duration && (
-                      <div className="absolute bottom-2 right-2 bg-black/80 text-white text-xs px-2 py-1 rounded">
-                        {short.duration}
-                      </div>
-                    )}
-                    <div className="absolute top-2 right-2 bg-red-500 text-white text-xs px-2 py-1 rounded font-semibold">
-                      SHORTS
                     </div>
                   </div>
                   <div className="p-3">
@@ -156,7 +137,7 @@ const LatestContent = () => {
                     />
                     <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                       <a 
-                        href={podcast.url} 
+                        href={podcast.videourl} 
                         target="_blank" 
                         rel="noopener noreferrer"
                         className="w-16 h-16 bg-wp-teal rounded-full flex items-center justify-center hover:scale-110 transition-transform"
@@ -164,22 +145,13 @@ const LatestContent = () => {
                         <Mic className="w-6 h-6 text-slate-900" />
                       </a>
                     </div>
-                    {podcast.duration && (
-                      <div className="absolute bottom-2 right-2 bg-black/80 text-white text-sm px-2 py-1 rounded">
-                        {podcast.duration}
-                      </div>
-                    )}
+                    
                   </div>
                   <div className="p-6">
                     <h3 className="font-baloo font-semibold text-white text-lg mb-3 line-clamp-2">
                       {podcast.title}
                     </h3>
-                    <p className="text-slate-300 text-sm line-clamp-2 mb-3">
-                      {podcast.description}
-                    </p>
-                    {podcast.published_date && (
-                      <p className="text-slate-400 text-sm">{podcast.published_date}</p>
-                    )}
+                    
                   </div>
                 </CardContent>
               </Card>
@@ -209,7 +181,7 @@ const LatestContent = () => {
                     />
                     <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                       <a 
-                        href={playlist.url} 
+                        href={`https://www.youtube.com/playlist?list=${playlist.playlistId}`} 
                         target="_blank" 
                         rel="noopener noreferrer"
                         className="w-16 h-16 bg-wp-teal rounded-full flex items-center justify-center hover:scale-110 transition-transform"
@@ -217,19 +189,11 @@ const LatestContent = () => {
                         <BookOpen className="w-6 h-6 text-slate-900" />
                       </a>
                     </div>
-                    {playlist.video_count && (
-                      <div className="absolute bottom-2 right-2 bg-black/80 text-white text-sm px-2 py-1 rounded">
-                        {playlist.video_count} videos
-                      </div>
-                    )}
                   </div>
                   <div className="p-6">
                     <h3 className="font-baloo font-semibold text-white text-lg mb-3 line-clamp-2">
                       {playlist.title}
                     </h3>
-                    <p className="text-slate-300 text-sm line-clamp-2 mb-3">
-                      {playlist.description}
-                    </p>
                   </div>
                 </CardContent>
               </Card>

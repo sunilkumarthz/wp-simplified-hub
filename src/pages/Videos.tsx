@@ -161,7 +161,7 @@ const Videos = () => {
               <h1 className="text-5xl md:text-6xl font-baloo font-bold text-white mb-6">
                 WordPress <span className="text-gradient">Video Tutorials</span>
               </h1>
-              <Breadcrumb />
+              
               <p className="text-xl text-slate-300 max-w-3xl mx-auto font-roboto leading-relaxed mb-8 mt-6">
                 Comprehensive video tutorials covering everything from WordPress basics 
                 to advanced development techniques. Learn at your own pace with step-by-step guides.
@@ -255,14 +255,7 @@ const Videos = () => {
                         <h3 className="text-xl font-baloo font-bold text-white mb-3 line-clamp-2">
                           {video.title}
                         </h3>
-                        <p className="text-slate-300 font-roboto text-sm mb-3 line-clamp-2">
-                          {video.description}
-                        </p>
-                        {video.published_date && (
-                          <div className="text-slate-400 text-sm">
-                            <span className="font-roboto">{video.published_date}</span>
-                          </div>
-                        )}
+                        
                       </div>
                     </CardContent>
                   </Card>

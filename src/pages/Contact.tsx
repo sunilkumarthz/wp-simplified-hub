@@ -81,7 +81,6 @@ const Contact = () => {
       
       <div className="relative z-10">
         <Header />
-        <Breadcrumb />
         
         {/* Hero Section */}
         <section className="py-20 text-center">

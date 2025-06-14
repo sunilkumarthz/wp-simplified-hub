@@ -143,20 +143,6 @@ const Playlists = () => {
               <h1 className="text-6xl md:text-7xl font-baloo font-bold text-white mb-8">
                 WordPress <span className="text-gradient">Playlists</span>
               </h1>
-              
-              {/* Breadcrumb moved below heading */}
-              <nav className="flex justify-center mb-8" aria-label="Breadcrumb">
-                <ol className="flex items-center space-x-2 text-sm">
-                  <li className="flex items-center">
-                    <Home className="w-4 h-4 text-slate-400 mr-2" />
-                    <Link to="/" className="text-slate-400 hover:text-[#04D98B] transition-colors">Home</Link>
-                  </li>
-                  <li>
-                    <ChevronRight className="w-4 h-4 text-slate-500 mx-2" />
-                  </li>
-                  <li className="text-[#04D98B] font-semibold">Playlists</li>
-                </ol>
-              </nav>
 
               <div className="w-32 h-1 wp-gradient rounded-full mx-auto mb-8"></div>
               <p className="text-xl text-slate-300 max-w-4xl mx-auto font-roboto leading-relaxed">
@@ -257,26 +243,8 @@ const Playlists = () => {
                       <h3 className="text-2xl font-baloo font-bold text-white mb-4 line-clamp-2 group-hover:text-[#04D98B] transition-colors duration-300">
                         {playlist.title}
                       </h3>
-                      <p className="text-slate-300 font-roboto text-sm mb-6 line-clamp-3 leading-relaxed">
-                        {playlist.description}
-                      </p>
                       
-                      <div className="flex items-center justify-between mb-6">
-                        {playlist.video_count && (
-                          <span className="flex items-center text-[#04D98B] text-sm font-semibold">
-                            <Play className="w-4 h-4 mr-2" />
-                            {playlist.video_count} Videos
-                          </span>
-                        )}
-                        {playlist.duration && (
-                          <span className="flex items-center text-slate-400 text-sm">
-                            <Clock className="w-4 h-4 mr-2" />
-                            {playlist.duration}
-                          </span>
-                        )}
-                      </div>
-                      
-                      <a href={playlist.url} target="_blank" rel="noopener noreferrer" className="no-link-styles">
+                      <a href={`https://www.youtube.com/playlist?list=${playlist.playlistId}`}  target="_blank" rel="noopener noreferrer" className="no-link-styles">
                         <Button className="w-full font-semibold hover:scale-105 transition-transform duration-200">
                           Watch Playlist
                         </Button>
