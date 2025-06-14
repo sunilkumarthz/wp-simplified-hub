@@ -114,14 +114,14 @@ const Podcasts = () => {
                           alt={podcast.title}
                           className="w-full h-48 object-cover rounded-t-lg transition-transform duration-300 group-hover:scale-105"
                         />
-                        <div className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                           <a 
                             href={podcast.url} 
                             target="_blank" 
                             rel="noopener noreferrer"
-                            className="w-16 h-16 bg-wp-teal rounded-full flex items-center justify-center hover:scale-110 transition-transform"
+                            className="w-16 h-16 bg-wp-teal rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-2xl pulse-glow"
                           >
-                            <Play className="w-8 h-8 text-slate-900" />
+                            <Mic className="w-6 h-6 text-slate-900" />
                           </a>
                         </div>
                         <div className="absolute top-2 left-2 bg-wp-teal text-slate-900 text-xs px-2 py-1 rounded font-semibold">

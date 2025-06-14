@@ -8,6 +8,7 @@ export interface Video {
   description: string;
   thumbnail: string;
   url: string;
+  videourl: string;
   duration: string;
   views: string;
   published_date: string;
@@ -23,6 +24,7 @@ export interface Playlist {
   duration: string;
   difficulty: string;
   url: string;
+  playlistId: string;
 }
 
 export interface Podcast {
@@ -32,6 +34,7 @@ export interface Podcast {
   thumbnail: string;
   audio_url: string;
   url: string;
+  videourl: string;
   duration: string;
   published_date: string;
   guest: string;
@@ -42,6 +45,7 @@ export interface Short {
   title: string;
   thumbnail: string;
   url: string;
+  videourl: string;
   duration: string;
   views: string;
   published_date: string;
