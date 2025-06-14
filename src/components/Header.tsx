@@ -57,7 +57,7 @@ const Header = () => {
                   className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-all duration-200 font-roboto font-medium focus-visible:ring-2 focus-visible:ring-teal-400 ring-offset-2 ${
                     isActive
                       ? 'bg-[#04D98B] text-slate-900 font-semibold shadow-md'
-                      : 'text-slate-300 hover:bg-[#04D98B] hover:text-slate-900 hover:shadow-sm'
+                      : 'text-white hover:bg-[#04D98B] hover:text-slate-900 hover:shadow-sm'
                   }`}
                   aria-current={isActive ? 'page' : undefined}
                 >
@@ -95,7 +95,7 @@ const Header = () => {
               ) : (
                 <button
                   onClick={() => setIsSearchOpen(true)}
-                  className="text-slate-300 hover:text-[#04D98B] p-2 rounded-lg hover:bg-slate-800/50 transition-all duration-200"
+                  className="text-white hover:text-[#04D98B] p-2 rounded-lg hover:bg-slate-800/50 transition-all duration-200"
                   aria-label="Open search"
                 >
                   <Search size={20} />
@@ -121,7 +121,7 @@ const Header = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className="lg:hidden text-slate-300 hover:text-white p-2"
+            className="lg:hidden text-white hover:text-white p-2"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-expanded={isMenuOpen}
             aria-controls="mobile-menu"
@@ -166,7 +166,7 @@ const Header = () => {
                     className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-all duration-200 font-roboto font-medium focus-visible:ring-2 focus-visible:ring-teal-400 ring-offset-2 ${
                       isActive
                         ? 'bg-[#04D98B] text-slate-900 font-semibold shadow-md'
-                        : 'text-slate-300 hover:bg-[#04D98B] hover:text-slate-900 hover:shadow-sm'
+                        : 'text-white hover:bg-[#04D98B] hover:text-slate-900 hover:shadow-sm'
                     }`}
                     onClick={() => setIsMenuOpen(false)}
                     aria-current={isActive ? 'page' : undefined}
