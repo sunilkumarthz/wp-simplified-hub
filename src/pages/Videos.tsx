@@ -1,11 +1,43 @@
 
+import { useState, useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Play, Clock, Eye } from 'lucide-react';
+import { Input } from '@/components/ui/input';
+import { Play, Clock, Eye, Search } from 'lucide-react';
+import { fetchLatestVideos, searchVideos, type Video } from '@/services/api';
+import { useQuery } from '@tanstack/react-query';
 
 const Videos = () => {
+  const [searchQuery, setSearchQuery] = useState('');
+  const [searchResults, setSearchResults] = useState<Video[]>([]);
+  const [isSearching, setIsSearching] = useState(false);
+
+  // Fetch latest videos
+  const { data: videos = [], isLoading, error } = useQuery({
+    queryKey: ['latestVideos'],
+    queryFn: fetchLatestVideos,
+  });
+
+  const handleSearch = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!searchQuery.trim()) return;
+
+    setIsSearching(true);
+    try {
+      const results = await searchVideos(searchQuery);
+      setSearchResults(results);
+    } catch (error) {
+      console.error('Search failed:', error);
+      setSearchResults([]);
+    } finally {
+      setIsSearching(false);
+    }
+  };
+
+  const displayedVideos = searchQuery ? searchResults : videos;
+
   const videoCategories = [
     {
       title: "WordPress Basics",
@@ -39,45 +71,6 @@ const Videos = () => {
     }
   ];
 
-  const featuredVideos = [
-    {
-      title: "WordPress 6.4 Complete Tutorial",
-      duration: "45:32",
-      views: "12.5K",
-      thumbnail: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&h=300&fit=crop"
-    },
-    {
-      title: "Building Custom Gutenberg Blocks",
-      duration: "38:15",
-      views: "8.2K",
-      thumbnail: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=400&h=300&fit=crop"
-    },
-    {
-      title: "WooCommerce Advanced Setup",
-      duration: "52:18",
-      views: "15.3K",
-      thumbnail: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400&h=300&fit=crop"
-    },
-    {
-      title: "WordPress Security Best Practices",
-      duration: "29:45",
-      views: "9.1K",
-      thumbnail: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=400&h=300&fit=crop"
-    },
-    {
-      title: "Custom Post Types & Fields",
-      duration: "41:22",
-      views: "11.8K",
-      thumbnail: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&h=300&fit=crop"
-    },
-    {
-      title: "WordPress API Development",
-      duration: "35:50",
-      views: "7.4K",
-      thumbnail: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=400&h=300&fit=crop"
-    }
-  ];
-
   return (
     <div className="min-h-screen bg-slate-900 relative overflow-hidden">
       {/* Background Effects */}
@@ -94,13 +87,30 @@ const Videos = () => {
             <h1 className="text-5xl md:text-6xl font-baloo font-bold text-white mb-6">
               WordPress <span className="text-gradient">Video Tutorials</span>
             </h1>
-            <p className="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed mb-8">
+            <p className="text-xl text-slate-300 max-w-3xl mx-auto font-roboto leading-relaxed mb-8">
               Comprehensive video tutorials covering everything from WordPress basics 
               to advanced development techniques. Learn at your own pace with step-by-step guides.
             </p>
-            <Button className="wp-gradient text-slate-900 font-bold text-lg px-8 py-4 hover:scale-105 transition-transform duration-200">
-              Watch Latest Videos
-            </Button>
+            
+            {/* Search Bar */}
+            <form onSubmit={handleSearch} className="max-w-md mx-auto mb-8">
+              <div className="relative">
+                <Input
+                  type="text"
+                  placeholder="Search videos..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-full bg-slate-800 border-slate-700 text-white placeholder:text-slate-400 pr-12"
+                />
+                <button
+                  type="submit"
+                  disabled={isSearching}
+                  className="absolute right-2 top-1/2 transform -translate-y-1/2 text-slate-400 hover:text-wp-teal disabled:opacity-50"
+                >
+                  <Search size={20} />
+                </button>
+              </div>
+            </form>
           </div>
         </section>
 
@@ -121,10 +131,10 @@ const Videos = () => {
                     <h3 className="text-2xl font-baloo font-bold text-white mb-2">
                       {category.title}
                     </h3>
-                    <p className="text-wp-teal font-semibold mb-3">
+                    <p className="text-wp-teal font-roboto font-semibold mb-3">
                       {category.count} Videos
                     </p>
-                    <p className="text-slate-300 text-sm leading-relaxed">
+                    <p className="text-slate-300 font-roboto text-sm leading-relaxed">
                       {category.description}
                     </p>
                   </CardContent>
@@ -134,16 +144,36 @@ const Videos = () => {
           </div>
         </section>
 
-        {/* Featured Videos */}
+        {/* Videos Grid */}
         <section className="py-20">
           <div className="container mx-auto px-4">
             <h2 className="text-4xl font-baloo font-bold text-white mb-12 text-center">
-              Featured Videos
+              {searchQuery ? `Search Results for "${searchQuery}"` : 'Latest Videos'}
             </h2>
             
+            {isLoading && (
+              <div className="text-center py-12">
+                <div className="text-white font-roboto">Loading videos...</div>
+              </div>
+            )}
+
+            {error && (
+              <div className="text-center py-12">
+                <div className="text-red-400 font-roboto">Failed to load videos. Please try again later.</div>
+              </div>
+            )}
+
+            {displayedVideos.length === 0 && !isLoading && !error && (
+              <div className="text-center py-12">
+                <div className="text-slate-400 font-roboto">
+                  {searchQuery ? 'No videos found for your search.' : 'No videos available.'}
+                </div>
+              </div>
+            )}
+            
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {featuredVideos.map((video, index) => (
-                <Card key={index} className="bg-slate-800/50 border-slate-700 backdrop-blur-sm hover:bg-slate-800/70 transition-all duration-300 group">
+              {displayedVideos.map((video, index) => (
+                <Card key={video.id || index} className="bg-slate-800/50 border-slate-700 backdrop-blur-sm hover:bg-slate-800/70 transition-all duration-300 group">
                   <CardContent className="p-0">
                     <div className="relative">
                       <img 
@@ -152,9 +182,14 @@ const Videos = () => {
                         className="w-full h-48 object-cover rounded-t-lg"
                       />
                       <div className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <div className="w-16 h-16 bg-wp-teal rounded-full flex items-center justify-center">
+                        <a 
+                          href={video.url} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="w-16 h-16 bg-wp-teal rounded-full flex items-center justify-center hover:scale-110 transition-transform"
+                        >
                           <Play className="w-8 h-8 text-slate-900" />
-                        </div>
+                        </a>
                       </div>
                       <div className="absolute bottom-2 right-2 bg-black/80 px-2 py-1 rounded text-white text-xs flex items-center">
                         <Clock className="w-3 h-3 mr-1" />
@@ -166,20 +201,20 @@ const Videos = () => {
                       <h3 className="text-xl font-baloo font-bold text-white mb-3 line-clamp-2">
                         {video.title}
                       </h3>
-                      <div className="flex items-center text-slate-400 text-sm">
-                        <Eye className="w-4 h-4 mr-1" />
-                        {video.views} views
+                      <p className="text-slate-300 font-roboto text-sm mb-3 line-clamp-2">
+                        {video.description}
+                      </p>
+                      <div className="flex items-center justify-between text-slate-400 text-sm">
+                        <span className="flex items-center font-roboto">
+                          <Eye className="w-4 h-4 mr-1" />
+                          {video.views} views
+                        </span>
+                        <span className="font-roboto">{video.published_date}</span>
                       </div>
                     </div>
                   </CardContent>
                 </Card>
               ))}
-            </div>
-            
-            <div className="text-center mt-12">
-              <Button className="wp-gradient text-slate-900 font-bold text-lg px-8 py-4 hover:scale-105 transition-transform duration-200">
-                View All Videos
-              </Button>
             </div>
           </div>
         </section>

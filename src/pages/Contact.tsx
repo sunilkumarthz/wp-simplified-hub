@@ -2,49 +2,80 @@
 import { useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import { Card, CardContent } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { useToast } from '@/hooks/use-toast';
-import { Linkedin, Twitter, Github, Mail, MapPin } from 'lucide-react';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Label } from '@/components/ui/label';
+import { Mail, Phone, MapPin, Send } from 'lucide-react';
+import { submitContactForm, type ContactFormData } from '@/services/api';
+import { useToast } from '@/components/ui/use-toast';
 
 const Contact = () => {
-  const { toast } = useToast();
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<ContactFormData>({
     name: '',
     email: '',
-    whatsapp: '',
-    subject: '',
-    message: ''
+    message: '',
+    purpose: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { toast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handlePurposeChange = (value: string) => {
+    setFormData(prev => ({
+      ...prev,
+      purpose: value
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast({
-      title: "Message Sent!",
-      description: "Thank you for reaching out. I'll get back to you within 24 hours.",
-    });
-    setFormData({ name: '', email: '', whatsapp: '', subject: '', message: '' });
-  };
+    setIsSubmitting(true);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+    try {
+      const result = await submitContactForm(formData);
+      
+      if (result.success) {
+        toast({
+          title: "Message Sent!",
+          description: "Thank you for reaching out. I'll get back to you soon.",
+        });
+        
+        // Reset form
+        setFormData({
+          name: '',
+          email: '',
+          message: '',
+          purpose: ''
+        });
+      } else {
+        throw new Error(result.message || 'Failed to send message');
+      }
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to send message. Please try again later.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
-
-  const collaborationTypes = [
-    'Plugin Developer',
-    'WordCamp Speaker',
-    'Community Organizer', 
-    'WordPress Contributor'
-  ];
 
   return (
     <div className="min-h-screen bg-slate-900 relative overflow-hidden">
       {/* Background Effects */}
-      <div className="absolute inset-0 wp-gradient-dark opacity-50"></div>
-      <div className="absolute top-20 left-10 w-72 h-72 bg-wp-teal/10 rounded-full blur-3xl"></div>
+      <div className="absolute inset-0 wp-gradient-dark opacity-30"></div>
+      <div className="absolute top-20 left-10 w-96 h-96 bg-wp-teal/10 rounded-full blur-3xl"></div>
       <div className="absolute bottom-20 right-10 w-96 h-96 bg-wp-blue/10 rounded-full blur-3xl"></div>
       
       <div className="relative z-10">
@@ -53,210 +84,177 @@ const Contact = () => {
         {/* Hero Section */}
         <section className="py-20 text-center">
           <div className="container mx-auto px-4">
-            <div className="inline-block px-4 py-2 bg-wp-teal/20 rounded-full mb-6">
-              <span className="text-wp-teal font-semibold text-sm">GET IN TOUCH</span>
-            </div>
             <h1 className="text-5xl md:text-6xl font-baloo font-bold text-white mb-6">
-              Collaborate With <span className="text-gradient">Me</span>
+              Get in <span className="text-gradient">Touch</span>
             </h1>
-            <p className="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
-              Interested in WordPress development, speaking engagements, or 
-              community collaborations? Let's connect and create something 
-              amazing together!
+            <p className="text-xl text-slate-300 max-w-3xl mx-auto font-roboto leading-relaxed">
+              Have a question about WordPress? Want to collaborate on a project? 
+              Interested in being a guest on my podcast? Let's connect!
             </p>
-            
-            {/* Collaboration Types */}
-            <div className="flex flex-wrap justify-center gap-4 mt-8">
-              {collaborationTypes.map((type) => (
-                <div key={type} className="px-4 py-2 bg-slate-800 rounded-full border border-wp-teal">
-                  <span className="text-wp-teal text-sm">{type}</span>
-                </div>
-              ))}
-            </div>
           </div>
         </section>
 
-        {/* Contact Form & Info */}
-        <section className="py-20">
+        {/* Contact Section */}
+        <section className="py-16">
           <div className="container mx-auto px-4">
-            <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12">
-              {/* Left Side - Contact Info */}
-              <div className="space-y-8">
-                {/* Get in Touch */}
-                <div>
-                  <h2 className="text-3xl font-baloo font-bold text-white mb-8">Get in Touch</h2>
-                  
-                  <div className="space-y-6">
-                    <div className="flex items-center space-x-4">
-                      <div className="w-12 h-12 bg-wp-teal rounded-full flex items-center justify-center">
-                        <Mail className="w-6 h-6 text-slate-900" />
-                      </div>
-                      <div>
-                        <h3 className="text-xl font-baloo font-bold text-white">Email</h3>
-                        <p className="text-slate-300">hello@wpsimplified.in</p>
-                      </div>
-                    </div>
-
-                    <div className="flex items-center space-x-4">
-                      <div className="w-12 h-12 bg-wp-teal rounded-full flex items-center justify-center">
-                        <MapPin className="w-6 h-6 text-slate-900" />
-                      </div>
-                      <div>
-                        <h3 className="text-xl font-baloo font-bold text-white">Location</h3>
-                        <p className="text-slate-300">Alwar, Rajasthan, India</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Connect With Me */}
-                <div>
-                  <h3 className="text-2xl font-baloo font-bold text-white mb-6">Connect With Me</h3>
-                  <div className="flex space-x-4">
-                    <a
-                      href="https://www.linkedin.com/in/sunilkumarthz/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-12 h-12 bg-slate-800 rounded-full flex items-center justify-center hover:bg-wp-teal transition-colors"
-                    >
-                      <Linkedin className="w-6 h-6 text-white" />
-                    </a>
-                    <a
-                      href="https://x.com/sunilkumarthz"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-12 h-12 bg-slate-800 rounded-full flex items-center justify-center hover:bg-wp-teal transition-colors"
-                    >
-                      <Twitter className="w-6 h-6 text-white" />
-                    </a>
-                    <a
-                      href="https://github.com/sunilkumarthz"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-12 h-12 bg-slate-800 rounded-full flex items-center justify-center hover:bg-wp-teal transition-colors"
-                    >
-                      <Github className="w-6 h-6 text-white" />
-                    </a>
-                  </div>
-                </div>
-
-                {/* About Me */}
-                <div>
-                  <h3 className="text-2xl font-baloo font-bold text-white mb-4">About Me</h3>
-                  <p className="text-slate-300 leading-relaxed mb-4">
-                    Senior Manager – Technology at The Better India, leading scalable WordPress 
-                    platform development with over a decade of experience.
-                  </p>
-                  <p className="text-slate-300 leading-relaxed">
-                    Active WordPress contributor, community builder, speaker, and organizer 
-                    passionate about open source.
-                  </p>
-                </div>
-              </div>
-
-              {/* Right Side - Contact Form */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+              {/* Contact Form */}
               <Card className="bg-slate-800/50 border-slate-700 backdrop-blur-sm">
-                <CardContent className="p-8">
-                  <div className="flex items-center space-x-2 mb-6">
-                    <div className="w-6 h-6 bg-wp-teal rounded flex items-center justify-center">
-                      <span className="text-slate-900 text-xs">📝</span>
-                    </div>
-                    <h2 className="text-2xl font-baloo font-bold text-white">
-                      Collaboration Form
-                    </h2>
-                  </div>
-                  
+                <CardHeader>
+                  <CardTitle className="text-2xl font-baloo font-bold text-white mb-2">
+                    Send me a message
+                  </CardTitle>
+                  <p className="text-slate-400 font-roboto">
+                    Fill out the form below and I'll get back to you as soon as possible.
+                  </p>
+                </CardHeader>
+                <CardContent className="space-y-6">
                   <form onSubmit={handleSubmit} className="space-y-6">
-                    <div>
-                      <label htmlFor="name" className="block text-wp-teal font-semibold mb-2">
-                        Full Name
-                      </label>
-                      <input
-                        type="text"
+                    <div className="space-y-2">
+                      <Label htmlFor="name" className="text-white font-roboto">Name *</Label>
+                      <Input
                         id="name"
                         name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        required
-                        className="w-full px-4 py-3 rounded-lg bg-slate-700/50 border border-slate-600 text-white placeholder-slate-400 focus:border-wp-teal focus:outline-none"
-                        placeholder="John Doe"
-                      />
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div>
-                        <label htmlFor="email" className="block text-wp-teal font-semibold mb-2">
-                          Email Address
-                        </label>
-                        <input
-                          type="email"
-                          id="email"
-                          name="email"
-                          value={formData.email}
-                          onChange={handleChange}
-                          required
-                          className="w-full px-4 py-3 rounded-lg bg-slate-700/50 border border-slate-600 text-white placeholder-slate-400 focus:border-wp-teal focus:outline-none"
-                          placeholder="john@example.com"
-                        />
-                      </div>
-
-                      <div>
-                        <label htmlFor="whatsapp" className="block text-wp-teal font-semibold mb-2">
-                          WhatsApp Number
-                        </label>
-                        <input
-                          type="tel"
-                          id="whatsapp"
-                          name="whatsapp"
-                          value={formData.whatsapp}
-                          onChange={handleChange}
-                          className="w-full px-4 py-3 rounded-lg bg-slate-700/50 border border-slate-600 text-white placeholder-slate-400 focus:border-wp-teal focus:outline-none"
-                          placeholder="+91 98765 43210"
-                        />
-                      </div>
-                    </div>
-
-                    <div>
-                      <label htmlFor="subject" className="block text-wp-teal font-semibold mb-2">
-                        Subject
-                      </label>
-                      <input
                         type="text"
-                        id="subject"
-                        name="subject"
-                        value={formData.subject}
-                        onChange={handleChange}
+                        value={formData.name}
+                        onChange={handleInputChange}
+                        placeholder="Your full name"
                         required
-                        className="w-full px-4 py-3 rounded-lg bg-slate-700/50 border border-slate-600 text-white placeholder-slate-400 focus:border-wp-teal focus:outline-none"
-                        placeholder="Podcast Collaboration Request"
+                        className="bg-slate-700 border-slate-600 text-white placeholder:text-slate-400"
                       />
                     </div>
-
-                    <div>
-                      <label htmlFor="message" className="block text-wp-teal font-semibold mb-2">
-                        Message
-                      </label>
-                      <textarea
+                    
+                    <div className="space-y-2">
+                      <Label htmlFor="email" className="text-white font-roboto">Email *</Label>
+                      <Input
+                        id="email"
+                        name="email"
+                        type="email"
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        placeholder="your.email@example.com"
+                        required
+                        className="bg-slate-700 border-slate-600 text-white placeholder:text-slate-400"
+                      />
+                    </div>
+                    
+                    <div className="space-y-2">
+                      <Label htmlFor="purpose" className="text-white font-roboto">Purpose of Contact *</Label>
+                      <Select value={formData.purpose} onValueChange={handlePurposeChange} required>
+                        <SelectTrigger className="bg-slate-700 border-slate-600 text-white">
+                          <SelectValue placeholder="Select the purpose of your message" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="collaboration">Collaboration</SelectItem>
+                          <SelectItem value="support">Technical Support</SelectItem>
+                          <SelectItem value="podcast">Podcast Guest</SelectItem>
+                          <SelectItem value="business">Business Inquiry</SelectItem>
+                          <SelectItem value="other">Other</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    
+                    <div className="space-y-2">
+                      <Label htmlFor="message" className="text-white font-roboto">Message *</Label>
+                      <Textarea
                         id="message"
                         name="message"
                         value={formData.message}
-                        onChange={handleChange}
-                        required
+                        onChange={handleInputChange}
+                        placeholder="Tell me about your project, question, or how I can help..."
                         rows={6}
-                        className="w-full px-4 py-3 rounded-lg bg-slate-700/50 border border-slate-600 text-white placeholder-slate-400 focus:border-wp-teal focus:outline-none resize-none"
-                        placeholder="Tell me about yourself and how you'd like to collaborate..."
+                        required
+                        className="bg-slate-700 border-slate-600 text-white placeholder:text-slate-400"
                       />
                     </div>
-
-                    <Button 
-                      type="submit" 
-                      className="w-full wp-gradient text-slate-900 font-bold text-lg py-4 hover:scale-105 transition-transform duration-200"
+                    
+                    <Button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="w-full wp-gradient text-slate-900 font-roboto font-bold hover:scale-105 transition-transform duration-200"
                     >
-                      Send Message
+                      {isSubmitting ? (
+                        <>Sending...</>
+                      ) : (
+                        <>
+                          <Send className="w-4 h-4 mr-2" />
+                          Send Message
+                        </>
+                      )}
                     </Button>
                   </form>
                 </CardContent>
               </Card>
+
+              {/* Contact Info */}
+              <div className="space-y-8">
+                <Card className="bg-slate-800/50 border-slate-700 backdrop-blur-sm">
+                  <CardContent className="p-8">
+                    <h3 className="text-2xl font-baloo font-bold text-white mb-6">
+                      Contact Information
+                    </h3>
+                    
+                    <div className="space-y-6">
+                      <div className="flex items-start space-x-4">
+                        <div className="w-12 h-12 bg-wp-teal rounded-full flex items-center justify-center">
+                          <Mail className="w-6 h-6 text-slate-900" />
+                        </div>
+                        <div>
+                          <h4 className="text-white font-roboto font-semibold mb-1">Email</h4>
+                          <p className="text-slate-400 font-roboto">hello@wpsimplified.in</p>
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-start space-x-4">
+                        <div className="w-12 h-12 bg-wp-teal rounded-full flex items-center justify-center">
+                          <MapPin className="w-6 h-6 text-slate-900" />
+                        </div>
+                        <div>
+                          <h4 className="text-white font-roboto font-semibold mb-1">Location</h4>
+                          <p className="text-slate-400 font-roboto">Alwar, Rajasthan, India</p>
+                        </div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card className="bg-slate-800/50 border-slate-700 backdrop-blur-sm">
+                  <CardContent className="p-8">
+                    <h3 className="text-2xl font-baloo font-bold text-white mb-6">
+                      Response Time
+                    </h3>
+                    <p className="text-slate-300 font-roboto leading-relaxed mb-4">
+                      I typically respond to messages within 24-48 hours. For urgent matters, 
+                      please mention "URGENT" in your subject line.
+                    </p>
+                    <p className="text-slate-400 font-roboto text-sm">
+                      Best response times: Monday - Friday, 9 AM - 6 PM IST
+                    </p>
+                  </CardContent>
+                </Card>
+
+                <Card className="bg-slate-800/50 border-slate-700 backdrop-blur-sm">
+                  <CardContent className="p-8">
+                    <h3 className="text-2xl font-baloo font-bold text-white mb-6">
+                      Follow Me
+                    </h3>
+                    <p className="text-slate-300 font-roboto mb-4">
+                      Stay updated with my latest content and WordPress tips:
+                    </p>
+                    <div className="flex space-x-3">
+                      <a href="https://www.youtube.com/@wpsimplifiedbysunil" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-slate-700 rounded-full flex items-center justify-center hover:bg-wp-teal transition-colors">
+                        <span className="text-white text-sm font-bold">YT</span>
+                      </a>
+                      <a href="https://x.com/sunilkumarthz" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-slate-700 rounded-full flex items-center justify-center hover:bg-wp-teal transition-colors">
+                        <span className="text-white text-sm font-bold">X</span>
+                      </a>
+                      <a href="https://www.linkedin.com/in/sunilkumarthz/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-slate-700 rounded-full flex items-center justify-center hover:bg-wp-teal transition-colors">
+                        <span className="text-white text-sm font-bold">LI</span>
+                      </a>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
             </div>
           </div>
         </section>
