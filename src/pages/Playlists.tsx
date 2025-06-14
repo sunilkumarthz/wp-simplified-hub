@@ -1,9 +1,8 @@
+
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import Breadcrumb from '@/components/Breadcrumb';
 import SEOHead from '@/components/SEOHead';
 import { Card, CardContent } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Play, Clock, BookOpen } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
@@ -95,9 +94,13 @@ const Playlists = () => {
           <Header />
           
           {/* Hero Section with integrated breadcrumb */}
-          <section className="py-20 text-center relative">
+          <section className="py-20 text-center relative animate-fade-in">
             <div className="container mx-auto px-4">
-              {/* Breadcrumb */}
+              <h1 className="text-6xl md:text-7xl font-baloo font-bold text-white mb-8">
+                WordPress <span className="text-gradient">Playlists</span>
+              </h1>
+              
+              {/* Breadcrumb moved below heading */}
               <nav className="flex justify-center mb-8">
                 <ol className="flex items-center space-x-2 text-sm">
                   <li><Link to="/" className="text-slate-400 hover:text-[#04D98B] transition-colors">Home</Link></li>
@@ -106,9 +109,6 @@ const Playlists = () => {
                 </ol>
               </nav>
 
-              <h1 className="text-6xl md:text-7xl font-baloo font-bold text-white mb-8">
-                WordPress <span className="text-gradient">Playlists</span>
-              </h1>
               <div className="w-32 h-1 wp-gradient rounded-full mx-auto mb-8"></div>
               <p className="text-xl text-slate-300 max-w-4xl mx-auto font-roboto leading-relaxed">
                 Comprehensive learning paths designed to take you from beginner to expert. 
@@ -126,7 +126,7 @@ const Playlists = () => {
               
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
                 {playlistCategories.map((category, index) => (
-                  <div key={index} className="creative-card bg-slate-800/50 border border-slate-700/50 p-8 text-center group">
+                  <div key={index} className="creative-card bg-slate-800/50 border border-slate-700/50 p-8 text-center group animate-slide-in-left" style={{ animationDelay: `${index * 150}ms` }}>
                     <div className="text-4xl mb-4">{category.icon}</div>
                     <div className="w-12 h-12 bg-gradient-to-br from-[#04D98B] to-[#037F8C] rounded-xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
                       <BookOpen className="w-6 h-6 text-white" />
@@ -156,7 +156,7 @@ const Playlists = () => {
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                   {validPlaylists.map((playlist, index) => (
-                    <div key={playlist.id || index} className="creative-card bg-slate-800/50 border border-slate-700/50 group">
+                    <div key={playlist.id || index} className="creative-card bg-slate-800/50 border border-slate-700/50 group animate-slide-in-left" style={{ animationDelay: `${index * 100}ms` }}>
                       <div className="relative">
                         <img 
                           src={playlist.thumbnail} 

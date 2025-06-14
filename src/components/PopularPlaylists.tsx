@@ -28,8 +28,9 @@ const PopularPlaylists = () => {
     }
   };
 
+  // If no valid playlists and not loading, don't render the section
   if (validPlaylists.length === 0 && !isLoading) {
-    return null; // Don't render if no valid data
+    return null;
   }
 
   return (

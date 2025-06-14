@@ -35,9 +35,9 @@ const Header = () => {
   return (
     <header className="sticky top-0 z-50 bg-slate-900/95 backdrop-blur-sm border-b border-slate-800">
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16 focus:outline-none focus:ring-2 focus:ring-teal-500">
+        <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link to="/" className="relative h-12 w-32 rounded-xl overflow-hidden border border-white/20 hover:border-teal-500/50 transition-all duration-300 group-hover:shadow-lg group-hover:shadow-teal-500/25" aria-label="WPSimplified Home">
+          <Link to="/" className="relative h-12 w-32 rounded-xl overflow-hidden border border-white/20 hover:border-teal-500/50 transition-all duration-300 group" aria-label="WPSimplified Home">
             <img 
               src="/lovable-uploads/7296f4cd-1ccd-4537-9d84-dd45c7c019c4.png" 
               alt="WPSimplified Logo" 
@@ -57,7 +57,7 @@ const Header = () => {
                   className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-all duration-200 font-roboto font-medium focus-visible:ring-2 focus-visible:ring-teal-400 ring-offset-2 ${
                     isActive
                       ? 'bg-teal-600 text-white font-semibold shadow-md'
-                      : 'bg-wp-teal text-slate-900 hover:bg-wp-teal/80 hover:shadow-sm'
+                      : 'bg-[#04D98B] text-slate-900 hover:bg-[#037F8C] hover:text-white hover:shadow-sm'
                   }`}
                   aria-current={isActive ? 'page' : undefined}
                 >
@@ -95,7 +95,7 @@ const Header = () => {
               ) : (
                 <button
                   onClick={() => setIsSearchOpen(true)}
-                  className="text-slate-300 hover:text-wp-teal p-2 rounded-lg hover:bg-slate-800/50 transition-all duration-200"
+                  className="text-slate-300 hover:text-[#04D98B] p-2 rounded-lg hover:bg-slate-800/50 transition-all duration-200"
                   aria-label="Open search"
                 >
                   <Search size={20} />
@@ -105,7 +105,7 @@ const Header = () => {
 
             {/* Subscribe Button */}
             <Button 
-              className="wp-gradient text-slate-900 font-roboto font-semibold hover:scale-105 transition-transform duration-200"
+              className="font-roboto font-semibold"
               asChild
             >
               <a 
@@ -147,7 +147,7 @@ const Header = () => {
                 />
                 <button
                   type="submit"
-                  className="absolute right-2 top-1/2 transform -translate-y-1/2 text-slate-400 hover:text-wp-teal"
+                  className="absolute right-2 top-1/2 transform -translate-y-1/2 text-slate-400 hover:text-[#04D98B]"
                   aria-label="Search"
                 >
                   <Search size={20} />
@@ -166,7 +166,7 @@ const Header = () => {
                     className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-all duration-200 font-roboto font-medium focus-visible:ring-2 focus-visible:ring-teal-400 ring-offset-2 ${
                       isActive
                         ? 'bg-teal-600 text-white font-semibold shadow-md'
-                        : 'bg-wp-teal text-slate-900 hover:bg-wp-teal/80 hover:shadow-sm'
+                        : 'bg-[#04D98B] text-slate-900 hover:bg-[#037F8C] hover:text-white hover:shadow-sm'
                     }`}
                     onClick={() => setIsMenuOpen(false)}
                     aria-current={isActive ? 'page' : undefined}
@@ -178,7 +178,7 @@ const Header = () => {
               })}
               <div className="pt-4">
                 <Button 
-                  className="wp-gradient text-slate-900 font-roboto font-semibold w-full"
+                  className="font-roboto font-semibold w-full"
                   asChild
                 >
                   <a 
