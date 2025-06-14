@@ -49,18 +49,19 @@ const Header = () => {
           <nav className="hidden lg:flex items-center space-x-2" role="navigation" aria-label="Main navigation">
             {navItems.map((item) => {
               const IconComponent = item.icon;
+              const isActive = isActiveRoute(item.path);
               return (
                 <Link
                   key={item.path}
                   to={item.path}
-                  className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-all duration-200 font-roboto font-medium ${
-                    isActiveRoute(item.path)
-                      ? 'bg-wp-teal text-slate-900'
-                      : 'text-slate-300 hover:text-wp-teal hover:bg-slate-800/50'
+                  className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-all duration-200 font-roboto font-medium focus-visible:ring-2 focus-visible:ring-teal-400 ring-offset-2 ${
+                    isActive
+                      ? 'bg-teal-600 text-white font-semibold shadow-md'
+                      : 'bg-wp-teal text-slate-900 hover:bg-wp-teal/80 hover:shadow-sm'
                   }`}
-                  aria-current={isActiveRoute(item.path) ? 'page' : undefined}
+                  aria-current={isActive ? 'page' : undefined}
                 >
-                  <IconComponent size={18} aria-hidden="true" />
+                  <IconComponent size={16} className="w-4 h-4 pointer-events-none" aria-hidden="true" />
                   <span>{item.label}</span>
                 </Link>
               );
@@ -157,19 +158,20 @@ const Header = () => {
             <nav className="flex flex-col space-y-2" role="navigation" aria-label="Mobile navigation">
               {navItems.map((item) => {
                 const IconComponent = item.icon;
+                const isActive = isActiveRoute(item.path);
                 return (
                   <Link
                     key={item.path}
                     to={item.path}
-                    className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-all duration-200 font-roboto font-medium ${
-                      isActiveRoute(item.path)
-                        ? 'bg-wp-teal text-slate-900'
-                        : 'text-slate-300 hover:text-wp-teal hover:bg-slate-800/50'
+                    className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-all duration-200 font-roboto font-medium focus-visible:ring-2 focus-visible:ring-teal-400 ring-offset-2 ${
+                      isActive
+                        ? 'bg-teal-600 text-white font-semibold shadow-md'
+                        : 'bg-wp-teal text-slate-900 hover:bg-wp-teal/80 hover:shadow-sm'
                     }`}
                     onClick={() => setIsMenuOpen(false)}
-                    aria-current={isActiveRoute(item.path) ? 'page' : undefined}
+                    aria-current={isActive ? 'page' : undefined}
                   >
-                    <IconComponent size={18} aria-hidden="true" />
+                    <IconComponent size={16} className="w-4 h-4 pointer-events-none" aria-hidden="true" />
                     <span>{item.label}</span>
                   </Link>
                 );
