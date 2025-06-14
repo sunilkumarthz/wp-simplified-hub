@@ -56,8 +56,8 @@ const Header = () => {
                   to={item.path}
                   className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-all duration-200 font-roboto font-medium focus-visible:ring-2 focus-visible:ring-teal-400 ring-offset-2 ${
                     isActive
-                      ? 'bg-teal-600 text-white font-semibold shadow-md'
-                      : 'bg-[#04D98B] text-slate-900 hover:bg-[#037F8C] hover:text-white hover:shadow-sm'
+                      ? 'bg-[#04D98B] text-slate-900 font-semibold shadow-md'
+                      : 'text-slate-300 hover:bg-[#04D98B] hover:text-slate-900 hover:shadow-sm'
                   }`}
                   aria-current={isActive ? 'page' : undefined}
                 >
@@ -165,8 +165,8 @@ const Header = () => {
                     to={item.path}
                     className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-all duration-200 font-roboto font-medium focus-visible:ring-2 focus-visible:ring-teal-400 ring-offset-2 ${
                       isActive
-                        ? 'bg-teal-600 text-white font-semibold shadow-md'
-                        : 'bg-[#04D98B] text-slate-900 hover:bg-[#037F8C] hover:text-white hover:shadow-sm'
+                        ? 'bg-[#04D98B] text-slate-900 font-semibold shadow-md'
+                        : 'text-slate-300 hover:bg-[#04D98B] hover:text-slate-900 hover:shadow-sm'
                     }`}
                     onClick={() => setIsMenuOpen(false)}
                     aria-current={isActive ? 'page' : undefined}
