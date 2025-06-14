@@ -34,12 +34,12 @@ const Footer = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
             {/* Brand Section */}
             <div className="space-y-6">
-              <div className="flex items-center space-x-2">
-                <div className="bg-slate-800 rounded-lg p-3 border border-slate-700">
-                  <span className="font-baloo font-bold text-wp-teal text-lg">WP</span>
-                  <br />
-                  <span className="font-baloo font-bold text-white text-sm leading-none">SIMPLIFIED</span>
-                </div>
+              <div className="flex items-center">
+                <img 
+                  src="/lovable-uploads/7296f4cd-1ccd-4537-9d84-dd45c7c019c4.png" 
+                  alt="WPSimplified Logo" 
+                  className="h-12 w-auto"
+                />
               </div>
               <p className="text-slate-400 font-roboto text-sm leading-relaxed max-w-xs">
                 Empowering WordPress developers with cutting-edge tutorials, comprehensive playlists, and industry insights. Join thousands mastering WordPress development.

@@ -37,12 +37,12 @@ const Header = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2" aria-label="WPSimplified Home">
-            <div className="bg-slate-800 rounded-lg p-2 border border-slate-700">
-              <span className="font-baloo font-bold text-wp-teal text-sm">WP</span>
-              <br />
-              <span className="font-baloo font-bold text-white text-xs leading-none">SIMPLIFIED</span>
-            </div>
+          <Link to="/" className="flex items-center" aria-label="WPSimplified Home">
+            <img 
+              src="/lovable-uploads/7296f4cd-1ccd-4537-9d84-dd45c7c019c4.png" 
+              alt="WPSimplified Logo" 
+              className="h-10 w-auto"
+            />
           </Link>
 
           {/* Desktop Navigation */}
