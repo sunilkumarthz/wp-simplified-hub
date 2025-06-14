@@ -36,6 +36,14 @@ const CommunityInvolvement = () => {
       status: "completed"
     },
     {
+      year: "2024",
+      role: "Meetup Organizer",
+      event: "WordPress Alwar",
+      location: "Alwar",
+      type: "organizer",
+      status: "ongoing"
+    },
+    {
       year: "2023",
       role: "Organizer",
       event: "WordCamp Bengaluru 2023",
@@ -58,14 +66,6 @@ const CommunityInvolvement = () => {
       location: "Udaipur",
       type: "attendee",
       status: "completed"
-    },
-    {
-      year: "2024",
-      role: "Meetup Organizer",
-      event: "WordPress Alwar",
-      location: "Alwar",
-      type: "organizer",
-      status: "ongoing"
     }
   ];
 
