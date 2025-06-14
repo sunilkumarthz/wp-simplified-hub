@@ -1,6 +1,6 @@
+
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import Breadcrumb from '@/components/Breadcrumb';
 import SEOHead from '@/components/SEOHead';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';

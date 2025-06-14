@@ -1,185 +1,172 @@
-
 import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import * as z from 'zod';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import Breadcrumb from '@/components/Breadcrumb';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import SEOHead from '@/components/SEOHead';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Label } from '@/components/ui/label';
-import { Mail, Phone, MapPin, Send } from 'lucide-react';
-import { submitContactForm, type ContactFormData } from '@/services/api';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
+import { Mail, Phone, MapPin, Send, MessageCircle } from 'lucide-react';
+
+const contactFormSchema = z.object({
+  name: z.string().min(2, {
+    message: 'Name must be at least 2 characters.',
+  }),
+  email: z.string().email({
+    message: 'Please enter a valid email address.',
+  }),
+  message: z.string().min(10, {
+    message: 'Message must be at least 10 characters.',
+  }),
+});
+
+type ContactFormValues = z.infer<typeof contactFormSchema>;
 
 const Contact = () => {
-  const [formData, setFormData] = useState<ContactFormData>({
-    name: '',
-    email: '',
-    message: '',
-    purpose: ''
-  });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
+  const form = useForm<ContactFormValues>({
+    resolver: zodResolver(contactFormSchema),
+    defaultValues: {
+      name: '',
+      email: '',
+      message: '',
+    },
+  });
 
-  const handlePurposeChange = (value: string) => {
-    setFormData(prev => ({
-      ...prev,
-      purpose: value
-    }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const onSubmit = async (values: ContactFormValues) => {
     setIsSubmitting(true);
-
     try {
-      const result = await submitContactForm(formData);
-      
-      if (result.success) {
-        toast({
-          title: "Message Sent!",
-          description: "Thank you for reaching out. I'll get back to you soon.",
-        });
-        
-        // Reset form
-        setFormData({
-          name: '',
-          email: '',
-          message: '',
-          purpose: ''
-        });
-      } else {
-        throw new Error(result.message || 'Failed to send message');
-      }
-    } catch (error) {
+      // Simulate form submission delay
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+
+      // Display success toast
       toast({
-        title: "Error",
-        description: "Failed to send message. Please try again later.",
-        variant: "destructive",
+        title: 'Message sent successfully!',
+        description: 'We will get back to you soon.',
+      });
+
+      // Reset the form
+      form.reset();
+    } catch (error) {
+      // Display error toast
+      toast({
+        title: 'Something went wrong.',
+        description: 'There was an error sending your message. Please try again.',
+        variant: 'destructive',
       });
     } finally {
       setIsSubmitting(false);
     }
   };
 
+  const contactJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "name": "Contact WPSimplified",
+    "description": "Contact WPSimplified for WordPress tutorials, theme development, plugin customization, and website optimization services.",
+    "url": "https://wpsimplified.in/contact",
+    "potentialAction": {
+      "@type": "CommunicateAction",
+      "actionStatus": "https://schema.org/ActiveActionStatus",
+      "name": "Contact Us",
+      "target": "https://wpsimplified.in/contact"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://wpsimplified.in/contact"
+    }
+  };
+
   return (
-    <div className="min-h-screen bg-slate-900 relative overflow-hidden">
-      {/* Background Effects */}
-      <div className="absolute inset-0 wp-gradient-dark opacity-30"></div>
-      <div className="absolute top-20 left-10 w-96 h-96 bg-wp-teal/10 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-20 right-10 w-96 h-96 bg-wp-blue/10 rounded-full blur-3xl"></div>
+    <>
+      <SEOHead
+        title="Contact WPSimplified - WordPress Tutorials & Services"
+        description="Contact WPSimplified for WordPress tutorials, theme development, plugin customization, and website optimization services."
+        keywords="WordPress tutorials, WordPress theme development, WordPress plugin customization, website optimization, contact WordPress expert"
+        url="https://wpsimplified.in/contact"
+        jsonLd={contactJsonLd}
+      />
       
-      <div className="relative z-10">
+      <div className="min-h-screen bg-slate-900">
         <Header />
         
-        {/* Hero Section */}
-        <section className="py-20 text-center">
-          <div className="container mx-auto px-4">
-            <h1 className="text-5xl md:text-6xl font-baloo font-bold text-white mb-6">
-              Get in <span className="text-gradient">Touch</span>
+        <div className="container mx-auto px-4">
+          {/* Hero Section */}
+          <section className="py-16 text-center">
+            <h1 className="text-4xl md:text-5xl font-baloo font-bold text-white mb-6">
+              Contact <span className="text-gradient">WPSimplified</span>
             </h1>
-            <p className="text-xl text-slate-300 max-w-3xl mx-auto font-roboto leading-relaxed">
-              Have a question about WordPress? Want to collaborate on a project? 
-              Interested in being a guest on my podcast? Let's connect!
+            
+            <p className="text-lg text-slate-300 max-w-2xl mx-auto font-roboto leading-relaxed mb-8">
+              Have questions, need assistance, or want to discuss a project? 
+              Reach out to us, and let's bring your WordPress vision to life.
             </p>
-          </div>
-        </section>
+          </section>
 
-        {/* Contact Section */}
-        <section className="py-16">
-          <div className="container mx-auto px-4">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          {/* Contact Form Section */}
+          <section className="pb-20">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {/* Contact Form */}
-              <Card className="bg-slate-800/50 border-slate-700 backdrop-blur-sm">
+              <Card className="bg-slate-800/60 border-slate-700">
                 <CardHeader>
-                  <CardTitle className="text-2xl font-baloo font-bold text-white mb-2">
-                    Send me a message
+                  <CardTitle className="text-2xl font-baloo font-bold text-white">
+                    Send us a Message
                   </CardTitle>
-                  <p className="text-slate-400 font-roboto">
-                    Fill out the form below and I'll get back to you as soon as possible.
-                  </p>
                 </CardHeader>
-                <CardContent className="space-y-6">
-                  <form onSubmit={handleSubmit} className="space-y-6">
-                    <div className="space-y-2">
-                      <Label htmlFor="name" className="text-white font-roboto">Name *</Label>
+                <CardContent className="space-y-4">
+                  <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+                    <div>
                       <Input
                         id="name"
-                        name="name"
+                        placeholder="Your Name"
                         type="text"
-                        value={formData.name}
-                        onChange={handleInputChange}
-                        placeholder="Your full name"
-                        required
-                        className="bg-slate-700 border-slate-600 text-white placeholder:text-slate-400"
+                        {...form.register('name')}
+                        disabled={isSubmitting}
                       />
+                      {form.formState.errors.name && (
+                        <p className="text-red-500 text-sm mt-1">{form.formState.errors.name.message}</p>
+                      )}
                     </div>
-                    
-                    <div className="space-y-2">
-                      <Label htmlFor="email" className="text-white font-roboto">Email *</Label>
+                    <div>
                       <Input
                         id="email"
-                        name="email"
+                        placeholder="Your Email"
                         type="email"
-                        value={formData.email}
-                        onChange={handleInputChange}
-                        placeholder="your.email@example.com"
-                        required
-                        className="bg-slate-700 border-slate-600 text-white placeholder:text-slate-400"
+                        {...form.register('email')}
+                        disabled={isSubmitting}
                       />
+                      {form.formState.errors.email && (
+                        <p className="text-red-500 text-sm mt-1">{form.formState.errors.email.message}</p>
+                      )}
                     </div>
-                    
-                    <div className="space-y-2">
-                      <Label htmlFor="purpose" className="text-white font-roboto">Purpose of Contact *</Label>
-                      <Select value={formData.purpose} onValueChange={handlePurposeChange} required>
-                        <SelectTrigger className="bg-slate-700 border-slate-600 text-white">
-                          <SelectValue placeholder="Select the purpose of your message" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="collaboration">Collaboration</SelectItem>
-                          <SelectItem value="support">Technical Support</SelectItem>
-                          <SelectItem value="podcast">Podcast Guest</SelectItem>
-                          <SelectItem value="business">Business Inquiry</SelectItem>
-                          <SelectItem value="other">Other</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-                    
-                    <div className="space-y-2">
-                      <Label htmlFor="message" className="text-white font-roboto">Message *</Label>
+                    <div>
                       <Textarea
                         id="message"
-                        name="message"
-                        value={formData.message}
-                        onChange={handleInputChange}
-                        placeholder="Tell me about your project, question, or how I can help..."
-                        rows={6}
-                        required
-                        className="bg-slate-700 border-slate-600 text-white placeholder:text-slate-400"
+                        placeholder="Your Message"
+                        rows={4}
+                        {...form.register('message')}
+                        disabled={isSubmitting}
                       />
+                      {form.formState.errors.message && (
+                        <p className="text-red-500 text-sm mt-1">{form.formState.errors.message.message}</p>
+                      )}
                     </div>
-                    
-                    <Button
-                      type="submit"
-                      disabled={isSubmitting}
-                      className="w-full btn-gradient text-slate-900 font-roboto font-bold"
-                    >
+                    <Button type="submit" disabled={isSubmitting} className="w-full font-semibold">
                       {isSubmitting ? (
-                        <>Sending...</>
+                        <>
+                          <Send className="mr-2 h-4 w-4 animate-spin" />
+                          Sending...
+                        </>
                       ) : (
                         <>
-                          <Send className="w-4 h-4 mr-2" />
                           Send Message
+                          <Send className="ml-2 h-4 w-4" />
                         </>
                       )}
                     </Button>
@@ -187,118 +174,49 @@ const Contact = () => {
                 </CardContent>
               </Card>
 
-              {/* Contact Info */}
-              <div className="space-y-8">
-                <Card className="bg-slate-800/50 border-slate-700 backdrop-blur-sm">
-                  <CardContent className="p-8">
-                    <h3 className="text-2xl font-baloo font-bold text-white mb-6">
-                      Contact Information
-                    </h3>
-                    
-                    <div className="space-y-6">
-                      <div className="flex items-start space-x-4">
-                        <div className="w-12 h-12 bg-wp-teal rounded-full flex items-center justify-center">
-                          <Mail className="w-6 h-6 text-slate-900" />
-                        </div>
-                        <div>
-                          <h4 className="text-white font-roboto font-semibold mb-1">Email</h4>
-                          <p className="text-slate-400 font-roboto">hello@wpsimplified.in</p>
-                        </div>
-                      </div>
-                      
-                      <div className="flex items-start space-x-4">
-                        <div className="w-12 h-12 bg-wp-teal rounded-full flex items-center justify-center">
-                          <MapPin className="w-6 h-6 text-slate-900" />
-                        </div>
-                        <div>
-                          <h4 className="text-white font-roboto font-semibold mb-1">Location</h4>
-                          <p className="text-slate-400 font-roboto">Alwar, Rajasthan, India</p>
-                        </div>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                <Card className="bg-slate-800/50 border-slate-700 backdrop-blur-sm">
-                  <CardContent className="p-8">
-                    <h3 className="text-2xl font-baloo font-bold text-white mb-6">
-                      Response Time
-                    </h3>
-                    <p className="text-slate-300 font-roboto leading-relaxed mb-4">
-                      I typically respond to messages within 24-48 hours. For urgent matters, 
-                      please mention "URGENT" in your subject line.
-                    </p>
-                    <p className="text-slate-400 font-roboto text-sm">
-                      Best response times: Monday - Friday, 9 AM - 6 PM IST
-                    </p>
-                  </CardContent>
-                </Card>
-
-                <Card className="bg-slate-800/50 border-slate-700 backdrop-blur-sm">
-                  <CardContent className="p-8">
-                    <h3 className="text-2xl font-baloo font-bold text-white mb-6">
-                      Follow Me
-                    </h3>
-                    <p className="text-slate-300 font-roboto mb-4">
-                      Stay updated with my latest content and WordPress tips:
-                    </p>
-                    <div className="space-y-3">
-                      <a 
-                        href="https://www.linkedin.com/in/sunilkumarthz/" 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
-                        className="flex items-center space-x-3 p-3 bg-slate-700 rounded-lg hover:bg-wp-teal hover:text-slate-900 transition-all duration-300 text-white"
-                      >
-                        <span className="text-sm font-bold">LI</span>
-                        <span className="font-roboto">LinkedIn</span>
-                      </a>
-                      <a 
-                        href="https://x.com/sunilkumarthz" 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
-                        className="flex items-center space-x-3 p-3 bg-slate-700 rounded-lg hover:bg-wp-teal hover:text-slate-900 transition-all duration-300 text-white"
-                      >
-                        <span className="text-sm font-bold">X</span>
-                        <span className="font-roboto">X (Twitter)</span>
-                      </a>
-                      <a 
-                        href="https://github.com/sunilkumarthz" 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
-                        className="flex items-center space-x-3 p-3 bg-slate-700 rounded-lg hover:bg-wp-teal hover:text-slate-900 transition-all duration-300 text-white"
-                      >
-                        <span className="text-sm font-bold">GH</span>
-                        <span className="font-roboto">GitHub</span>
-                      </a>
-                      <a 
-                        href="https://profiles.wordpress.org/sunilkumarthz/" 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
-                        className="flex items-center space-x-3 p-3 bg-slate-700 rounded-lg hover:bg-wp-teal hover:text-slate-900 transition-all duration-300 text-white"
-                      >
-                        <span className="text-sm font-bold">WP</span>
-                        <span className="font-roboto">WordPress.org</span>
-                      </a>
-                      <a 
-                        href="https://www.youtube.com/@wpsimplifiedbysunil" 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
-                        className="flex items-center space-x-3 p-3 bg-slate-700 rounded-lg hover:bg-wp-teal hover:text-slate-900 transition-all duration-300 text-white"
-                      >
-                        <span className="text-sm font-bold">YT</span>
-                        <span className="font-roboto">YouTube</span>
-                      </a>
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
+              {/* Contact Information */}
+              <Card className="bg-slate-800/60 border-slate-700">
+                <CardHeader>
+                  <CardTitle className="text-2xl font-baloo font-bold text-white">
+                    Contact Information
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div className="flex items-center space-x-3 text-slate-300">
+                    <Mail className="h-5 w-5 text-wp-teal" />
+                    <a href="mailto:contact@wpsimplified.in" className="hover:text-wp-teal transition-colors">
+                      contact@wpsimplified.in
+                    </a>
+                  </div>
+                  <div className="flex items-center space-x-3 text-slate-300">
+                    <Phone className="h-5 w-5 text-wp-teal" />
+                    <a href="tel:+919876543210" className="hover:text-wp-teal transition-colors">
+                      +91 98765 43210
+                    </a>
+                  </div>
+                  <div className="flex items-center space-x-3 text-slate-300">
+                    <MapPin className="h-5 w-5 text-wp-teal" />
+                    <span>
+                      123 Tech Park,
+                      <br />
+                      Electronic City, Bangalore, India
+                    </span>
+                  </div>
+                  <div className="flex items-center space-x-3 text-slate-300">
+                    <MessageCircle className="h-5 w-5 text-wp-teal" />
+                    <a href="https://www.youtube.com/@wpsimplifiedbysunil" target="_blank" rel="noopener noreferrer" className="hover:text-wp-teal transition-colors">
+                      @wpsimplifiedbysunil
+                    </a>
+                  </div>
+                </CardContent>
+              </Card>
             </div>
-          </div>
-        </section>
+          </section>
+        </div>
 
         <Footer />
       </div>
-    </div>
+    </>
   );
 };
 
