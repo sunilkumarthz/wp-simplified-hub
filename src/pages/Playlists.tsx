@@ -20,7 +20,7 @@ const Playlists = () => {
   // Mock data fallback if API fails
   const mockPlaylists: Playlist[] = [
     {
-      id: '1',
+      id: 1,
       title: 'WordPress Fundamentals for Beginners',
       description: 'Learn the basics of WordPress from installation to customization',
       thumbnail: '/lovable-uploads/7296f4cd-1ccd-4537-9d84-dd45c7c019c4.png',
@@ -30,7 +30,7 @@ const Playlists = () => {
       difficulty: 'Beginner'
     },
     {
-      id: '2',
+      id: 2,
       title: 'Advanced WordPress Development',
       description: 'Deep dive into custom themes, plugins, and advanced WordPress features',
       thumbnail: '/lovable-uploads/7296f4cd-1ccd-4537-9d84-dd45c7c019c4.png',
@@ -40,7 +40,7 @@ const Playlists = () => {
       difficulty: 'Advanced'
     },
     {
-      id: '3',
+      id: 3,
       title: 'WooCommerce Complete Guide',
       description: 'Build and manage successful e-commerce stores with WooCommerce',
       thumbnail: '/lovable-uploads/7296f4cd-1ccd-4537-9d84-dd45c7c019c4.png',
@@ -50,7 +50,7 @@ const Playlists = () => {
       difficulty: 'Intermediate'
     },
     {
-      id: '4',
+      id: 4,
       title: 'WordPress Security & Performance',
       description: 'Secure and optimize your WordPress website for peak performance',
       thumbnail: '/lovable-uploads/7296f4cd-1ccd-4537-9d84-dd45c7c019c4.png',
