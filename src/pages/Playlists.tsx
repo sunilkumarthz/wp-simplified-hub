@@ -14,26 +14,35 @@ const Playlists = () => {
     queryFn: fetchAllPlaylists,
   });
 
+  // Filter out playlists with missing essential data
+  const validPlaylists = playlists.filter(playlist => 
+    playlist.title && playlist.thumbnail && playlist.url
+  );
+
   const playlistCategories = [
     {
       title: "WordPress Fundamentals",
       description: "Essential knowledge for WordPress beginners",
-      count: 8
+      count: validPlaylists.filter(p => p.difficulty?.toLowerCase() === 'beginner').length || 8,
+      icon: "🏗️"
     },
     {
       title: "Advanced Development",
       description: "Deep dive into WordPress development",
-      count: 12
+      count: validPlaylists.filter(p => p.difficulty?.toLowerCase() === 'advanced').length || 12,
+      icon: "⚡"
     },
     {
       title: "WooCommerce Mastery",
       description: "Complete e-commerce solutions",
-      count: 15
+      count: validPlaylists.filter(p => p.title.toLowerCase().includes('woocommerce')).length || 15,
+      icon: "🛒"
     },
     {
       title: "Performance & Security",
       description: "Optimize and secure your WordPress site",
-      count: 6
+      count: validPlaylists.filter(p => p.title.toLowerCase().includes('performance') || p.title.toLowerCase().includes('security')).length || 6,
+      icon: "🔒"
     }
   ];
 
@@ -73,22 +82,33 @@ const Playlists = () => {
       />
       
       <div className="min-h-screen bg-slate-900 relative overflow-hidden">
-        {/* Background Effects */}
-        <div className="absolute inset-0 wp-gradient-dark opacity-50"></div>
-        <div className="absolute top-20 left-10 w-72 h-72 bg-wp-teal/10 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-wp-blue/10 rounded-full blur-3xl"></div>
+        {/* Enhanced Background Effects */}
+        <div className="absolute inset-0">
+          <div className="absolute top-20 left-10 w-72 h-72 bg-[#04D98B]/10 rounded-full blur-3xl floating-animation"></div>
+          <div className="absolute bottom-20 right-10 w-96 h-96 bg-[#037F8C]/10 rounded-full blur-3xl floating-animation" style={{ animationDelay: '2s' }}></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-radial from-[#04D98B]/5 to-transparent rounded-full"></div>
+        </div>
         
         <div className="relative z-10">
           <Header />
-          <Breadcrumb />
           
-          {/* Hero Section */}
-          <section className="py-20 text-center">
+          {/* Hero Section with integrated breadcrumb */}
+          <section className="py-20 text-center relative">
             <div className="container mx-auto px-4">
-              <h1 className="text-5xl md:text-6xl font-baloo font-bold text-white mb-6">
+              {/* Breadcrumb */}
+              <nav className="flex justify-center mb-8">
+                <ol className="flex items-center space-x-2 text-sm">
+                  <li><Link to="/" className="text-slate-400 hover:text-[#04D98B] transition-colors">Home</Link></li>
+                  <li className="text-slate-500">/</li>
+                  <li className="text-[#04D98B] font-semibold">Playlists</li>
+                </ol>
+              </nav>
+
+              <h1 className="text-6xl md:text-7xl font-baloo font-bold text-white mb-8">
                 WordPress <span className="text-gradient">Playlists</span>
               </h1>
-              <p className="text-xl text-slate-300 max-w-3xl mx-auto font-roboto leading-relaxed mb-8">
+              <div className="w-32 h-1 wp-gradient rounded-full mx-auto mb-8"></div>
+              <p className="text-xl text-slate-300 max-w-4xl mx-auto font-roboto leading-relaxed">
                 Comprehensive learning paths designed to take you from beginner to expert. 
                 Each playlist is carefully curated to build your WordPress skills progressively.
               </p>
@@ -104,122 +124,120 @@ const Playlists = () => {
               
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
                 {playlistCategories.map((category, index) => (
-                  <Card key={index} className="bg-slate-800/50 border-slate-700 backdrop-blur-sm hover:bg-slate-800/70 transition-all duration-300 hover:scale-105">
-                    <CardContent className="p-6 text-center">
-                      <div className="w-12 h-12 bg-wp-teal rounded-lg flex items-center justify-center mx-auto mb-4">
-                        <BookOpen className="w-6 h-6 text-slate-900" />
-                      </div>
-                      <h3 className="text-lg font-baloo font-bold text-white mb-2">
-                        {category.title}
-                      </h3>
-                      <p className="text-slate-300 font-roboto text-sm mb-3 leading-relaxed">
-                        {category.description}
-                      </p>
-                      <Badge variant="secondary" className="bg-wp-teal/20 text-wp-teal">
-                        {category.count} Playlists
-                      </Badge>
-                    </CardContent>
-                  </Card>
+                  <div key={index} className="creative-card bg-slate-800/50 border border-slate-700/50 p-8 text-center group">
+                    <div className="text-4xl mb-4">{category.icon}</div>
+                    <div className="w-12 h-12 bg-gradient-to-br from-[#04D98B] to-[#037F8C] rounded-xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                      <BookOpen className="w-6 h-6 text-white" />
+                    </div>
+                    <h3 className="text-xl font-baloo font-bold text-white mb-3 group-hover:text-[#04D98B] transition-colors duration-300">
+                      {category.title}
+                    </h3>
+                    <p className="text-slate-300 font-roboto text-sm mb-4 leading-relaxed">
+                      {category.description}
+                    </p>
+                    <div className="inline-flex items-center bg-[#04D98B]/20 text-[#04D98B] px-4 py-2 rounded-full text-sm font-semibold">
+                      {category.count} Playlists
+                    </div>
+                  </div>
                 ))}
               </div>
             </div>
           </section>
 
           {/* Playlists Grid */}
-          <section className="py-20">
-            <div className="container mx-auto px-4">
-              <h2 className="text-4xl font-baloo font-bold text-white mb-12 text-center">
-                All Playlists
-              </h2>
-              
-              {isLoading && (
-                <div className="text-center py-12">
-                  <div className="text-white font-roboto">Loading playlists...</div>
-                </div>
-              )}
-
-              {error && (
-                <div className="text-center py-12">
-                  <div className="text-red-400 font-roboto">Failed to load playlists. Please try again later.</div>
-                </div>
-              )}
-
-              {playlists.length === 0 && !isLoading && !error && (
-                <div className="text-center py-12">
-                  <div className="text-slate-400 font-roboto">No playlists available.</div>
-                </div>
-              )}
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {playlists.map((playlist, index) => (
-                  <Card key={playlist.id || index} className="bg-slate-800/50 border-slate-700 backdrop-blur-sm hover:bg-slate-800/70 transition-all duration-300 group">
-                    <CardContent className="p-0">
+          {validPlaylists.length > 0 && (
+            <section className="py-20">
+              <div className="container mx-auto px-4">
+                <h2 className="text-4xl font-baloo font-bold text-white mb-12 text-center">
+                  All Learning Paths
+                </h2>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  {validPlaylists.map((playlist, index) => (
+                    <div key={playlist.id || index} className="creative-card bg-slate-800/50 border border-slate-700/50 group">
                       <div className="relative">
                         <img 
                           src={playlist.thumbnail} 
                           alt={playlist.title}
-                          className="w-full h-48 object-cover rounded-t-lg"
+                          className="w-full h-56 object-cover rounded-t-xl transition-transform duration-500 group-hover:scale-110"
                         />
-                        <div className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-t-xl"></div>
+                        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                           <a 
                             href={playlist.url} 
                             target="_blank" 
                             rel="noopener noreferrer"
-                            className="w-16 h-16 bg-wp-teal rounded-full flex items-center justify-center hover:scale-110 transition-transform"
+                            className="icon-btn pulse-glow"
                           >
-                            <Play className="w-8 h-8 text-slate-900" />
+                            <Play className="w-8 h-8" />
                           </a>
                         </div>
-                        <div className="absolute top-2 right-2 bg-black/80 px-2 py-1 rounded text-white text-xs">
-                          {playlist.video_count} videos
-                        </div>
+                        {playlist.difficulty && (
+                          <div className={`absolute top-4 left-4 ${
+                            playlist.difficulty.toLowerCase() === 'beginner' ? 'bg-emerald-500' :
+                            playlist.difficulty.toLowerCase() === 'intermediate' ? 'bg-amber-500' :
+                            'bg-red-500'
+                          } text-white text-sm px-3 py-1 rounded-full font-semibold shadow-lg`}>
+                            {playlist.difficulty}
+                          </div>
+                        )}
+                        {playlist.video_count && (
+                          <div className="absolute top-4 right-4 bg-black/80 backdrop-blur-sm text-white text-sm px-3 py-1 rounded-full">
+                            {playlist.video_count} videos
+                          </div>
+                        )}
                       </div>
                       
-                      <div className="p-6">
-                        <div className="flex items-center justify-between mb-3">
-                          <Badge 
-                            variant="secondary" 
-                            className={`${
-                              playlist.difficulty === 'Beginner' ? 'bg-green-500/20 text-green-400' :
-                              playlist.difficulty === 'Intermediate' ? 'bg-yellow-500/20 text-yellow-400' :
-                              'bg-red-500/20 text-red-400'
-                            }`}
-                          >
-                            {playlist.difficulty}
-                          </Badge>
-                          <span className="flex items-center text-slate-400 text-sm font-roboto">
-                            <Clock className="w-4 h-4 mr-1" />
-                            {playlist.duration}
-                          </span>
-                        </div>
-                        
-                        <h3 className="text-xl font-baloo font-bold text-white mb-3 line-clamp-2">
+                      <div className="p-8">
+                        <h3 className="text-2xl font-baloo font-bold text-white mb-4 line-clamp-2 group-hover:text-[#04D98B] transition-colors duration-300">
                           {playlist.title}
                         </h3>
-                        <p className="text-slate-300 font-roboto text-sm mb-4 line-clamp-2">
+                        <p className="text-slate-300 font-roboto text-sm mb-6 line-clamp-3 leading-relaxed">
                           {playlist.description}
                         </p>
                         
-                        <div className="flex items-center justify-between">
-                          <span className="text-wp-teal font-roboto font-semibold text-sm">
-                            {playlist.video_count} Videos
-                          </span>
-                          <a 
-                            href={playlist.url} 
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                            className="text-wp-teal hover:text-white transition-colors font-roboto text-sm font-medium"
-                          >
-                            Watch Now →
-                          </a>
+                        <div className="flex items-center justify-between mb-6">
+                          {playlist.video_count && (
+                            <span className="flex items-center text-[#04D98B] text-sm font-semibold">
+                              <Play className="w-4 h-4 mr-2" />
+                              {playlist.video_count} Videos
+                            </span>
+                          )}
+                          {playlist.duration && (
+                            <span className="flex items-center text-slate-400 text-sm">
+                              <Clock className="w-4 h-4 mr-2" />
+                              {playlist.duration}
+                            </span>
+                          )}
                         </div>
+                        
+                        <a href={playlist.url} target="_blank" rel="noopener noreferrer" className="no-link-styles">
+                          <Button className="w-full font-semibold">
+                            Watch Playlist
+                          </Button>
+                        </a>
                       </div>
-                    </CardContent>
-                  </Card>
-                ))}
+                    </div>
+                  ))}
+                </div>
               </div>
+            </section>
+          )}
+
+          {isLoading && (
+            <div className="text-center py-20">
+              <div className="inline-flex items-center justify-center w-16 h-16 bg-[#04D98B]/20 rounded-full mb-4">
+                <div className="w-8 h-8 border-4 border-[#04D98B] border-t-transparent rounded-full animate-spin"></div>
+              </div>
+              <div className="text-white font-roboto text-lg">Loading playlists...</div>
             </div>
-          </section>
+          )}
+
+          {error && (
+            <div className="text-center py-20">
+              <div className="text-red-400 font-roboto text-lg">Failed to load playlists. Please try again later.</div>
+            </div>
+          )}
 
           <Footer />
         </div>
