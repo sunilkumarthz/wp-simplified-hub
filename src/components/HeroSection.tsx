@@ -1,8 +1,14 @@
 
 import { Button } from '@/components/ui/button';
-import { Link } from 'react-router-dom';
 
 const HeroSection = () => {
+  const scrollToVideos = () => {
+    const videosSection = document.getElementById('latest-videos');
+    if (videosSection) {
+      videosSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Gradient */}
@@ -15,40 +21,27 @@ const HeroSection = () => {
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-wp-teal/30 rounded-full blur-3xl animate-pulse delay-500"></div>
       </div>
 
-      <div className="container mx-auto px-4 text-center relative z-10">
+      <div className="text-center relative z-10">
         <div className="max-w-4xl mx-auto space-y-8 animate-fade-in">
           {/* Main Headline */}
           <h1 className="text-5xl md:text-7xl font-baloo font-bold text-white leading-tight">
-            From <span className="text-gradient">Zero to Hero</span> in WordPress
+            Simplifying WordPress, <span className="text-gradient">One Step at a Time</span>
           </h1>
           
-          {/* Subheading */}
-          <p className="text-xl md:text-2xl text-slate-300 font-roboto max-w-2xl mx-auto leading-relaxed">
-            Simplifying WordPress, One Step at a Time
+          {/* Subtitle */}
+          <p className="text-xl md:text-2xl text-slate-300 font-roboto max-w-3xl mx-auto leading-relaxed">
+            Explore videos, playlists, and podcasts from WordPress creator Sunil Kumar Sharma.
           </p>
           
-          {/* Description */}
-          <p className="text-lg text-slate-400 max-w-3xl mx-auto">
-            Join thousands of learners mastering WordPress through comprehensive video tutorials, 
-            hands-on playlists, and an engaging community experience.
-          </p>
-          
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8">
-            <Link to="/videos">
-              <Button size="lg" className="wp-gradient text-slate-900 font-bold text-lg px-8 py-4 hover:scale-105 transition-transform duration-200">
-                Watch Tutorials
-              </Button>
-            </Link>
-            <Link to="/podcasts">
-              <Button 
-                size="lg" 
-                variant="outline" 
-                className="border-wp-teal text-wp-teal hover:bg-wp-teal hover:text-slate-900 font-bold text-lg px-8 py-4 hover:scale-105 transition-all duration-200"
-              >
-                Join the Podcast
-              </Button>
-            </Link>
+          {/* CTA Button */}
+          <div className="pt-8">
+            <Button 
+              size="lg" 
+              onClick={scrollToVideos}
+              className="wp-gradient text-slate-900 font-bold text-lg px-8 py-4 hover:scale-105 transition-transform duration-200"
+            >
+              Explore Now
+            </Button>
           </div>
 
           {/* Stats */}

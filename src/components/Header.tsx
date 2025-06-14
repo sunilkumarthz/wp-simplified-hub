@@ -61,8 +61,8 @@ const Header = () => {
                   }`}
                   aria-current={isActive ? 'page' : undefined}
                 >
-                  <IconComponent size={16} className="w-4 h-4 pointer-events-none" aria-hidden="true" />
-                  <span>{item.label}</span>
+                  <IconComponent size={16} className="w-4 h-4 pointer-events-none text-white" aria-hidden="true" />
+                  <span className="text-white">{item.label}</span>
                 </Link>
               );
             })}
@@ -171,8 +171,8 @@ const Header = () => {
                     onClick={() => setIsMenuOpen(false)}
                     aria-current={isActive ? 'page' : undefined}
                   >
-                    <IconComponent size={16} className="w-4 h-4 pointer-events-none" aria-hidden="true" />
-                    <span>{item.label}</span>
+                    <IconComponent size={16} className="w-4 h-4 pointer-events-none text-white" aria-hidden="true" />
+                    <span className="text-white">{item.label}</span>
                   </Link>
                 );
               })}
