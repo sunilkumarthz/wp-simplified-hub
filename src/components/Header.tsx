@@ -1,20 +1,22 @@
 
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Menu, X } from 'lucide-react';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
 
   const navItems = [
     { label: 'Home', path: '/' },
     { label: 'Playlists', path: '/playlists' },
-    { label: 'Podcasts', path: '/podcasts' },
-    { label: 'Videos', path: '/videos' },
     { label: 'Shorts', path: '/shorts' },
+    { label: 'Podcasts', path: '/podcasts' },
     { label: 'Contact', path: '/contact' },
   ];
+
+  const isActiveRoute = (path: string) => location.pathname === path;
 
   return (
     <header className="sticky top-0 z-50 bg-slate-900/95 backdrop-blur-sm border-b border-slate-800">
@@ -27,7 +29,7 @@ const Header = () => {
               alt="WP Simplified" 
               className="h-8 w-auto"
             />
-            <span className="font-baloo font-bold text-xl text-white">WP Simplified</span>
+            <span className="font-baloo font-bold text-xl text-white">WP SIMPLIFIED</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -36,7 +38,11 @@ const Header = () => {
               <Link
                 key={item.path}
                 to={item.path}
-                className="text-slate-300 hover:text-wp-teal transition-colors duration-200 font-medium"
+                className={`px-4 py-2 rounded-full transition-all duration-200 font-medium ${
+                  isActiveRoute(item.path)
+                    ? 'bg-wp-teal text-slate-900'
+                    : 'text-slate-300 hover:text-wp-teal'
+                }`}
               >
                 {item.label}
               </Link>
@@ -46,7 +52,7 @@ const Header = () => {
           {/* CTA Button */}
           <div className="hidden md:flex">
             <Button className="wp-gradient text-slate-900 font-semibold hover:scale-105 transition-transform duration-200">
-              Subscribe Now
+              Subscribe
             </Button>
           </div>
 
@@ -67,14 +73,18 @@ const Header = () => {
                 <Link
                   key={item.path}
                   to={item.path}
-                  className="text-slate-300 hover:text-wp-teal transition-colors duration-200 font-medium py-2"
+                  className={`px-4 py-2 rounded-full transition-all duration-200 font-medium ${
+                    isActiveRoute(item.path)
+                      ? 'bg-wp-teal text-slate-900'
+                      : 'text-slate-300 hover:text-wp-teal'
+                  }`}
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item.label}
                 </Link>
               ))}
               <Button className="wp-gradient text-slate-900 font-semibold mt-4 w-full">
-                Subscribe Now
+                Subscribe
               </Button>
             </nav>
           </div>
