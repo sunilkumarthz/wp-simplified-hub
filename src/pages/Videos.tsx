@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import Header from '@/components/Header';
@@ -17,9 +16,10 @@ const Videos = () => {
   const [searchQuery, setSearchQuery] = useState(initialSearch);
   const [searchResults, setSearchResults] = useState<Video[]>([]);
   const [isSearching, setIsSearching] = useState(false);
+  const [displayCount, setDisplayCount] = useState(10);
 
   // Fetch latest videos
-  const { data: videos = [], isLoading, error } = useQuery({
+  const { data: allVideos = [], isLoading, error } = useQuery({
     queryKey: ['latestVideos'],
     queryFn: fetchLatestVideos,
   });
@@ -51,7 +51,14 @@ const Videos = () => {
     await handleSearchQuery(searchQuery);
   };
 
-  const displayedVideos = searchQuery ? searchResults : videos;
+  const displayedVideos = searchQuery ? searchResults : allVideos;
+  const visibleVideos = displayedVideos.slice(0, displayCount);
+  const hasMore = displayedVideos.length > displayCount;
+
+  const loadMore = () => {
+    setDisplayCount(prev => prev + 10);
+  };
+
   const pageTitle = searchQuery 
     ? `Search Results for "${searchQuery}" - WordPress Video Tutorials` 
     : 'WordPress Video Tutorials - Complete Learning Library';
@@ -145,7 +152,6 @@ const Videos = () => {
         
         <div className="relative z-10">
           <Header />
-          <Breadcrumb />
           
           {/* Hero Section */}
           <section className="py-20 text-center">
@@ -153,7 +159,8 @@ const Videos = () => {
               <h1 className="text-5xl md:text-6xl font-baloo font-bold text-white mb-6">
                 WordPress <span className="text-gradient">Video Tutorials</span>
               </h1>
-              <p className="text-xl text-slate-300 max-w-3xl mx-auto font-roboto leading-relaxed mb-8">
+              <Breadcrumb />
+              <p className="text-xl text-slate-300 max-w-3xl mx-auto font-roboto leading-relaxed mb-8 mt-6">
                 Comprehensive video tutorials covering everything from WordPress basics 
                 to advanced development techniques. Learn at your own pace with step-by-step guides.
               </p>
@@ -166,7 +173,7 @@ const Videos = () => {
                     placeholder="Search videos..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full bg-slate-800 border-slate-700 text-white placeholder:text-slate-400 pr-12"
+                    className="w-full bg-slate-800 text-white placeholder:text-slate-400 pr-12"
                     aria-label="Search WordPress video tutorials"
                   />
                   <button
@@ -182,36 +189,6 @@ const Videos = () => {
             </div>
           </section>
 
-          {/* Video Categories */}
-          <section className="py-20">
-            <div className="container mx-auto px-4">
-              <h2 className="text-4xl font-baloo font-bold text-white mb-12 text-center">
-                Video Categories
-              </h2>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {videoCategories.map((category, index) => (
-                  <Card key={index} className="bg-slate-800/50 border-slate-700 backdrop-blur-sm hover:bg-slate-800/70 transition-all duration-300 hover:scale-105">
-                    <CardContent className="p-8 text-center">
-                      <div className="w-16 h-16 bg-wp-teal rounded-full flex items-center justify-center mx-auto mb-4">
-                        <Play className="w-8 h-8 text-slate-900" />
-                      </div>
-                      <h3 className="text-2xl font-baloo font-bold text-white mb-2">
-                        {category.title}
-                      </h3>
-                      <p className="text-wp-teal font-roboto font-semibold mb-3">
-                        {category.count} Videos
-                      </p>
-                      <p className="text-slate-300 font-roboto text-sm leading-relaxed">
-                        {category.description}
-                      </p>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </div>
-          </section>
-
           {/* Videos Grid */}
           <section className="py-20">
             <div className="container mx-auto px-4">
@@ -221,13 +198,16 @@ const Videos = () => {
               
               {isLoading && (
                 <div className="text-center py-12">
-                  <div className="text-white font-roboto" role="status" aria-live="polite">Loading videos...</div>
+                  <div className="inline-flex items-center justify-center w-16 h-16 bg-wp-teal/20 rounded-full mb-4">
+                    <div className="w-8 h-8 border-4 border-wp-teal border-t-transparent rounded-full animate-spin"></div>
+                  </div>
+                  <div className="text-white font-roboto text-lg">Loading videos...</div>
                 </div>
               )}
 
               {error && (
                 <div className="text-center py-12">
-                  <div className="text-red-400 font-roboto" role="alert">Failed to load videos. Please try again later.</div>
+                  <div className="text-red-400 font-roboto text-lg">Failed to load videos. Please try again later.</div>
                 </div>
               )}
 
@@ -240,14 +220,14 @@ const Videos = () => {
               )}
               
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {displayedVideos.map((video, index) => (
-                  <Card key={video.id || index} className="bg-slate-800/50 border-slate-700 backdrop-blur-sm hover:bg-slate-800/70 transition-all duration-300 group">
+                {visibleVideos.map((video, index) => (
+                  <Card key={video.id || index} className="bg-slate-800/50 hover:bg-slate-800/70 transition-all duration-300 group">
                     <CardContent className="p-0">
                       <div className="relative">
                         <img 
                           src={video.thumbnail} 
                           alt={`${video.title} - WordPress tutorial thumbnail`}
-                          className="w-full h-48 object-cover rounded-t-lg"
+                          className="w-full h-48 object-cover rounded-t-lg transition-transform duration-300 group-hover:scale-105"
                           loading="lazy"
                         />
                         <div className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -261,10 +241,12 @@ const Videos = () => {
                             <Play className="w-8 h-8 text-slate-900" />
                           </a>
                         </div>
-                        <div className="absolute bottom-2 right-2 bg-black/80 px-2 py-1 rounded text-white text-xs flex items-center">
-                          <Clock className="w-3 h-3 mr-1" />
-                          {video.duration}
-                        </div>
+                        {video.duration && (
+                          <div className="absolute bottom-2 right-2 bg-black/80 px-2 py-1 rounded text-white text-xs flex items-center">
+                            <Clock className="w-3 h-3 mr-1" />
+                            {video.duration}
+                          </div>
+                        )}
                       </div>
                       
                       <div className="p-6">
@@ -274,18 +256,30 @@ const Videos = () => {
                         <p className="text-slate-300 font-roboto text-sm mb-3 line-clamp-2">
                           {video.description}
                         </p>
-                        <div className="flex items-center justify-between text-slate-400 text-sm">
-                          <span className="flex items-center font-roboto">
-                            <Eye className="w-4 h-4 mr-1" />
-                            {video.views} views
-                          </span>
-                          <span className="font-roboto">{video.published_date}</span>
-                        </div>
+                        {video.published_date && (
+                          <div className="text-slate-400 text-sm">
+                            <span className="font-roboto">{video.published_date}</span>
+                          </div>
+                        )}
                       </div>
                     </CardContent>
                   </Card>
                 ))}
               </div>
+
+              {/* Load More Button */}
+              {hasMore && (
+                <div className="text-center mt-12">
+                  <Button 
+                    onClick={loadMore}
+                    size="lg"
+                    variant="outline"
+                    className="font-semibold text-lg px-8"
+                  >
+                    Load More Videos
+                  </Button>
+                </div>
+              )}
             </div>
           </section>
 

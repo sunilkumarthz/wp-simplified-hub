@@ -61,25 +61,25 @@ const Breadcrumb = () => {
   if (breadcrumbs.length <= 1) return null;
 
   return (
-    <nav className="bg-slate-800/30 border-b border-slate-700/50 py-3" aria-label="Breadcrumb">
+    <nav className="bg-slate-800/20 py-3" aria-label="Breadcrumb">
       <div className="container mx-auto px-4">
         <ol className="flex items-center space-x-2 text-sm font-roboto">
           {breadcrumbs.map((crumb, index) => (
             <li key={crumb.path} className="flex items-center">
               {index > 0 && (
-                <ChevronRight className="w-4 h-4 text-slate-400 mx-2" />
+                <ChevronRight className="w-3 h-3 text-slate-500 mx-2" />
               )}
               {index === 0 && (
-                <Home className="w-4 h-4 text-slate-400 mr-2" />
+                <Home className="w-3 h-3 text-slate-500 mr-2" />
               )}
               {index === breadcrumbs.length - 1 ? (
-                <span className="text-wp-teal font-medium" aria-current="page">
+                <span className="text-wp-teal font-medium text-xs" aria-current="page">
                   {crumb.label}
                 </span>
               ) : (
                 <Link
                   to={crumb.path}
-                  className="text-slate-300 hover:text-wp-teal transition-colors"
+                  className="text-slate-400 hover:text-wp-teal transition-colors text-xs"
                 >
                   {crumb.label}
                 </Link>

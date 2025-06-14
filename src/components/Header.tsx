@@ -14,10 +14,10 @@ const Header = () => {
 
   const navItems = [
     { label: 'Home', path: '/', icon: Home },
-    { label: 'Videos', path: '/videos', icon: Play },
     { label: 'Playlists', path: '/playlists', icon: List },
-    { label: 'Shorts', path: '/shorts', icon: Play },
+    { label: 'Videos', path: '/videos', icon: Play },
     { label: 'Podcasts', path: '/podcasts', icon: Mic },
+    { label: 'Shorts', path: '/shorts', icon: Play },
     { label: 'Contact', path: '/contact', icon: MessageCircle },
   ];
 
@@ -33,11 +33,11 @@ const Header = () => {
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-slate-900/95 backdrop-blur-sm border-b border-slate-800">
+    <header className="sticky top-0 z-50 bg-slate-900/95 backdrop-blur-sm border-b border-slate-700">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link to="/" className="relative h-12 w-32 rounded-xl overflow-hidden border border-white/20 hover:border-teal-500/50 transition-all duration-300 group" aria-label="WPSimplified Home">
+          <Link to="/" className="relative h-12 w-32 rounded-xl overflow-hidden border border-slate-600 hover:border-wp-teal/50 transition-all duration-300 group" aria-label="WPSimplified Home">
             <img 
               src="/lovable-uploads/7296f4cd-1ccd-4537-9d84-dd45c7c019c4.png" 
               alt="WPSimplified Logo" 
@@ -54,10 +54,10 @@ const Header = () => {
                 <Link
                   key={item.path}
                   to={item.path}
-                  className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-all duration-200 font-roboto font-medium focus-visible:ring-2 focus-visible:ring-teal-400 ring-offset-2 ${
+                  className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-all duration-200 font-roboto font-medium focus-visible:ring-2 focus-visible:ring-wp-teal ring-offset-2 ${
                     isActive
-                      ? 'bg-[#04D98B] text-slate-900 font-semibold shadow-md'
-                      : 'text-white hover:bg-[#04D98B] hover:text-slate-900 hover:shadow-sm'
+                      ? 'bg-wp-teal text-slate-900 font-semibold shadow-md'
+                      : 'text-white hover:bg-wp-teal hover:text-slate-900 hover:shadow-sm'
                   }`}
                   aria-current={isActive ? 'page' : undefined}
                 >
@@ -79,7 +79,7 @@ const Header = () => {
                     placeholder="Search videos..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-64 bg-slate-800 border-slate-700 text-white placeholder:text-slate-400"
+                    className="w-64 bg-slate-800 border-slate-600 text-white placeholder:text-slate-400"
                     autoFocus
                     aria-label="Search videos"
                   />
@@ -95,7 +95,7 @@ const Header = () => {
               ) : (
                 <button
                   onClick={() => setIsSearchOpen(true)}
-                  className="text-white hover:text-[#04D98B] p-2 rounded-lg hover:bg-slate-800/50 transition-all duration-200"
+                  className="text-white hover:text-wp-teal p-2 rounded-lg hover:bg-slate-800/50 transition-all duration-200"
                   aria-label="Open search"
                 >
                   <Search size={20} />
@@ -109,19 +109,19 @@ const Header = () => {
               asChild
             >
               <a 
-                href="https://youtube.com/@WPSimplified" 
+                href="https://www.youtube.com/@wpsimplifiedbysunil" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 aria-label="Subscribe to WPSimplified YouTube channel"
               >
-                ▶ Subscribe
+                🔔 Subscribe
               </a>
             </Button>
           </div>
 
           {/* Mobile Menu Button */}
           <button
-            className="lg:hidden text-white hover:text-white p-2"
+            className="lg:hidden text-white hover:text-wp-teal p-2"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-expanded={isMenuOpen}
             aria-controls="mobile-menu"
@@ -133,7 +133,7 @@ const Header = () => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div id="mobile-menu" className="lg:hidden py-4 border-t border-slate-800">
+          <div id="mobile-menu" className="lg:hidden py-4 border-t border-slate-700">
             {/* Mobile Search */}
             <form onSubmit={handleSearch} className="mb-4">
               <div className="relative">
@@ -142,12 +142,12 @@ const Header = () => {
                   placeholder="Search videos..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full bg-slate-800 border-slate-700 text-white placeholder:text-slate-400 pr-12"
+                  className="w-full bg-slate-800 border-slate-600 text-white placeholder:text-slate-400 pr-12"
                   aria-label="Search videos"
                 />
                 <button
                   type="submit"
-                  className="absolute right-2 top-1/2 transform -translate-y-1/2 text-slate-400 hover:text-[#04D98B]"
+                  className="absolute right-2 top-1/2 transform -translate-y-1/2 text-slate-400 hover:text-wp-teal"
                   aria-label="Search"
                 >
                   <Search size={20} />
@@ -163,10 +163,10 @@ const Header = () => {
                   <Link
                     key={item.path}
                     to={item.path}
-                    className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-all duration-200 font-roboto font-medium focus-visible:ring-2 focus-visible:ring-teal-400 ring-offset-2 ${
+                    className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-all duration-200 font-roboto font-medium focus-visible:ring-2 focus-visible:ring-wp-teal ring-offset-2 ${
                       isActive
-                        ? 'bg-[#04D98B] text-slate-900 font-semibold shadow-md'
-                        : 'text-white hover:bg-[#04D98B] hover:text-slate-900 hover:shadow-sm'
+                        ? 'bg-wp-teal text-slate-900 font-semibold shadow-md'
+                        : 'text-white hover:bg-wp-teal hover:text-slate-900 hover:shadow-sm'
                     }`}
                     onClick={() => setIsMenuOpen(false)}
                     aria-current={isActive ? 'page' : undefined}
@@ -182,12 +182,12 @@ const Header = () => {
                   asChild
                 >
                   <a 
-                    href="https://youtube.com/@WPSimplified" 
+                    href="https://www.youtube.com/@wpsimplifiedbysunil" 
                     target="_blank" 
                     rel="noopener noreferrer"
                     aria-label="Subscribe to WPSimplified YouTube channel"
                   >
-                    ▶ Subscribe
+                    🔔 Subscribe
                   </a>
                 </Button>
               </div>

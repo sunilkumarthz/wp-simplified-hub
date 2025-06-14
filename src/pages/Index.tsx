@@ -1,12 +1,10 @@
 
 import Header from '@/components/Header';
 import HeroSection from '@/components/HeroSection';
-import FeaturedVideos from '@/components/FeaturedVideos';
-import PopularPlaylists from '@/components/PopularPlaylists';
+import LatestContent from '@/components/LatestContent';
 import AboutSection from '@/components/AboutSection';
 import CommunityInvolvement from '@/components/CommunityInvolvement';
 import BadgesSection from '@/components/BadgesSection';
-import ShortsGallery from '@/components/ShortsGallery';
 import PodcastSection from '@/components/PodcastSection';
 import SocialSection from '@/components/SocialSection';
 import Footer from '@/components/Footer';
@@ -16,12 +14,10 @@ const Index = () => {
     <div className="min-h-screen bg-slate-900">
       <Header />
       <HeroSection />
-      <FeaturedVideos />
-      <PopularPlaylists />
+      <LatestContent />
       <AboutSection />
       <CommunityInvolvement />
       <BadgesSection />
-      <ShortsGallery />
       <PodcastSection />
       <SocialSection />
       <Footer />

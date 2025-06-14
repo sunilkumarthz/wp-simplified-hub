@@ -7,14 +7,25 @@ import { Badge } from '@/components/ui/badge';
 import { Play, Clock, Mic, User } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
 import { fetchAllPodcasts, type Podcast } from '@/services/api';
+import { useState } from 'react';
+import Button from '@/components/ui/button';
 
 const Podcasts = () => {
-  const { data: podcasts = [], isLoading, error } = useQuery({
+  const [displayCount, setDisplayCount] = useState(10);
+
+  const { data: allPodcasts = [], isLoading, error } = useQuery({
     queryKey: ['podcasts'],
     queryFn: fetchAllPodcasts,
   });
 
-  const podcastJsonLd = podcasts.length > 0 ? {
+  const visiblePodcasts = allPodcasts.slice(0, displayCount);
+  const hasMore = allPodcasts.length > displayCount;
+
+  const loadMore = () => {
+    setDisplayCount(prev => prev + 10);
+  };
+
+  const podcastJsonLd = allPodcasts.length > 0 ? {
     "@context": "https://schema.org",
     "@type": "PodcastSeries",
     "name": "The WordPress Creator Podcast - WPSimplified",
@@ -50,7 +61,6 @@ const Podcasts = () => {
         
         <div className="relative z-10">
           <Header />
-          <Breadcrumb />
           
           {/* Hero Section */}
           <section className="py-20 text-center">
@@ -58,7 +68,8 @@ const Podcasts = () => {
               <h1 className="text-5xl md:text-6xl font-baloo font-bold text-white mb-6">
                 WordPress <span className="text-gradient">Podcasts</span>
               </h1>
-              <p className="text-xl text-slate-300 max-w-3xl mx-auto font-roboto leading-relaxed mb-8">
+              <Breadcrumb />
+              <p className="text-xl text-slate-300 max-w-3xl mx-auto font-roboto leading-relaxed mb-8 mt-6">
                 In-depth conversations with WordPress experts, developers, and community leaders. 
                 Gain insights, learn best practices, and stay updated with the latest in WordPress.
               </p>
@@ -74,47 +85,54 @@ const Podcasts = () => {
               
               {isLoading && (
                 <div className="text-center py-12">
-                  <div className="text-white font-roboto">Loading podcasts...</div>
+                  <div className="inline-flex items-center justify-center w-16 h-16 bg-wp-teal/20 rounded-full mb-4">
+                    <div className="w-8 h-8 border-4 border-wp-teal border-t-transparent rounded-full animate-spin"></div>
+                  </div>
+                  <div className="text-white font-roboto text-lg">Loading podcasts...</div>
                 </div>
               )}
 
               {error && (
                 <div className="text-center py-12">
-                  <div className="text-red-400 font-roboto">Failed to load podcasts. Please try again later.</div>
+                  <div className="text-red-400 font-roboto text-lg">Failed to load podcasts. Please try again later.</div>
                 </div>
               )}
 
-              {podcasts.length === 0 && !isLoading && !error && (
+              {allPodcasts.length === 0 && !isLoading && !error && (
                 <div className="text-center py-12">
                   <div className="text-slate-400 font-roboto">No podcasts available.</div>
                 </div>
               )}
               
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {podcasts.map((podcast, index) => (
-                  <Card key={podcast.id || index} className="bg-slate-800/50 border-slate-700 backdrop-blur-sm hover:bg-slate-800/70 transition-all duration-300 group">
+                {visiblePodcasts.map((podcast, index) => (
+                  <Card key={podcast.id || index} className="bg-slate-800/50 hover:bg-slate-800/70 transition-all duration-300 group">
                     <CardContent className="p-0">
                       <div className="relative">
                         <img 
                           src={podcast.thumbnail} 
                           alt={podcast.title}
-                          className="w-full h-48 object-cover rounded-t-lg"
+                          className="w-full h-48 object-cover rounded-t-lg transition-transform duration-300 group-hover:scale-105"
                         />
                         <div className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                          <button className="w-16 h-16 bg-wp-teal rounded-full flex items-center justify-center hover:scale-110 transition-transform">
+                          <a 
+                            href={podcast.url} 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="w-16 h-16 bg-wp-teal rounded-full flex items-center justify-center hover:scale-110 transition-transform"
+                          >
                             <Play className="w-8 h-8 text-slate-900" />
-                          </button>
+                          </a>
                         </div>
-                        <div className="absolute top-2 left-2">
-                          <Badge className="bg-wp-teal text-slate-900 font-roboto font-medium">
-                            <Mic className="w-3 h-3 mr-1" />
-                            Podcast
-                          </Badge>
+                        <div className="absolute top-2 left-2 bg-wp-teal text-slate-900 text-xs px-2 py-1 rounded font-semibold">
+                          <Mic className="w-3 h-3 mr-1 inline" />
+                          Podcast
                         </div>
-                        <div className="absolute bottom-2 right-2 bg-black/80 px-2 py-1 rounded text-white text-xs flex items-center">
-                          <Clock className="w-3 h-3 mr-1" />
-                          {podcast.duration}
-                        </div>
+                        {podcast.duration && (
+                          <div className="absolute bottom-2 right-2 bg-black/80 px-2 py-1 rounded text-white text-xs">
+                            {podcast.duration}
+                          </div>
+                        )}
                       </div>
                       
                       <div className="p-6">
@@ -126,25 +144,45 @@ const Podcasts = () => {
                         </p>
                         
                         <div className="flex items-center justify-between text-slate-400 text-sm mb-4">
-                          <span className="flex items-center font-roboto">
-                            <User className="w-4 h-4 mr-1" />
-                            {podcast.guest}
-                          </span>
-                          <span className="font-roboto">{podcast.published_date}</span>
+                          {podcast.guest && (
+                            <span className="font-roboto">
+                              Guest: {podcast.guest}
+                            </span>
+                          )}
+                          {podcast.published_date && (
+                            <span className="font-roboto">{podcast.published_date}</span>
+                          )}
                         </div>
                         
-                        <audio 
-                          controls 
-                          className="w-full"
-                          src={podcast.audio_url}
+                        <a 
+                          href={podcast.url} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="no-link-styles"
                         >
-                          Your browser does not support the audio element.
-                        </audio>
+                          <Button className="w-full font-semibold">
+                            Listen Now
+                          </Button>
+                        </a>
                       </div>
                     </CardContent>
                   </Card>
                 ))}
               </div>
+
+              {/* Load More Button */}
+              {hasMore && (
+                <div className="text-center mt-12">
+                  <Button 
+                    onClick={loadMore}
+                    size="lg"
+                    variant="outline"
+                    className="font-semibold text-lg px-8"
+                  >
+                    Load More Episodes
+                  </Button>
+                </div>
+              )}
             </div>
           </section>
 

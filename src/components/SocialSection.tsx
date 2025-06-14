@@ -1,48 +1,43 @@
 
 import { Button } from '@/components/ui/button';
-import { ExternalLink, Mail, Heart } from 'lucide-react';
+import { ExternalLink } from 'lucide-react';
 
 const SocialSection = () => {
   const socialLinks = [
     {
+      name: 'YouTube',
+      url: 'https://www.youtube.com/@wpsimplifiedbysunil',
+      icon: '📺',
+      color: 'hover:bg-red-500/20 hover:border-red-400 hover:shadow-red-500/20',
+      gradient: 'from-red-500 to-red-600',
+    },
+    {
       name: 'LinkedIn',
       url: 'https://www.linkedin.com/in/sunilkumarthz/',
       icon: '💼',
-      color: 'hover:bg-blue-600/20 hover:border-blue-500',
+      color: 'hover:bg-blue-600/20 hover:border-blue-500 hover:shadow-blue-500/20',
       gradient: 'from-blue-600 to-blue-700',
-      description: 'Professional networking & career updates'
     },
     {
       name: 'X (Twitter)',
       url: 'https://x.com/sunilkumarthz',
       icon: '🐦',
-      color: 'hover:bg-slate-600/20 hover:border-slate-500',
+      color: 'hover:bg-slate-600/20 hover:border-slate-500 hover:shadow-slate-500/20',
       gradient: 'from-slate-600 to-slate-700',
-      description: 'Latest updates, thoughts & quick tips'
     },
     {
       name: 'GitHub',
       url: 'https://github.com/sunilkumarthz',
       icon: '💻',
-      color: 'hover:bg-gray-600/20 hover:border-gray-500',
+      color: 'hover:bg-gray-600/20 hover:border-gray-500 hover:shadow-gray-500/20',
       gradient: 'from-gray-600 to-gray-700',
-      description: 'Open source projects & code samples'
     },
     {
       name: 'WordPress.org',
       url: 'https://profiles.wordpress.org/sunilkumarthz/',
       icon: '🔧',
-      color: 'hover:bg-blue-500/20 hover:border-blue-400',
+      color: 'hover:bg-blue-500/20 hover:border-blue-400 hover:shadow-blue-500/20',
       gradient: 'from-blue-500 to-blue-600',
-      description: 'WordPress contributions & plugins'
-    },
-    {
-      name: 'YouTube',
-      url: 'https://www.youtube.com/@wpsimplifiedbysunil',
-      icon: '📺',
-      color: 'hover:bg-red-500/20 hover:border-red-400',
-      gradient: 'from-red-500 to-red-600',
-      description: 'Video tutorials & live streams'
     }
   ];
 
@@ -50,9 +45,9 @@ const SocialSection = () => {
     <section className="py-20 bg-slate-900 relative overflow-hidden">
       {/* Enhanced Background Effects */}
       <div className="absolute inset-0">
-        <div className="absolute top-20 left-20 w-80 h-80 bg-[#04D98B]/10 rounded-full blur-3xl floating-animation"></div>
-        <div className="absolute bottom-20 right-20 w-96 h-96 bg-[#037F8C]/10 rounded-full blur-3xl floating-animation" style={{ animationDelay: '2s' }}></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-radial from-[#04D98B]/5 to-transparent rounded-full"></div>
+        <div className="absolute top-20 left-20 w-80 h-80 bg-wp-teal/10 rounded-full blur-3xl floating-animation"></div>
+        <div className="absolute bottom-20 right-20 w-96 h-96 bg-wp-teal-dark/10 rounded-full blur-3xl floating-animation" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-radial from-wp-teal/5 to-transparent rounded-full"></div>
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
@@ -66,42 +61,27 @@ const SocialSection = () => {
           </p>
         </div>
 
-        <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+        <div className="max-w-4xl mx-auto">
+          {/* Social Links in Single Row */}
+          <div className="flex flex-wrap justify-center items-center gap-6 mb-16">
             {socialLinks.map((social, index) => (
               <a
                 key={index}
                 href={social.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`block animate-fade-in no-link-styles`}
-                style={{ animationDelay: `${index * 150}ms` }}
+                className={`block animate-fade-in no-link-styles group`}
+                style={{ animationDelay: `${index * 100}ms` }}
               >
-                <div className={`creative-card bg-slate-800/50 border border-slate-700/50 p-8 transition-all duration-500 ${social.color} group`}>
-                  <div className="text-center space-y-6">
-                    {/* Icon with gradient background */}
-                    <div className="relative">
-                      <div className={`w-20 h-20 mx-auto bg-gradient-to-br ${social.gradient} rounded-2xl flex items-center justify-center transform group-hover:scale-110 transition-all duration-300 shadow-lg group-hover:shadow-xl`}>
-                        <span className="text-3xl">{social.icon}</span>
-                      </div>
-                      <div className="absolute -top-2 -right-2 w-6 h-6 bg-[#04D98B] rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 animate-pulse">
-                        <ExternalLink className="w-3 h-3 text-white" />
-                      </div>
-                    </div>
-                    
-                    <div>
-                      <h3 className="font-baloo font-bold text-white text-2xl mb-3 group-hover:text-[#04D98B] transition-colors duration-300">
-                        {social.name}
-                      </h3>
-                      <p className="text-slate-300 text-sm leading-relaxed mb-4">
-                        {social.description}
-                      </p>
-                    </div>
-                    
-                    <div className="pt-2">
-                      <span className="inline-flex items-center text-[#04D98B] text-sm font-semibold group-hover:text-white transition-all duration-300 bg-[#04D98B]/10 group-hover:bg-[#04D98B]/20 px-4 py-2 rounded-full">
-                        Connect <ExternalLink className="w-4 h-4 ml-2" />
-                      </span>
+                <div className={`relative w-20 h-20 rounded-2xl bg-gradient-to-br ${social.gradient} flex items-center justify-center transform group-hover:scale-110 transition-all duration-300 shadow-lg group-hover:shadow-xl ${social.color}`}>
+                  <span className="text-3xl">{social.icon}</span>
+                  <div className="absolute -top-2 -right-2 w-6 h-6 bg-wp-teal rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 animate-pulse">
+                    <ExternalLink className="w-3 h-3 text-white" />
+                  </div>
+                  {/* Tooltip */}
+                  <div className="absolute -bottom-12 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none">
+                    <div className="bg-slate-800 text-white text-xs px-3 py-1 rounded-lg font-semibold whitespace-nowrap">
+                      {social.name}
                     </div>
                   </div>
                 </div>
@@ -109,38 +89,38 @@ const SocialSection = () => {
             ))}
           </div>
 
-          {/* Enhanced Newsletter Signup */}
+          {/* YouTube Channel Promotion */}
           <div className="relative">
-            <div className="creative-card bg-gradient-to-br from-slate-800/80 to-slate-700/80 p-12 text-center border border-slate-600/50">
+            <div className="bg-slate-800/80 border border-slate-600/50 rounded-2xl p-12 text-center">
               <div className="max-w-2xl mx-auto">
                 <div className="flex items-center justify-center mb-6">
-                  <div className="w-16 h-16 bg-gradient-to-br from-[#04D98B] to-[#037F8C] rounded-2xl flex items-center justify-center mr-4">
-                    <Mail className="w-8 h-8 text-white" />
+                  <div className="w-16 h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-2xl flex items-center justify-center mr-4">
+                    <span className="text-3xl">📺</span>
                   </div>
                   <div className="text-left">
-                    <h3 className="text-3xl font-baloo font-bold text-white">Stay in the Loop</h3>
-                    <p className="text-[#04D98B] font-semibold">Join 5,000+ WordPress enthusiasts</p>
+                    <h3 className="text-3xl font-baloo font-bold text-white">Subscribe to My Channel</h3>
+                    <p className="text-wp-teal font-semibold">Join 10,000+ WordPress learners</p>
                   </div>
                 </div>
                 
                 <p className="text-slate-300 mb-8 text-lg leading-relaxed">
-                  Get exclusive WordPress tips, tutorial previews, and community updates delivered weekly to your inbox.
+                  Get the latest WordPress tutorials, tips, and insights delivered straight to your feed. 
+                  New videos every week!
                 </p>
                 
-                <div className="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto">
-                  <input
-                    type="email"
-                    placeholder="Enter your email address"
-                    className="flex-1 px-6 py-4 rounded-2xl bg-slate-900/80 border border-slate-600 text-white placeholder-slate-400 focus:border-[#04D98B] focus:outline-none focus:ring-2 focus:ring-[#04D98B]/20 transition-all duration-300"
-                  />
-                  <Button size="lg" className="font-semibold px-8">
-                    Subscribe Now
+                <a 
+                  href="https://www.youtube.com/@wpsimplifiedbysunil" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="no-link-styles"
+                >
+                  <Button size="lg" className="font-semibold text-lg px-8 bg-red-600 hover:bg-red-700">
+                    🔔 Subscribe Now
                   </Button>
-                </div>
+                </a>
                 
                 <div className="flex items-center justify-center mt-6 text-slate-400 text-sm">
-                  <Heart className="w-4 h-4 mr-2 text-red-400" />
-                  <span>No spam, unsubscribe anytime</span>
+                  <span>🔥 New tutorials every week • 📚 In-depth guides • 🎯 Practical tips</span>
                 </div>
               </div>
             </div>

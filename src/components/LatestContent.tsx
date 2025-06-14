@@ -1,0 +1,244 @@
+
+import { Card, CardContent } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
+import { Play, Clock, Mic, BookOpen } from 'lucide-react';
+import { useQuery } from '@tanstack/react-query';
+import { fetchLatestVideos, fetchAllShorts, fetchAllPodcasts, fetchAllPlaylists, type Video, type Short, type Podcast, type Playlist } from '@/services/api';
+
+const LatestContent = () => {
+  const { data: videos = [] } = useQuery({
+    queryKey: ['latestVideos'],
+    queryFn: fetchLatestVideos,
+  });
+
+  const { data: shorts = [] } = useQuery({
+    queryKey: ['latestShorts'],
+    queryFn: fetchAllShorts,
+  });
+
+  const { data: podcasts = [] } = useQuery({
+    queryKey: ['latestPodcasts'],
+    queryFn: fetchAllPodcasts,
+  });
+
+  const { data: playlists = [] } = useQuery({
+    queryKey: ['latestPlaylists'],
+    queryFn: fetchAllPlaylists,
+  });
+
+  return (
+    <div className="py-20 bg-slate-800/30">
+      <div className="container mx-auto px-4">
+        {/* Latest Videos */}
+        <section className="mb-20">
+          <div className="flex items-center justify-between mb-12">
+            <h2 className="text-4xl font-baloo font-bold text-white">
+              Latest <span className="text-gradient">Videos</span>
+            </h2>
+            <Link to="/videos">
+              <Button variant="outline">View All Videos</Button>
+            </Link>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {videos.slice(0, 3).map((video, index) => (
+              <Card key={video.id || index} className="bg-slate-800/50 border-slate-700 hover:bg-slate-800/70 transition-all duration-300 group">
+                <CardContent className="p-0">
+                  <div className="relative">
+                    <img 
+                      src={video.thumbnail} 
+                      alt={video.title}
+                      className="w-full h-48 object-cover rounded-t-lg transition-transform duration-300 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <a 
+                        href={video.url} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="w-16 h-16 bg-wp-teal rounded-full flex items-center justify-center hover:scale-110 transition-transform"
+                      >
+                        <Play className="w-6 h-6 text-slate-900 ml-1" />
+                      </a>
+                    </div>
+                    {video.duration && (
+                      <div className="absolute bottom-2 right-2 bg-black/80 text-white text-sm px-2 py-1 rounded">
+                        <Clock className="w-3 h-3 mr-1 inline" />
+                        {video.duration}
+                      </div>
+                    )}
+                  </div>
+                  <div className="p-6">
+                    <h3 className="font-baloo font-semibold text-white text-lg mb-3 line-clamp-2">
+                      {video.title}
+                    </h3>
+                    <p className="text-slate-300 text-sm line-clamp-2 mb-3">
+                      {video.description}
+                    </p>
+                    {video.published_date && (
+                      <p className="text-slate-400 text-sm">{video.published_date}</p>
+                    )}
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </section>
+
+        {/* Latest Shorts */}
+        <section className="mb-20">
+          <div className="flex items-center justify-between mb-12">
+            <h2 className="text-4xl font-baloo font-bold text-white">
+              Latest <span className="text-gradient">Shorts</span>
+            </h2>
+            <Link to="/shorts">
+              <Button variant="outline">View All Shorts</Button>
+            </Link>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {shorts.slice(0, 4).map((short, index) => (
+              <Card key={short.id || index} className="bg-slate-800/50 border-slate-700 hover:bg-slate-800/70 transition-all duration-300 group">
+                <CardContent className="p-0">
+                  <div className="relative aspect-[9/16]">
+                    <img 
+                      src={short.thumbnail} 
+                      alt={short.title}
+                      className="w-full h-full object-cover rounded-lg transition-transform duration-300 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <a 
+                        href={short.url} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="w-12 h-12 bg-wp-teal rounded-full flex items-center justify-center hover:scale-110 transition-transform"
+                      >
+                        <Play className="w-5 h-5 text-slate-900" />
+                      </a>
+                    </div>
+                    {short.duration && (
+                      <div className="absolute bottom-2 right-2 bg-black/80 text-white text-xs px-2 py-1 rounded">
+                        {short.duration}
+                      </div>
+                    )}
+                    <div className="absolute top-2 right-2 bg-red-500 text-white text-xs px-2 py-1 rounded font-semibold">
+                      SHORTS
+                    </div>
+                  </div>
+                  <div className="p-3">
+                    <h3 className="font-baloo font-semibold text-white text-sm line-clamp-2">
+                      {short.title}
+                    </h3>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </section>
+
+        {/* Latest Podcasts */}
+        <section className="mb-20">
+          <div className="flex items-center justify-between mb-12">
+            <h2 className="text-4xl font-baloo font-bold text-white">
+              Latest <span className="text-gradient">Podcasts</span>
+            </h2>
+            <Link to="/podcasts">
+              <Button variant="outline">View All Podcasts</Button>
+            </Link>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {podcasts.slice(0, 3).map((podcast, index) => (
+              <Card key={podcast.id || index} className="bg-slate-800/50 border-slate-700 hover:bg-slate-800/70 transition-all duration-300 group">
+                <CardContent className="p-0">
+                  <div className="relative">
+                    <img 
+                      src={podcast.thumbnail} 
+                      alt={podcast.title}
+                      className="w-full h-48 object-cover rounded-t-lg transition-transform duration-300 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <a 
+                        href={podcast.url} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="w-16 h-16 bg-wp-teal rounded-full flex items-center justify-center hover:scale-110 transition-transform"
+                      >
+                        <Mic className="w-6 h-6 text-slate-900" />
+                      </a>
+                    </div>
+                    {podcast.duration && (
+                      <div className="absolute bottom-2 right-2 bg-black/80 text-white text-sm px-2 py-1 rounded">
+                        {podcast.duration}
+                      </div>
+                    )}
+                  </div>
+                  <div className="p-6">
+                    <h3 className="font-baloo font-semibold text-white text-lg mb-3 line-clamp-2">
+                      {podcast.title}
+                    </h3>
+                    <p className="text-slate-300 text-sm line-clamp-2 mb-3">
+                      {podcast.description}
+                    </p>
+                    {podcast.published_date && (
+                      <p className="text-slate-400 text-sm">{podcast.published_date}</p>
+                    )}
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </section>
+
+        {/* Featured Playlists */}
+        <section>
+          <div className="flex items-center justify-between mb-12">
+            <h2 className="text-4xl font-baloo font-bold text-white">
+              Featured <span className="text-gradient">Playlists</span>
+            </h2>
+            <Link to="/playlists">
+              <Button variant="outline">View All Playlists</Button>
+            </Link>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {playlists.slice(0, 3).map((playlist, index) => (
+              <Card key={playlist.id || index} className="bg-slate-800/50 border-slate-700 hover:bg-slate-800/70 transition-all duration-300 group">
+                <CardContent className="p-0">
+                  <div className="relative">
+                    <img 
+                      src={playlist.thumbnail} 
+                      alt={playlist.title}
+                      className="w-full h-48 object-cover rounded-t-lg transition-transform duration-300 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <a 
+                        href={playlist.url} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="w-16 h-16 bg-wp-teal rounded-full flex items-center justify-center hover:scale-110 transition-transform"
+                      >
+                        <BookOpen className="w-6 h-6 text-slate-900" />
+                      </a>
+                    </div>
+                    {playlist.video_count && (
+                      <div className="absolute bottom-2 right-2 bg-black/80 text-white text-sm px-2 py-1 rounded">
+                        {playlist.video_count} videos
+                      </div>
+                    )}
+                  </div>
+                  <div className="p-6">
+                    <h3 className="font-baloo font-semibold text-white text-lg mb-3 line-clamp-2">
+                      {playlist.title}
+                    </h3>
+                    <p className="text-slate-300 text-sm line-clamp-2 mb-3">
+                      {playlist.description}
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </section>
+      </div>
+    </div>
+  );
+};
+
+export default LatestContent;

@@ -2,7 +2,7 @@
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-import { Play, Clock, Eye } from 'lucide-react';
+import { Play } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
 import { fetchAllShorts, type Short } from '@/services/api';
 
@@ -11,8 +11,6 @@ const ShortsGallery = () => {
     queryKey: ['shortsGallery'],
     queryFn: fetchAllShorts,
   });
-
-  console.log('ShortsGallery - API Response:', { shorts, isLoading, error });
 
   return (
     <section className="py-20 bg-slate-900 relative overflow-hidden">
@@ -23,7 +21,7 @@ const ShortsGallery = () => {
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-12 animate-fade-in">
           <h2 className="text-4xl md:text-5xl font-baloo font-bold text-white mb-4">
-            WordPress <span className="text-gradient">Shorts</span>
+            Latest <span className="text-gradient">Shorts</span>
           </h2>
           <p className="text-xl text-slate-300 max-w-2xl mx-auto font-roboto">
             Quick tips and tricks to level up your WordPress skills in under a minute
@@ -48,11 +46,12 @@ const ShortsGallery = () => {
           </div>
         )}
 
+        {/* Mobile-first TikTok/YouTube Shorts style layout */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
-          {shorts.slice(0, 8).map((short, index) => (
+          {shorts.slice(0, 4).map((short, index) => (
             <Card 
               key={short.id || index} 
-              className="creative-card group overflow-hidden animate-fade-in"
+              className="bg-slate-800/50 hover:bg-slate-800/70 transition-all duration-300 group overflow-hidden animate-fade-in"
               style={{ animationDelay: `${index * 75}ms` }}
             >
               <CardContent className="p-0">
@@ -67,32 +66,24 @@ const ShortsGallery = () => {
                       href={short.url} 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      className="w-12 h-12 bg-wp-teal rounded-full flex items-center justify-center pulse-glow"
+                      className="w-12 h-12 bg-wp-teal rounded-full flex items-center justify-center pulse-glow hover:scale-110 transition-transform"
                     >
                       <Play className="w-5 h-5 text-slate-900 ml-0.5" />
                     </a>
                   </div>
-                  <div className="absolute bottom-2 right-2 bg-black/80 text-white text-xs px-2 py-1 rounded flex items-center">
-                    <Clock className="w-3 h-3 mr-1" />
-                    {short.duration || 'N/A'}
-                  </div>
+                  {short.duration && (
+                    <div className="absolute bottom-2 right-2 bg-black/80 text-white text-xs px-2 py-1 rounded">
+                      {short.duration}
+                    </div>
+                  )}
                   <div className="absolute top-2 right-2 bg-red-500 text-white text-xs px-2 py-1 rounded font-semibold">
                     SHORTS
                   </div>
-                  {short.views && (
-                    <div className="absolute top-2 left-2 bg-black/80 text-white text-xs px-2 py-1 rounded flex items-center">
-                      <Eye className="w-3 h-3 mr-1" />
-                      {short.views}
-                    </div>
-                  )}
                 </div>
                 <div className="p-3">
                   <h3 className="font-baloo font-semibold text-white text-sm mb-1 line-clamp-2">
                     {short.title}
                   </h3>
-                  <div className="text-slate-400 text-xs">
-                    {short.published_date || 'Recently'}
-                  </div>
                 </div>
               </CardContent>
             </Card>
