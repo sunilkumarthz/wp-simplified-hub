@@ -4,9 +4,11 @@ import Breadcrumb from '@/components/Breadcrumb';
 import SEOHead from '@/components/SEOHead';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 import { Play, Clock, BookOpen } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
 import { fetchAllPlaylists, type Playlist } from '@/services/api';
+import { Link } from 'react-router-dom';
 
 const Playlists = () => {
   const { data: playlists = [], isLoading, error } = useQuery({
