@@ -37,7 +37,7 @@ const Shorts = () => {
       "thumbnailUrl": short.thumbnail,
       "uploadDate": short.published_date,
       "duration": short.duration,
-      "embedUrl": short.url,
+      "embedUrl": short.videourl,
       "interactionStatistic": {
         "@type": "InteractionCounter",
         "interactionType": "http://schema.org/WatchAction",
