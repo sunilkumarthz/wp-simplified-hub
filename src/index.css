@@ -55,11 +55,12 @@
   }
 
   body {
-    @apply bg-background text-foreground font-roboto;
+    @apply bg-background text-foreground;
+    font-family: 'Roboto', sans-serif;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-baloo;
+    font-family: 'Baloo 2', cursive;
   }
 }
 
@@ -91,5 +92,36 @@
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
+  }
+
+  /* Enhanced Button Animations */
+  .btn-gradient {
+    @apply relative overflow-hidden;
+    background: linear-gradient(135deg, #00d4aa 0%, #1e40af 100%);
+    transition: all 0.3s ease;
+  }
+
+  .btn-gradient::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s;
+  }
+
+  .btn-gradient:hover::before {
+    left: 100%;
+  }
+
+  .btn-gradient:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0, 212, 170, 0.3);
+  }
+
+  .btn-gradient:active {
+    transform: translateY(0);
   }
 }

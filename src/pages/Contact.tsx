@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import Breadcrumb from '@/components/Breadcrumb';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -10,7 +11,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Label } from '@/components/ui/label';
 import { Mail, Phone, MapPin, Send } from 'lucide-react';
 import { submitContactForm, type ContactFormData } from '@/services/api';
-import { useToast } from '@/components/ui/use-toast';
+import { useToast } from '@/hooks/use-toast';
 
 const Contact = () => {
   const [formData, setFormData] = useState<ContactFormData>({
@@ -80,6 +81,7 @@ const Contact = () => {
       
       <div className="relative z-10">
         <Header />
+        <Breadcrumb />
         
         {/* Hero Section */}
         <section className="py-20 text-center">
@@ -171,7 +173,7 @@ const Contact = () => {
                     <Button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full wp-gradient text-slate-900 font-roboto font-bold hover:scale-105 transition-transform duration-200"
+                      className="w-full btn-gradient text-slate-900 font-roboto font-bold"
                     >
                       {isSubmitting ? (
                         <>Sending...</>
@@ -241,15 +243,51 @@ const Contact = () => {
                     <p className="text-slate-300 font-roboto mb-4">
                       Stay updated with my latest content and WordPress tips:
                     </p>
-                    <div className="flex space-x-3">
-                      <a href="https://www.youtube.com/@wpsimplifiedbysunil" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-slate-700 rounded-full flex items-center justify-center hover:bg-wp-teal transition-colors">
-                        <span className="text-white text-sm font-bold">YT</span>
+                    <div className="space-y-3">
+                      <a 
+                        href="https://www.linkedin.com/in/sunilkumarthz/" 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="flex items-center space-x-3 p-3 bg-slate-700 rounded-lg hover:bg-wp-teal hover:text-slate-900 transition-all duration-300 text-white"
+                      >
+                        <span className="text-sm font-bold">LI</span>
+                        <span className="font-roboto">LinkedIn</span>
                       </a>
-                      <a href="https://x.com/sunilkumarthz" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-slate-700 rounded-full flex items-center justify-center hover:bg-wp-teal transition-colors">
-                        <span className="text-white text-sm font-bold">X</span>
+                      <a 
+                        href="https://x.com/sunilkumarthz" 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="flex items-center space-x-3 p-3 bg-slate-700 rounded-lg hover:bg-wp-teal hover:text-slate-900 transition-all duration-300 text-white"
+                      >
+                        <span className="text-sm font-bold">X</span>
+                        <span className="font-roboto">X (Twitter)</span>
                       </a>
-                      <a href="https://www.linkedin.com/in/sunilkumarthz/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-slate-700 rounded-full flex items-center justify-center hover:bg-wp-teal transition-colors">
-                        <span className="text-white text-sm font-bold">LI</span>
+                      <a 
+                        href="https://github.com/sunilkumarthz" 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="flex items-center space-x-3 p-3 bg-slate-700 rounded-lg hover:bg-wp-teal hover:text-slate-900 transition-all duration-300 text-white"
+                      >
+                        <span className="text-sm font-bold">GH</span>
+                        <span className="font-roboto">GitHub</span>
+                      </a>
+                      <a 
+                        href="https://profiles.wordpress.org/sunilkumarthz/" 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="flex items-center space-x-3 p-3 bg-slate-700 rounded-lg hover:bg-wp-teal hover:text-slate-900 transition-all duration-300 text-white"
+                      >
+                        <span className="text-sm font-bold">WP</span>
+                        <span className="font-roboto">WordPress.org</span>
+                      </a>
+                      <a 
+                        href="https://www.youtube.com/@wpsimplifiedbysunil" 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="flex items-center space-x-3 p-3 bg-slate-700 rounded-lg hover:bg-wp-teal hover:text-slate-900 transition-all duration-300 text-white"
+                      >
+                        <span className="text-sm font-bold">YT</span>
+                        <span className="font-roboto">YouTube</span>
                       </a>
                     </div>
                   </CardContent>

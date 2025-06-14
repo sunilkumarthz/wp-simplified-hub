@@ -52,8 +52,12 @@ const AboutSection = () => {
               <Card className="bg-gradient-to-br from-slate-800 to-slate-900 border-slate-700 overflow-hidden">
                 <CardContent className="p-8">
                   <div className="text-center space-y-6">
-                    <div className="w-32 h-32 mx-auto bg-gradient-to-br from-wp-teal to-wp-blue rounded-full flex items-center justify-center">
-                      <span className="text-4xl font-baloo font-bold text-white">SK</span>
+                    <div className="w-48 h-48 mx-auto rounded-full overflow-hidden border-4 border-wp-teal/30">
+                      <img 
+                        src="/lovable-uploads/3d6d8107-ac48-4fa7-a4f0-149f532e73c5.png" 
+                        alt="Sunil Kumar - WordPress Developer and Educator" 
+                        className="w-full h-full object-cover"
+                      />
                     </div>
                     
                     <div>

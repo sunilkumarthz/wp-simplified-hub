@@ -117,7 +117,7 @@ export default {
 				'slide-in-left': 'slide-in-left 0.6s ease-out'
 			},
 			fontFamily: {
-				'baloo': ['Baloo 2', 'cursive'],
+				'baloo': ['"Baloo 2"', 'cursive'],
 				'roboto': ['Roboto', 'sans-serif'],
 			}
 		}
