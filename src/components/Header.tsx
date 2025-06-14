@@ -35,13 +35,13 @@ const Header = () => {
   return (
     <header className="sticky top-0 z-50 bg-slate-900/95 backdrop-blur-sm border-b border-slate-800">
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-16 focus:outline-none focus:ring-2 focus:ring-teal-500">
           {/* Logo */}
-          <Link to="/" className="flex items-center" aria-label="WPSimplified Home">
+          <Link to="/" className="relative h-12 w-32 rounded-xl overflow-hidden border border-white/20 hover:border-teal-500/50 transition-all duration-300 group-hover:shadow-lg group-hover:shadow-teal-500/25" aria-label="WPSimplified Home">
             <img 
               src="/lovable-uploads/7296f4cd-1ccd-4537-9d84-dd45c7c019c4.png" 
               alt="WPSimplified Logo" 
-              className="h-10 w-auto"
+              className="object-contain w-full h-full p-2"
             />
           </Link>
 

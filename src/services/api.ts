@@ -58,12 +58,14 @@ export const fetchLatestVideos = async (): Promise<Video[]> => {
   try {
     console.log('Fetching latest videos from:', `${BASE_URL}/videos/latest`);
     const response = await fetch(`${BASE_URL}/videos/latest`);
+    console.log(`latest videos`,response);
+
     if (!response.ok) {
       throw new Error(`Failed to fetch latest videos: ${response.status} ${response.statusText}`);
     }
-    const data = await response.json();
-    console.log('Latest videos response:', data);
-    return Array.isArray(data) ? data : [];
+    const output = await response.json();
+    console.log('Latest videos response:', output.data);
+    return Array.isArray(output.data) ? output.data : [];
   } catch (error) {
     console.error('Error fetching latest videos:', error);
     return [];
@@ -77,9 +79,9 @@ export const fetchAllPlaylists = async (): Promise<Playlist[]> => {
     if (!response.ok) {
       throw new Error(`Failed to fetch playlists: ${response.status} ${response.statusText}`);
     }
-    const data = await response.json();
-    console.log('Playlists response:', data);
-    return Array.isArray(data) ? data : [];
+    const output = await response.json();
+    console.log('Playlists response:', output.data);
+    return Array.isArray(output.data) ? output.data : [];
   } catch (error) {
     console.error('Error fetching playlists:', error);
     return [];
@@ -93,9 +95,9 @@ export const fetchAllPodcasts = async (): Promise<Podcast[]> => {
     if (!response.ok) {
       throw new Error(`Failed to fetch podcasts: ${response.status} ${response.statusText}`);
     }
-    const data = await response.json();
-    console.log('Podcasts response:', data);
-    return Array.isArray(data) ? data : [];
+    const output = await response.json();
+    console.log('Podcasts response:', output.data);
+    return Array.isArray(output.data) ? output.data : [];
   } catch (error) {
     console.error('Error fetching podcasts:', error);
     return [];
@@ -109,9 +111,9 @@ export const fetchAllShorts = async (): Promise<Short[]> => {
     if (!response.ok) {
       throw new Error(`Failed to fetch shorts: ${response.status} ${response.statusText}`);
     }
-    const data = await response.json();
-    console.log('Shorts response:', data);
-    return Array.isArray(data) ? data : [];
+    const output = await response.json();
+    console.log('Shorts response:', output.data);
+    return Array.isArray(output.data) ? output.data : [];
   } catch (error) {
     console.error('Error fetching shorts:', error);
     return [];
@@ -125,9 +127,9 @@ export const searchVideos = async (keyword: string): Promise<Video[]> => {
     if (!response.ok) {
       throw new Error(`Failed to search videos: ${response.status} ${response.statusText}`);
     }
-    const data = await response.json();
-    console.log('Search videos response:', data);
-    return Array.isArray(data) ? data : [];
+    const output = await response.json();
+    console.log('Search videos response:', output.data);
+    return Array.isArray(output.data) ? output.data : [];
   } catch (error) {
     console.error('Error searching videos:', error);
     return [];
