@@ -17,7 +17,7 @@ const VideoCard = ({ video, index }: VideoCardProps) => {
           <img 
             src={video.thumbnail} 
             alt={`${decodeHtmlEntities(video.title)} - WordPress tutorial thumbnail`}
-            className="w-full h-48 object-cover rounded-t-lg transition-transform duration-300 group-hover:scale-[1.02]"
+            className="w-full h-48 object-cover rounded-t-lg transition-transform duration-300 group-hover:scale-105"
             loading="lazy"
           />
           <div className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">

@@ -33,7 +33,7 @@ const LatestShorts = () => {
             <div className="text-white font-roboto text-lg">Loading shorts...</div>
           </div>
         ) : (
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 md:gap-6">
             {shorts.slice(0, 4).map((short, index) => (
               <Card 
                 key={short.id || index} 
@@ -45,7 +45,7 @@ const LatestShorts = () => {
                     <img 
                       src={short.thumbnail} 
                       alt={decodeHtmlEntities(short.title)}
-                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                       <a 

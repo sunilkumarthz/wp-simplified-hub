@@ -23,7 +23,7 @@ const LatestPodcastsSection = () => {
           <Button variant="outline">View All Podcasts</Button>
         </Link>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
         {podcasts.slice(0, 3).map((podcast, index) => (
           <Card key={podcast.id || index} className="bg-slate-800/50 border-slate-700 hover:bg-slate-800/70 transition-all duration-300 group overflow-hidden">
             <CardContent className="p-0">
@@ -31,7 +31,7 @@ const LatestPodcastsSection = () => {
                 <img 
                   src={podcast.thumbnail} 
                   alt={decodeHtmlEntities(podcast.title)}
-                  className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+                  className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <a 

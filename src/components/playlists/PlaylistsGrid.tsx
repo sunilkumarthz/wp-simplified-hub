@@ -56,7 +56,7 @@ const PlaylistsGrid = ({
   return (
     <section className="pb-20 bg-slate-800">
       {/* Modern Playlists Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-12">
         {visiblePlaylists.map((playlist, index) => (
           <PlaylistCard 
             key={playlist.id || index}

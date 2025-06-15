@@ -49,7 +49,7 @@ const FeaturedVideos = () => {
           </div>
         )}
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-12">
           {videos.slice(0, 6).map((video, index) => (
             <Card 
               key={video.id || index} 
@@ -61,7 +61,7 @@ const FeaturedVideos = () => {
                   <img 
                     src={video.thumbnail} 
                     alt={decodeHtmlEntities(video.title)}
-                    className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+                    className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
                     <a 
