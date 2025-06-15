@@ -8,15 +8,20 @@ import FeaturedContent from './hero/FeaturedContent';
 import ScrollIndicator from './hero/ScrollIndicator';
 
 const HeroSection = () => {
-  const { data: videos = [] } = useQuery({
+  const { data: videos = [], isLoading: videosLoading } = useQuery({
     queryKey: ['latestVideos'],
     queryFn: fetchLatestVideos,
   });
 
-  const { data: podcasts = [] } = useQuery({
+  const { data: podcasts = [], isLoading: podcastsLoading } = useQuery({
     queryKey: ['latestPodcasts'],
     queryFn: fetchAllPodcasts,
   });
+
+  console.log('Videos data:', videos);
+  console.log('Podcasts data:', podcasts);
+  console.log('Videos loading:', videosLoading);
+  console.log('Podcasts loading:', podcastsLoading);
 
   const scrollToVideos = () => {
     const videosSection = document.getElementById('latest-videos');
@@ -39,7 +44,11 @@ const HeroSection = () => {
           
           <HeroStats />
 
-          <FeaturedContent latestVideo={latestVideo} latestPodcast={latestPodcast} />
+          <FeaturedContent 
+            latestVideo={latestVideo} 
+            latestPodcast={latestPodcast}
+            isLoading={videosLoading || podcastsLoading}
+          />
         </div>
 
         <ScrollIndicator />

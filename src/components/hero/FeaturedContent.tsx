@@ -7,50 +7,89 @@ import { decodeHtmlEntities } from '@/lib/htmlUtils';
 interface FeaturedContentProps {
   latestVideo?: VideoType;
   latestPodcast?: Podcast;
+  isLoading?: boolean;
 }
 
-const FeaturedContent = ({ latestVideo, latestPodcast }: FeaturedContentProps) => {
-  if (!latestVideo && !latestPodcast) {
-    return null;
-  }
-
-  return (
-    <div className="grid lg:grid-cols-2 gap-6 max-w-5xl mx-auto animate-fade-in" style={{ animationDelay: '0.3s' }}>
-      {/* Latest Video Card */}
-      {latestVideo && (
-        <Card className="group relative bg-gradient-to-br from-slate-800/60 to-slate-900/60 backdrop-blur-xl border border-slate-700/50 hover:border-wp-teal/40 rounded-2xl overflow-hidden transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:shadow-wp-teal/10">
-          <CardContent className="p-6 relative">
-            {/* Background Pattern */}
-            <div className="absolute inset-0 opacity-5">
-              <div className="absolute top-4 right-4 w-20 h-20 bg-wp-teal/20 rounded-full blur-2xl"></div>
-              <div className="absolute bottom-4 left-4 w-16 h-16 bg-cyan-400/20 rounded-full blur-xl"></div>
-            </div>
-            
-            {/* Video Badge */}
+const FeaturedContent = ({ latestVideo, latestPodcast, isLoading }: FeaturedContentProps) => {
+  if (isLoading) {
+    return (
+      <div className="grid lg:grid-cols-2 gap-6 max-w-5xl mx-auto animate-fade-in" style={{ animationDelay: '0.3s' }}>
+        {/* Loading Video Card */}
+        <Card className="bg-gradient-to-br from-slate-800/60 to-slate-900/60 backdrop-blur-xl border border-slate-700/50 rounded-2xl overflow-hidden">
+          <CardContent className="p-6">
             <div className="flex items-center gap-3 mb-6">
               <div className="w-12 h-12 bg-gradient-to-r from-wp-teal to-wp-teal-dark rounded-xl flex items-center justify-center shadow-lg">
                 <Video className="w-6 h-6 text-white" />
               </div>
               <div>
                 <div className="text-wp-teal text-lg font-bold uppercase tracking-wider">Latest Video</div>
-                <div className="text-slate-400 text-sm">WordPress Tutorial</div>
+                <div className="text-slate-400 text-sm">Loading...</div>
               </div>
             </div>
-            
-            {/* Title */}
-            <h3 className="text-white font-baloo font-bold text-xl mb-6 line-clamp-2 leading-tight group-hover:text-wp-teal/90 transition-colors">
-              {decodeHtmlEntities(latestVideo.title)}
-            </h3>
-            
-            {/* Decorative Elements */}
+            <div className="h-6 bg-slate-700/50 rounded animate-pulse mb-4"></div>
+            <div className="h-4 bg-slate-700/50 rounded animate-pulse mb-6"></div>
+          </CardContent>
+        </Card>
+
+        {/* Loading Podcast Card */}
+        <Card className="bg-gradient-to-br from-slate-800/60 to-slate-900/60 backdrop-blur-xl border border-slate-700/50 rounded-2xl overflow-hidden">
+          <CardContent className="p-6">
             <div className="flex items-center gap-3 mb-6">
-              <div className="flex-1 h-px bg-gradient-to-r from-wp-teal/50 to-transparent"></div>
-              <div className="w-2 h-2 bg-wp-teal rounded-full"></div>
-              <div className="w-1.5 h-1.5 bg-wp-teal/60 rounded-full"></div>
-              <div className="flex-1 h-px bg-gradient-to-l from-wp-teal/50 to-transparent"></div>
+              <div className="w-12 h-12 bg-gradient-to-r from-wp-teal to-wp-teal-dark rounded-xl flex items-center justify-center shadow-lg">
+                <Mic className="w-6 h-6 text-white" />
+              </div>
+              <div>
+                <div className="text-wp-teal text-lg font-bold uppercase tracking-wider">Latest Podcast</div>
+                <div className="text-slate-400 text-sm">Loading...</div>
+              </div>
             </div>
-            
-            {/* Watch Button */}
+            <div className="h-6 bg-slate-700/50 rounded animate-pulse mb-4"></div>
+            <div className="h-4 bg-slate-700/50 rounded animate-pulse mb-6"></div>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
+
+  return (
+    <div className="grid lg:grid-cols-2 gap-6 max-w-5xl mx-auto animate-fade-in" style={{ animationDelay: '0.3s' }}>
+      {/* Latest Video Card */}
+      <Card className="group relative bg-gradient-to-br from-slate-800/60 to-slate-900/60 backdrop-blur-xl border border-slate-700/50 hover:border-wp-teal/40 rounded-2xl overflow-hidden transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:shadow-wp-teal/10">
+        <CardContent className="p-6 relative">
+          {/* Background Pattern */}
+          <div className="absolute inset-0 opacity-5">
+            <div className="absolute top-4 right-4 w-20 h-20 bg-wp-teal/20 rounded-full blur-2xl"></div>
+            <div className="absolute bottom-4 left-4 w-16 h-16 bg-cyan-400/20 rounded-full blur-xl"></div>
+          </div>
+          
+          {/* Video Badge */}
+          <div className="flex items-center gap-3 mb-6">
+            <div className="w-12 h-12 bg-gradient-to-r from-wp-teal to-wp-teal-dark rounded-xl flex items-center justify-center shadow-lg">
+              <Video className="w-6 h-6 text-white" />
+            </div>
+            <div>
+              <div className="text-wp-teal text-lg font-bold uppercase tracking-wider">Latest Video</div>
+              <div className="text-slate-400 text-sm">
+                {latestVideo ? 'WordPress Tutorial' : 'No video available'}
+              </div>
+            </div>
+          </div>
+          
+          {/* Title */}
+          <h3 className="text-white font-baloo font-bold text-xl mb-6 line-clamp-2 leading-tight group-hover:text-wp-teal/90 transition-colors">
+            {latestVideo ? decodeHtmlEntities(latestVideo.title) : 'Latest video will appear here'}
+          </h3>
+          
+          {/* Decorative Elements */}
+          <div className="flex items-center gap-3 mb-6">
+            <div className="flex-1 h-px bg-gradient-to-r from-wp-teal/50 to-transparent"></div>
+            <div className="w-2 h-2 bg-wp-teal rounded-full"></div>
+            <div className="w-1.5 h-1.5 bg-wp-teal/60 rounded-full"></div>
+            <div className="flex-1 h-px bg-gradient-to-l from-wp-teal/50 to-transparent"></div>
+          </div>
+          
+          {/* Watch Button */}
+          {latestVideo ? (
             <a 
               href={latestVideo.url} 
               target="_blank" 
@@ -61,45 +100,52 @@ const FeaturedContent = ({ latestVideo, latestPodcast }: FeaturedContentProps) =
               Watch Tutorial
               <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
             </a>
-          </CardContent>
-        </Card>
-      )}
+          ) : (
+            <div className="inline-flex items-center gap-2 bg-slate-600/50 text-slate-400 font-bold px-8 py-4 rounded-xl">
+              <Play className="w-5 h-5" />
+              Coming Soon
+            </div>
+          )}
+        </CardContent>
+      </Card>
 
       {/* Latest Podcast Card */}
-      {latestPodcast && (
-        <Card className="group relative bg-gradient-to-br from-slate-800/60 to-slate-900/60 backdrop-blur-xl border border-slate-700/50 hover:border-wp-teal/40 rounded-2xl overflow-hidden transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:shadow-wp-teal/10">
-          <CardContent className="p-6 relative">
-            {/* Background Pattern */}
-            <div className="absolute inset-0 opacity-5">
-              <div className="absolute top-4 left-4 w-20 h-20 bg-wp-teal/20 rounded-full blur-2xl"></div>
-              <div className="absolute bottom-4 right-4 w-16 h-16 bg-cyan-400/20 rounded-full blur-xl"></div>
+      <Card className="group relative bg-gradient-to-br from-slate-800/60 to-slate-900/60 backdrop-blur-xl border border-slate-700/50 hover:border-wp-teal/40 rounded-2xl overflow-hidden transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:shadow-wp-teal/10">
+        <CardContent className="p-6 relative">
+          {/* Background Pattern */}
+          <div className="absolute inset-0 opacity-5">
+            <div className="absolute top-4 left-4 w-20 h-20 bg-wp-teal/20 rounded-full blur-2xl"></div>
+            <div className="absolute bottom-4 right-4 w-16 h-16 bg-cyan-400/20 rounded-full blur-xl"></div>
+          </div>
+          
+          {/* Podcast Badge */}
+          <div className="flex items-center gap-3 mb-6">
+            <div className="w-12 h-12 bg-gradient-to-r from-wp-teal to-wp-teal-dark rounded-xl flex items-center justify-center shadow-lg">
+              <Mic className="w-6 h-6 text-white" />
             </div>
-            
-            {/* Podcast Badge */}
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 bg-gradient-to-r from-wp-teal to-wp-teal-dark rounded-xl flex items-center justify-center shadow-lg">
-                <Mic className="w-6 h-6 text-white" />
+            <div>
+              <div className="text-wp-teal text-lg font-bold uppercase tracking-wider">Latest Podcast</div>
+              <div className="text-slate-400 text-sm">
+                {latestPodcast ? 'Audio Content' : 'No podcast available'}
               </div>
-              <div>
-                <div className="text-wp-teal text-lg font-bold uppercase tracking-wider">Latest Podcast</div>
-                <div className="text-slate-400 text-sm">Audio Content</div>
-              </div>
             </div>
-            
-            {/* Title */}
-            <h3 className="text-white font-baloo font-bold text-xl mb-6 line-clamp-2 leading-tight group-hover:text-wp-teal/90 transition-colors">
-              {decodeHtmlEntities(latestPodcast.title)}
-            </h3>
-            
-            {/* Decorative Elements */}
-            <div className="flex items-center gap-3 mb-6">
-              <div className="flex-1 h-px bg-gradient-to-r from-wp-teal/50 to-transparent"></div>
-              <div className="w-2 h-2 bg-wp-teal rounded-full"></div>
-              <div className="w-1.5 h-1.5 bg-wp-teal/60 rounded-full"></div>
-              <div className="flex-1 h-px bg-gradient-to-l from-wp-teal/50 to-transparent"></div>
-            </div>
-            
-            {/* Listen Button */}
+          </div>
+          
+          {/* Title */}
+          <h3 className="text-white font-baloo font-bold text-xl mb-6 line-clamp-2 leading-tight group-hover:text-wp-teal/90 transition-colors">
+            {latestPodcast ? decodeHtmlEntities(latestPodcast.title) : 'Latest podcast will appear here'}
+          </h3>
+          
+          {/* Decorative Elements */}
+          <div className="flex items-center gap-3 mb-6">
+            <div className="flex-1 h-px bg-gradient-to-r from-wp-teal/50 to-transparent"></div>
+            <div className="w-2 h-2 bg-wp-teal rounded-full"></div>
+            <div className="w-1.5 h-1.5 bg-wp-teal/60 rounded-full"></div>
+            <div className="flex-1 h-px bg-gradient-to-l from-wp-teal/50 to-transparent"></div>
+          </div>
+          
+          {/* Listen Button */}
+          {latestPodcast ? (
             <a 
               href={latestPodcast.url} 
               target="_blank" 
@@ -110,9 +156,14 @@ const FeaturedContent = ({ latestVideo, latestPodcast }: FeaturedContentProps) =
               Listen Now
               <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
             </a>
-          </CardContent>
-        </Card>
-      )}
+          ) : (
+            <div className="inline-flex items-center gap-2 bg-slate-600/50 text-slate-400 font-bold px-8 py-4 rounded-xl">
+              <Mic className="w-5 h-5" />
+              Coming Soon
+            </div>
+          )}
+        </CardContent>
+      </Card>
     </div>
   );
 };
