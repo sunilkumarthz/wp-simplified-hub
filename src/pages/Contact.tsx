@@ -43,16 +43,20 @@ const Contact = () => {
           <ContactHero />
 
           {/* Contact Form Section */}
-          <section className="pb-20">
+          <section className="pb-12">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
               <div className="lg:col-span-2">
                 <ContactForm />
               </div>
-              <div className="space-y-6">
+              <div>
                 <ContactInfo />
-                <ContactSocial />
               </div>
             </div>
+          </section>
+
+          {/* Social Section - Full Width */}
+          <section className="pb-20">
+            <ContactSocial />
           </section>
         </div>
 
