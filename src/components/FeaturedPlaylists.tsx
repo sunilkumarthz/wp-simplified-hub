@@ -34,13 +34,13 @@ const FeaturedPlaylists = () => {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {playlists.slice(0, 3).map((playlist, index) => (
-              <Card key={playlist.id || index} className="bg-slate-800/50 border-slate-700 hover:bg-slate-800/70 transition-all duration-300 group">
+              <Card key={playlist.id || index} className="bg-slate-800/50 border-slate-700 hover:bg-slate-800/70 transition-all duration-300 group overflow-hidden">
                 <CardContent className="p-0">
-                  <div className="relative">
+                  <div className="relative overflow-hidden">
                     <img 
                       src={playlist.thumbnail} 
                       alt={playlist.title}
-                      className="w-full h-48 object-cover rounded-t-lg transition-transform duration-300 group-hover:scale-105"
+                      className="w-full h-48 object-cover rounded-t-lg transition-transform duration-300 group-hover:scale-[1.02]"
                     />
                     <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                       <a 
