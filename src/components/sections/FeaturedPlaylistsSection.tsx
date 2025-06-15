@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { BookOpen } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
 import { fetchAllPlaylists } from '@/services/api';
+import { decodeHtmlEntities } from '@/lib/htmlUtils';
 
 const FeaturedPlaylistsSection = () => {
   const { data: playlists = [] } = useQuery({
@@ -29,7 +30,7 @@ const FeaturedPlaylistsSection = () => {
               <div className="relative overflow-hidden">
                 <img 
                   src={playlist.thumbnail} 
-                  alt={playlist.title}
+                  alt={decodeHtmlEntities(playlist.title)}
                   className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-[1.02]"
                 />
                 <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -45,7 +46,7 @@ const FeaturedPlaylistsSection = () => {
               </div>
               <div className="p-6">
                 <h3 className="font-baloo font-semibold text-white text-lg mb-3 line-clamp-2">
-                  {playlist.title}
+                  {decodeHtmlEntities(playlist.title)}
                 </h3>
               </div>
             </CardContent>

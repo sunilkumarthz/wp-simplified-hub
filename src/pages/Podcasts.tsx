@@ -1,4 +1,3 @@
-
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
@@ -9,6 +8,7 @@ import { Play, Clock, Mic, User } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
 import { fetchAllPodcasts, type Podcast } from '@/services/api';
 import { useState } from 'react';
+import { decodeHtmlEntities } from '@/lib/htmlUtils';
 
 const Podcasts = () => {
   const [displayCount, setDisplayCount] = useState(10);
@@ -53,7 +53,7 @@ const Podcasts = () => {
         jsonLd={podcastJsonLd}
       />
       
-      <div className="min-h-screen bg-slate-900 relative overflow-hidden">
+      <div className="min-h-screen bg-slate-800 relative overflow-hidden">
         {/* Background Effects */}
         <div className="absolute inset-0 wp-gradient-dark opacity-50"></div>
         <div className="absolute top-20 left-10 w-72 h-72 bg-wp-teal/10 rounded-full blur-3xl"></div>
@@ -111,7 +111,7 @@ const Podcasts = () => {
                       <div className="relative overflow-hidden">
                         <img 
                           src={podcast.thumbnail} 
-                          alt={podcast.title}
+                          alt={decodeHtmlEntities(podcast.title)}
                           className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-[1.02]"
                         />
                         <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -137,7 +137,7 @@ const Podcasts = () => {
                       
                       <div className="p-6">
                         <h3 className="text-xl font-baloo font-bold text-white mb-3 line-clamp-2">
-                          {podcast.title}
+                          {decodeHtmlEntities(podcast.title)}
                         </h3>                       
                         <a 
                           href={podcast.videourl} 

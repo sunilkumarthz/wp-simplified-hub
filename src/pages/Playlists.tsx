@@ -1,4 +1,3 @@
-
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
@@ -8,6 +7,7 @@ import { Play, Clock, BookOpen } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
 import { fetchAllPlaylists, type Playlist } from '@/services/api';
 import { useState } from 'react';
+import { decodeHtmlEntities } from '@/lib/htmlUtils';
 
 const Playlists = () => {
   const [displayCount, setDisplayCount] = useState(9);
@@ -58,7 +58,7 @@ const Playlists = () => {
           
           <div className="container mx-auto px-4">
             {/* Hero Section */}
-            <section className="py-20 text-center bg-slate-900">
+            <section className="py-20 text-center bg-slate-800">
               <h1 className="text-5xl md:text-6xl font-baloo font-bold text-white mb-6 animate-fade-in">
                 WordPress <span className="text-gradient">Playlists</span>
               </h1>
@@ -86,7 +86,7 @@ const Playlists = () => {
             </section>
 
             {/* Playlists Grid */}
-            <section className="pb-20 bg-slate-900">
+            <section className="pb-20 bg-slate-800">
               {isLoading && (
                 <div className="text-center py-12">
                   <div className="inline-flex items-center justify-center w-16 h-16 bg-wp-teal/20 rounded-full mb-4">
@@ -120,7 +120,7 @@ const Playlists = () => {
                     <div className="relative overflow-hidden">
                       <img 
                         src={playlist.thumbnail} 
-                        alt={playlist.title}
+                        alt={decodeHtmlEntities(playlist.title)}
                         className="w-full h-56 object-cover transition-transform duration-300 group-hover:scale-[1.02]"
                         loading="lazy"
                       />
@@ -148,7 +148,7 @@ const Playlists = () => {
                     
                     <div className="p-6">
                       <h3 className="text-xl font-baloo font-bold text-white mb-3 line-clamp-2">
-                        {playlist.title}
+                        {decodeHtmlEntities(playlist.title)}
                       </h3>
                       <p className="text-slate-300 text-sm mb-4 line-clamp-3 leading-relaxed">
                         {playlist.description}

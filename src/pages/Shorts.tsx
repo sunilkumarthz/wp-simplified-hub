@@ -1,4 +1,3 @@
-
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
@@ -8,6 +7,7 @@ import { Play, Clock, Eye } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
 import { fetchAllShorts, type Short } from '@/services/api';
 import { useState } from 'react';
+import { decodeHtmlEntities } from '@/lib/htmlUtils';
 
 const Shorts = () => {
   const [displayCount, setDisplayCount] = useState(8);
@@ -60,12 +60,12 @@ const Shorts = () => {
         jsonLd={shortsJsonLd}
       />
       
-      <div className="min-h-screen bg-slate-900">
+      <div className="min-h-screen bg-slate-800">
         <Header />
         
         <div className="container mx-auto px-4">
           {/* Hero Section */}
-          <section className="py-16 text-center bg-slate-900">
+          <section className="py-16 text-center bg-slate-800">
             <h1 className="text-4xl md:text-5xl font-baloo font-bold text-white mb-6">
               WordPress <span className="text-gradient">Shorts</span>
             </h1>
@@ -93,7 +93,7 @@ const Shorts = () => {
           </section>
 
           {/* Shorts Grid Section */}
-          <section className="pb-20 bg-slate-900">
+          <section className="pb-20 bg-slate-800">
             {isLoading && (
               <div className="text-center py-16">
                 <div className="inline-flex items-center justify-center w-16 h-16 bg-wp-teal/20 rounded-full mb-4">
@@ -126,10 +126,10 @@ const Shorts = () => {
                       style={{ animationDelay: `${index * 50}ms` }}
                     >
                       <CardContent className="p-0">
-                        <div className="relative aspect-[9/16] bg-slate-900/50 overflow-hidden">
+                        <div className="relative aspect-[9/16] bg-slate-800/50 overflow-hidden">
                           <img 
                             src={short.thumbnail} 
-                            alt={short.title}
+                            alt={decodeHtmlEntities(short.title)}
                             className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
                             loading="lazy"
                           />
@@ -172,7 +172,7 @@ const Shorts = () => {
                             {/* Title Overlay */}
                             <div className="absolute bottom-0 left-0 right-0 p-4">
                               <h3 className="text-white font-roboto font-medium text-sm line-clamp-3 leading-tight drop-shadow-lg">
-                                {short.title}
+                                {decodeHtmlEntities(short.title)}
                               </h3>
                             </div>
                           </div>

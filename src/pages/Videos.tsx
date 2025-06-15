@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import Header from '@/components/Header';
@@ -10,6 +9,7 @@ import { Input } from '@/components/ui/input';
 import { Play, Clock, Eye, Search } from 'lucide-react';
 import { fetchLatestVideos, searchVideos, type Video } from '@/services/api';
 import { useQuery } from '@tanstack/react-query';
+import { decodeHtmlEntities } from '@/lib/htmlUtils';
 
 const Videos = () => {
   const [searchParams] = useSearchParams();
@@ -145,7 +145,7 @@ const Videos = () => {
         jsonLd={videoJsonLd}
       />
       
-      <div className="min-h-screen bg-slate-900 relative overflow-hidden">
+      <div className="min-h-screen bg-slate-800 relative overflow-hidden">
         {/* Background Effects */}
         <div className="absolute inset-0 wp-gradient-dark opacity-50"></div>
         <div className="absolute top-20 left-10 w-72 h-72 bg-wp-teal/10 rounded-full blur-3xl"></div>
@@ -227,7 +227,7 @@ const Videos = () => {
                       <div className="relative overflow-hidden">
                         <img 
                           src={video.thumbnail} 
-                          alt={`${video.title} - WordPress tutorial thumbnail`}
+                          alt={`${decodeHtmlEntities(video.title)} - WordPress tutorial thumbnail`}
                           className="w-full h-48 object-cover rounded-t-lg transition-transform duration-300 group-hover:scale-[1.02]"
                           loading="lazy"
                         />
@@ -237,7 +237,7 @@ const Videos = () => {
                             target="_blank" 
                             rel="noopener noreferrer"
                             className="w-16 h-16 bg-wp-teal rounded-full flex items-center justify-center hover:scale-110 transition-transform"
-                            aria-label={`Watch ${video.title}`}
+                            aria-label={`Watch ${decodeHtmlEntities(video.title)}`}
                           >
                             <Play className="w-8 h-8 text-slate-900" />
                           </a>
@@ -252,7 +252,7 @@ const Videos = () => {
                       
                       <div className="p-6">
                         <h3 className="text-xl font-baloo font-bold text-white mb-3 line-clamp-2">
-                          {video.title}
+                          {decodeHtmlEntities(video.title)}
                         </h3>
                         
                       </div>

@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { Play } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
 import { fetchAllShorts } from '@/services/api';
+import { decodeHtmlEntities } from '@/lib/htmlUtils';
 
 const LatestShortsSection = () => {
   const { data: shorts = [] } = useQuery({
@@ -29,7 +30,7 @@ const LatestShortsSection = () => {
               <div className="relative aspect-[9/16] overflow-hidden">
                 <img 
                   src={short.thumbnail} 
-                  alt={short.title}
+                  alt={decodeHtmlEntities(short.title)}
                   className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
                 />
                 <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -45,7 +46,7 @@ const LatestShortsSection = () => {
               </div>
               <div className="p-3">
                 <h3 className="font-baloo font-semibold text-white text-sm line-clamp-2">
-                  {short.title}
+                  {decodeHtmlEntities(short.title)}
                 </h3>
               </div>
             </CardContent>
