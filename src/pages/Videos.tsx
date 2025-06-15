@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import Header from '@/components/Header';
@@ -223,11 +224,11 @@ const Videos = () => {
                 {visibleVideos.map((video, index) => (
                   <Card key={video.id || index} className="bg-slate-800/50 hover:bg-slate-800/70 transition-all duration-300 group">
                     <CardContent className="p-0">
-                      <div className="relative">
+                      <div className="relative overflow-hidden">
                         <img 
                           src={video.thumbnail} 
                           alt={`${video.title} - WordPress tutorial thumbnail`}
-                          className="w-full h-48 object-cover rounded-t-lg transition-transform duration-300 group-hover:scale-105"
+                          className="w-full h-48 object-cover rounded-t-lg transition-transform duration-300 group-hover:scale-[1.02]"
                           loading="lazy"
                         />
                         <div className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
