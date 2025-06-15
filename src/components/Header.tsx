@@ -24,11 +24,11 @@ const Header = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link to="/" className="relative h-12 w-32 rounded-xl overflow-hidden border border-slate-600 hover:border-wp-teal/50 transition-all duration-300 group" aria-label="WPSimplified Home">
+          <Link to="/" className="relative h-12 w-32 rounded-xl overflow-hidden border-2 border-slate-600 hover:border-wp-teal/70 transition-all duration-300 group hover:shadow-lg hover:shadow-wp-teal/20" aria-label="WPSimplified Home">
             <img 
-              src="/lovable-uploads/7296f4cd-1ccd-4537-9d84-dd45c7c019c4.png" 
+              src="/lovable-uploads/d648fbcd-05fa-4543-848f-b744797111d5.png" 
               alt="WPSimplified Logo" 
-              className="object-contain w-full h-full p-2"
+              className="object-contain w-full h-full p-2 transition-transform duration-300 group-hover:scale-105"
             />
           </Link>
 
