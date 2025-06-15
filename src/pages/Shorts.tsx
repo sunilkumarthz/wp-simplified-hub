@@ -1,3 +1,4 @@
+
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
@@ -64,7 +65,7 @@ const Shorts = () => {
         
         <div className="container mx-auto px-4">
           {/* Hero Section */}
-          <section className="py-16 text-center">
+          <section className="py-16 text-center bg-slate-900">
             <h1 className="text-4xl md:text-5xl font-baloo font-bold text-white mb-6">
               WordPress <span className="text-gradient">Shorts</span>
             </h1>
@@ -125,11 +126,11 @@ const Shorts = () => {
                       style={{ animationDelay: `${index * 50}ms` }}
                     >
                       <CardContent className="p-0">
-                        <div className="relative aspect-[9/16] bg-slate-900/50">
+                        <div className="relative aspect-[9/16] bg-slate-900/50 overflow-hidden">
                           <img 
                             src={short.thumbnail} 
                             alt={short.title}
-                            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
                             loading="lazy"
                           />
                           

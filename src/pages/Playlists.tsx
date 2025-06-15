@@ -1,3 +1,4 @@
+
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
@@ -55,9 +56,9 @@ const Playlists = () => {
         <div className="relative z-10">
           <Header />
           
-          <div className="container mx-auto px-4 bg-slate-900">
+          <div className="container mx-auto px-4">
             {/* Hero Section */}
-            <section className="py-20 text-center ">
+            <section className="py-20 text-center bg-slate-900">
               <h1 className="text-5xl md:text-6xl font-baloo font-bold text-white mb-6 animate-fade-in">
                 WordPress <span className="text-gradient">Playlists</span>
               </h1>
@@ -112,15 +113,15 @@ const Playlists = () => {
               {visiblePlaylists.map((playlist, index) => (
                 <Card 
                   key={playlist.id || index} 
-                  className="bg-slate-800/60 hover:bg-slate-800/80 transition-all duration-300 group border-slate-700/50 animate-fade-in"
+                  className="bg-slate-800/60 hover:bg-slate-800/80 transition-all duration-300 group border-slate-700/50 animate-fade-in overflow-hidden"
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
                   <CardContent className="p-0">
-                    <div className="relative">
+                    <div className="relative overflow-hidden">
                       <img 
                         src={playlist.thumbnail} 
                         alt={playlist.title}
-                        className="w-full h-56 object-cover rounded-t-lg transition-transform duration-300 group-hover:scale-105"
+                        className="w-full h-56 object-cover transition-transform duration-300 group-hover:scale-[1.02]"
                         loading="lazy"
                       />
                       <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">

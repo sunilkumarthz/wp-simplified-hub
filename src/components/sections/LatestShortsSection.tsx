@@ -24,13 +24,13 @@ const LatestShortsSection = () => {
       </div>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {shorts.slice(0, 4).map((short, index) => (
-          <Card key={short.id || index} className="bg-slate-800/50 border-slate-700 hover:bg-slate-800/70 transition-all duration-300 group">
+          <Card key={short.id || index} className="bg-slate-800/50 border-slate-700 hover:bg-slate-800/70 transition-all duration-300 group overflow-hidden">
             <CardContent className="p-0">
-              <div className="relative aspect-[9/16]">
+              <div className="relative aspect-[9/16] overflow-hidden">
                 <img 
                   src={short.thumbnail} 
                   alt={short.title}
-                  className="w-full h-full object-cover rounded-lg transition-transform duration-300 group-hover:scale-105"
+                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
                 />
                 <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <a 
