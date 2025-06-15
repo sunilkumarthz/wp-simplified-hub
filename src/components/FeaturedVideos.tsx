@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { Play, Clock, Eye } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
 import { fetchLatestVideos, type Video } from '@/services/api';
+import { decodeHtmlEntities } from '@/lib/htmlUtils';
 
 const FeaturedVideos = () => {
   const { data: videos = [], isLoading, error } = useQuery({
@@ -59,7 +60,7 @@ const FeaturedVideos = () => {
                 <div className="relative overflow-hidden">
                   <img 
                     src={video.thumbnail} 
-                    alt={video.title}
+                    alt={decodeHtmlEntities(video.title)}
                     className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-[1.02]"
                   />
                   <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
@@ -82,7 +83,7 @@ const FeaturedVideos = () => {
                 </div>
                 <div className="p-6">
                   <h3 className="font-baloo font-semibold text-white text-lg mb-3 line-clamp-2">
-                    {video.title}
+                    {decodeHtmlEntities(video.title)}
                   </h3>
                   <p className="text-slate-300 font-roboto text-sm mb-4 line-clamp-2">
                     {video.description}

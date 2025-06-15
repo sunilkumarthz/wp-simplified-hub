@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { Play } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
 import { fetchLatestVideos } from '@/services/api';
+import { decodeHtmlEntities } from '@/lib/htmlUtils';
 
 const LatestVideos = () => {
   const { data: videos = [], isLoading } = useQuery({
@@ -39,7 +40,7 @@ const LatestVideos = () => {
                   <div className="relative overflow-hidden">
                     <img 
                       src={video.thumbnail} 
-                      alt={video.title}
+                      alt={decodeHtmlEntities(video.title)}
                       className="w-full h-48 object-cover rounded-t-lg transition-transform duration-300 group-hover:scale-[1.02]"
                     />
                     <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -55,7 +56,7 @@ const LatestVideos = () => {
                   </div>
                   <div className="p-6">
                     <h3 className="font-baloo font-semibold text-white text-lg mb-4 line-clamp-2">
-                      {video.title}
+                      {decodeHtmlEntities(video.title)}
                     </h3>
                     <a 
                       href={video.url} 

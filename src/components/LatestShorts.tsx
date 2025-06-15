@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { Play, Clock } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
 import { fetchAllShorts } from '@/services/api';
+import { decodeHtmlEntities } from '@/lib/htmlUtils';
 
 const LatestShorts = () => {
   const { data: shorts = [], isLoading } = useQuery({
@@ -43,7 +44,7 @@ const LatestShorts = () => {
                   <div className="relative aspect-[9/16] overflow-hidden">
                     <img 
                       src={short.thumbnail} 
-                      alt={short.title}
+                      alt={decodeHtmlEntities(short.title)}
                       className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
                     />
                     <div className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -73,7 +74,7 @@ const LatestShorts = () => {
                     {/* Title Overlay */}
                     <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent p-3">
                       <h3 className="text-white font-roboto font-medium text-sm line-clamp-2 leading-tight">
-                        {short.title}
+                        {decodeHtmlEntities(short.title)}
                       </h3>
                     </div>
                   </div>
