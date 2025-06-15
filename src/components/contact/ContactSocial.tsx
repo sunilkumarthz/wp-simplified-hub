@@ -53,7 +53,7 @@ const ContactSocial = () => {
         </p>
       </CardHeader>
       <CardContent className="space-y-4">
-        <div className="grid grid-cols-1 gap-3">
+        <div className="flex flex-wrap justify-center gap-4">
           {socialLinks.map((social, index) => {
             const IconComponent = social.icon;
             return (
@@ -62,19 +62,16 @@ const ContactSocial = () => {
                 href={social.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group"
+                className="group flex-1 min-w-0"
               >
-                <div className={`flex items-center space-x-4 p-3 rounded-lg transition-all duration-300 ${social.bgColor} border border-transparent hover:border-slate-600/50`}>
-                  <div className={`flex-shrink-0 w-10 h-10 bg-slate-700/50 rounded-lg flex items-center justify-center transition-colors ${social.bgColor}`}>
-                    <IconComponent className={`h-5 w-5 transition-colors ${social.color}`} />
+                <div className={`flex flex-col items-center space-y-2 p-4 rounded-lg transition-all duration-300 ${social.bgColor} border border-transparent hover:border-slate-600/50 text-center`}>
+                  <div className={`w-12 h-12 bg-slate-700/50 rounded-lg flex items-center justify-center transition-colors ${social.bgColor}`}>
+                    <IconComponent className={`h-6 w-6 transition-colors ${social.color}`} />
                   </div>
-                  <div className="flex-1">
-                    <h4 className="font-semibold text-white font-roboto group-hover:text-wp-teal transition-colors">
+                  <div className="min-w-0">
+                    <h4 className="font-semibold text-white font-roboto group-hover:text-wp-teal transition-colors text-sm truncate">
                       {social.name}
                     </h4>
-                    <p className="text-slate-400 text-xs font-roboto">
-                      Follow for updates
-                    </p>
                   </div>
                 </div>
               </a>
