@@ -1,6 +1,6 @@
+
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import Breadcrumb from '@/components/Breadcrumb';
 import SEOHead from '@/components/SEOHead';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -62,10 +62,6 @@ const Playlists = () => {
               <h1 className="text-5xl md:text-6xl font-baloo font-bold text-white mb-6 animate-fade-in">
                 WordPress <span className="text-gradient">Playlists</span>
               </h1>
-              
-              <div className="mb-8">
-                <Breadcrumb />
-              </div>
               
               <p className="text-xl text-slate-300 max-w-3xl mx-auto font-roboto leading-relaxed mb-8">
                 Dive deep into specific WordPress topics with our curated playlists. 
