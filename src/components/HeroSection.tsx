@@ -123,7 +123,7 @@ const HeroSection = () => {
                     </h3>
                   </div>
                 </CardContent>
-              </div>
+              </Card>
             )}
           </div>
         </div>
