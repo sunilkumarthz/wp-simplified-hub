@@ -31,8 +31,9 @@ const Footer = () => {
       
       <div className="relative z-10">
         <div className="container mx-auto px-4 py-16">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-            {/* Brand Section */}
+          {/* 2-Column Layout */}
+          <div className="grid md:grid-cols-2 gap-12 mb-12">
+            {/* Left Column - Brand & Social */}
             <div className="space-y-6">
               <div className="flex items-center">
                 <div className="relative h-12 w-32 rounded-xl overflow-hidden border-2 border-slate-600 hover:border-wp-teal/70 transition-all duration-300 group hover:shadow-lg hover:shadow-wp-teal/20">
@@ -43,7 +44,7 @@ const Footer = () => {
                   />
                 </div>
               </div>
-              <p className="text-slate-400 font-roboto text-sm leading-relaxed max-w-xs">
+              <p className="text-slate-400 font-roboto text-sm leading-relaxed max-w-md">
                 Empowering WordPress developers with cutting-edge tutorials, comprehensive playlists, and industry insights. Join thousands mastering WordPress development.
               </p>
               
@@ -62,32 +63,32 @@ const Footer = () => {
                   </a>
                 ))}
               </div>
+
+              {/* Quick Links */}
+              <div>
+                <h3 className="font-baloo font-bold text-white text-lg mb-4">Quick Links</h3>
+                <ul className="flex flex-wrap gap-6">
+                  {quickLinks.map((link, index) => (
+                    <li key={index}>
+                      <Link 
+                        to={link.path} 
+                        className="text-slate-400 hover:text-wp-teal transition-colors font-roboto text-sm"
+                      >
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
 
-            {/* Quick Links */}
-            <div>
-              <h3 className="font-baloo font-bold text-white text-lg mb-6">Quick Links</h3>
-              <ul className="space-y-3">
-                {quickLinks.map((link, index) => (
-                  <li key={index}>
-                    <Link 
-                      to={link.path} 
-                      className="text-slate-400 hover:text-wp-teal transition-colors font-roboto text-sm"
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Join Community */}
-            <div className="bg-slate-800/50 rounded-2xl p-6 border border-slate-700">
-              <h3 className="font-baloo font-bold text-white text-lg mb-4">Join the Community</h3>
-              <p className="text-slate-400 font-roboto text-sm mb-6 leading-relaxed">
-                Subscribe to our YouTube channel for the latest WordPress tutorials, tips, and industry updates delivered weekly.
+            {/* Right Column - Join Community */}
+            <div className="bg-slate-800/50 rounded-2xl p-8 border border-slate-700 h-fit">
+              <h3 className="font-baloo font-bold text-white text-2xl mb-6">Join the Community</h3>
+              <p className="text-slate-400 font-roboto text-base mb-8 leading-relaxed">
+                Subscribe to our YouTube channel for the latest WordPress tutorials, tips, and industry updates delivered weekly. Be part of a growing community of developers.
               </p>
-              <Button className="wp-gradient text-slate-900 font-roboto font-bold w-full hover:scale-105 transition-transform duration-200">
+              <Button className="wp-gradient text-slate-900 font-roboto font-bold w-full hover:scale-105 transition-transform duration-200 text-lg py-6">
                 📺 Subscribe Now
               </Button>
             </div>

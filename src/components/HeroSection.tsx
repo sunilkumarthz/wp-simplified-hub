@@ -40,15 +40,23 @@ const HeroSection = () => {
       <div className="relative z-10 container mx-auto px-6 py-8 h-full flex flex-col">
         <div className="max-w-7xl mx-auto flex-1 flex flex-col justify-center">
           
-          <HeroContent onScrollToVideos={scrollToVideos} />
-          
-          <HeroStats />
+          {/* 2-Column Layout */}
+          <div className="grid lg:grid-cols-2 gap-12 items-center mb-8">
+            {/* Left Column - Content */}
+            <div className="space-y-8">
+              <HeroContent onScrollToVideos={scrollToVideos} />
+              <HeroStats />
+            </div>
 
-          <FeaturedContent 
-            latestVideo={latestVideo} 
-            latestPodcast={latestPodcast}
-            isLoading={videosLoading || podcastsLoading}
-          />
+            {/* Right Column - Featured Content */}
+            <div>
+              <FeaturedContent 
+                latestVideo={latestVideo} 
+                latestPodcast={latestPodcast}
+                isLoading={videosLoading || podcastsLoading}
+              />
+            </div>
+          </div>
         </div>
 
         <ScrollIndicator />
