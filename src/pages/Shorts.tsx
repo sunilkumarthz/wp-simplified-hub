@@ -1,4 +1,3 @@
-
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
@@ -60,12 +59,12 @@ const Shorts = () => {
         jsonLd={shortsJsonLd}
       />
       
-      <div className="min-h-screen bg-slate-900">
+      <div className="min-h-screen">
         <Header />
         
         <div className="container mx-auto px-4">
           {/* Hero Section */}
-          <section className="py-16 text-center">
+          <section className="py-16 text-center bg-slate-900">
             <h1 className="text-4xl md:text-5xl font-baloo font-bold text-white mb-6">
               WordPress <span className="text-gradient">Shorts</span>
             </h1>
@@ -93,7 +92,7 @@ const Shorts = () => {
           </section>
 
           {/* Shorts Grid Section */}
-          <section className="pb-20">
+          <section className="pb-20 bg-slate-900">
             {isLoading && (
               <div className="text-center py-16">
                 <div className="inline-flex items-center justify-center w-16 h-16 bg-wp-teal/20 rounded-full mb-4">

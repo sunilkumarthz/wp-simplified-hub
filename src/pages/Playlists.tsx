@@ -1,4 +1,3 @@
-
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
@@ -47,7 +46,7 @@ const Playlists = () => {
         jsonLd={playlistsJsonLd}
       />
       
-      <div className="min-h-screen bg-slate-900 relative overflow-hidden">
+      <div className="min-h-screen relative overflow-hidden">
         {/* Background Effects */}
         <div className="absolute inset-0 wp-gradient-dark opacity-50"></div>
         <div className="absolute top-20 left-10 w-72 h-72 bg-wp-teal/10 rounded-full blur-3xl floating-animation"></div>
@@ -58,7 +57,7 @@ const Playlists = () => {
           
           <div className="container mx-auto px-4">
             {/* Hero Section */}
-            <section className="py-20 text-center">
+            <section className="py-20 text-center bg-slate-900">
               <h1 className="text-5xl md:text-6xl font-baloo font-bold text-white mb-6 animate-fade-in">
                 WordPress <span className="text-gradient">Playlists</span>
               </h1>
@@ -86,7 +85,7 @@ const Playlists = () => {
             </section>
 
             {/* Playlists Grid */}
-            <section className="pb-20">
+            <section className="pb-20 bg-slate-900">
               {isLoading && (
                 <div className="text-center py-12">
                   <div className="inline-flex items-center justify-center w-16 h-16 bg-wp-teal/20 rounded-full mb-4">
