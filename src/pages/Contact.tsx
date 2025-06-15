@@ -5,6 +5,7 @@ import SEOHead from '@/components/SEOHead';
 import ContactHero from '@/components/contact/ContactHero';
 import ContactForm from '@/components/contact/ContactForm';
 import ContactInfo from '@/components/contact/ContactInfo';
+import ContactSocial from '@/components/contact/ContactSocial';
 
 const Contact = () => {
   const contactJsonLd = {
@@ -47,7 +48,10 @@ const Contact = () => {
               <div className="lg:col-span-2">
                 <ContactForm />
               </div>
-              <ContactInfo />
+              <div className="space-y-6">
+                <ContactInfo />
+                <ContactSocial />
+              </div>
             </div>
           </section>
         </div>

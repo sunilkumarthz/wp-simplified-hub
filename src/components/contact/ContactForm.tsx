@@ -17,6 +17,9 @@ const contactFormSchema = z.object({
   email: z.string().email({
     message: 'Please enter a valid email address.',
   }),
+  whatsapp: z.string().min(10, {
+    message: 'WhatsApp number must be at least 10 digits.',
+  }),
   subject: z.string().min(5, {
     message: 'Subject must be at least 5 characters.',
   }),
@@ -36,6 +39,7 @@ const ContactForm = () => {
     defaultValues: {
       name: '',
       email: '',
+      whatsapp: '',
       subject: '',
       message: '',
     },
@@ -113,6 +117,23 @@ const ContactForm = () => {
                 <p className="text-red-400 text-sm">{form.formState.errors.email.message}</p>
               )}
             </div>
+          </div>
+
+          <div className="space-y-2">
+            <label htmlFor="whatsapp" className="text-sm font-medium text-slate-300">
+              WhatsApp Number *
+            </label>
+            <Input
+              id="whatsapp"
+              placeholder="+91 98765 43210"
+              type="tel"
+              {...form.register('whatsapp')}
+              disabled={isSubmitting}
+              className="bg-slate-700/50 border-slate-600 text-white placeholder:text-slate-400 focus:border-wp-teal focus:ring-wp-teal/20"
+            />
+            {form.formState.errors.whatsapp && (
+              <p className="text-red-400 text-sm">{form.formState.errors.whatsapp.message}</p>
+            )}
           </div>
           
           <div className="space-y-2">

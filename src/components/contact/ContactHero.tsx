@@ -6,13 +6,17 @@ const ContactHero = () => {
     <section className="py-20 text-center relative">
       <div className="absolute inset-0 wp-gradient-dark opacity-20 rounded-3xl"></div>
       <div className="relative z-10">
-        <h1 className="text-5xl md:text-6xl font-baloo font-bold text-white mb-6">
-          Get in <span className="text-gradient">Touch</span>
+        <h1 className="text-5xl md:text-6xl font-baloo font-bold text-white mb-4">
+          Collaborate <span className="text-gradient">with me</span>
         </h1>
         
+        <h2 className="text-3xl md:text-4xl font-baloo font-semibold text-wp-teal mb-6">
+          Get in Touch
+        </h2>
+        
         <p className="text-xl text-slate-300 max-w-3xl mx-auto font-roboto leading-relaxed mb-8">
-          Have questions about WordPress? Need help with your project? 
-          Let's connect and turn your ideas into reality.
+          Interested in WordPress development, speaking engagements, or community collaborations? 
+          Let's connect and create something amazing together!
         </p>
 
         {/* Quick Stats */}
