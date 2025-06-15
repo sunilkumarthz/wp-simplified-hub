@@ -49,7 +49,7 @@ const LatestShorts = () => {
                     />
                     <div className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                       <a 
-                        href={short.url} 
+                        href={short.videourl} 
                         target="_blank" 
                         rel="noopener noreferrer"
                         className="w-12 h-12 bg-wp-teal rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-lg pulse-glow"

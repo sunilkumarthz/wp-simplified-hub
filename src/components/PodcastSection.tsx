@@ -136,7 +136,7 @@ const PodcastSection = () => {
                           )}
                         </div>
                         <a 
-                          href={latestPodcast.url} 
+                          href={latestPodcast.videourl} 
                           target="_blank" 
                           rel="noopener noreferrer"
                           className="no-link-styles"

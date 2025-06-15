@@ -74,7 +74,7 @@ const SocialSection = () => {
               return (
                 <a
                   key={index}
-                  href={social.url}
+                  href={social.videourl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className={`block animate-fade-in no-link-styles group`}

@@ -45,7 +45,7 @@ const FeaturedPlaylists = () => {
                     />
                     <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                       <a 
-                        href={playlist.url} 
+                        href={playlist.videourl} 
                         target="_blank" 
                         rel="noopener noreferrer"
                         className="w-16 h-16 bg-wp-teal rounded-full flex items-center justify-center hover:scale-110 transition-transform"
@@ -58,11 +58,8 @@ const FeaturedPlaylists = () => {
                     <h3 className="font-baloo font-semibold text-white text-lg mb-2 line-clamp-2">
                       {decodeHtmlEntities(playlist.title)}
                     </h3>
-                    <p className="text-slate-400 text-sm mb-4 line-clamp-2">
-                      {playlist.description}
-                    </p>
                     <a 
-                      href={playlist.url} 
+                      href={playlist.videourl} 
                       target="_blank" 
                       rel="noopener noreferrer"
                       className="no-link-styles"

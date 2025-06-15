@@ -53,7 +53,7 @@ const Footer = () => {
                 {socialLinks.map((social, index) => (
                   <a 
                     key={index}
-                    href={social.url} 
+                    href={social.videourl} 
                     target="_blank" 
                     rel="noopener noreferrer" 
                     className="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center hover:bg-slate-700 transition-all duration-200 border border-slate-700"

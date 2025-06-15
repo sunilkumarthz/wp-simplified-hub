@@ -80,7 +80,7 @@ const Videos = () => {
       "thumbnailUrl": video.thumbnail,
       "uploadDate": video.published_date,
       "duration": video.duration,
-      "embedUrl": video.url,
+      "embedUrl": video.videourl,
       "interactionStatistic": {
         "@type": "InteractionCounter",
         "interactionType": "http://schema.org/WatchAction",

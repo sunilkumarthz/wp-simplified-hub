@@ -16,7 +16,7 @@ const PopularPlaylists = () => {
 
   // Filter out playlists with missing essential data
   const validPlaylists = playlists.filter(playlist => 
-    playlist.title && playlist.thumbnail && playlist.url
+    playlist.title && playlist.thumbnail && playlist.videourl
   );
 
   const getDifficultyColor = (difficulty: string) => {
@@ -88,7 +88,7 @@ const PopularPlaylists = () => {
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
                         <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
                           <a 
-                            href={playlist.url} 
+                            href={playlist.videourl} 
                             target="_blank" 
                             rel="noopener noreferrer"
                             className="icon-btn pulse-glow"
@@ -113,39 +113,10 @@ const PopularPlaylists = () => {
                           <h3 className="font-baloo font-bold text-white text-2xl mb-4 group-hover:text-[#04D98B] transition-colors duration-300">
                             {playlist.title}
                           </h3>
-                          <p className="text-slate-300 mb-6 leading-relaxed font-roboto line-clamp-3">
-                            {playlist.description}
-                          </p>
                         </div>
                         
                         <div className="space-y-4">
-                          <div className="flex items-center justify-between text-slate-400 text-sm">
-                            {playlist.video_count && (
-                              <span className="flex items-center">
-                                <Play className="w-4 h-4 mr-2" />
-                                {playlist.video_count} lessons
-                              </span>
-                            )}
-                            {playlist.duration && (
-                              <span className="flex items-center">
-                                <Clock className="w-4 h-4 mr-2" />
-                                {playlist.duration}
-                              </span>
-                            )}
-                          </div>
-                          
-                          <div className="flex items-center space-x-4">
-                            <div className="flex items-center text-[#04D98B] text-sm">
-                              <Star className="w-4 h-4 mr-1 fill-current" />
-                              <span className="font-semibold">Premium Content</span>
-                            </div>
-                            <div className="flex items-center text-slate-400 text-sm">
-                              <Users className="w-4 h-4 mr-1" />
-                              <span>1.2k learners</span>
-                            </div>
-                          </div>
-                          
-                          <a href={playlist.url} target="_blank" rel="noopener noreferrer" className="no-link-styles">
+                          <a href={playlist.videourl} target="_blank" rel="noopener noreferrer" className="no-link-styles">
                             <Button className="w-full font-semibold text-base">
                               Start Learning Journey
                             </Button>

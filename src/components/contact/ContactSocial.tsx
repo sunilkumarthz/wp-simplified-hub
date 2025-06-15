@@ -59,7 +59,7 @@ const ContactSocial = () => {
             return (
               <a
                 key={index}
-                href={social.url}
+                href={social.videourl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group flex-1 min-w-0"

@@ -103,7 +103,7 @@ const FeaturedContent = ({ latestVideo, latestPodcast, isLoading }: FeaturedCont
               {/* Redesigned Watch Button */}
               {latestVideo ? (
                 <a 
-                  href={latestVideo.url} 
+                  href={latestVideo.videourl} 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="relative inline-flex items-center gap-2 bg-gradient-to-r from-wp-teal to-cyan-500 text-slate-900 font-semibold px-5 py-2.5 rounded-xl text-sm shadow-lg hover:shadow-wp-teal/30 hover:scale-105 transition-all duration-300 group/btn overflow-hidden"
@@ -172,7 +172,7 @@ const FeaturedContent = ({ latestVideo, latestPodcast, isLoading }: FeaturedCont
               {/* Redesigned Listen Button */}
               {latestPodcast ? (
                 <a 
-                  href={latestPodcast.url} 
+                  href={latestPodcast.videourl} 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="relative inline-flex items-center gap-2 bg-gradient-to-r from-purple-500 to-blue-500 text-white font-semibold px-5 py-2.5 rounded-xl text-sm shadow-lg hover:shadow-purple-500/30 hover:scale-105 transition-all duration-300 group/btn overflow-hidden"
