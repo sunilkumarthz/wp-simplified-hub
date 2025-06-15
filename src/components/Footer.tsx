@@ -35,11 +35,13 @@ const Footer = () => {
             {/* Brand Section */}
             <div className="space-y-6">
               <div className="flex items-center">
-                <img 
-                  src="/lovable-uploads/7296f4cd-1ccd-4537-9d84-dd45c7c019c4.png" 
-                  alt="WPSimplified Logo" 
-                  className="h-12 w-auto"
-                />
+                <div className="relative h-12 w-32 rounded-xl overflow-hidden border-2 border-slate-600 hover:border-wp-teal/70 transition-all duration-300 group hover:shadow-lg hover:shadow-wp-teal/20">
+                  <img 
+                    src="/lovable-uploads/d648fbcd-05fa-4543-848f-b744797111d5.png" 
+                    alt="WPSimplified Logo" 
+                    className="object-contain w-full h-full p-2 transition-transform duration-300 group-hover:scale-105"
+                  />
+                </div>
               </div>
               <p className="text-slate-400 font-roboto text-sm leading-relaxed max-w-xs">
                 Empowering WordPress developers with cutting-edge tutorials, comprehensive playlists, and industry insights. Join thousands mastering WordPress development.
