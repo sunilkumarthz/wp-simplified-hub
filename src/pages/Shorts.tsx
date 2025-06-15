@@ -59,12 +59,12 @@ const Shorts = () => {
         jsonLd={shortsJsonLd}
       />
       
-      <div className="min-h-screen">
+      <div className="min-h-screen bg-slate-900">
         <Header />
         
         <div className="container mx-auto px-4">
           {/* Hero Section */}
-          <section className="py-16 text-center bg-slate-900">
+          <section className="py-16 text-center">
             <h1 className="text-4xl md:text-5xl font-baloo font-bold text-white mb-6">
               WordPress <span className="text-gradient">Shorts</span>
             </h1>

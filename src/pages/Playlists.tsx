@@ -55,9 +55,9 @@ const Playlists = () => {
         <div className="relative z-10">
           <Header />
           
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-4 bg-slate-900">
             {/* Hero Section */}
-            <section className="py-20 text-center bg-slate-900">
+            <section className="py-20 text-center ">
               <h1 className="text-5xl md:text-6xl font-baloo font-bold text-white mb-6 animate-fade-in">
                 WordPress <span className="text-gradient">Playlists</span>
               </h1>
