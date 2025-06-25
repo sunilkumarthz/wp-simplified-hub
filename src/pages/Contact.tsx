@@ -35,15 +35,15 @@ const Contact = () => {
         url="https://wpsimplified.in/contact"
         jsonLd={contactJsonLd}
       />
-      
+
       <div className="min-h-screen bg-slate-800">
         <Header />
-        
-        <div className="container mx-auto px-4">
-          <ContactHero />
 
-          {/* Contact Form Section */}
-          <section className="pb-12">
+        <ContactHero />
+
+        {/* Contact Form Section */}
+        <section className="pb-12">
+          <div className="container mx-auto px-4">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
               <div className="lg:col-span-2">
                 <ContactForm />
@@ -52,13 +52,15 @@ const Contact = () => {
                 <ContactInfo />
               </div>
             </div>
-          </section>
+          </div>
+        </section>
 
-          {/* Social Section - Full Width */}
-          <section className="pb-20">
+        {/* Social Section - Full Width */}
+        <section className="pb-20">
+          <div className="container mx-auto px-4">
             <ContactSocial />
-          </section>
-        </div>
+          </div>
+        </section>
 
         <Footer />
       </div>

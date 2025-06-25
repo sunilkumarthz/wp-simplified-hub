@@ -45,28 +45,29 @@ const Playlists = () => {
         url="https://wpsimplified.in/playlists"
         jsonLd={playlistsJsonLd}
       />
-      
+
       <div className="min-h-screen relative overflow-hidden">
         {/* Background Effects */}
         <div className="absolute inset-0 wp-gradient-dark opacity-50"></div>
         <div className="absolute top-20 left-10 w-72 h-72 bg-wp-teal/10 rounded-full blur-3xl floating-animation"></div>
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-wp-blue/10 rounded-full blur-3xl floating-animation" style={{ animationDelay: '3s' }}></div>
-        
+        <div
+          className="absolute bottom-20 right-10 w-96 h-96 bg-wp-blue/10 rounded-full blur-3xl floating-animation"
+          style={{ animationDelay: '3s' }}
+        ></div>
+
         <div className="relative z-10">
           <Header />
-          
-          <div className="container mx-auto px-4">
-            <PlaylistsHero totalPlaylists={allPlaylists.length} />
-            
-            <PlaylistsGrid 
-              playlists={allPlaylists}
-              visiblePlaylists={visiblePlaylists}
-              hasMore={hasMore}
-              isLoading={isLoading}
-              error={error}
-              onLoadMore={loadMore}
-            />
-          </div>
+
+          <PlaylistsHero totalPlaylists={allPlaylists.length} />
+
+          <PlaylistsGrid
+            playlists={allPlaylists}
+            visiblePlaylists={visiblePlaylists}
+            hasMore={hasMore}
+            isLoading={isLoading}
+            error={error}
+            onLoadMore={loadMore}
+          />
 
           <Footer />
         </div>

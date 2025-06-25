@@ -15,36 +15,31 @@ const AboutSection = () => {
                 </h2>
                 <div className="w-24 h-1 wp-gradient rounded-full mb-6"></div>
               </div>
-              
-              <p className="text-xl text-slate-300 leading-relaxed">
-                <span className="text-wp-teal font-semibold">10+ years of experience</span> in WordPress development, 
-                community building, and education. Passionate about simplifying complex WordPress concepts 
-                for developers and content creators worldwide.
-              </p>
-              
-              <div className="space-y-4">
-                <div className="flex items-start space-x-3">
-                  <div className="w-2 h-2 bg-wp-teal rounded-full mt-2"></div>
-                  <span className="text-slate-300"><strong className="text-white">Role:</strong> WordPress Developer, Community Speaker & Volunteer</span>
-                </div>
-                <div className="flex items-start space-x-3">
-                  <div className="w-2 h-2 bg-wp-teal rounded-full mt-2"></div>
-                  <span className="text-slate-300"><strong className="text-white">Location:</strong> Alwar, Rajasthan, India</span>
-                </div>
-                <div className="flex items-start space-x-3">
-                  <div className="w-2 h-2 bg-wp-teal rounded-full mt-2"></div>
-                  <span className="text-slate-300"><strong className="text-white">Website:</strong> sunilkumarthz.com</span>
-                </div>
-              </div>
 
-              <div className="pt-6">
-                <h3 className="text-2xl font-baloo font-bold text-white mb-4">Mission</h3>
-                <p className="text-slate-300 leading-relaxed">
-                  To make WordPress accessible to everyone by creating comprehensive, 
-                  easy-to-follow tutorials and fostering a supportive community where 
-                  learners can grow from complete beginners to WordPress heroes.
-                </p>
-              </div>
+              <p className="text-xl text-slate-300 leading-relaxed">
+                <span className="text-wp-teal font-semibold">
+                  👨‍💻 Code. 📸 Click. 📣 Connect.
+                </span>{' '}
+              </p>
+              <p className="text-xl text-slate-300 leading-relaxed">
+                I'm <span className="text-wp-teal font-semibold">Sunil</span> —
+                a WordPress wizard with 10+ years of experience turning ideas
+                into fast, scalable, and elegant digital experiences. By heart,
+                I’m a proud part of the WordPress community — organizing,
+                speaking, and volunteering at WordCamps across India and Nepal.
+              </p>
+              <p className="text-xl text-slate-300 leading-relaxed">
+                When I’m not debugging code, I’m capturing the magic of
+                communities through my lens or sharing insights on YouTube.
+                Whether it’s building plugins, scaling themes, or just geeking
+                out with fellow devs — I love creating and connecting.
+              </p>
+              <p className="text-slate-300 leading-relaxed">
+                ⚡ Core Developer • Plugin Craftsman • Community Builder
+              </p>
+              <p className="text-slate-300 leading-relaxed">
+                📍 Alwar, Rajasthan | 🌐 sunilkumarthz.com
+              </p>
             </div>
 
             {/* Image/Visual Content */}
@@ -53,34 +48,54 @@ const AboutSection = () => {
                 <CardContent className="p-8">
                   <div className="text-center space-y-6">
                     <div className="w-48 h-48 mx-auto rounded-full overflow-hidden border-4 border-wp-teal/30">
-                      <img 
-                        src="/lovable-uploads/3d6d8107-ac48-4fa7-a4f0-149f532e73c5.png" 
-                        alt="Sunil Kumar - WordPress Developer and Educator" 
+                      <img
+                        src="/lovable-uploads/3d6d8107-ac48-4fa7-a4f0-149f532e73c5.png"
+                        alt="Sunil Kumar - WordPress Developer and Educator"
                         className="w-full h-full object-cover"
                       />
                     </div>
-                    
+
                     <div>
-                      <h3 className="text-2xl font-baloo font-bold text-white mb-2">Sunil Kumar</h3>
-                      <p className="text-wp-teal font-semibold">WordPress Educator & Developer</p>
+                      <h3 className="text-2xl font-baloo font-bold text-white mb-2">
+                        Sunil Kumar
+                      </h3>
+                      <p className="text-wp-teal font-semibold">
+                        WordPress Educator & Developer
+                      </p>
                     </div>
 
                     <div className="grid grid-cols-2 gap-4 pt-6">
-                      <div className="text-center p-4 bg-slate-700/50 rounded-lg">
-                        <div className="text-2xl font-baloo font-bold text-wp-teal mb-1">100+</div>
-                        <div className="text-sm text-slate-300">Tutorials Created</div>
+                      {/* <div className="text-center p-4 bg-slate-700/50 rounded-lg">
+                        <div className="text-2xl font-baloo font-bold text-wp-teal mb-1">
+                          100+
+                        </div>
+                        <div className="text-sm text-slate-300">
+                          Tutorials Created
+                        </div>
                       </div>
                       <div className="text-center p-4 bg-slate-700/50 rounded-lg">
-                        <div className="text-2xl font-baloo font-bold text-wp-teal mb-1">5k+</div>
-                        <div className="text-sm text-slate-300">Students Taught</div>
+                        <div className="text-2xl font-baloo font-bold text-wp-teal mb-1">
+                          5k+
+                        </div>
+                        <div className="text-sm text-slate-300">
+                          Students Taught
+                        </div>
+                      </div> */}
+                      <div className="text-center p-4 bg-slate-700/50 rounded-lg">
+                        <div className="text-2xl font-baloo font-bold text-wp-teal mb-1">
+                          10+
+                        </div>
+                        <div className="text-sm text-slate-300">
+                          Years Experience
+                        </div>
                       </div>
                       <div className="text-center p-4 bg-slate-700/50 rounded-lg">
-                        <div className="text-2xl font-baloo font-bold text-wp-teal mb-1">10+</div>
-                        <div className="text-sm text-slate-300">Years Experience</div>
-                      </div>
-                      <div className="text-center p-4 bg-slate-700/50 rounded-lg">
-                        <div className="text-2xl font-baloo font-bold text-wp-teal mb-1">20+</div>
-                        <div className="text-sm text-slate-300">Community Events</div>
+                        <div className="text-2xl font-baloo font-bold text-wp-teal mb-1">
+                          20+
+                        </div>
+                        <div className="text-sm text-slate-300">
+                          Community Events
+                        </div>
                       </div>
                     </div>
                   </div>
