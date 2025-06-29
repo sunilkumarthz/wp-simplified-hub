@@ -13,14 +13,14 @@ interface VideosGridProps {
   onLoadMore: () => void;
 }
 
-const VideosGrid = ({ 
-  displayedVideos, 
-  visibleVideos, 
-  searchQuery, 
-  isLoading, 
-  error, 
-  hasMore, 
-  onLoadMore 
+const VideosGrid = ({
+  displayedVideos,
+  visibleVideos,
+  searchQuery,
+  isLoading,
+  error,
+  hasMore,
+  onLoadMore,
 }: VideosGridProps) => {
   if (isLoading) {
     return (
@@ -30,7 +30,9 @@ const VideosGrid = ({
             <div className="inline-flex items-center justify-center w-16 h-16 bg-wp-teal/20 rounded-full mb-4">
               <div className="w-8 h-8 border-4 border-wp-teal border-t-transparent rounded-full animate-spin"></div>
             </div>
-            <div className="text-white font-roboto text-lg">Loading videos...</div>
+            <div className="text-white font-roboto text-lg">
+              Loading videos...
+            </div>
           </div>
         </div>
       </section>
@@ -42,7 +44,9 @@ const VideosGrid = ({
       <section className="py-20">
         <div className="container mx-auto px-4">
           <div className="text-center py-12">
-            <div className="text-red-400 font-roboto text-lg">Failed to load videos. Please try again later.</div>
+            <div className="text-red-400 font-roboto text-lg">
+              Failed to load videos. Please try again later.
+            </div>
           </div>
         </div>
       </section>
@@ -55,7 +59,9 @@ const VideosGrid = ({
         <div className="container mx-auto px-4">
           <div className="text-center py-12">
             <div className="text-slate-400 font-roboto">
-              {searchQuery ? 'No videos found for your search.' : 'No videos available.'}
+              {searchQuery
+                ? 'No videos found for your search.'
+                : 'No videos available.'}
             </div>
           </div>
         </div>
@@ -64,12 +70,12 @@ const VideosGrid = ({
   }
 
   return (
-    <section className="py-20">
+    <section className="pb-20">
       <div className="container mx-auto px-4">
-        <h2 className="text-4xl font-baloo font-bold text-white mb-12 text-center">
+        {/* <h2 className="text-4xl font-baloo font-bold text-white mb-12 text-center">
           {searchQuery ? `Search Results for "${searchQuery}"` : 'Latest Videos'}
-        </h2>
-        
+        </h2> */}
+
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {visibleVideos.map((video, index) => (
             <VideoCard key={video.id || index} video={video} index={index} />
@@ -79,7 +85,7 @@ const VideosGrid = ({
         {/* Load More Button */}
         {hasMore && (
           <div className="text-center mt-12">
-            <Button 
+            <Button
               onClick={onLoadMore}
               size="lg"
               variant="outline"

@@ -53,72 +53,78 @@ const Podcasts = () => {
         url="https://wpsimplified.in/podcasts"
         jsonLd={podcastJsonLd}
       />
-      
+
       <div className="min-h-screen bg-slate-800 relative overflow-hidden">
         {/* Background Effects */}
         <div className="absolute inset-0 wp-gradient-dark opacity-50"></div>
         <div className="absolute top-20 left-10 w-72 h-72 bg-wp-teal/10 rounded-full blur-3xl"></div>
         <div className="absolute bottom-20 right-10 w-96 h-96 bg-wp-blue/10 rounded-full blur-3xl"></div>
-        
+
         <div className="relative z-10">
           <Header />
-          
+
           {/* Hero Section */}
           <section className="py-20 text-center">
             <div className="container mx-auto px-4">
               <h1 className="text-5xl md:text-6xl font-baloo font-bold text-white mb-6">
                 WordPress <span className="text-gradient">Podcasts</span>
               </h1>
-              
+
               <p className="text-xl text-slate-300 max-w-3xl mx-auto font-roboto leading-relaxed mb-8 mt-6">
-                In-depth conversations with WordPress experts, developers, and community leaders. 
-                Gain insights, learn best practices, and stay updated with the latest in WordPress.
+                In-depth conversations with WordPress experts, developers, and
+                community leaders. Gain insights, learn best practices, and stay
+                updated with the latest in WordPress.
               </p>
             </div>
           </section>
 
           {/* Podcasts Grid */}
-          <section className="py-20">
+          <section className="pb-20">
             <div className="container mx-auto px-4">
-              <h2 className="text-4xl font-baloo font-bold text-white mb-12 text-center">
-                Latest Episodes
-              </h2>
-              
               {isLoading && (
                 <div className="text-center py-12">
                   <div className="inline-flex items-center justify-center w-16 h-16 bg-wp-teal/20 rounded-full mb-4">
                     <div className="w-8 h-8 border-4 border-wp-teal border-t-transparent rounded-full animate-spin"></div>
                   </div>
-                  <div className="text-white font-roboto text-lg">Loading podcasts...</div>
+                  <div className="text-white font-roboto text-lg">
+                    Loading podcasts...
+                  </div>
                 </div>
               )}
 
               {error && (
                 <div className="text-center py-12">
-                  <div className="text-red-400 font-roboto text-lg">Failed to load podcasts. Please try again later.</div>
+                  <div className="text-red-400 font-roboto text-lg">
+                    Failed to load podcasts. Please try again later.
+                  </div>
                 </div>
               )}
 
               {allPodcasts.length === 0 && !isLoading && !error && (
                 <div className="text-center py-12">
-                  <div className="text-slate-400 font-roboto">No podcasts available.</div>
+                  <div className="text-slate-400 font-roboto">
+                    No podcasts available.
+                  </div>
                 </div>
               )}
-              
+
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                 {visiblePodcasts.map((podcast, index) => (
-                  <Card key={podcast.id || index} className="bg-slate-800/50 hover:bg-slate-800/70 transition-all duration-300 group overflow-hidden">
+                  <Card
+                    key={podcast.id || index}
+                    className="bg-slate-800/50 hover:bg-slate-800/70 transition-all duration-300 group overflow-hidden"
+                  >
                     <CardContent className="p-0">
                       <div className="relative overflow-hidden">
-                        <img 
-                          src={podcast.thumbnail} 
+                        <img
+                          src={podcast.thumbnail}
                           alt={decodeHtmlEntities(podcast.title)}
                           className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
                         />
                         <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                          <a 
-                            href={podcast.videourl} 
-                            target="_blank" 
+                          <a
+                            href={podcast.videourl}
+                            target="_blank"
                             rel="noopener noreferrer"
                             className="w-16 h-16 bg-wp-teal rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-2xl pulse-glow"
                           >
@@ -135,14 +141,14 @@ const Podcasts = () => {
                           </div>
                         )}
                       </div>
-                      
+
                       <div className="p-6">
                         <h3 className="text-xl font-baloo font-bold text-white mb-3 line-clamp-2">
                           {decodeHtmlEntities(podcast.title)}
-                        </h3>                       
-                        <a 
-                          href={podcast.videourl} 
-                          target="_blank" 
+                        </h3>
+                        <a
+                          href={podcast.videourl}
+                          target="_blank"
                           rel="noopener noreferrer"
                           className="no-link-styles"
                         >
@@ -159,7 +165,7 @@ const Podcasts = () => {
               {/* Load More Button */}
               {hasMore && (
                 <div className="text-center mt-12">
-                  <Button 
+                  <Button
                     onClick={loadMore}
                     size="lg"
                     variant="outline"

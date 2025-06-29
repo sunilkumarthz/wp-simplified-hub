@@ -49,7 +49,7 @@ const AboutSection = () => {
                   <div className="text-center space-y-6">
                     <div className="w-48 h-48 mx-auto rounded-full overflow-hidden border-4 border-wp-teal/30">
                       <img
-                        src="/lovable-uploads/3d6d8107-ac48-4fa7-a4f0-149f532e73c5.png"
+                        src="/images/profile.png"
                         alt="Sunil Kumar - WordPress Developer and Educator"
                         className="w-full h-full object-cover"
                       />

@@ -24,16 +24,24 @@ const Header = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link to="/" className="relative h-12 w-32 rounded-xl overflow-hidden border-2 border-slate-600 hover:border-wp-teal/70 transition-all duration-300 group hover:shadow-lg hover:shadow-wp-teal/20" aria-label="WPSimplified Home">
-            <img 
-              src="/lovable-uploads/d648fbcd-05fa-4543-848f-b744797111d5.png" 
-              alt="WPSimplified Logo" 
+          <Link
+            to="/"
+            className="relative h-12 w-32 rounded-xl overflow-hidden border-2 border-slate-600 hover:border-wp-teal/70 transition-all duration-300 group hover:shadow-lg hover:shadow-wp-teal/20"
+            aria-label="WPSimplified Home"
+          >
+            <img
+              src="/images/logo-white.png"
+              alt="WPSimplified Logo"
               className="object-contain w-full h-full p-2 transition-transform duration-300 group-hover:scale-105"
             />
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-2" role="navigation" aria-label="Main navigation">
+          <nav
+            className="hidden lg:flex items-center space-x-2"
+            role="navigation"
+            aria-label="Main navigation"
+          >
             {navItems.map((item) => {
               const IconComponent = item.icon;
               const isActive = isActiveRoute(item.path);
@@ -48,7 +56,11 @@ const Header = () => {
                   }`}
                   aria-current={isActive ? 'page' : undefined}
                 >
-                  <IconComponent size={16} className="w-4 h-4 pointer-events-none text-white" aria-hidden="true" />
+                  <IconComponent
+                    size={16}
+                    className="w-4 h-4 pointer-events-none text-white"
+                    aria-hidden="true"
+                  />
                   <span className="text-white">{item.label}</span>
                 </Link>
               );
@@ -57,13 +69,11 @@ const Header = () => {
 
           {/* Subscribe Button */}
           <div className="hidden md:flex items-center">
-            <Button 
-              className="font-roboto font-semibold"
-              asChild
-            >
-              <a 
-                href="https://www.youtube.com/@wpsimplifiedbysunil" 
-                target="_blank" 
+            <Button className="font-roboto font-semibold text-white" asChild>
+              <a
+                href="https://www.youtube.com/@wpsimplifiedbysunil"
+                target="_blank"
+                className="text-white"
                 rel="noopener noreferrer"
                 aria-label="Subscribe to WPSimplified YouTube channel"
               >
@@ -86,8 +96,15 @@ const Header = () => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div id="mobile-menu" className="lg:hidden py-4 border-t border-slate-700">
-            <nav className="flex flex-col space-y-2" role="navigation" aria-label="Mobile navigation">
+          <div
+            id="mobile-menu"
+            className="lg:hidden py-4 border-t border-slate-700"
+          >
+            <nav
+              className="flex flex-col space-y-2"
+              role="navigation"
+              aria-label="Mobile navigation"
+            >
               {navItems.map((item) => {
                 const IconComponent = item.icon;
                 const isActive = isActiveRoute(item.path);
@@ -103,19 +120,20 @@ const Header = () => {
                     onClick={() => setIsMenuOpen(false)}
                     aria-current={isActive ? 'page' : undefined}
                   >
-                    <IconComponent size={16} className="w-4 h-4 pointer-events-none text-white" aria-hidden="true" />
+                    <IconComponent
+                      size={16}
+                      className="w-4 h-4 pointer-events-none text-white"
+                      aria-hidden="true"
+                    />
                     <span className="text-white">{item.label}</span>
                   </Link>
                 );
               })}
               <div className="pt-4">
-                <Button 
-                  className="font-roboto font-semibold w-full"
-                  asChild
-                >
-                  <a 
-                    href="https://www.youtube.com/@wpsimplifiedbysunil" 
-                    target="_blank" 
+                <Button className="font-roboto font-semibold w-full" asChild>
+                  <a
+                    href="https://www.youtube.com/@wpsimplifiedbysunil"
+                    target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Subscribe to WPSimplified YouTube channel"
                   >

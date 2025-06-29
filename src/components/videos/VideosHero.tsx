@@ -9,11 +9,11 @@ interface VideosHeroProps {
   onSearch: (e: React.FormEvent) => void;
 }
 
-const VideosHero = ({ 
-  searchQuery, 
-  isSearching, 
-  onSearchQueryChange, 
-  onSearch 
+const VideosHero = ({
+  searchQuery,
+  isSearching,
+  onSearchQueryChange,
+  onSearch,
 }: VideosHeroProps) => {
   return (
     <section className="py-20 text-center">
@@ -21,14 +21,15 @@ const VideosHero = ({
         <h1 className="text-5xl md:text-6xl font-baloo font-bold text-white mb-6">
           WordPress <span className="text-gradient">Video Tutorials</span>
         </h1>
-        
+
         <p className="text-xl text-slate-300 max-w-3xl mx-auto font-roboto leading-relaxed mb-8 mt-6">
-          Comprehensive video tutorials covering everything from WordPress basics 
-          to advanced development techniques. Learn at your own pace with step-by-step guides.
+          Comprehensive video tutorials covering everything from WordPress
+          basics to advanced development techniques. Learn at your own pace with
+          step-by-step guides.
         </p>
-        
+
         {/* Search Bar */}
-        <form onSubmit={onSearch} className="max-w-md mx-auto mb-8">
+        {/* <form onSubmit={onSearch} className="max-w-md mx-auto mb-8">
           <div className="relative">
             <Input
               type="text"
@@ -47,7 +48,7 @@ const VideosHero = ({
               <Search size={20} />
             </button>
           </div>
-        </form>
+        </form> */}
       </div>
     </section>
   );
