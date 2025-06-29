@@ -30,23 +30,28 @@ const LatestVideos = () => {
             <div className="inline-flex items-center justify-center w-16 h-16 bg-wp-teal/20 rounded-full mb-4">
               <div className="w-8 h-8 border-4 border-wp-teal border-t-transparent rounded-full animate-spin"></div>
             </div>
-            <div className="text-white font-roboto text-lg">Loading videos...</div>
+            <div className="text-white font-roboto text-lg">
+              Loading videos...
+            </div>
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {videos.slice(0, 3).map((video, index) => (
-              <Card key={video.id || index} className="bg-slate-800/50 border-slate-700 hover:bg-slate-800/70 transition-all duration-300 group overflow-hidden">
+              <Card
+                key={video.id || index}
+                className="bg-slate-800/50 border-slate-700 hover:bg-slate-800/70 transition-all duration-300 group overflow-hidden"
+              >
                 <CardContent className="p-0">
                   <div className="relative overflow-hidden">
-                    <img 
-                      src={video.thumbnail} 
+                    <img
+                      src={video.thumbnail}
                       alt={decodeHtmlEntities(video.title)}
-                      className="w-full h-48 object-cover rounded-t-lg transition-transform duration-300 group-hover:scale-105"
+                      className="w-full h-auto object-fit rounded-t-lg transition-transform duration-300 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <a 
-                        href={video.videourl} 
-                        target="_blank" 
+                      <a
+                        href={video.videourl}
+                        target="_blank"
                         rel="noopener noreferrer"
                         className="w-16 h-16 bg-wp-teal rounded-full flex items-center justify-center hover:scale-110 transition-transform"
                       >
@@ -58,9 +63,9 @@ const LatestVideos = () => {
                     <h3 className="font-baloo font-semibold text-white text-lg mb-4 line-clamp-2">
                       {decodeHtmlEntities(video.title)}
                     </h3>
-                    <a 
-                      href={video.videourl} 
-                      target="_blank" 
+                    <a
+                      href={video.videourl}
+                      target="_blank"
                       rel="noopener noreferrer"
                       className="no-link-styles"
                     >

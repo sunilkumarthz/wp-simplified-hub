@@ -9,14 +9,15 @@ const ContactHero = () => {
         <h1 className="text-5xl md:text-6xl font-baloo font-bold text-white mb-4">
           Collaborate <span className="text-gradient">with me</span>
         </h1>
-        
+
         <h2 className="text-3xl md:text-4xl font-baloo font-semibold text-wp-teal mb-6">
           Get in Touch
         </h2>
-        
+
         <p className="text-xl text-slate-300 max-w-3xl mx-auto font-roboto leading-relaxed mb-8">
-          Interested in WordPress development, speaking engagements, or community collaborations? 
-          Let's connect and create something amazing together!
+          Interested in WordPress development, speaking engagements, or
+          community collaborations? Let's connect and create something amazing
+          together!
         </p>
 
         {/* Quick Stats */}
@@ -27,7 +28,7 @@ const ContactHero = () => {
           </div>
           <div className="flex items-center space-x-2 text-slate-300">
             <Users className="h-5 w-5 text-wp-teal" />
-            <span className="font-roboto">1000+ Happy Clients</span>
+            <span className="font-roboto">++ Happy Students</span>
           </div>
           <div className="flex items-center space-x-2 text-slate-300">
             <MessageCircle className="h-5 w-5 text-wp-teal" />

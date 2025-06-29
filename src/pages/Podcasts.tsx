@@ -119,7 +119,7 @@ const Podcasts = () => {
                         <img
                           src={podcast.thumbnail}
                           alt={decodeHtmlEntities(podcast.title)}
-                          className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
+                          className="w-full h-auto object-fit transition-transform duration-300 group-hover:scale-105"
                         />
                         <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                           <a

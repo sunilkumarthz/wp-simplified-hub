@@ -30,34 +30,36 @@ const LatestShorts = () => {
             <div className="inline-flex items-center justify-center w-16 h-16 bg-wp-teal/20 rounded-full mb-4">
               <div className="w-8 h-8 border-4 border-wp-teal border-t-transparent rounded-full animate-spin"></div>
             </div>
-            <div className="text-white font-roboto text-lg">Loading shorts...</div>
+            <div className="text-white font-roboto text-lg">
+              Loading shorts...
+            </div>
           </div>
         ) : (
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 md:gap-6">
             {shorts.slice(0, 4).map((short, index) => (
-              <Card 
-                key={short.id || index} 
+              <Card
+                key={short.id || index}
                 className="bg-slate-800/50 border-slate-700 hover:bg-slate-800/70 transition-all duration-300 group overflow-hidden animate-fade-in"
                 style={{ animationDelay: `${index * 75}ms` }}
               >
                 <CardContent className="p-0">
                   <div className="relative aspect-[9/16] overflow-hidden">
-                    <img 
-                      src={short.thumbnail} 
+                    <img
+                      src={short.thumbnail}
                       alt={decodeHtmlEntities(short.title)}
                       className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <a 
-                        href={short.videourl} 
-                        target="_blank" 
+                      <a
+                        href={short.videourl}
+                        target="_blank"
                         rel="noopener noreferrer"
                         className="w-12 h-12 bg-wp-teal rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-lg pulse-glow"
                       >
                         <Play className="w-5 h-5 text-slate-900 ml-0.5" />
                       </a>
                     </div>
-                    
+
                     {/* Duration Badge */}
                     {short.duration && (
                       <div className="absolute bottom-2 right-2 bg-black/80 px-2 py-1 rounded text-white text-xs flex items-center gap-1">
@@ -65,12 +67,12 @@ const LatestShorts = () => {
                         {short.duration}
                       </div>
                     )}
-                    
+
                     {/* SHORTS Badge */}
                     <div className="absolute top-2 right-2 bg-red-500 text-white text-xs px-2 py-1 rounded font-semibold">
                       SHORTS
                     </div>
-                    
+
                     {/* Title Overlay */}
                     <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent p-3">
                       <h3 className="text-white font-roboto font-medium text-sm line-clamp-2 leading-tight">

@@ -1,5 +1,6 @@
-
 import { Card, CardContent } from '@/components/ui/card';
+import { motion } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 
 const CommunityInvolvement = () => {
   const events = [
@@ -108,96 +109,90 @@ const CommunityInvolvement = () => {
   };
 
   return (
-    <section className="py-20 bg-slate-800/50">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12 animate-fade-in">
-          <h2 className="text-4xl md:text-5xl font-baloo font-bold text-white mb-4">
-            Community <span className="text-gradient">Involvement</span>
-          </h2>
-          <p className="text-xl text-slate-300 max-w-2xl mx-auto">
-            Active contributor to the WordPress community through speaking,
-            organizing, and volunteering
-          </p>
-        </div>
+    <section className="py-24 bg-gradient-to-br from-slate-900 via-slate-800 to-black">
+      <div className="text-center mb-16">
+        <h2 className="text-5xl font-extrabold text-white tracking-tight">
+          Community <span className="text-wp-teal">Involvement</span>
+        </h2>
+        <p className="text-slate-400 mt-3 max-w-xl mx-auto">
+          A creative journey through speaking, organizing, volunteering, and
+          attending.
+        </p>
+      </div>
 
-        <div className="max-w-4xl mx-auto">
-          <div className="relative">
-            {/* Timeline Line */}
-            <div className="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-wp-teal to-wp-blue"></div>
+      <div className="relative max-w-5xl mx-auto">
+        {/* Vertical timeline line */}
+        <div className="absolute left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-wp-teal to-wp-blue transform -translate-x-1/2 z-0" />
 
-            <div className="space-y-8">
-              {events.map((event, index) => (
-                <div
-                  key={index}
-                  className={`relative flex items-center ${
-                    index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
-                  } animate-fade-in`}
-                  style={{ animationDelay: `${index * 150}ms` }}
+        <div className="space-y-24 relative z-10">
+          {events.map((event, index) => {
+            const { ref, inView } = useInView({
+              triggerOnce: true,
+              threshold: 0.2,
+            });
+            const isLeft = index % 2 === 0;
+
+            return (
+              <motion.div
+                ref={ref}
+                key={index}
+                initial={{ opacity: 0, y: 60, rotate: isLeft ? -4 : 4 }}
+                animate={inView ? { opacity: 1, y: 0, rotate: 0 } : {}}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className={`relative flex ${
+                  isLeft ? 'md:justify-start' : 'md:justify-end'
+                }`}
+              >
+                {/* Timeline Dot */}
+                <div className="absolute left-1/2 top-5 w-6 h-6 rounded-full bg-wp-teal border-4 border-slate-900 shadow-lg shadow-wp-teal/50 transform -translate-x-1/2 z-20 animate-pulse" />
+
+                {/* Card */}
+                <motion.div
+                  whileHover={{ scale: 1.03, rotate: isLeft ? -1 : 1 }}
+                  className="w-full md:w-[45%]"
                 >
-                  {/* Timeline Dot */}
-                  <div className="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 w-4 h-4 bg-wp-teal rounded-full border-4 border-slate-900 z-10"></div>
+                  <Card className="bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700 hover:shadow-wp-teal/40 transition duration-300 rounded-2xl hover:scale-105">
+                    <CardContent className="p-6 relative">
+                      <div className="absolute top-4 right-4 text-right text-sm text-wp-teal font-bold">
+                        {event.year}
+                        {event.status === 'ongoing' && (
+                          <div className="text-green-400 text-xs">Ongoing</div>
+                        )}
+                      </div>
 
-                  {/* Content Card */}
-                  <div
-                    className={`w-full md:w-1/2 ml-20 md:ml-0 ${
-                      index % 2 === 0 ? 'md:pr-8' : 'md:pl-8'
-                    }`}
-                  >
-                    <Card className="bg-slate-800 border-slate-700 hover:border-wp-teal/50 transition-all duration-300 hover:scale-105">
-                      <CardContent className="p-6">
-                        <div className="flex items-start justify-between mb-3">
-                          <div className="flex items-center space-x-3">
-                            <span className="text-2xl">
-                              {getTypeIcon(event.type)}
-                            </span>
-                            <div>
-                              <div
-                                className={`inline-block px-3 py-1 rounded-full text-xs font-semibold text-white ${getTypeColor(
-                                  event.type
-                                )}`}
-                              >
-                                {event.role}
-                              </div>
-                            </div>
-                          </div>
-                          <div className="text-right">
-                            <div className="text-wp-teal font-bold text-lg">
-                              {event.year}
-                            </div>
-                            {event.status === 'upcoming' && (
-                              <div className="text-yellow-400 text-xs font-semibold">
-                                Upcoming
-                              </div>
-                            )}
-                            {event.status === 'ongoing' && (
-                              <div className="text-green-400 text-xs font-semibold">
-                                Ongoing
-                              </div>
-                            )}
-                          </div>
-                        </div>
+                      <div className="flex items-center space-x-2 mb-4">
+                        <span className="text-2xl">
+                          {getTypeIcon(event.type)}
+                        </span>
+                        <span
+                          className={`text-xs px-3 py-1 rounded-full font-semibold text-white ${getTypeColor(
+                            event.type
+                          )}`}
+                        >
+                          {event.role}
+                        </span>
+                      </div>
 
-                        <h3 className="font-baloo font-bold text-white text-xl mb-2">
-                          {event.event}
-                        </h3>
+                      <h3 className="text-white font-semibold text-xl mb-2">
+                        {event.event}
+                      </h3>
 
-                        <div className="flex items-center text-slate-300 text-sm">
-                          <svg
-                            className="w-4 h-4 mr-1"
-                            fill="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
-                          </svg>
-                          {event.location}
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+                      <div className="flex items-center text-slate-400 text-sm">
+                        <svg
+                          className="w-4 h-4 mr-1"
+                          fill="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+                        </svg>
+                        {event.location}
+                      </div>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>
