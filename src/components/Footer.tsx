@@ -23,14 +23,14 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-slate-900 border-t border-slate-800 relative">
+    <footer className="bg-slate-900 border-t border-slate-800 relative px-4 pt-16 pb-8">
       {/* Background Effects */}
       <div className="absolute inset-0 wp-gradient-dark opacity-20"></div>
       <div className="absolute top-0 left-1/4 w-96 h-96 bg-wp-teal/5 rounded-full blur-3xl"></div>
       <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-wp-blue/5 rounded-full blur-3xl"></div>
 
       <div className="relative z-10">
-        <div className="container mx-auto px-4 py-16">
+        <div className="container mx-auto ">
           {/* 2-Column Layout */}
           <div className="grid md:grid-cols-2 gap-12 mb-12">
             {/* Left Column - Brand & Social */}
@@ -55,7 +55,7 @@ const Footer = () => {
                 {socialLinks.map((social, index) => (
                   <a
                     key={index}
-                    href={social.videourl}
+                    href={social.url}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center hover:bg-slate-700 transition-all duration-200 border border-slate-700"
@@ -96,8 +96,18 @@ const Footer = () => {
                 tutorials, tips, and industry updates delivered weekly. Be part
                 of a growing community of developers.
               </p>
-              <Button className="wp-gradient text-slate-900 font-roboto font-bold w-full hover:scale-105 transition-transform duration-200 text-lg py-6">
-                📺 Subscribe Now
+              <Button
+                variant="outline"
+                className="w-full border-wp-teal text-wp-teal font-roboto hover:bg-wp-teal hover:text-white transition-transform duration-200 py-6 font-semibold"
+                asChild
+              >
+                <a
+                  href="https://www.youtube.com/@wpsimplifiedbysunil"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  🔔 Subscribe Now
+                </a>
               </Button>
             </div>
           </div>

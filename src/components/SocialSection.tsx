@@ -51,7 +51,10 @@ const SocialSection = () => {
       {/* Enhanced Background Effects */}
       <div className="absolute inset-0">
         <div className="absolute top-20 left-20 w-80 h-80 bg-wp-teal/10 rounded-full blur-3xl floating-animation"></div>
-        <div className="absolute bottom-20 right-20 w-96 h-96 bg-wp-teal-dark/10 rounded-full blur-3xl floating-animation" style={{ animationDelay: '2s' }}></div>
+        <div
+          className="absolute bottom-20 right-20 w-96 h-96 bg-wp-teal-dark/10 rounded-full blur-3xl floating-animation"
+          style={{ animationDelay: '2s' }}
+        ></div>
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-radial from-wp-teal/5 to-transparent rounded-full"></div>
       </div>
 
@@ -62,7 +65,8 @@ const SocialSection = () => {
           </h2>
           <div className="w-24 h-1 wp-gradient rounded-full mx-auto mb-8"></div>
           <p className="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
-            Join our growing community across multiple platforms and stay updated with the latest WordPress insights
+            Join our growing community across multiple platforms and stay
+            updated with the latest WordPress insights
           </p>
         </div>
 
@@ -74,17 +78,25 @@ const SocialSection = () => {
               return (
                 <a
                   key={index}
-                  href={social.videourl}
+                  href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
                   className={`block animate-fade-in no-link-styles group`}
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
-                  <div className={`relative p-6 rounded-2xl bg-slate-800/50 border border-slate-700/50 backdrop-blur-sm transform group-hover:scale-105 transition-all duration-300 shadow-lg group-hover:shadow-xl ${social.bgColor} text-center`}>
-                    <div className={`w-16 h-16 mx-auto mb-4 rounded-xl bg-gradient-to-br ${social.gradient} flex items-center justify-center group-hover:rotate-6 transition-transform duration-300`}>
+                  <div
+                    className={`relative p-6 rounded-2xl bg-slate-800/50 border border-slate-700/50 backdrop-blur-sm transform group-hover:scale-105 transition-all duration-300 shadow-lg group-hover:shadow-xl ${social.bgColor} text-center`}
+                  >
+                    <div
+                      className={`w-16 h-16 mx-auto mb-4 rounded-xl bg-gradient-to-br ${social.gradient} flex items-center justify-center group-hover:rotate-6 transition-transform duration-300`}
+                    >
                       <IconComponent className={`w-8 h-8 text-white`} />
                     </div>
-                    <h3 className={`font-semibold text-white group-hover:${social.color.split(' ')[1]} transition-colors duration-300 text-sm`}>
+                    <h3
+                      className={`font-semibold text-white group-hover:${
+                        social.color.split(' ')[1]
+                      } transition-colors duration-300 text-sm`}
+                    >
                       {social.name}
                     </h3>
                     <div className="absolute -top-2 -right-2 w-6 h-6 bg-wp-teal rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 animate-pulse">
@@ -105,30 +117,40 @@ const SocialSection = () => {
                     <Youtube className="w-8 h-8 text-white" />
                   </div>
                   <div className="text-left">
-                    <h3 className="text-3xl font-baloo font-bold text-white">Subscribe to My Channel</h3>
-                    <p className="text-wp-teal font-semibold">Join 10,000+ WordPress learners</p>
+                    <h3 className="text-3xl font-baloo font-bold text-white">
+                      Subscribe to My Channel
+                    </h3>
+                    <p className="text-wp-teal font-semibold">
+                      Join 10,000+ WordPress learners
+                    </p>
                   </div>
                 </div>
-                
+
                 <p className="text-slate-300 mb-8 text-lg leading-relaxed">
-                  Get the latest WordPress tutorials, tips, and insights delivered straight to your feed. 
-                  New videos every week!
+                  Get the latest WordPress tutorials, tips, and insights
+                  delivered straight to your feed. New videos every week!
                 </p>
-                
-                <a 
-                  href="https://www.youtube.com/@wpsimplifiedbysunil" 
-                  target="_blank" 
+
+                <a
+                  href="https://www.youtube.com/@wpsimplifiedbysunil"
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="no-link-styles"
                 >
-                  <Button size="lg" className="font-semibold text-lg px-8 bg-red-600 hover:bg-red-700 group">
+                  <Button
+                    size="lg"
+                    className="font-semibold text-lg px-8 bg-red-600 hover:bg-red-700 group"
+                  >
                     <Youtube className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
                     Subscribe Now
                   </Button>
                 </a>
-                
+
                 <div className="flex items-center justify-center mt-6 text-slate-400 text-sm">
-                  <span>🔥 New tutorials every week • 📚 In-depth guides • 🎯 Practical tips</span>
+                  <span>
+                    🔥 New tutorials every week • 📚 In-depth guides • 🎯
+                    Practical tips
+                  </span>
                 </div>
               </div>
             </div>

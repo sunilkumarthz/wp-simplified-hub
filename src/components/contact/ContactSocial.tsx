@@ -59,14 +59,20 @@ const ContactSocial = () => {
             return (
               <a
                 key={index}
-                href={social.videourl}
+                href={social.url}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group flex-1 min-w-0"
               >
-                <div className={`flex flex-col items-center space-y-2 p-4 rounded-lg transition-all duration-300 ${social.bgColor} border border-transparent hover:border-slate-600/50 text-center`}>
-                  <div className={`w-12 h-12 bg-slate-700/50 rounded-lg flex items-center justify-center transition-colors ${social.bgColor}`}>
-                    <IconComponent className={`h-6 w-6 transition-colors ${social.color}`} />
+                <div
+                  className={`flex flex-col items-center space-y-2 p-4 rounded-lg transition-all duration-300 ${social.bgColor} border border-transparent hover:border-slate-600/50 text-center`}
+                >
+                  <div
+                    className={`w-12 h-12 bg-slate-700/50 rounded-lg flex items-center justify-center transition-colors ${social.bgColor}`}
+                  >
+                    <IconComponent
+                      className={`h-6 w-6 transition-colors ${social.color}`}
+                    />
                   </div>
                   <div className="min-w-0">
                     <h4 className="font-semibold text-white font-roboto group-hover:text-wp-teal transition-colors text-sm truncate">
