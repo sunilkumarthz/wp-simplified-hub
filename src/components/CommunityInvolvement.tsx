@@ -105,10 +105,10 @@ const CommunityInvolvement = () => {
   const displayedEvents = showAll ? events : events.slice(0, 6);
 
   return (
-    <section className="py-20 bg-slate-900">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-baloo font-bold text-white mb-6">
+    <section className="py-16 bg-slate-900">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-12">
+          <h2 className="text-4xl md:text-5xl font-baloo font-bold text-white mb-4">
             Community <span className="text-gradient">Involvement</span>
           </h2>
           <p className="text-slate-400 text-lg max-w-2xl mx-auto">
@@ -117,61 +117,57 @@ const CommunityInvolvement = () => {
         </div>
 
         {/* Stats Overview */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
-          <div className="text-center p-6 bg-slate-800/50 rounded-2xl border border-slate-700/50 hover:bg-slate-800/70 transition-all duration-300 hover:scale-105">
-            <div className="text-4xl font-bold text-wp-teal mb-2">9+</div>
-            <div className="text-slate-400 text-sm font-medium">Events</div>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+          <div className="text-center p-4 bg-slate-800/50 rounded-2xl">
+            <div className="text-3xl font-bold text-wp-teal mb-1">9+</div>
+            <div className="text-slate-400 text-sm">Events</div>
           </div>
-          <div className="text-center p-6 bg-slate-800/50 rounded-2xl border border-slate-700/50 hover:bg-slate-800/70 transition-all duration-300 hover:scale-105">
-            <div className="text-4xl font-bold text-purple-400 mb-2">3</div>
-            <div className="text-slate-400 text-sm font-medium">Years</div>
+          <div className="text-center p-4 bg-slate-800/50 rounded-2xl">
+            <div className="text-3xl font-bold text-purple-400 mb-1">3</div>
+            <div className="text-slate-400 text-sm">Years</div>
           </div>
-          <div className="text-center p-6 bg-slate-800/50 rounded-2xl border border-slate-700/50 hover:bg-slate-800/70 transition-all duration-300 hover:scale-105">
-            <div className="text-4xl font-bold text-blue-400 mb-2">6</div>
-            <div className="text-slate-400 text-sm font-medium">Cities</div>
+          <div className="text-center p-4 bg-slate-800/50 rounded-2xl">
+            <div className="text-3xl font-bold text-blue-400 mb-1">6</div>
+            <div className="text-slate-400 text-sm">Cities</div>
           </div>
-          <div className="text-center p-6 bg-slate-800/50 rounded-2xl border border-slate-700/50 hover:bg-slate-800/70 transition-all duration-300 hover:scale-105">
-            <div className="text-4xl font-bold text-green-400 mb-2">4</div>
-            <div className="text-slate-400 text-sm font-medium">Roles</div>
+          <div className="text-center p-4 bg-slate-800/50 rounded-2xl">
+            <div className="text-3xl font-bold text-green-400 mb-1">4</div>
+            <div className="text-slate-400 text-sm">Roles</div>
           </div>
         </div>
 
-        {/* Enhanced Events Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+        {/* Compact Events Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
           {displayedEvents.map((event, index) => (
             <Card
               key={index}
-              className="bg-slate-800/60 hover:bg-slate-800/80 transition-all duration-500 border-slate-700/50 hover:border-wp-teal/30 hover:scale-105 hover:shadow-xl hover:shadow-wp-teal/10 group animate-fade-in"
-              style={{ animationDelay: `${index * 100}ms` }}
+              className="bg-slate-800/60 hover:bg-slate-800/80 transition-all duration-300 border-slate-700/50 hover:scale-105 animate-fade-in"
+              style={{ animationDelay: `${index * 75}ms` }}
             >
-              <CardContent className="p-6">
-                <div className="flex items-start justify-between mb-4">
-                  <div className="text-3xl transform group-hover:scale-110 transition-transform duration-300">
-                    {getTypeIcon(event.type)}
-                  </div>
+              <CardContent className="p-4">
+                <div className="flex items-start justify-between mb-3">
+                  <span className="text-2xl">{getTypeIcon(event.type)}</span>
                   <div className="text-right">
-                    <div className="text-wp-teal font-bold text-lg mb-1">{event.year}</div>
+                    <div className="text-wp-teal font-bold text-sm">{event.year}</div>
                     {event.status === 'ongoing' && (
-                      <div className="text-green-400 text-xs font-medium px-2 py-1 bg-green-400/10 rounded-full">
-                        Ongoing
-                      </div>
+                      <div className="text-green-400 text-xs">Ongoing</div>
                     )}
                   </div>
                 </div>
 
-                <div className="mb-4">
-                  <span className={`text-xs px-3 py-1.5 rounded-full font-semibold text-white ${getTypeColor(event.type)} shadow-lg`}>
+                <div className="mb-2">
+                  <span className={`text-xs px-2 py-1 rounded-full font-semibold text-white ${getTypeColor(event.type)}`}>
                     {event.role}
                   </span>
                 </div>
 
-                <h3 className="text-white font-semibold text-base mb-4 line-clamp-2 group-hover:text-wp-teal transition-colors duration-300">
+                <h3 className="text-white font-semibold text-sm mb-2 line-clamp-2">
                   {event.event}
                 </h3>
 
-                <div className="flex items-center text-slate-400 text-sm">
-                  <MapPin className="w-4 h-4 mr-2 text-wp-teal" />
-                  <span className="font-medium">{event.location}</span>
+                <div className="flex items-center text-slate-400 text-xs">
+                  <MapPin className="w-3 h-3 mr-1" />
+                  {event.location}
                 </div>
               </CardContent>
             </Card>
@@ -183,13 +179,10 @@ const CommunityInvolvement = () => {
           <div className="text-center">
             <Button
               onClick={() => setShowAll(!showAll)}
-              className="bg-gradient-to-r from-wp-teal to-wp-teal-dark hover:from-wp-teal-dark hover:to-wp-teal text-white font-bold px-8 py-4 rounded-2xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 relative overflow-hidden group"
+              className="bg-gradient-to-r from-wp-teal to-wp-teal-dark hover:from-wp-teal-dark hover:to-wp-teal text-white font-bold px-8 py-3 rounded-2xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 relative overflow-hidden"
             >
-              <span className="relative z-10">
-                {showAll ? 'Show Less' : 'View All Events'}
-              </span>
-              <ChevronRight className={`w-5 h-5 ml-2 transition-transform duration-300 relative z-10 ${showAll ? 'rotate-90' : 'group-hover:translate-x-1'}`} />
-              <div className="absolute inset-0 bg-gradient-to-r from-wp-teal-dark to-wp-teal opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              {showAll ? 'Show Less' : 'View All Events'}
+              <ChevronRight className={`w-4 h-4 ml-2 transition-transform ${showAll ? 'rotate-90' : ''}`} />
             </Button>
           </div>
         )}

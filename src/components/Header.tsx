@@ -49,10 +49,10 @@ const Header = () => {
                   <Link
                     key={item.path}
                     to={item.path}
-                    className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-200 font-roboto font-medium text-sm ${
+                    className={`flex items-center space-x-2 px-3 py-2 rounded-lg border transition-all duration-200 font-roboto font-medium text-sm ${
                       isActive
-                        ? 'bg-wp-teal text-white shadow-lg'
-                        : 'text-slate-300 hover:bg-wp-teal/20 hover:text-white'
+                        ? 'border-wp-teal bg-wp-teal text-white'
+                        : 'border-transparent text-slate-300 hover:border-wp-teal hover:text-white'
                     }`}
                     aria-current={isActive ? 'page' : undefined}
                   >
@@ -142,7 +142,7 @@ const Header = () => {
                     className={`flex items-center space-x-4 px-4 py-4 rounded-xl transition-all duration-300 font-roboto font-medium text-base ${
                       isActive
                         ? 'bg-wp-teal text-white shadow-lg'
-                        : 'text-slate-300 hover:bg-wp-teal/20 hover:text-white'
+                        : 'text-slate-300 hover:bg-slate-800 hover:text-white'
                     }`}
                     onClick={closeMenu}
                     aria-current={isActive ? 'page' : undefined}
