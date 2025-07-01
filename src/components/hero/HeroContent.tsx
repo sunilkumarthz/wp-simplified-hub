@@ -25,20 +25,22 @@ const HeroContent = ({ onScrollToVideos }: HeroContentProps) => {
           </span>
         </h1>
         <p className="text-xl md:text-2xl font-roboto font-light text-slate-300">
-          with <span className="text-wp-teal font-semibold">Sunil Kumar Sharma</span>
+          with{' '}
+          <span className="text-wp-teal font-semibold">Sunil Kumar Sharma</span>
         </p>
       </div>
 
       {/* Sub-heading */}
       <p className="text-lg text-slate-300 leading-relaxed mb-8 font-roboto">
-        Transform your WordPress journey from beginner to expert with comprehensive tutorials, 
-        practical guides, and insider insights that <span className="text-wp-teal font-semibold">actually work</span>.
+        Transform your WordPress journey from beginner to expert with
+        comprehensive tutorials, practical guides, and insider insights that{' '}
+        <span className="text-wp-teal font-semibold">actually work</span>.
       </p>
 
       {/* CTA Buttons */}
       <div className="flex flex-col sm:flex-row gap-4">
-        <Button 
-          size="lg" 
+        <Button
+          size="lg"
           onClick={onScrollToVideos}
           className="bg-gradient-to-r from-wp-teal to-wp-teal-dark hover:from-wp-teal-dark hover:to-wp-teal text-white font-bold text-lg px-8 py-6 rounded-xl shadow-2xl hover:shadow-wp-teal/25 hover:scale-105 transition-all duration-300 group"
         >
@@ -46,8 +48,8 @@ const HeroContent = ({ onScrollToVideos }: HeroContentProps) => {
           Start Learning Now
           <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
         </Button>
-        <Button 
-          variant="outline" 
+        <Button
+          variant="outline"
           size="lg"
           className="border-2 border-wp-teal text-wp-teal hover:bg-wp-teal hover:text-white font-semibold text-lg px-8 py-6 rounded-xl backdrop-blur-sm transition-all duration-300 hover:scale-105"
         >

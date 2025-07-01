@@ -13,8 +13,6 @@ const FeaturedVideos = () => {
     queryFn: fetchLatestVideos,
   });
 
-  console.log('FeaturedVideos - API Response:', { videos, isLoading, error });
-
   return (
     <section className="py-20 bg-slate-800/50 relative overflow-hidden">
       {/* Background Effects */}

@@ -12,8 +12,6 @@ const PopularPlaylists = () => {
     queryFn: fetchAllPlaylists,
   });
 
-  console.log('PopularPlaylists - API Response:', { playlists, isLoading, error });
-
   // Filter out playlists with missing essential data
   const validPlaylists = playlists.filter(
     (playlist) => playlist.title && playlist.thumbnail && playlist.videourl

@@ -18,11 +18,6 @@ const HeroSection = () => {
     queryFn: fetchAllPodcasts,
   });
 
-  console.log('Videos data:', videos);
-  console.log('Podcasts data:', podcasts);
-  console.log('Videos loading:', videosLoading);
-  console.log('Podcasts loading:', podcastsLoading);
-
   const scrollToVideos = () => {
     const videosSection = document.getElementById('latest-videos');
     if (videosSection) {
@@ -39,19 +34,18 @@ const HeroSection = () => {
 
       <div className="relative z-10 container mx-auto px-6 py-8 h-full flex flex-col">
         <div className="max-w-7xl mx-auto flex-1 flex flex-col justify-center">
-          
           {/* 2-Column Layout */}
           <div className="grid lg:grid-cols-2 gap-12 items-center mb-8">
             {/* Left Column - Content */}
             <div className="space-y-8">
               <HeroContent onScrollToVideos={scrollToVideos} />
-              <HeroStats />
+              {/* <HeroStats /> */}
             </div>
 
             {/* Right Column - Featured Content */}
             <div>
-              <FeaturedContent 
-                latestVideo={latestVideo} 
+              <FeaturedContent
+                latestVideo={latestVideo}
                 latestPodcast={latestPodcast}
                 isLoading={videosLoading || podcastsLoading}
               />

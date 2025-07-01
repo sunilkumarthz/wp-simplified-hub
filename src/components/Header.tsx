@@ -41,7 +41,11 @@ const Header = () => {
             </Link>
 
             {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center space-x-1" role="navigation" aria-label="Main navigation">
+            <nav
+              className="hidden lg:flex items-center space-x-1"
+              role="navigation"
+              aria-label="Main navigation"
+            >
               {navItems.map((item) => {
                 const IconComponent = item.icon;
                 const isActive = isActiveRoute(item.path);
@@ -51,12 +55,16 @@ const Header = () => {
                     to={item.path}
                     className={`flex items-center space-x-2 px-3 py-2 rounded-lg border transition-all duration-200 font-roboto font-medium text-sm ${
                       isActive
-                        ? 'border-wp-teal bg-wp-teal text-white'
-                        : 'border-transparent text-slate-300 hover:border-wp-teal hover:text-white'
+                        ? 'border-wp-teal text-white'
+                        : 'border-transparent hover:border-wp-teal hover:text-wp-teal'
                     }`}
                     aria-current={isActive ? 'page' : undefined}
                   >
-                    <IconComponent size={16} className="w-4 h-4" aria-hidden="true" />
+                    <IconComponent
+                      size={16}
+                      className="w-4 h-4"
+                      aria-hidden="true"
+                    />
                     <span>{item.label}</span>
                   </Link>
                 );
@@ -66,7 +74,8 @@ const Header = () => {
             {/* Subscribe Button - Desktop */}
             <div className="hidden lg:flex items-center">
               <Button
-                className="bg-wp-teal hover:bg-wp-teal-dark text-white font-bold px-6 py-2 rounded-lg shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
+                variant="outline"
+                className="border-2 border-wp-teal text-wp-teal hover:text-white font-semibold text-lg px-8 py-2 rounded-xl backdrop-blur-sm transition-all duration-300 "
                 asChild
               >
                 <a
@@ -88,7 +97,11 @@ const Header = () => {
               aria-controls="mobile-menu"
               aria-label="Toggle navigation menu"
             >
-              {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {isMenuOpen ? (
+                <X className="w-6 h-6" />
+              ) : (
+                <Menu className="w-6 h-6" />
+              )}
             </button>
           </div>
         </div>
@@ -130,7 +143,11 @@ const Header = () => {
           </div>
 
           {/* Mobile Navigation Links */}
-          <nav className="flex-1 px-4 py-6" role="navigation" aria-label="Mobile navigation">
+          <nav
+            className="flex-1 px-4 py-6"
+            role="navigation"
+            aria-label="Mobile navigation"
+          >
             <div className="space-y-2">
               {navItems.map((item) => {
                 const IconComponent = item.icon;
@@ -147,7 +164,11 @@ const Header = () => {
                     onClick={closeMenu}
                     aria-current={isActive ? 'page' : undefined}
                   >
-                    <IconComponent size={22} className="w-5 h-5 flex-shrink-0" aria-hidden="true" />
+                    <IconComponent
+                      size={22}
+                      className="w-5 h-5 flex-shrink-0"
+                      aria-hidden="true"
+                    />
                     <span className="text-lg">{item.label}</span>
                   </Link>
                 );
