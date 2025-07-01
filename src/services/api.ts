@@ -24,6 +24,7 @@ export interface Playlist {
   duration: string;
   difficulty: string;
   url: string;
+  videourl: string;
   playlistId: string;
 }
 
