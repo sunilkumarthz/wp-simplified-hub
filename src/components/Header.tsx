@@ -49,10 +49,10 @@ const Header = () => {
                 <Link
                   key={item.path}
                   to={item.path}
-                  className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-300 font-roboto font-medium text-sm ${
+                  className={`flex items-center space-x-2 px-3 py-2 rounded-lg border transition-all duration-200 font-roboto font-medium text-sm ${
                     isActive
-                      ? 'bg-wp-teal text-white font-semibold'
-                      : 'text-slate-300 hover:bg-wp-teal/10 hover:text-white'
+                      ? 'border-[#04D98B]'
+                      : 'border-transparent hover:border-[#04D98B]'
                   }`}
                   aria-current={isActive ? 'page' : undefined}
                 >
@@ -69,8 +69,8 @@ const Header = () => {
 
           {/* Subscribe Button */}
           <div className="hidden md:flex items-center">
-            <Button 
-              className="bg-wp-teal hover:bg-wp-teal-dark text-white font-bold px-6 py-2 rounded-lg shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300" 
+            <Button
+              className="bg-wp-teal hover:bg-wp-teal-dark text-white font-bold px-6 py-2 rounded-lg shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
               asChild
             >
               <a
@@ -101,7 +101,11 @@ const Header = () => {
         </div>
 
         {/* Mobile Navigation */}
-        <div className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out ${isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}>
+        <div
+          className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out ${
+            isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+          }`}
+        >
           <div className="py-4 border-t border-slate-700/50">
             <nav
               className="flex flex-col space-y-2"
@@ -133,8 +137,8 @@ const Header = () => {
                 );
               })}
               <div className="pt-3">
-                <Button 
-                  className="w-full bg-wp-teal hover:bg-wp-teal-dark text-white font-bold py-3 rounded-lg shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300" 
+                <Button
+                  className="w-full bg-wp-teal hover:bg-wp-teal-dark text-white font-bold py-3 rounded-lg shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
                   asChild
                 >
                   <a

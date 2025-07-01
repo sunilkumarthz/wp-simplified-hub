@@ -2,7 +2,7 @@
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-import { Play, Clock, Eye, TrendingUp } from 'lucide-react';
+import { Play, Clock, Eye, TrendingUp, ChevronRight } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
 import { fetchAllShorts } from '@/services/api';
 import { decodeHtmlEntities } from '@/lib/htmlUtils';
@@ -17,8 +17,11 @@ const LatestShorts = () => {
     <section className="py-16 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 relative overflow-hidden">
       {/* Background Effects */}
       <div className="absolute top-16 left-1/4 w-72 h-72 bg-red-500/5 rounded-full blur-3xl animate-pulse"></div>
-      <div className="absolute bottom-16 right-1/4 w-64 h-64 bg-wp-teal/5 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
-      
+      <div
+        className="absolute bottom-16 right-1/4 w-64 h-64 bg-wp-teal/5 rounded-full blur-3xl animate-pulse"
+        style={{ animationDelay: '2s' }}
+      ></div>
+
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-12 animate-fade-in">
           <div className="inline-flex items-center gap-2 bg-red-500/20 text-red-400 px-4 py-2 rounded-full text-sm font-semibold mb-4">
@@ -59,7 +62,7 @@ const LatestShorts = () => {
                         alt={decodeHtmlEntities(short.title)}
                         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                       />
-                      
+
                       {/* Overlay */}
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent">
                         {/* Play Button */}
@@ -111,8 +114,11 @@ const LatestShorts = () => {
             {/* CTA Button */}
             <div className="text-center">
               <Link to="/shorts">
-                <Button className="bg-wp-teal hover:bg-wp-teal-dark text-slate-900 font-bold text-lg px-8 py-3 rounded-lg shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300">
+                <Button className="bg-gradient-to-r from-wp-teal to-wp-teal-dark hover:from-wp-teal-dark hover:to-wp-teal text-white font-bold px-8 py-3 rounded-2xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 relative overflow-hidden">
                   View All Shorts
+                  <ChevronRight
+                    className={`w-4 h-4 ml-2 transition-transform`}
+                  />
                 </Button>
               </Link>
             </div>
