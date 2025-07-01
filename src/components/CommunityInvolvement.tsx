@@ -1,8 +1,12 @@
+
 import { Card, CardContent } from '@/components/ui/card';
-import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
+import { Button } from '@/components/ui/button';
+import { ChevronRight, MapPin, Calendar, Users } from 'lucide-react';
+import { useState } from 'react';
 
 const CommunityInvolvement = () => {
+  const [showAll, setShowAll] = useState(false);
+
   const events = [
     {
       year: '2025',
@@ -80,120 +84,108 @@ const CommunityInvolvement = () => {
 
   const getTypeColor = (type: string) => {
     switch (type) {
-      case 'organizer':
-        return 'bg-purple-500';
-      case 'speaker':
-        return 'bg-wp-teal';
-      case 'volunteer':
-        return 'bg-blue-500';
-      case 'attendee':
-        return 'bg-slate-500';
-      default:
-        return 'bg-slate-500';
+      case 'organizer': return 'bg-purple-500';
+      case 'speaker': return 'bg-wp-teal';
+      case 'volunteer': return 'bg-blue-500';
+      case 'attendee': return 'bg-slate-500';
+      default: return 'bg-slate-500';
     }
   };
 
   const getTypeIcon = (type: string) => {
     switch (type) {
-      case 'organizer':
-        return '👨‍💼';
-      case 'speaker':
-        return '🎤';
-      case 'volunteer':
-        return '🤝';
-      case 'attendee':
-        return '👥';
-      default:
-        return '📅';
+      case 'organizer': return '👨‍💼';
+      case 'speaker': return '🎤';
+      case 'volunteer': return '🤝';
+      case 'attendee': return '👥';
+      default: return '📅';
     }
   };
 
+  const displayedEvents = showAll ? events : events.slice(0, 6);
+
   return (
-    <section className="py-24 bg-gradient-to-br from-slate-900 via-slate-800 to-black">
-      <div className="text-center mb-16">
-        <h2 className="text-5xl font-extrabold text-white tracking-tight">
-          Community <span className="text-wp-teal">Involvement</span>
-        </h2>
-        <p className="text-slate-400 mt-3 max-w-xl mx-auto">
-          A creative journey through speaking, organizing, volunteering, and
-          attending.
-        </p>
-      </div>
-
-      <div className="relative max-w-5xl mx-auto">
-        {/* Vertical timeline line */}
-        <div className="absolute left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-wp-teal to-wp-blue transform -translate-x-1/2 z-0" />
-
-        <div className="space-y-24 relative z-10">
-          {events.map((event, index) => {
-            const { ref, inView } = useInView({
-              triggerOnce: true,
-              threshold: 0.2,
-            });
-            const isLeft = index % 2 === 0;
-
-            return (
-              <motion.div
-                ref={ref}
-                key={index}
-                initial={{ opacity: 0, y: 60, rotate: isLeft ? -4 : 4 }}
-                animate={inView ? { opacity: 1, y: 0, rotate: 0 } : {}}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className={`relative flex ${
-                  isLeft ? 'md:justify-start' : 'md:justify-end'
-                }`}
-              >
-                {/* Timeline Dot */}
-                <div className="absolute left-1/2 top-5 w-6 h-6 rounded-full bg-wp-teal border-4 border-slate-900 shadow-lg shadow-wp-teal/50 transform -translate-x-1/2 z-20 animate-pulse" />
-
-                {/* Card */}
-                <motion.div
-                  whileHover={{ scale: 1.03, rotate: isLeft ? -1 : 1 }}
-                  className="w-full md:w-[45%]"
-                >
-                  <Card className="bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700 hover:shadow-wp-teal/40 transition duration-300 rounded-2xl hover:scale-105">
-                    <CardContent className="p-6 relative">
-                      <div className="absolute top-4 right-4 text-right text-sm text-wp-teal font-bold">
-                        {event.year}
-                        {event.status === 'ongoing' && (
-                          <div className="text-green-400 text-xs">Ongoing</div>
-                        )}
-                      </div>
-
-                      <div className="flex items-center space-x-2 mb-4">
-                        <span className="text-2xl">
-                          {getTypeIcon(event.type)}
-                        </span>
-                        <span
-                          className={`text-xs px-3 py-1 rounded-full font-semibold text-white ${getTypeColor(
-                            event.type
-                          )}`}
-                        >
-                          {event.role}
-                        </span>
-                      </div>
-
-                      <h3 className="text-white font-semibold text-xl mb-2">
-                        {event.event}
-                      </h3>
-
-                      <div className="flex items-center text-slate-400 text-sm">
-                        <svg
-                          className="w-4 h-4 mr-1"
-                          fill="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
-                        </svg>
-                        {event.location}
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              </motion.div>
-            );
-          })}
+    <section className="py-16 bg-slate-900">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-12">
+          <h2 className="text-4xl md:text-5xl font-baloo font-bold text-white mb-4">
+            Community <span className="text-gradient">Involvement</span>
+          </h2>
+          <p className="text-slate-400 text-lg max-w-2xl mx-auto">
+            Active participation in WordPress community events across the globe
+          </p>
         </div>
+
+        {/* Stats Overview */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+          <div className="text-center p-4 bg-slate-800/50 rounded-2xl">
+            <div className="text-3xl font-bold text-wp-teal mb-1">9+</div>
+            <div className="text-slate-400 text-sm">Events</div>
+          </div>
+          <div className="text-center p-4 bg-slate-800/50 rounded-2xl">
+            <div className="text-3xl font-bold text-purple-400 mb-1">3</div>
+            <div className="text-slate-400 text-sm">Years</div>
+          </div>
+          <div className="text-center p-4 bg-slate-800/50 rounded-2xl">
+            <div className="text-3xl font-bold text-blue-400 mb-1">6</div>
+            <div className="text-slate-400 text-sm">Cities</div>
+          </div>
+          <div className="text-center p-4 bg-slate-800/50 rounded-2xl">
+            <div className="text-3xl font-bold text-green-400 mb-1">4</div>
+            <div className="text-slate-400 text-sm">Roles</div>
+          </div>
+        </div>
+
+        {/* Compact Events Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+          {displayedEvents.map((event, index) => (
+            <Card
+              key={index}
+              className="bg-slate-800/60 hover:bg-slate-800/80 transition-all duration-300 border-slate-700/50 hover:scale-105 animate-fade-in"
+              style={{ animationDelay: `${index * 75}ms` }}
+            >
+              <CardContent className="p-4">
+                <div className="flex items-start justify-between mb-3">
+                  <span className="text-2xl">{getTypeIcon(event.type)}</span>
+                  <div className="text-right">
+                    <div className="text-wp-teal font-bold text-sm">{event.year}</div>
+                    {event.status === 'ongoing' && (
+                      <div className="text-green-400 text-xs">Ongoing</div>
+                    )}
+                  </div>
+                </div>
+
+                <div className="mb-2">
+                  <span className={`text-xs px-2 py-1 rounded-full font-semibold text-white ${getTypeColor(event.type)}`}>
+                    {event.role}
+                  </span>
+                </div>
+
+                <h3 className="text-white font-semibold text-sm mb-2 line-clamp-2">
+                  {event.event}
+                </h3>
+
+                <div className="flex items-center text-slate-400 text-xs">
+                  <MapPin className="w-3 h-3 mr-1" />
+                  {event.location}
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+
+        {/* Show More/Less Button */}
+        {events.length > 6 && (
+          <div className="text-center">
+            <Button
+              onClick={() => setShowAll(!showAll)}
+              className="bg-gradient-to-r from-wp-teal to-wp-teal-dark hover:from-wp-teal-dark hover:to-wp-teal text-white font-bold px-8 py-3 rounded-2xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 relative overflow-hidden"
+            >
+              {showAll ? 'Show Less' : 'View All Events'}
+              <ChevronRight className={`w-4 h-4 ml-2 transition-transform ${showAll ? 'rotate-90' : ''}`} />
+            </Button>
+          </div>
+        )}
       </div>
     </section>
   );

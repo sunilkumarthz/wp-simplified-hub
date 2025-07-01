@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
 @tailwind base;
 @tailwind components;
@@ -52,9 +53,9 @@
     font-weight: 600;
   }
 
-  /* Link Styles */
+  /* Remove underline from all links */
   a:not(.no-link-styles) {
-    @apply text-[#04D98B] transition-colors duration-300 hover:text-[#037F8C] hover:underline underline-offset-4;
+    @apply text-[#04D98B] transition-colors duration-300 hover:text-[#037F8C];
   }
 }
 

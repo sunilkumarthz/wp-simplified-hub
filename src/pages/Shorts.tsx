@@ -1,16 +1,17 @@
+
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Play, Clock, Eye } from 'lucide-react';
+import { Play, Clock, Eye, TrendingUp, Filter } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
 import { fetchAllShorts, type Short } from '@/services/api';
 import { useState } from 'react';
 import { decodeHtmlEntities } from '@/lib/htmlUtils';
 
 const Shorts = () => {
-  const [displayCount, setDisplayCount] = useState(8);
+  const [displayCount, setDisplayCount] = useState(12);
 
   const { data: allShorts = [], isLoading, error } = useQuery({
     queryKey: ['shorts'],
@@ -21,7 +22,7 @@ const Shorts = () => {
   const hasMore = allShorts.length > displayCount;
 
   const loadMore = () => {
-    setDisplayCount(prev => prev + 8);
+    setDisplayCount(prev => prev + 12);
   };
 
   const shortsJsonLd = allShorts.length > 0 ? {
@@ -60,48 +61,60 @@ const Shorts = () => {
         jsonLd={shortsJsonLd}
       />
 
-      <div className="min-h-screen bg-slate-800">
+      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
         <Header />
 
         <div className="container mx-auto px-4">
-          {/* Hero Section */}
-          <section className="py-16 text-center bg-slate-800">
-            <h1 className="text-4xl md:text-5xl font-baloo font-bold text-white mb-6">
-              WordPress <span className="text-gradient">Shorts</span>
-            </h1>
+          {/* Creative Hero Section */}
+          <section className="py-20 text-center relative overflow-hidden">
+            {/* Background Effects */}
+            <div className="absolute top-10 left-1/4 w-96 h-96 bg-red-500/5 rounded-full blur-3xl animate-pulse"></div>
+            <div className="absolute bottom-10 right-1/4 w-80 h-80 bg-wp-teal/5 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '3s' }}></div>
+            
+            <div className="relative z-10">
+              <div className="inline-flex items-center gap-2 bg-red-500/20 text-red-400 px-6 py-3 rounded-full text-sm font-semibold mb-6 animate-fade-in">
+                <TrendingUp className="w-5 h-5" />
+                Quick Learning Content
+              </div>
+              
+              <h1 className="text-5xl md:text-6xl font-baloo font-bold text-white mb-6 animate-fade-in">
+                WordPress <span className="text-gradient">Shorts</span>
+              </h1>
 
-            <p className="text-lg text-slate-300 max-w-2xl mx-auto font-roboto leading-relaxed mb-8">
-              Quick, bite-sized WordPress tutorials and tips. Perfect for
-              learning on the go and getting instant solutions to common
-              WordPress challenges.
-            </p>
+              <p className="text-xl text-slate-300 max-w-3xl mx-auto font-roboto leading-relaxed mb-8 animate-fade-in">
+                Master WordPress in minutes with our bite-sized tutorials. Perfect for quick learning and instant solutions to your WordPress challenges.
+              </p>
 
-            {/* Stats */}
-            {/* <div className="flex justify-center items-center gap-8 text-center mb-12">
-              <div className="space-y-2">
-                <div className="text-2xl font-baloo font-bold text-wp-teal">{allShorts.length}+</div>
-                <div className="text-slate-400 text-sm">Total Shorts</div>
+              {/* Stats Bar */}
+              <div className="flex justify-center items-center gap-8 text-center mb-12 animate-fade-in">
+                <div className="bg-slate-800/50 px-6 py-4 rounded-2xl backdrop-blur-sm">
+                  <div className="text-3xl font-baloo font-bold text-red-400 mb-1">{allShorts.length}+</div>
+                  <div className="text-slate-400 text-sm">Quick Videos</div>
+                </div>
+                <div className="bg-slate-800/50 px-6 py-4 rounded-2xl backdrop-blur-sm">
+                  <div className="text-3xl font-baloo font-bold text-wp-teal mb-1">&lt;60s</div>
+                  <div className="text-slate-400 text-sm">Duration</div>
+                </div>
+                <div className="bg-slate-800/50 px-6 py-4 rounded-2xl backdrop-blur-sm">
+                  <div className="text-3xl font-baloo font-bold text-purple-400 mb-1">Instant</div>
+                  <div className="text-slate-400 text-sm">Learning</div>
+                </div>
               </div>
-              <div className="space-y-2">
-                <div className="text-2xl font-baloo font-bold text-wp-teal">Quick</div>
-                <div className="text-slate-400 text-sm">Learning</div>
-              </div>
-              <div className="space-y-2">
-                <div className="text-2xl font-baloo font-bold text-wp-teal">Expert</div>
-                <div className="text-slate-400 text-sm">Tips</div>
-              </div>
-            </div> */}
+            </div>
           </section>
 
           {/* Shorts Grid Section */}
-          <section className="pb-20 bg-slate-800">
+          <section className="pb-20">
             {isLoading && (
               <div className="text-center py-16">
-                <div className="inline-flex items-center justify-center w-16 h-16 bg-wp-teal/20 rounded-full mb-4">
-                  <div className="w-8 h-8 border-4 border-wp-teal border-t-transparent rounded-full animate-spin"></div>
+                <div className="inline-flex items-center justify-center w-20 h-20 bg-wp-teal/20 rounded-full mb-6">
+                  <div className="w-10 h-10 border-4 border-wp-teal border-t-transparent rounded-full animate-spin"></div>
                 </div>
-                <div className="text-white font-roboto text-lg">
-                  Loading shorts...
+                <div className="text-white font-roboto text-xl mb-2">
+                  Loading amazing shorts...
+                </div>
+                <div className="text-slate-400 font-roboto">
+                  Preparing bite-sized WordPress wisdom
                 </div>
               </div>
             )}
@@ -117,68 +130,71 @@ const Shorts = () => {
             {allShorts.length === 0 && !isLoading && !error && (
               <div className="text-center py-16">
                 <div className="text-slate-400 font-roboto text-lg">
-                  No shorts available.
+                  No shorts available yet. Check back soon!
                 </div>
               </div>
             )}
 
-            {/* 4 Shorts per Row Grid */}
+            {/* Creative Masonry-style Grid */}
             {visibleShorts.length > 0 && (
               <>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 mb-16">
                   {visibleShorts.map((short, index) => (
                     <Card
                       key={short.id || index}
-                      className="bg-slate-800/60 hover:bg-slate-800/80 transition-all duration-300 group overflow-hidden border-slate-700/50 animate-fade-in"
-                      style={{ animationDelay: `${index * 50}ms` }}
+                      className="bg-slate-800/40 hover:bg-slate-800/70 transition-all duration-500 group overflow-hidden border-slate-700/30 animate-fade-in transform hover:scale-105 hover:-rotate-1 hover:z-10 relative"
+                      style={{ 
+                        animationDelay: `${index * 30}ms`,
+                        gridRowEnd: index % 3 === 0 ? 'span 2' : 'span 1'
+                      }}
                     >
                       <CardContent className="p-0">
                         <div className="relative aspect-[9/16] bg-slate-800/50 overflow-hidden">
                           <img
                             src={short.thumbnail}
                             alt={decodeHtmlEntities(short.title)}
-                            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                             loading="lazy"
                           />
 
-                          {/* Hover Overlay */}
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-black/20 opacity-100 group-hover:opacity-90 transition-opacity duration-300">
-                            {/* Play Button */}
-                            <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                          {/* Creative Gradient Overlay */}
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/20 to-transparent opacity-60 group-hover:opacity-40 transition-all duration-300">
+                            {/* Floating Play Button */}
+                            <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:scale-110">
                               <a
                                 href={short.videourl}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="w-14 h-14 bg-wp-teal rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-2xl pulse-glow"
+                                className="w-12 h-12 bg-gradient-to-br from-red-500 to-red-600 rounded-full flex items-center justify-center hover:scale-125 transition-all duration-300 shadow-2xl animate-pulse"
                               >
-                                <Play className="w-6 h-6 text-slate-900 ml-0.5" />
+                                <Play className="w-5 h-5 text-white ml-0.5" />
                               </a>
                             </div>
 
-                            {/* Duration Badge */}
-                            {short.duration && (
-                              <div className="absolute top-3 right-3 bg-black/90 px-2 py-1 rounded text-white text-xs font-medium flex items-center gap-1">
-                                <Clock className="w-3 h-3" />
-                                {short.duration}
-                              </div>
-                            )}
+                            {/* Modern Badges */}
+                            <div className="absolute top-2 right-2 flex flex-col gap-2">
+                              {short.duration && (
+                                <div className="bg-black/80 px-2 py-1 rounded-lg text-white text-xs font-bold flex items-center gap-1 backdrop-blur-sm">
+                                  <Clock className="w-3 h-3" />
+                                  {short.duration}
+                                </div>
+                              )}
+                            </div>
 
-                            {/* SHORTS Badge */}
-                            <div className="absolute top-3 left-3 bg-red-500 text-white text-xs px-2 py-1 rounded font-bold shadow-lg">
+                            <div className="absolute top-2 left-2 bg-gradient-to-r from-red-500 to-red-600 text-white text-xs px-2 py-1 rounded-lg font-bold shadow-lg">
                               SHORTS
                             </div>
 
-                            {/* Views Badge */}
                             {short.views && short.views !== 'N/A' && (
-                              <div className="absolute bottom-16 right-3 bg-black/80 px-2 py-1 rounded text-white text-xs flex items-center gap-1">
+                              <div className="absolute bottom-12 right-2 bg-wp-teal/90 px-2 py-1 rounded-lg text-white text-xs flex items-center gap-1 backdrop-blur-sm">
                                 <Eye className="w-3 h-3" />
                                 {short.views}
                               </div>
                             )}
 
-                            {/* Title Overlay */}
-                            <div className="absolute bottom-0 left-0 right-0 p-4">
-                              <h3 className="text-white font-roboto font-medium text-sm line-clamp-3 leading-tight drop-shadow-lg">
+                            {/* Creative Title */}
+                            <div className="absolute bottom-0 left-0 right-0 p-3">
+                              <h3 className="text-white font-roboto font-bold text-xs line-clamp-3 leading-tight drop-shadow-lg">
                                 {decodeHtmlEntities(short.title)}
                               </h3>
                             </div>
@@ -189,16 +205,17 @@ const Shorts = () => {
                   ))}
                 </div>
 
-                {/* Load More Button */}
+                {/* Creative Load More */}
                 {hasMore && (
                   <div className="text-center">
                     <Button
                       onClick={loadMore}
-                      size="lg"
-                      className="font-semibold text-lg px-12 py-4 bg-wp-teal hover:bg-wp-teal/90 text-slate-900 hover:scale-105 transition-all duration-300 shadow-lg"
+                      className="bg-gradient-to-r from-wp-teal to-wp-teal-dark hover:from-wp-teal-dark hover:to-wp-teal text-white font-bold text-lg px-16 py-5 rounded-2xl shadow-2xl hover:shadow-wp-teal/25 hover:scale-105 transition-all duration-300 relative overflow-hidden group"
                     >
-                      Load More Shorts ({allShorts.length - displayCount}{' '}
-                      remaining)
+                      <span className="relative z-10">
+                        Load More Magic ({allShorts.length - displayCount} more)
+                      </span>
+                      <div className="absolute inset-0 bg-gradient-to-r from-red-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     </Button>
                   </div>
                 )}
