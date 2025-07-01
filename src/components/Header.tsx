@@ -36,9 +36,9 @@ const Header = () => {
             />
           </Link>
 
-          {/* Desktop Navigation - Simplified */}
+          {/* Desktop Navigation */}
           <nav
-            className="hidden lg:flex items-center space-x-1"
+            className="hidden lg:flex items-center space-x-0.5"
             role="navigation"
             aria-label="Main navigation"
           >
@@ -49,10 +49,10 @@ const Header = () => {
                 <Link
                   key={item.path}
                   to={item.path}
-                  className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-all duration-300 font-roboto font-medium text-sm ${
+                  className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-300 font-roboto font-medium text-sm ${
                     isActive
-                      ? 'bg-wp-teal text-slate-900 font-semibold'
-                      : 'text-slate-300 hover:bg-wp-teal/10 hover:text-wp-teal'
+                      ? 'bg-wp-teal text-white font-semibold'
+                      : 'text-slate-300 hover:bg-wp-teal/10 hover:text-white'
                   }`}
                   aria-current={isActive ? 'page' : undefined}
                 >
@@ -70,7 +70,7 @@ const Header = () => {
           {/* Subscribe Button */}
           <div className="hidden md:flex items-center">
             <Button 
-              className="bg-wp-teal hover:bg-wp-teal-dark text-slate-900 font-bold px-6 py-2 rounded-lg shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300" 
+              className="bg-wp-teal hover:bg-wp-teal-dark text-white font-bold px-6 py-2 rounded-lg shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300" 
               asChild
             >
               <a
@@ -84,7 +84,7 @@ const Header = () => {
             </Button>
           </div>
 
-          {/* Mobile Menu Button - Simplified */}
+          {/* Mobile Menu Button */}
           <button
             className="lg:hidden relative w-10 h-10 text-white hover:text-wp-teal p-2 focus:outline-none transition-all duration-300 rounded-lg hover:bg-slate-800"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -100,7 +100,7 @@ const Header = () => {
           </button>
         </div>
 
-        {/* Mobile Navigation - Simplified */}
+        {/* Mobile Navigation */}
         <div className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out ${isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}>
           <div className="py-4 border-t border-slate-700/50">
             <nav
@@ -117,8 +117,8 @@ const Header = () => {
                     to={item.path}
                     className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-all duration-300 font-roboto font-medium ${
                       isActive
-                        ? 'bg-wp-teal text-slate-900 font-semibold'
-                        : 'text-slate-300 hover:bg-wp-teal/10 hover:text-wp-teal'
+                        ? 'bg-wp-teal text-white font-semibold'
+                        : 'text-slate-300 hover:bg-wp-teal/10 hover:text-white'
                     }`}
                     onClick={() => setIsMenuOpen(false)}
                     aria-current={isActive ? 'page' : undefined}
@@ -134,7 +134,7 @@ const Header = () => {
               })}
               <div className="pt-3">
                 <Button 
-                  className="w-full bg-wp-teal hover:bg-wp-teal-dark text-slate-900 font-bold py-3 rounded-lg shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300" 
+                  className="w-full bg-wp-teal hover:bg-wp-teal-dark text-white font-bold py-3 rounded-lg shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300" 
                   asChild
                 >
                   <a

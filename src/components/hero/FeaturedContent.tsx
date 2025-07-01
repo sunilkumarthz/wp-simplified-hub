@@ -106,7 +106,7 @@ const FeaturedContent = ({ latestVideo, latestPodcast, isLoading }: FeaturedCont
                   href={latestVideo.videourl} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 bg-wp-teal hover:bg-wp-teal-dark text-slate-900 font-bold px-4 py-2 rounded-lg text-sm shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 group/btn"
+                  className="inline-flex items-center gap-2 bg-wp-teal hover:bg-wp-teal-dark text-white font-bold px-4 py-2 rounded-lg text-sm shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 group/btn"
                 >
                   <Play className="w-4 h-4 group-hover/btn:scale-125 transition-transform" />
                   Watch Now
@@ -170,7 +170,7 @@ const FeaturedContent = ({ latestVideo, latestPodcast, isLoading }: FeaturedCont
                   href={latestPodcast.videourl} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 bg-wp-teal hover:bg-wp-teal-dark text-slate-900 font-bold px-4 py-2 rounded-lg text-sm shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 group/btn"
+                  className="inline-flex items-center gap-2 bg-wp-teal hover:bg-wp-teal-dark text-white font-bold px-4 py-2 rounded-lg text-sm shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 group/btn"
                 >
                   <Mic className="w-4 h-4 group-hover/btn:scale-125 transition-transform" />
                   Listen Now
