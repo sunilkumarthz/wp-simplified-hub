@@ -9,6 +9,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
 import { Send } from 'lucide-react';
+import { submitContactForm } from '@/services/api';
 
 const contactFormSchema = z.object({
   name: z.string().min(2, {
@@ -17,14 +18,11 @@ const contactFormSchema = z.object({
   email: z.string().email({
     message: 'Please enter a valid email address.',
   }),
-  whatsapp: z.string().min(10, {
-    message: 'WhatsApp number must be at least 10 digits.',
-  }),
-  subject: z.string().min(5, {
-    message: 'Subject must be at least 5 characters.',
-  }),
   message: z.string().min(10, {
     message: 'Message must be at least 10 characters.',
+  }),
+  purpose: z.string().min(3, {
+    message: 'Purpose must be at least 3 characters.',
   }),
 });
 
@@ -39,28 +37,32 @@ const ContactForm = () => {
     defaultValues: {
       name: '',
       email: '',
-      whatsapp: '',
-      subject: '',
       message: '',
+      purpose: '',
     },
   });
 
   const onSubmit = async (values: ContactFormValues) => {
     setIsSubmitting(true);
     try {
-      // Simulate form submission delay
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-
-      // Display success toast
-      toast({
-        title: 'Message sent successfully!',
-        description: 'We will get back to you within 24 hours.',
-      });
-
-      // Reset the form
-      form.reset();
+      console.log('Submitting contact form:', values);
+      const result = await submitContactForm(values);
+      
+      if (result.success) {
+        toast({
+          title: 'Message sent successfully!',
+          description: 'We will get back to you within 24 hours.',
+        });
+        form.reset();
+      } else {
+        toast({
+          title: 'Something went wrong.',
+          description: result.message || 'There was an error sending your message. Please try again.',
+          variant: 'destructive',
+        });
+      }
     } catch (error) {
-      // Display error toast
+      console.error('Error submitting contact form:', error);
       toast({
         title: 'Something went wrong.',
         description: 'There was an error sending your message. Please try again.',
@@ -118,38 +120,21 @@ const ContactForm = () => {
               )}
             </div>
           </div>
-
-          <div className="space-y-2">
-            <label htmlFor="whatsapp" className="text-sm font-medium text-slate-300">
-              WhatsApp Number *
-            </label>
-            <Input
-              id="whatsapp"
-              placeholder="+91 98765 43210"
-              type="tel"
-              {...form.register('whatsapp')}
-              disabled={isSubmitting}
-              className="bg-slate-700/50 border-slate-600 text-white placeholder:text-slate-400 focus:border-wp-teal focus:ring-wp-teal/20"
-            />
-            {form.formState.errors.whatsapp && (
-              <p className="text-red-400 text-sm">{form.formState.errors.whatsapp.message}</p>
-            )}
-          </div>
           
           <div className="space-y-2">
-            <label htmlFor="subject" className="text-sm font-medium text-slate-300">
-              Subject *
+            <label htmlFor="purpose" className="text-sm font-medium text-slate-300">
+              Purpose *
             </label>
             <Input
-              id="subject"
-              placeholder="What can we help you with?"
+              id="purpose"
+              placeholder="What is the purpose of your contact?"
               type="text"
-              {...form.register('subject')}
+              {...form.register('purpose')}
               disabled={isSubmitting}
               className="bg-slate-700/50 border-slate-600 text-white placeholder:text-slate-400 focus:border-wp-teal focus:ring-wp-teal/20"
             />
-            {form.formState.errors.subject && (
-              <p className="text-red-400 text-sm">{form.formState.errors.subject.message}</p>
+            {form.formState.errors.purpose && (
+              <p className="text-red-400 text-sm">{form.formState.errors.purpose.message}</p>
             )}
           </div>
           
