@@ -10,6 +10,7 @@ import BadgesSection from '@/components/BadgesSection';
 import LatestShorts from '@/components/LatestShorts';
 import PodcastSection from '@/components/PodcastSection';
 import SocialSection from '@/components/SocialSection';
+import SponsorsSection from '@/components/SponsorsSection';
 import Footer from '@/components/Footer';
 
 const Index = () => {
@@ -26,6 +27,7 @@ const Index = () => {
       <BadgesSection />
       <LatestShorts />
       <PodcastSection />
+      <SponsorsSection />
       <SocialSection />
 
       <Footer />

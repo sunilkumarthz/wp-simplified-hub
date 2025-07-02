@@ -136,6 +136,7 @@ const Sponsors = () => {
                 <Button 
                   size="lg"
                   className="bg-gradient-to-r from-wp-teal to-wp-teal-dark hover:from-wp-teal-dark hover:to-wp-teal text-white font-bold text-lg px-8 py-6 rounded-xl shadow-2xl hover:shadow-wp-teal/25 hover:scale-105 transition-all duration-300 group"
+                  onClick={() => window.open('mailto:sponsor@wpsimplified.in?subject=Partnership Inquiry - Start Partnership', '_blank')}
                 >
                   <Zap className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
                   Start Partnership
@@ -144,6 +145,7 @@ const Sponsors = () => {
                   variant="outline"
                   size="lg"
                   className="border-2 border-wp-teal text-wp-teal hover:bg-wp-teal hover:text-white font-semibold text-lg px-8 py-6 rounded-xl backdrop-blur-sm transition-all duration-300 hover:scale-105"
+                  onClick={() => window.open('/media-kit.pdf', '_blank')}
                 >
                   <Target className="w-5 h-5 mr-2" />
                   View Media Kit
@@ -243,6 +245,7 @@ const Sponsors = () => {
                     
                     <Button 
                       className={`w-full mt-8 ${pkg.highlighted ? 'bg-wp-teal hover:bg-wp-teal-dark' : 'bg-gradient-to-r from-wp-teal to-cyan-400 hover:from-cyan-400 hover:to-wp-teal'} text-white font-bold py-3 rounded-xl transition-all duration-300 hover:scale-105`}
+                      onClick={() => window.open(`mailto:sponsor@wpsimplified.in?subject=Partnership Inquiry - ${pkg.name} Package&body=Hi, I'm interested in the ${pkg.name} sponsorship package. Please provide more details.`, '_blank')}
                     >
                       Get Started
                     </Button>
@@ -304,6 +307,7 @@ const Sponsors = () => {
                 <Button 
                   size="lg"
                   className="bg-gradient-to-r from-wp-teal to-wp-teal-dark hover:from-wp-teal-dark hover:to-wp-teal text-white font-bold text-lg px-8 py-6 rounded-xl shadow-2xl hover:shadow-wp-teal/25 hover:scale-105 transition-all duration-300"
+                  onClick={() => window.open('mailto:sponsor@wpsimplified.in?subject=Partnership Inquiry - Become a Sponsor&body=Hi, I would like to become a sponsor for WPSimplified. Please provide more information about your partnership opportunities.', '_blank')}
                 >
                   <Award className="w-5 h-5 mr-2" />
                   Become a Sponsor
@@ -312,6 +316,7 @@ const Sponsors = () => {
                   variant="outline"
                   size="lg"
                   className="border-2 border-white text-white hover:bg-white hover:text-slate-900 font-semibold text-lg px-8 py-6 rounded-xl backdrop-blur-sm transition-all duration-300 hover:scale-105"
+                  onClick={() => window.open('mailto:sponsor@wpsimplified.in?subject=General Partnership Inquiry', '_blank')}
                 >
                   Contact Us
                 </Button>
