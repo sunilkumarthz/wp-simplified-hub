@@ -102,7 +102,7 @@ const CommunityInvolvement = () => {
     }
   };
 
-  const displayedEvents = showAll ? events : events.slice(0, 6);
+  const displayedEvents = showAll ? events : events.slice(0, 8);
 
   return (
     <section className="py-20 bg-slate-900">
@@ -137,7 +137,7 @@ const CommunityInvolvement = () => {
         </div>
 
         {/* Enhanced Events Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-12">
           {displayedEvents.map((event, index) => (
             <Card
               key={index}
@@ -185,7 +185,7 @@ const CommunityInvolvement = () => {
         </div>
 
         {/* Show More/Less Button */}
-        {events.length > 6 && (
+        {events.length > 8 && (
           <div className="text-center">
             <Button
               onClick={() => setShowAll(!showAll)}

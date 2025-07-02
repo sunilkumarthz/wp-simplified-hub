@@ -22,14 +22,15 @@ const Index = () => {
       <LatestVideos />
       <AboutSection />
       <LatestPodcasts />
-      <CommunityInvolvement />
+
       <FeaturedPlaylists />
-      <BadgesSection />
-      <LatestShorts />
+
       <PodcastSection />
       <SponsorsSection />
+      <CommunityInvolvement />
+      <BadgesSection />
       <SocialSection />
-
+      <LatestShorts />
       <Footer />
     </div>
   );
