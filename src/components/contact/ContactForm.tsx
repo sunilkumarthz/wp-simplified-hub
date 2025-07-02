@@ -9,7 +9,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
 import { Send } from 'lucide-react';
-import { submitContactForm } from '@/services/api';
+import { submitContactForm, type ContactFormData } from '@/services/api';
 
 const contactFormSchema = z.object({
   name: z.string().min(2, {
@@ -49,7 +49,7 @@ const ContactForm = () => {
   const onSubmit = async (values: ContactFormValues) => {
     setIsSubmitting(true);
     try {
-      const result = await submitContactForm(values);
+      const result = await submitContactForm(values as ContactFormData);
 
       if (result.success) {
         toast({

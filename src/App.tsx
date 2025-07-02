@@ -10,6 +10,7 @@ import Videos from "./pages/Videos";
 import Shorts from "./pages/Shorts";
 import Podcasts from "./pages/Podcasts";
 import Contact from "./pages/Contact";
+import Sponsors from "./pages/Sponsors";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient({
@@ -34,6 +35,7 @@ const App = () => (
           <Route path="/shorts" element={<Shorts />} />
           <Route path="/podcasts" element={<Podcasts />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/sponsors" element={<Sponsors />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

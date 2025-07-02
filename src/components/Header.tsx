@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Home, List, Play, Mic, MessageCircle, Menu, X } from 'lucide-react';
+import { Home, List, Play, Mic, MessageCircle, Menu, X, Award } from 'lucide-react';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -14,6 +14,7 @@ const Header = () => {
     { label: 'Videos', path: '/videos', icon: Play },
     { label: 'Podcasts', path: '/podcasts', icon: Mic },
     { label: 'Shorts', path: '/shorts', icon: Play },
+    { label: 'Sponsors', path: '/sponsors', icon: Award },
     { label: 'Contact', path: '/contact', icon: MessageCircle },
   ];
 
