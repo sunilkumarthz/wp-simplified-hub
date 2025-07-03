@@ -21,7 +21,7 @@ const PlaylistsGrid = ({
 }: PlaylistsGridProps) => {
   if (isLoading) {
     return (
-      <section className="pb-20 bg-slate-800">
+      <div className="pb-20">
         <div className="container mx-auto px-4">
           <div className="text-center py-12">
             <div className="inline-flex items-center justify-center w-16 h-16 bg-wp-teal/20 rounded-full mb-4">
@@ -32,13 +32,13 @@ const PlaylistsGrid = ({
             </div>
           </div>
         </div>
-      </section>
+      </div>
     );
   }
 
   if (error) {
     return (
-      <section className="pb-20 bg-slate-800">
+      <div className="pb-20">
         <div className="container mx-auto px-4">
           <div className="text-center py-12">
             <div className="text-red-400 font-roboto text-lg">
@@ -46,13 +46,13 @@ const PlaylistsGrid = ({
             </div>
           </div>
         </div>
-      </section>
+      </div>
     );
   }
 
   if (playlists.length === 0) {
     return (
-      <section className="pb-20 bg-slate-800">
+      <div className="pb-20">
         <div className="container mx-auto px-4">
           <div className="text-center py-12">
             <div className="text-slate-400 font-roboto">
@@ -60,12 +60,12 @@ const PlaylistsGrid = ({
             </div>
           </div>
         </div>
-      </section>
+      </div>
     );
   }
 
   return (
-    <section className="pb-20 bg-slate-800">
+    <div className="pb-20">
       <div className="container mx-auto px-4">
         {/* Modern Playlists Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-12">
@@ -91,7 +91,7 @@ const PlaylistsGrid = ({
           </div>
         )}
       </div>
-    </section>
+    </div>
   );
 };
 

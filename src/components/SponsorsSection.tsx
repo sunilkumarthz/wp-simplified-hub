@@ -19,7 +19,7 @@ const SponsorsSection = () => {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-r from-wp-teal/20 to-cyan-400/20 border-wp-teal/30 relative overflow-hidden">
+    <>
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute top-10 left-10 w-32 h-32 border border-wp-teal rounded-full"></div>
@@ -78,7 +78,7 @@ const SponsorsSection = () => {
           </div>
         </div>
       </div>
-    </section>
+    </>
   );
 };
 

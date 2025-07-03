@@ -17,7 +17,7 @@ const PodcastSection = () => {
   const totalEpisodes = podcasts.length;
 
   return (
-    <section className="py-20 bg-slate-800/30 relative overflow-hidden">
+    <>
       {/* Background Effects */}
       <div className="absolute inset-0">
         <div className="absolute top-10 left-10 w-72 h-72 bg-wp-teal/10 rounded-full blur-3xl floating-animation"></div>
@@ -202,7 +202,7 @@ const PodcastSection = () => {
           </div>
         </div>
       </div>
-    </section>
+    </>
   );
 };
 

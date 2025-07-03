@@ -42,7 +42,7 @@ const BadgesSection = () => {
   ];
 
   return (
-    <section className="py-20 bg-slate-800/50">
+    <>
       <div className="container mx-auto px-4">
         <div className="text-center mb-12 animate-fade-in">
           <h2 className="text-4xl md:text-5xl font-baloo font-bold text-white mb-4">
@@ -88,7 +88,7 @@ const BadgesSection = () => {
           </p>
         </div>
       </div>
-    </section>
+    </>
   );
 };
 

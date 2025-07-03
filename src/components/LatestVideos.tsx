@@ -14,15 +14,15 @@ const LatestVideos = () => {
   });
 
   return (
-    <section id="latest-videos" className="py-12 sm:py-16 lg:py-20">
+    <>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-8 sm:mb-10 lg:mb-12 gap-4">
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-baloo font-bold text-white">
             Latest <span className="text-gradient">Videos</span>
           </h2>
           <Link to="/videos">
-            <Button 
-              variant="outline" 
+            <Button
+              variant="outline"
               className="text-sm sm:text-base px-4 sm:px-6 py-2 sm:py-3"
             >
               View All Videos
@@ -88,7 +88,7 @@ const LatestVideos = () => {
           </div>
         )}
       </div>
-    </section>
+    </>
   );
 };
 

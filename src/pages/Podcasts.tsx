@@ -1,4 +1,3 @@
-
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
@@ -10,11 +9,16 @@ import { useQuery } from '@tanstack/react-query';
 import { fetchAllPodcasts, type Podcast } from '@/services/api';
 import { useState } from 'react';
 import { decodeHtmlEntities } from '@/lib/htmlUtils';
+import HeroBackground from '@/components/hero/HeroBackground';
 
 const Podcasts = () => {
   const [displayCount, setDisplayCount] = useState(10);
 
-  const { data: allPodcasts = [], isLoading, error } = useQuery({
+  const {
+    data: allPodcasts = [],
+    isLoading,
+    error,
+  } = useQuery({
     queryKey: ['podcasts'],
     queryFn: fetchAllPodcasts,
   });
@@ -23,26 +27,30 @@ const Podcasts = () => {
   const hasMore = allPodcasts.length > displayCount;
 
   const loadMore = () => {
-    setDisplayCount(prev => prev + 10);
+    setDisplayCount((prev) => prev + 10);
   };
 
-  const podcastJsonLd = allPodcasts.length > 0 ? {
-    "@context": "https://schema.org",
-    "@type": "PodcastSeries",
-    "name": "The WordPress Creator Podcast - WPSimplified",
-    "description": "In-depth conversations with WordPress experts, developers, and community leaders",
-    "url": "https://wpsimplified.in/podcasts",
-    "author": {
-      "@type": "Person",
-      "name": "Sunil Kumar Sharma",
-      "url": "https://sunilkumarthz.com"
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": "WPSimplified",
-      "url": "https://wpsimplified.in"
-    }
-  } : null;
+  const podcastJsonLd =
+    allPodcasts.length > 0
+      ? {
+          '@context': 'https://schema.org',
+          '@type': 'PodcastSeries',
+          name: 'The WordPress Creator Podcast - WPSimplified',
+          description:
+            'In-depth conversations with WordPress experts, developers, and community leaders',
+          url: 'https://wpsimplified.in/podcasts',
+          author: {
+            '@type': 'Person',
+            name: 'Sunil Kumar Sharma',
+            url: 'https://sunilkumarthz.com',
+          },
+          publisher: {
+            '@type': 'Organization',
+            name: 'WPSimplified',
+            url: 'https://wpsimplified.in',
+          },
+        }
+      : null;
 
   return (
     <>
@@ -54,17 +62,13 @@ const Podcasts = () => {
         jsonLd={podcastJsonLd}
       />
 
-      <div className="min-h-screen bg-slate-800 relative overflow-hidden">
-        {/* Background Effects */}
-        <div className="absolute inset-0 wp-gradient-dark opacity-50"></div>
-        <div className="absolute top-20 left-10 w-72 h-72 bg-wp-teal/10 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-wp-blue/10 rounded-full blur-3xl"></div>
+      <div className="min-h-screen bg-slate-900">
+        <Header />
 
-        <div className="relative z-10">
-          <Header />
-
+        <section className="relative min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+          <HeroBackground />
           {/* Hero Section */}
-          <section className="py-20 text-center">
+          <div className="py-20 text-center">
             <div className="container mx-auto px-4">
               <h1 className="text-5xl md:text-6xl font-baloo font-bold text-white mb-6">
                 WordPress <span className="text-gradient">Podcasts</span>
@@ -76,10 +80,10 @@ const Podcasts = () => {
                 updated with the latest in WordPress.
               </p>
             </div>
-          </section>
+          </div>
 
           {/* Podcasts Grid */}
-          <section className="pb-20">
+          <div className="pb-20">
             <div className="container mx-auto px-4">
               {isLoading && (
                 <div className="text-center py-12">
@@ -176,10 +180,9 @@ const Podcasts = () => {
                 </div>
               )}
             </div>
-          </section>
-
-          <Footer />
-        </div>
+          </div>
+        </section>
+        <Footer />
       </div>
     </>
   );

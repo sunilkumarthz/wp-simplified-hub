@@ -29,7 +29,7 @@ const HeroSection = () => {
   const latestPodcast = podcasts[0];
 
   return (
-    <section className="relative h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 overflow-hidden">
+    <>
       <HeroBackground />
 
       <div className="relative z-10 container mx-auto px-6 py-8 h-full flex flex-col">
@@ -55,7 +55,7 @@ const HeroSection = () => {
 
         <ScrollIndicator />
       </div>
-    </section>
+    </>
   );
 };
 

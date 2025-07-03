@@ -14,7 +14,7 @@ const FeaturedPlaylists = () => {
   });
 
   return (
-    <section className="py-20">
+    <>
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between mb-12">
           <h2 className="text-4xl font-baloo font-bold text-white">
@@ -80,7 +80,7 @@ const FeaturedPlaylists = () => {
           </div>
         )}
       </div>
-    </section>
+    </>
   );
 };
 

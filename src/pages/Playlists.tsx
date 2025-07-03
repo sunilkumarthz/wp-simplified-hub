@@ -7,11 +7,16 @@ import { fetchAllPlaylists } from '@/services/api';
 import { useState } from 'react';
 import PlaylistsHero from '@/components/playlists/PlaylistsHero';
 import PlaylistsGrid from '@/components/playlists/PlaylistsGrid';
+import HeroBackground from '@/components/hero/HeroBackground';
 
 const Playlists = () => {
   const [displayCount, setDisplayCount] = useState(9);
 
-  const { data: allPlaylists = [], isLoading, error } = useQuery({
+  const {
+    data: allPlaylists = [],
+    isLoading,
+    error,
+  } = useQuery({
     queryKey: ['playlists'],
     queryFn: fetchAllPlaylists,
   });
@@ -20,21 +25,25 @@ const Playlists = () => {
   const hasMore = allPlaylists.length > displayCount;
 
   const loadMore = () => {
-    setDisplayCount(prev => prev + 9);
+    setDisplayCount((prev) => prev + 9);
   };
 
-  const playlistsJsonLd = allPlaylists.length > 0 ? {
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    "name": "WordPress Tutorials - Learn WordPress Step by Step",
-    "description": "Comprehensive WordPress tutorials for beginners to advanced users. Learn WordPress step by step with our easy-to-follow playlists.",
-    "numberOfItems": allPlaylists.length,
-    "itemListElement": allPlaylists.map((playlist, index) => ({
-      "@type": "ListItem",
-      "position": index + 1,
-      "url": `https://wpsimplified.in/playlists`
-    }))
-  } : null;
+  const playlistsJsonLd =
+    allPlaylists.length > 0
+      ? {
+          '@context': 'https://schema.org',
+          '@type': 'ItemList',
+          name: 'WordPress Tutorials - Learn WordPress Step by Step',
+          description:
+            'Comprehensive WordPress tutorials for beginners to advanced users. Learn WordPress step by step with our easy-to-follow playlists.',
+          numberOfItems: allPlaylists.length,
+          itemListElement: allPlaylists.map((playlist, index) => ({
+            '@type': 'ListItem',
+            position: index + 1,
+            url: `https://wpsimplified.in/playlists`,
+          })),
+        }
+      : null;
 
   return (
     <>
@@ -45,21 +54,11 @@ const Playlists = () => {
         url="https://wpsimplified.in/playlists"
         jsonLd={playlistsJsonLd}
       />
-
-      <div className="min-h-screen relative overflow-hidden">
-        {/* Background Effects */}
-        <div className="absolute inset-0 wp-gradient-dark opacity-50"></div>
-        <div className="absolute top-20 left-10 w-72 h-72 bg-wp-teal/10 rounded-full blur-3xl floating-animation"></div>
-        <div
-          className="absolute bottom-20 right-10 w-96 h-96 bg-wp-blue/10 rounded-full blur-3xl floating-animation"
-          style={{ animationDelay: '3s' }}
-        ></div>
-
-        <div className="relative z-10">
-          <Header />
-
+      <div className="min-h-screen bg-slate-900">
+        <Header />
+        <section className="relative min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+          <HeroBackground />
           <PlaylistsHero totalPlaylists={allPlaylists.length} />
-
           <PlaylistsGrid
             playlists={allPlaylists}
             visiblePlaylists={visiblePlaylists}
@@ -68,9 +67,8 @@ const Playlists = () => {
             error={error}
             onLoadMore={loadMore}
           />
-
-          <Footer />
-        </div>
+        </section>
+        <Footer />
       </div>
     </>
   );

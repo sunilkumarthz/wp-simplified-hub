@@ -47,7 +47,7 @@ const SocialSection = () => {
   ];
 
   return (
-    <section className="py-20 bg-slate-900 relative overflow-hidden">
+    <>
       {/* Enhanced Background Effects */}
       <div className="absolute inset-0">
         <div className="absolute top-20 left-20 w-80 h-80 bg-wp-teal/10 rounded-full blur-3xl floating-animation"></div>
@@ -157,7 +157,7 @@ const SocialSection = () => {
           </div>
         </div>
       </div>
-    </section>
+    </>
   );
 };
 

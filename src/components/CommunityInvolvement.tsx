@@ -102,10 +102,10 @@ const CommunityInvolvement = () => {
     }
   };
 
-  const displayedEvents = showAll ? events : events.slice(0, 8);
+  const displayedEvents = showAll ? events : events.slice(0, 6);
 
   return (
-    <section className="py-20 bg-slate-900">
+    <>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-baloo font-bold text-white mb-6">
@@ -137,17 +137,25 @@ const CommunityInvolvement = () => {
         </div>
 
         {/* Enhanced Events Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-12">
+        <div className="grid grid-cols-2 md:grid-cols-3  gap-6 mb-12">
           {displayedEvents.map((event, index) => (
             <Card
               key={index}
-              className="bg-slate-800/60 hover:bg-slate-800/80 transition-all duration-500 border-slate-700/50 hover:border-wp-teal/30 hover:scale-105 hover:shadow-xl hover:shadow-wp-teal/10 group animate-fade-in"
+              className="bg-gradient-to-r from-wp-teal/20 to-cyan-400/20 border-wp-teal/30 hover:bg-slate-800/80 transition-all duration-500 border-slate-700/50 hover:border-wp-teal/30 hover:scale-105 hover:shadow-xl hover:shadow-wp-teal/10 group animate-fade-in"
               style={{ animationDelay: `${index * 100}ms` }}
             >
-              <CardContent className="p-6">
+              <CardContent className="py-2 px-4">
                 <div className="flex items-start justify-between mb-4">
-                  <div className="text-3xl transform group-hover:scale-110 transition-transform duration-300">
+                  <div className="text-3xl transform group-hover:scale-110 transition-transform duration-300 flex items-center align-center justify-between">
                     {getTypeIcon(event.type)}
+
+                    <span
+                      className={`text-xs px-3 py-1.5 rounded-full font-semibold text-white ${getTypeColor(
+                        event.type
+                      )} shadow-lg`}
+                    >
+                      {event.role}
+                    </span>
                   </div>
                   <div className="text-right">
                     <div className="text-wp-teal font-bold text-lg mb-1">
@@ -159,16 +167,6 @@ const CommunityInvolvement = () => {
                       </div>
                     )}
                   </div>
-                </div>
-
-                <div className="mb-4">
-                  <span
-                    className={`text-xs px-3 py-1.5 rounded-full font-semibold text-white ${getTypeColor(
-                      event.type
-                    )} shadow-lg`}
-                  >
-                    {event.role}
-                  </span>
                 </div>
 
                 <h3 className="text-white font-semibold text-base mb-4 line-clamp-2 group-hover:text-wp-teal transition-colors duration-300">
@@ -185,7 +183,7 @@ const CommunityInvolvement = () => {
         </div>
 
         {/* Show More/Less Button */}
-        {events.length > 8 && (
+        {events.length > 6 && (
           <div className="text-center">
             <Button
               onClick={() => setShowAll(!showAll)}
@@ -204,7 +202,7 @@ const CommunityInvolvement = () => {
           </div>
         )}
       </div>
-    </section>
+    </>
   );
 };
 

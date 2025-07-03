@@ -5,7 +5,7 @@ interface PlaylistsHeroProps {
 
 const PlaylistsHero = ({ totalPlaylists }: PlaylistsHeroProps) => {
   return (
-    <section className="py-20 text-center bg-slate-800">
+    <div className="py-20 text-center">
       <h1 className="text-5xl md:text-6xl font-baloo font-bold text-white mb-6 animate-fade-in">
         WordPress <span className="text-gradient">Playlists</span>
       </h1>
@@ -31,7 +31,7 @@ const PlaylistsHero = ({ totalPlaylists }: PlaylistsHeroProps) => {
           <div className="text-slate-400 text-sm">Techniques</div>
         </div>
       </div> */}
-    </section>
+    </div>
   );
 };
 

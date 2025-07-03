@@ -14,7 +14,7 @@ const LatestShorts = () => {
   });
 
   return (
-    <section className="py-16 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 relative overflow-hidden">
+    <>
       {/* Background Effects */}
       <div className="absolute top-16 left-1/4 w-72 h-72 bg-red-500/5 rounded-full blur-3xl animate-pulse"></div>
       <div
@@ -125,7 +125,7 @@ const LatestShorts = () => {
           </>
         )}
       </div>
-    </section>
+    </>
   );
 };
 
