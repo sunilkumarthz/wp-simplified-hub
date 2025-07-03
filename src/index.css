@@ -6,30 +6,31 @@
 
 @layer base {
   :root {
-    --background: #1e293b;
-    --foreground: #f8fafc;
-    --popover: #1e293b;
-    --popover-foreground: #f8fafc;
-    --primary: #04d98b;
-    --primary-foreground: #0f172a;
-    --secondary: #334155;
-    --secondary-foreground: #f8fafc;
-    --muted: #334155;
-    --muted-foreground: #94a3b8;
-    --accent: #037f8c;
-    --accent-foreground: #f8fafc;
-    --destructive: #ef4444;
-    --destructive-foreground: #f8fafc;
-    --input: #334155;
-    --ring: #04d98b;
-    --radius: 0.5rem;
-    --sidebar-background: #1e293b;
-    --sidebar-foreground: #f8fafc;
-    --sidebar-primary: #04d98b;
-    --sidebar-primary-foreground: #0f172a;
-    --sidebar-accent: #1e293b;
-    --sidebar-accent-foreground: #f8fafc;
-    --sidebar-ring: #04d98b;
+    --background: 219 30% 10%;
+    --foreground: 220 15% 98%;
+    --popover: 219 30% 10%;
+    --popover-foreground: 220 15% 98%;
+    --primary: 160 84% 44%;
+    --primary-foreground: 220 39% 8%;
+    --secondary: 215 28% 25%;
+    --secondary-foreground: 220 15% 98%;
+    --muted: 215 28% 25%;
+    --muted-foreground: 220 9% 60%;
+    --accent: 185 84% 39%;
+    --accent-foreground: 220 15% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 220 15% 98%;
+    --border: 215 20% 30%;
+    --input: 215 28% 25%;
+    --ring: 160 84% 44%;
+    --radius: 1rem;
+    --sidebar-background: 219 30% 10%;
+    --sidebar-foreground: 220 15% 98%;
+    --sidebar-primary: 160 84% 44%;
+    --sidebar-primary-foreground: 220 39% 8%;
+    --sidebar-accent: 219 30% 10%;
+    --sidebar-accent-foreground: 220 15% 98%;
+    --sidebar-ring: 160 84% 44%;
   }
 }
 
@@ -51,12 +52,19 @@
   h5,
   h6 {
     font-family: 'Baloo 2', cursive;
-    font-weight: 600;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.025em;
+  }
+
+  /* Modern typography */
+  p {
+    line-height: 1.7;
   }
 
   /* Remove underline from all links */
   a:not(.no-link-styles) {
-    @apply text-[#04D98B] transition-colors duration-300 hover:text-white;
+    @apply text-primary transition-colors duration-300 hover:text-foreground;
   }
 
   /* Ensure responsive images */

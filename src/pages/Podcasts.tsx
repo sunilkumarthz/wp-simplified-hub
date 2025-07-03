@@ -54,7 +54,7 @@ const Podcasts = () => {
         jsonLd={podcastJsonLd}
       />
 
-      <div className="min-h-screen bg-slate-800 relative overflow-hidden">
+      <div className="min-h-screen bg-background relative overflow-hidden">
         {/* Background Effects */}
         <div className="absolute inset-0 wp-gradient-dark opacity-50"></div>
         <div className="absolute top-20 left-10 w-72 h-72 bg-wp-teal/10 rounded-full blur-3xl"></div>

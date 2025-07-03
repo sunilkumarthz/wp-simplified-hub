@@ -109,11 +109,12 @@ const Videos = () => {
         jsonLd={videoJsonLd}
       />
 
-      <div className="min-h-screen bg-slate-800 relative overflow-hidden">
+      <div className="min-h-screen bg-background relative overflow-hidden">
         {/* Background Effects */}
-        <div className="absolute inset-0 wp-gradient-dark opacity-50"></div>
-        <div className="absolute top-20 left-10 w-72 h-72 bg-wp-teal/10 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-wp-blue/10 rounded-full blur-3xl"></div>
+        <div className="absolute inset-0 opacity-30">
+          <div className="absolute top-20 left-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent/10 rounded-full blur-3xl"></div>
+        </div>
 
         <div className="relative z-10">
           <Header />
@@ -125,15 +126,17 @@ const Videos = () => {
             onSearch={handleSearch}
           />
 
-          <VideosGrid
-            displayedVideos={displayedVideos}
-            visibleVideos={visibleVideos}
-            searchQuery={searchQuery}
-            isLoading={isLoading}
-            error={error}
-            hasMore={hasMore}
-            onLoadMore={loadMore}
-          />
+          <div className="bg-muted/30">
+            <VideosGrid
+              displayedVideos={displayedVideos}
+              visibleVideos={visibleVideos}
+              searchQuery={searchQuery}
+              isLoading={isLoading}
+              error={error}
+              hasMore={hasMore}
+              onLoadMore={loadMore}
+            />
+          </div>
 
           <Footer />
         </div>

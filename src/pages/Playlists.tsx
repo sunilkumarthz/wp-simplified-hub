@@ -46,7 +46,7 @@ const Playlists = () => {
         jsonLd={playlistsJsonLd}
       />
 
-      <div className="min-h-screen relative overflow-hidden">
+      <div className="min-h-screen bg-background relative overflow-hidden">
         {/* Background Effects */}
         <div className="absolute inset-0 wp-gradient-dark opacity-50"></div>
         <div className="absolute top-20 left-10 w-72 h-72 bg-wp-teal/10 rounded-full blur-3xl floating-animation"></div>
@@ -60,14 +60,16 @@ const Playlists = () => {
 
           <PlaylistsHero totalPlaylists={allPlaylists.length} />
 
-          <PlaylistsGrid
-            playlists={allPlaylists}
-            visiblePlaylists={visiblePlaylists}
-            hasMore={hasMore}
-            isLoading={isLoading}
-            error={error}
-            onLoadMore={loadMore}
-          />
+          <div className="bg-muted/30">
+            <PlaylistsGrid
+              playlists={allPlaylists}
+              visiblePlaylists={visiblePlaylists}
+              hasMore={hasMore}
+              isLoading={isLoading}
+              error={error}
+              onLoadMore={loadMore}
+            />
+          </div>
 
           <Footer />
         </div>
