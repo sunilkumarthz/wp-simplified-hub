@@ -143,13 +143,13 @@ const Header = () => {
             </button>
           </div>
 
-          {/* Mobile Navigation Links - Tab Style */}
+          {/* Mobile Navigation Links */}
           <nav
-            className="flex-1 px-3 py-6"
+            className="flex-1 px-4 py-6"
             role="navigation"
             aria-label="Mobile navigation"
           >
-            <div className="grid grid-cols-2 gap-3">
+            <div className="space-y-2">
               {navItems.map((item) => {
                 const IconComponent = item.icon;
                 const isActive = isActiveRoute(item.path);
@@ -157,20 +157,20 @@ const Header = () => {
                   <Link
                     key={item.path}
                     to={item.path}
-                    className={`flex flex-col items-center justify-center px-4 py-6 rounded-2xl transition-all duration-300 font-roboto font-medium text-center min-h-[100px] ${
+                    className={`flex items-center space-x-4 px-4 py-4 rounded-xl transition-all duration-300 font-roboto font-medium text-base ${
                       isActive
-                        ? 'bg-gradient-to-br from-primary to-accent text-primary-foreground shadow-lg scale-105'
-                        : 'bg-slate-800/50 text-slate-300 hover:bg-slate-700 hover:text-white hover:scale-102 border border-slate-700'
+                        ? 'bg-wp-teal text-white shadow-lg'
+                        : 'text-slate-300 hover:bg-slate-800 hover:text-white'
                     }`}
                     onClick={closeMenu}
                     aria-current={isActive ? 'page' : undefined}
                   >
                     <IconComponent
-                      size={28}
-                      className="w-7 h-7 mb-2 flex-shrink-0"
+                      size={22}
+                      className="w-5 h-5 flex-shrink-0"
                       aria-hidden="true"
                     />
-                    <span className="text-sm font-semibold">{item.label}</span>
+                    <span className="text-lg">{item.label}</span>
                   </Link>
                 );
               })}
@@ -180,8 +180,7 @@ const Header = () => {
           {/* Mobile Subscribe Button */}
           <div className="p-4 border-t border-slate-700">
             <Button
-              size="lg"
-              className="w-full"
+              className="w-full bg-wp-teal hover:bg-wp-teal-dark text-white font-bold py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 text-base"
               asChild
             >
               <a

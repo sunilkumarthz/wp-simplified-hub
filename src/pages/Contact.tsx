@@ -36,7 +36,7 @@ const Contact = () => {
         jsonLd={contactJsonLd}
       />
 
-      <div className="min-h-screen bg-background">
+      <div className="min-h-screen bg-slate-800">
         <Header />
 
         <ContactHero />
