@@ -37,9 +37,9 @@ const Contact = () => {
         jsonLd={contactJsonLd}
       />
 
-      <div className="min-h-screen bg-slate-900">
+      <div className="bg-slate-900">
         <Header />
-        <section className="relative min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+        <section className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
           <HeroBackground />
           <ContactHero />
 

@@ -16,7 +16,7 @@ const VideosHero = ({
   onSearch,
 }: VideosHeroProps) => {
   return (
-    <section className="py-20 text-center">
+    <div className="py-20 text-center">
       <div className="container mx-auto px-4">
         <h1 className="text-5xl md:text-6xl font-baloo font-bold text-white mb-6">
           WordPress <span className="text-gradient">Video Tutorials</span>
@@ -50,7 +50,7 @@ const VideosHero = ({
           </div>
         </form> */}
       </div>
-    </section>
+    </div>
   );
 };
 

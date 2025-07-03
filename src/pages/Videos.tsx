@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import Header from '@/components/Header';
@@ -8,6 +7,7 @@ import { fetchLatestVideos, searchVideos, type Video } from '@/services/api';
 import { useQuery } from '@tanstack/react-query';
 import VideosHero from '@/components/videos/VideosHero';
 import VideosGrid from '@/components/videos/VideosGrid';
+import HeroBackground from '@/components/hero/HeroBackground';
 
 const Videos = () => {
   const [searchParams] = useSearchParams();
@@ -18,7 +18,11 @@ const Videos = () => {
   const [displayCount, setDisplayCount] = useState(10);
 
   // Fetch latest videos
-  const { data: allVideos = [], isLoading, error } = useQuery({
+  const {
+    data: allVideos = [],
+    isLoading,
+    error,
+  } = useQuery({
     queryKey: ['latestVideos'],
     queryFn: fetchLatestVideos,
   });
@@ -55,7 +59,7 @@ const Videos = () => {
   const hasMore = displayedVideos.length > displayCount;
 
   const loadMore = () => {
-    setDisplayCount(prev => prev + 10);
+    setDisplayCount((prev) => prev + 10);
   };
 
   const pageTitle = searchQuery
@@ -109,15 +113,11 @@ const Videos = () => {
         jsonLd={videoJsonLd}
       />
 
-      <div className="min-h-screen bg-slate-800 relative overflow-hidden">
-        {/* Background Effects */}
-        <div className="absolute inset-0 wp-gradient-dark opacity-50"></div>
-        <div className="absolute top-20 left-10 w-72 h-72 bg-wp-teal/10 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-wp-blue/10 rounded-full blur-3xl"></div>
+      <div className="bg-slate-800">
+        <Header />
 
-        <div className="relative z-10">
-          <Header />
-
+        <section className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+          <HeroBackground />
           <VideosHero
             searchQuery={searchQuery}
             isSearching={isSearching}
@@ -134,9 +134,8 @@ const Videos = () => {
             hasMore={hasMore}
             onLoadMore={loadMore}
           />
-
-          <Footer />
-        </div>
+        </section>
+        <Footer />
       </div>
     </>
   );

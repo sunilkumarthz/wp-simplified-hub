@@ -24,7 +24,7 @@ const VideosGrid = ({
 }: VideosGridProps) => {
   if (isLoading) {
     return (
-      <section className="py-20">
+      <div className="py-20">
         <div className="container mx-auto px-4">
           <div className="text-center py-12">
             <div className="inline-flex items-center justify-center w-16 h-16 bg-wp-teal/20 rounded-full mb-4">
@@ -35,13 +35,13 @@ const VideosGrid = ({
             </div>
           </div>
         </div>
-      </section>
+      </div>
     );
   }
 
   if (error) {
     return (
-      <section className="py-20">
+      <div className="py-20">
         <div className="container mx-auto px-4">
           <div className="text-center py-12">
             <div className="text-red-400 font-roboto text-lg">
@@ -49,13 +49,13 @@ const VideosGrid = ({
             </div>
           </div>
         </div>
-      </section>
+      </div>
     );
   }
 
   if (displayedVideos.length === 0 && !isLoading && !error) {
     return (
-      <section className="py-20">
+      <div className="py-20">
         <div className="container mx-auto px-4">
           <div className="text-center py-12">
             <div className="text-slate-400 font-roboto">
@@ -65,12 +65,12 @@ const VideosGrid = ({
             </div>
           </div>
         </div>
-      </section>
+      </div>
     );
   }
 
   return (
-    <section className="pb-20">
+    <div className="pb-20">
       <div className="container mx-auto px-4">
         {/* <h2 className="text-4xl font-baloo font-bold text-white mb-12 text-center">
           {searchQuery ? `Search Results for "${searchQuery}"` : 'Latest Videos'}
@@ -96,7 +96,7 @@ const VideosGrid = ({
           </div>
         )}
       </div>
-    </section>
+    </div>
   );
 };
 

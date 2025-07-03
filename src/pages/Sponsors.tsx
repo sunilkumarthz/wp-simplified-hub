@@ -101,13 +101,13 @@ const Sponsors = () => {
 
   return (
     <>
-      <SEOHead 
+      <SEOHead
         title="Sponsor WPSimplified - Partner with WordPress Experts"
         description="Partner with WPSimplified to reach 100,000+ WordPress professionals. Flexible sponsorship packages for businesses of all sizes."
       />
-      <div className="min-h-screen bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900">
+      <div className="bg-slate-900">
         <Header />
-        
+
         {/* Hero Section */}
         <section className="relative py-20 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-r from-wp-teal/10 to-cyan-400/10"></div>
@@ -119,29 +119,35 @@ const Sponsors = () => {
                   Partnership Opportunities
                 </Badge>
               </div>
-              
+
               <h1 className="text-4xl md:text-6xl font-baloo font-bold text-white mb-6 leading-tight">
-                Partner with 
+                Partner with
                 <span className="block text-transparent bg-gradient-to-r from-wp-teal via-cyan-400 to-emerald-400 bg-clip-text">
                   WPSimplified
                 </span>
               </h1>
-              
+
               <p className="text-xl text-slate-300 mb-8 leading-relaxed font-roboto">
-                Join industry leaders in sponsoring the most trusted WordPress education platform. 
-                Reach passionate developers and business owners who rely on our expertise.
+                Join industry leaders in sponsoring the most trusted WordPress
+                education platform. Reach passionate developers and business
+                owners who rely on our expertise.
               </p>
-              
+
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button 
+                <Button
                   size="lg"
                   className="bg-gradient-to-r from-wp-teal to-wp-teal-dark hover:from-wp-teal-dark hover:to-wp-teal text-white font-bold text-lg px-8 py-6 rounded-xl shadow-2xl hover:shadow-wp-teal/25 hover:scale-105 transition-all duration-300 group"
-                  onClick={() => window.open('mailto:sponsor@wpsimplified.in?subject=Partnership Inquiry - Start Partnership', '_blank')}
+                  onClick={() =>
+                    window.open(
+                      'mailto:sponsor@wpsimplified.in?subject=Partnership Inquiry - Start Partnership',
+                      '_blank'
+                    )
+                  }
                 >
                   <Zap className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
                   Start Partnership
                 </Button>
-                <Button 
+                <Button
                   variant="outline"
                   size="lg"
                   className="border-2 border-wp-teal text-wp-teal hover:bg-wp-teal hover:text-white font-semibold text-lg px-8 py-6 rounded-xl backdrop-blur-sm transition-all duration-300 hover:scale-105"
@@ -163,15 +169,16 @@ const Sponsors = () => {
                 Why Sponsor WPSimplified?
               </h2>
               <p className="text-lg text-slate-300 max-w-2xl mx-auto">
-                Reach the right audience with the perfect platform for WordPress-focused marketing
+                Reach the right audience with the perfect platform for
+                WordPress-focused marketing
               </p>
             </div>
-            
+
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
               {benefits.map((benefit, index) => {
                 const IconComponent = benefit.icon;
                 return (
-                  <Card 
+                  <Card
                     key={index}
                     className="bg-slate-800/50 border-slate-700 hover:border-wp-teal/50 transition-all duration-300 hover:transform hover:scale-105 group"
                   >
@@ -179,8 +186,13 @@ const Sponsors = () => {
                       <div className="w-16 h-16 mx-auto bg-gradient-to-r from-wp-teal to-cyan-400 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                         <IconComponent className="w-8 h-8 text-white" />
                       </div>
-                      <CardTitle className="text-white text-xl">{benefit.title}</CardTitle>
-                      <Badge variant="outline" className="border-wp-teal text-wp-teal">
+                      <CardTitle className="text-white text-xl">
+                        {benefit.title}
+                      </CardTitle>
+                      <Badge
+                        variant="outline"
+                        className="border-wp-teal text-wp-teal"
+                      >
                         {benefit.stats}
                       </Badge>
                     </CardHeader>
@@ -204,48 +216,75 @@ const Sponsors = () => {
                 Sponsorship Packages
               </h2>
               <p className="text-lg text-slate-300 max-w-2xl mx-auto">
-                Flexible options designed to meet your marketing goals and budget
+                Flexible options designed to meet your marketing goals and
+                budget
               </p>
             </div>
-            
+
             <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
               {packages.map((pkg, index) => (
-                <Card 
+                <Card
                   key={index}
-                  className={`relative ${pkg.highlighted ? 'bg-gradient-to-b from-wp-teal/20 to-slate-800/50 border-wp-teal scale-105' : 'bg-slate-800/50 border-slate-700'} hover:border-wp-teal/50 transition-all duration-300 hover:transform hover:scale-110`}
+                  className={`relative ${
+                    pkg.highlighted
+                      ? 'bg-gradient-to-b from-wp-teal/20 to-slate-800/50 border-wp-teal scale-105'
+                      : 'bg-slate-800/50 border-slate-700'
+                  } hover:border-wp-teal/50 transition-all duration-300 hover:transform hover:scale-110`}
                 >
                   {pkg.badge && (
                     <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                      <Badge className={`${pkg.highlighted ? 'bg-wp-teal' : 'bg-gradient-to-r from-wp-teal to-cyan-400'} text-white px-4 py-1`}>
+                      <Badge
+                        className={`${
+                          pkg.highlighted
+                            ? 'bg-wp-teal'
+                            : 'bg-gradient-to-r from-wp-teal to-cyan-400'
+                        } text-white px-4 py-1`}
+                      >
                         {pkg.badge}
                       </Badge>
                     </div>
                   )}
-                  
+
                   <CardHeader className="text-center">
-                    <CardTitle className="text-2xl font-bold text-white">{pkg.name}</CardTitle>
+                    <CardTitle className="text-2xl font-bold text-white">
+                      {pkg.name}
+                    </CardTitle>
                     <div className="flex items-baseline justify-center">
-                      <span className="text-4xl font-bold text-wp-teal">{pkg.price}</span>
+                      <span className="text-4xl font-bold text-wp-teal">
+                        {pkg.price}
+                      </span>
                       <span className="text-slate-400 ml-2">{pkg.period}</span>
                     </div>
                     <CardDescription className="text-slate-300 mt-4">
                       {pkg.description}
                     </CardDescription>
                   </CardHeader>
-                  
+
                   <CardContent>
                     <ul className="space-y-3">
                       {pkg.features.map((feature, featureIndex) => (
-                        <li key={featureIndex} className="flex items-center text-slate-300">
+                        <li
+                          key={featureIndex}
+                          className="flex items-center text-slate-300"
+                        >
                           <CheckCircle className="w-5 h-5 text-wp-teal mr-3 flex-shrink-0" />
                           {feature}
                         </li>
                       ))}
                     </ul>
-                    
-                    <Button 
-                      className={`w-full mt-8 ${pkg.highlighted ? 'bg-wp-teal hover:bg-wp-teal-dark' : 'bg-gradient-to-r from-wp-teal to-cyan-400 hover:from-cyan-400 hover:to-wp-teal'} text-white font-bold py-3 rounded-xl transition-all duration-300 hover:scale-105`}
-                      onClick={() => window.open(`mailto:sponsor@wpsimplified.in?subject=Partnership Inquiry - ${pkg.name} Package&body=Hi, I'm interested in the ${pkg.name} sponsorship package. Please provide more details.`, '_blank')}
+
+                    <Button
+                      className={`w-full mt-8 ${
+                        pkg.highlighted
+                          ? 'bg-wp-teal hover:bg-wp-teal-dark'
+                          : 'bg-gradient-to-r from-wp-teal to-cyan-400 hover:from-cyan-400 hover:to-wp-teal'
+                      } text-white font-bold py-3 rounded-xl transition-all duration-300 hover:scale-105`}
+                      onClick={() =>
+                        window.open(
+                          `mailto:sponsor@wpsimplified.in?subject=Partnership Inquiry - ${pkg.name} Package&body=Hi, I'm interested in the ${pkg.name} sponsorship package. Please provide more details.`,
+                          '_blank'
+                        )
+                      }
                     >
                       Get Started
                     </Button>
@@ -267,23 +306,33 @@ const Sponsors = () => {
                 Hear from our partners who've achieved remarkable results
               </p>
             </div>
-            
+
             <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
               {testimonials.map((testimonial, index) => (
-                <Card key={index} className="bg-slate-800/50 border-slate-700 hover:border-wp-teal/50 transition-all duration-300">
+                <Card
+                  key={index}
+                  className="bg-slate-800/50 border-slate-700 hover:border-wp-teal/50 transition-all duration-300"
+                >
                   <CardContent className="p-8">
                     <div className="flex items-center mb-4">
                       {[...Array(5)].map((_, i) => (
-                        <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
+                        <Star
+                          key={i}
+                          className="w-5 h-5 text-yellow-400 fill-current"
+                        />
                       ))}
                     </div>
                     <blockquote className="text-slate-300 italic mb-6 text-lg">
                       "{testimonial.quote}"
                     </blockquote>
                     <div>
-                      <div className="font-semibold text-white">{testimonial.name}</div>
+                      <div className="font-semibold text-white">
+                        {testimonial.name}
+                      </div>
                       <div className="text-wp-teal">{testimonial.role}</div>
-                      <div className="text-slate-400">{testimonial.company}</div>
+                      <div className="text-slate-400">
+                        {testimonial.company}
+                      </div>
                     </div>
                   </CardContent>
                 </Card>
@@ -300,23 +349,34 @@ const Sponsors = () => {
                 Ready to Grow Your WordPress Business?
               </h2>
               <p className="text-lg text-slate-300 mb-8">
-                Join successful companies who trust WPSimplified to connect them with their ideal audience.
-                Let's create something amazing together.
+                Join successful companies who trust WPSimplified to connect them
+                with their ideal audience. Let's create something amazing
+                together.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button 
+                <Button
                   size="lg"
                   className="bg-gradient-to-r from-wp-teal to-wp-teal-dark hover:from-wp-teal-dark hover:to-wp-teal text-white font-bold text-lg px-8 py-6 rounded-xl shadow-2xl hover:shadow-wp-teal/25 hover:scale-105 transition-all duration-300"
-                  onClick={() => window.open('mailto:sponsor@wpsimplified.in?subject=Partnership Inquiry - Become a Sponsor&body=Hi, I would like to become a sponsor for WPSimplified. Please provide more information about your partnership opportunities.', '_blank')}
+                  onClick={() =>
+                    window.open(
+                      'mailto:sponsor@wpsimplified.in?subject=Partnership Inquiry - Become a Sponsor&body=Hi, I would like to become a sponsor for WPSimplified. Please provide more information about your partnership opportunities.',
+                      '_blank'
+                    )
+                  }
                 >
                   <Award className="w-5 h-5 mr-2" />
                   Become a Sponsor
                 </Button>
-                <Button 
+                <Button
                   variant="outline"
                   size="lg"
                   className="border-2 border-white text-white hover:bg-white hover:text-slate-900 font-semibold text-lg px-8 py-6 rounded-xl backdrop-blur-sm transition-all duration-300 hover:scale-105"
-                  onClick={() => window.open('mailto:sponsor@wpsimplified.in?subject=General Partnership Inquiry', '_blank')}
+                  onClick={() =>
+                    window.open(
+                      'mailto:sponsor@wpsimplified.in?subject=General Partnership Inquiry',
+                      '_blank'
+                    )
+                  }
                 >
                   Contact Us
                 </Button>
