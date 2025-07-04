@@ -50,30 +50,13 @@ const SponsorsSection = () => {
             who rely on our expertise.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button
-              variant="solid"
-              size="lg"
-              asChild
-            >
-              <Link to="/sponsors">
+            <Link to="/sponsors" className="no-link-styles">
+              <Button variant="solid" size="lg">
                 <Handshake className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
                 Explore Packages
                 <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-              </Link>
-            </Button>
-
-            <Button
-              variant="outline"
-              size="lg"
-              onClick={() =>
-                window.open(
-                  'mailto:sponsor@wpsimplified.in?subject=Partnership Inquiry',
-                  '_blank'
-                )
-              }
-            >
-              Contact Us
-            </Button>
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
