@@ -48,8 +48,8 @@ const LatestShorts = () => {
         ) : (
           <>
             {/* Improved Grid Layout */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
-              {shorts.slice(0, 4).map((short, index) => (
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-12">
+              {shorts.slice(0, 5).map((short, index) => (
                 <Card
                   key={short.id || index}
                   className="bg-slate-800/50 border-slate-700/50 hover:bg-slate-800/70 transition-all duration-500 group overflow-hidden animate-fade-in transform hover:scale-105"
