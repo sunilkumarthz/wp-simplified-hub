@@ -23,7 +23,6 @@ const LatestVideos = () => {
           <Link to="/videos">
             <Button
               variant="outline"
-              className="text-sm sm:text-base px-4 sm:px-6 py-2 sm:py-3"
             >
               View All Videos
             </Button>
@@ -75,7 +74,7 @@ const LatestVideos = () => {
                       rel="noopener noreferrer"
                       className="no-link-styles"
                     >
-                      <Button className="w-full font-semibold text-sm sm:text-base py-2 sm:py-3">
+                      <Button variant="solid" className="w-full">
                         <Play className="w-4 h-4 group-hover/btn:scale-125 transition-transform" />
                         Watch Now
                         <ArrowRight className="w-3 h-3 group-hover/btn:translate-x-1 transition-transform" />

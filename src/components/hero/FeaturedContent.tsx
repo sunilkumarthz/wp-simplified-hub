@@ -127,7 +127,7 @@ const FeaturedContent = ({
                   rel="noopener noreferrer"
                   className="no-link-styles"
                 >
-                  <Button className="font-semibold">
+                  <Button variant="solid">
                     <Play className="w-4 h-4 group-hover/btn:scale-125 transition-transform" />
                     Watch Now
                     <ArrowRight className="w-3 h-3 group-hover/btn:translate-x-1 transition-transform" />
@@ -201,7 +201,7 @@ const FeaturedContent = ({
                   rel="noopener noreferrer"
                   className="no-link-styles"
                 >
-                  <Button className="font-semibold">
+                  <Button variant="outline">
                     <Mic className="w-4 h-4 group-hover/btn:scale-125 transition-transform" />
                     Listen Now
                     <ArrowRight className="w-3 h-3 group-hover/btn:translate-x-1 transition-transform" />

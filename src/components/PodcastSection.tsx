@@ -97,7 +97,7 @@ const PodcastSection = () => {
 
                 <div className="flex flex-col sm:flex-row gap-6">
                   <Link to="/contact" className="no-link-styles">
-                    <Button size="lg" className="font-semibold text-lg px-8">
+                    <Button variant="solid" size="lg">
                       Apply to Be a Guest
                     </Button>
                   </Link>
@@ -105,7 +105,7 @@ const PodcastSection = () => {
                     <Button
                       size="lg"
                       variant="outline"
-                      className="font-semibold text-lg px-8"
+                      
                     >
                       Listen to Episodes
                     </Button>
@@ -179,7 +179,7 @@ const PodcastSection = () => {
                           rel="noopener noreferrer"
                           className="no-link-styles"
                         >
-                          <Button size="sm" className="w-full">
+                          <Button variant="solid" size="sm" className="w-full">
                             Listen Now
                           </Button>
                         </a>

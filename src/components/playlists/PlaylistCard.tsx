@@ -57,7 +57,7 @@ const PlaylistCard = ({ playlist, index }: PlaylistCardProps) => {
             rel="noopener noreferrer"
             className="no-link-styles"
           >
-            <Button className="w-full font-semibold text-slate-900 wp-gradient hover:scale-105 transition-transform">
+            <Button variant="solid" className="w-full">
               Explore Playlist
             </Button>
           </a>

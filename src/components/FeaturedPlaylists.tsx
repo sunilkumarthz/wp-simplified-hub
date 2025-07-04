@@ -69,7 +69,7 @@ const FeaturedPlaylists = () => {
                       rel="noopener noreferrer"
                       className="no-link-styles"
                     >
-                      <Button className="w-full font-semibold">
+                      <Button variant="solid" className="w-full">
                         Explore More
                       </Button>
                     </a>

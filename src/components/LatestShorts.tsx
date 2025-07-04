@@ -114,7 +114,7 @@ const LatestShorts = () => {
             {/* CTA Button */}
             <div className="text-center">
               <Link to="/shorts">
-                <Button className="bg-gradient-to-r from-wp-teal to-wp-teal-dark hover:from-wp-teal-dark hover:to-wp-teal text-white font-bold px-8 py-3 rounded-2xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 relative overflow-hidden">
+                <Button variant="solid" size="lg">
                   View All Shorts
                   <ChevronRight
                     className={`w-4 h-4 ml-2 transition-transform`}

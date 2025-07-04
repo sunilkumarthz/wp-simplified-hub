@@ -76,7 +76,7 @@ const Header = () => {
             <div className="hidden lg:flex items-center">
               <Button
                 variant="outline"
-                className="border-2 border-wp-teal text-wp-teal hover:text-white font-semibold text-lg px-8 py-2 rounded-xl backdrop-blur-sm transition-all duration-300 "
+                size="sm"
                 asChild
               >
                 <a
@@ -179,7 +179,7 @@ const Header = () => {
 
           {/* Mobile Subscribe Button */}
           <div className="p-4 border-t border-slate-700">
-            <Button size="lg" className="w-full" asChild>
+            <Button variant="solid" size="lg" className="w-full" asChild>
               <a
                 href="https://www.youtube.com/@wpsimplifiedbysunil"
                 target="_blank"

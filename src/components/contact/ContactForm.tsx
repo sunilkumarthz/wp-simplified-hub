@@ -204,9 +204,11 @@ const ContactForm = () => {
           </div>
 
           <Button
+            variant="solid"
             type="submit"
+            size="lg"
             disabled={isSubmitting}
-            className="w-full font-semibold h-12 text-base"
+            className="w-full"
           >
             {isSubmitting ? (
               <>

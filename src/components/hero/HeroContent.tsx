@@ -40,9 +40,9 @@ const HeroContent = ({ onScrollToVideos }: HeroContentProps) => {
       {/* CTA Buttons */}
       <div className="flex flex-col sm:flex-row gap-4">
         <Button
+          variant="solid"
           size="lg"
           onClick={onScrollToVideos}
-          className="bg-gradient-to-r from-wp-teal to-wp-teal-dark hover:from-wp-teal-dark hover:to-wp-teal text-white font-bold text-lg px-8 py-6 rounded-xl shadow-2xl hover:shadow-wp-teal/25 hover:scale-105 transition-all duration-300 group"
         >
           <Play className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
           Start Learning Now
@@ -51,7 +51,6 @@ const HeroContent = ({ onScrollToVideos }: HeroContentProps) => {
         <Button
           variant="outline"
           size="lg"
-          className="border-2 border-wp-teal text-wp-teal hover:bg-wp-teal hover:text-white font-semibold text-lg px-8 py-6 rounded-xl backdrop-blur-sm transition-all duration-300 hover:scale-105"
         >
           <Globe className="w-5 h-5 mr-2" />
           Explore Content

@@ -156,7 +156,7 @@ const Podcasts = () => {
                           rel="noopener noreferrer"
                           className="no-link-styles"
                         >
-                          <Button className="w-full font-semibold">
+                          <Button variant="solid" className="w-full">
                             Listen Now
                           </Button>
                         </a>
@@ -170,10 +170,9 @@ const Podcasts = () => {
               {hasMore && (
                 <div className="text-center mt-12">
                   <Button
+                    variant="outline"
                     onClick={loadMore}
                     size="lg"
-                    variant="outline"
-                    className="font-semibold text-lg px-8"
                   >
                     Load More Episodes
                   </Button>

@@ -86,10 +86,9 @@ const VideosGrid = ({
         {hasMore && (
           <div className="text-center mt-12">
             <Button
+              variant="outline"
               onClick={onLoadMore}
               size="lg"
-              variant="outline"
-              className="font-semibold text-lg px-8"
             >
               Load More Videos
             </Button>
