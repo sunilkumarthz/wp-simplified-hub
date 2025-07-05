@@ -6,7 +6,7 @@ import LatestPodcasts from '@/components/LatestPodcasts';
 import CommunityInvolvement from '@/components/CommunityInvolvement';
 import FeaturedPlaylists from '@/components/FeaturedPlaylists';
 import BadgesSection from '@/components/BadgesSection';
-import LatestShorts from '@/components/LatestShorts';
+import LatestShortsSection from '@/components/sections/LatestShortsSection';
 import PodcastSection from '@/components/PodcastSection';
 import SocialSection from '@/components/SocialSection';
 import SponsorsSection from '@/components/SponsorsSection';
@@ -71,7 +71,7 @@ const Index = () => {
         id="latest-shorts"
         className="bg-slate-800/50 relative py-12 sm:py-16 lg:py-20"
       >
-        <LatestShorts />
+        <LatestShortsSection />
       </section>
       <Footer />
     </div>
