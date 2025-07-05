@@ -4,6 +4,8 @@ import SEOHead from '@/components/SEOHead';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import SectionHeader from '@/components/common/SectionHeader';
+import SponsorsGrid from '@/components/sponsors/SponsorsGrid';
 import { Star, Users, TrendingUp, Globe, Award, Handshake, Zap, Target, CheckCircle } from 'lucide-react';
 
 const Sponsors = () => {
@@ -109,96 +111,76 @@ const Sponsors = () => {
         <Header />
 
         {/* Hero Section */}
-        <section className="relative py-20 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-r from-wp-teal/10 to-cyan-400/10"></div>
-          <div className="container mx-auto px-6 relative z-10">
-            <div className="text-center max-w-4xl mx-auto">
-              <div className="flex justify-center mb-6">
-                <Badge className="bg-gradient-to-r from-wp-teal to-cyan-400 text-white px-4 py-2 text-lg font-semibold animate-pulse">
-                  <Handshake className="w-5 h-5 mr-2" />
-                  Partnership Opportunities
-                </Badge>
-              </div>
+        <section className="relative py-20 bg-muted/30">
+          <div className="container mx-auto px-6">
+            <SectionHeader
+              badge={{
+                icon: <Handshake className="w-5 h-5" />,
+                text: 'Partnership Opportunities'
+              }}
+              title={
+                <>
+                  Partner with <span className="text-primary">WPSimplified</span>
+                </>
+              }
+              subtitle="Join industry leaders in sponsoring the most trusted WordPress education platform. Reach passionate developers and business owners who rely on our expertise."
+            />
 
-              <h1 className="text-4xl md:text-6xl font-baloo font-bold text-white mb-6 leading-tight">
-                Partner with
-                <span className="block text-transparent bg-gradient-to-r from-wp-teal via-cyan-400 to-emerald-400 bg-clip-text">
-                  WPSimplified
-                </span>
-              </h1>
-
-              <p className="text-xl text-slate-300 mb-8 leading-relaxed font-roboto">
-                Join industry leaders in sponsoring the most trusted WordPress
-                education platform. Reach passionate developers and business
-                owners who rely on our expertise.
-              </p>
-
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button
-                  variant="solid"
-                  size="lg"
-                  onClick={() =>
-                    window.open(
-                      'mailto:sponsor@wpsimplified.in?subject=Partnership Inquiry - Start Partnership',
-                      '_blank'
-                    )
-                  }
-                >
-                  <Zap className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
-                  Start Partnership
-                </Button>
-                <Button
-                  variant="outline"
-                  size="lg"
-                  onClick={() => window.open('/media-kit.pdf', '_blank')}
-                >
-                  <Target className="w-5 h-5 mr-2" />
-                  View Media Kit
-                </Button>
-              </div>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button
+                variant="solid"
+                size="lg"
+                onClick={() =>
+                  window.open(
+                    'mailto:sponsor@wpsimplified.in?subject=Partnership Inquiry - Start Partnership',
+                    '_blank'
+                  )
+                }
+              >
+                <Zap className="w-5 h-5 mr-2" />
+                Start Partnership
+              </Button>
+              <Button
+                variant="outline"
+                size="lg"
+                onClick={() => window.open('/media-kit.pdf', '_blank')}
+              >
+                <Target className="w-5 h-5 mr-2" />
+                View Media Kit
+              </Button>
             </div>
           </div>
         </section>
 
-        {/* Benefits Section */}
-        <section className="py-20">
+        {/* Sponsor Logos */}
+        <section className="py-20 bg-muted/50">
           <div className="container mx-auto px-6">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-baloo font-bold text-white mb-4">
-                Why Sponsor WPSimplified?
-              </h2>
-              <p className="text-lg text-slate-300 max-w-2xl mx-auto">
-                Reach the right audience with the perfect platform for
-                WordPress-focused marketing
-              </p>
-            </div>
+            <SponsorsGrid />
+          </div>
+        </section>
+
+        {/* Benefits Section */}
+        <section className="py-20 bg-muted/30">
+          <div className="container mx-auto px-6">
+            <SectionHeader
+              title="Why Sponsor WPSimplified?"
+              subtitle="Reach the right audience with the perfect platform for WordPress-focused marketing"
+            />
 
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
               {benefits.map((benefit, index) => {
                 const IconComponent = benefit.icon;
                 return (
-                  <Card
-                    key={index}
-                    className="bg-slate-800/50 border-slate-700 hover:border-wp-teal/50 transition-all duration-300 hover:transform hover:scale-105 group"
-                  >
+                  <Card key={index} className="bg-card/50 border-border/50 hover:border-primary/50 transition-all duration-300 hover:scale-105 group">
                     <CardHeader className="text-center">
-                      <div className="w-16 h-16 mx-auto bg-gradient-to-r from-wp-teal to-cyan-400 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                        <IconComponent className="w-8 h-8 text-white" />
+                      <div className="w-16 h-16 mx-auto bg-primary rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <IconComponent className="w-8 h-8 text-primary-foreground" />
                       </div>
-                      <CardTitle className="text-white text-xl">
-                        {benefit.title}
-                      </CardTitle>
-                      <Badge
-                        variant="outline"
-                        className="border-wp-teal text-wp-teal"
-                      >
-                        {benefit.stats}
-                      </Badge>
+                      <CardTitle className="text-foreground text-xl">{benefit.title}</CardTitle>
+                      <Badge variant="outline" className="border-primary text-primary">{benefit.stats}</Badge>
                     </CardHeader>
                     <CardContent>
-                      <CardDescription className="text-slate-300 text-center">
-                        {benefit.description}
-                      </CardDescription>
+                      <CardDescription className="text-muted-foreground text-center">{benefit.description}</CardDescription>
                     </CardContent>
                   </Card>
                 );
