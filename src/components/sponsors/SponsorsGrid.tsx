@@ -3,37 +3,77 @@ import SponsorLogo from './SponsorLogo';
 const SponsorsGrid = () => {
   const sponsors = [
     {
-      name: 'WP Engine',
-      logo: 'https://via.placeholder.com/200x80/1e293b/ffffff?text=WP+Engine',
-      website: 'https://wpengine.com',
-      featured: true
+      name: 'Brand Name',
+      logo: 'https://images.unsplash.com/photo-1707061229211-25325f7134ce',
+      website: 'https://sunilkumarthz.com',
+      featured: true,
     },
     {
-      name: 'Elementor',
-      logo: 'https://via.placeholder.com/200x80/1e293b/ffffff?text=Elementor',
-      website: 'https://elementor.com',
-      featured: true
+      name: 'Brand Name',
+      logo: 'https://images.unsplash.com/photo-1714929818396-6584073c1c9c',
+      website: 'https://sunilkumarthz.com',
+      featured: false,
     },
     {
-      name: 'Yoast',
-      logo: 'https://via.placeholder.com/200x80/1e293b/ffffff?text=Yoast',
-      website: 'https://yoast.com'
+      name: 'Brand Name',
+      logo: 'https://images.unsplash.com/photo-1629095540208-028942b0d68d',
+      website: 'https://sunilkumarthz.com',
+      featured: true,
     },
     {
-      name: 'Gravity Forms',
-      logo: 'https://via.placeholder.com/200x80/1e293b/ffffff?text=Gravity+Forms',
-      website: 'https://gravityforms.com'
+      name: 'Brand Name',
+      logo: 'https://images.unsplash.com/photo-1707061229453-853fc706b6fc',
+      website: 'https://sunilkumarthz.com',
+      featured: false,
     },
     {
-      name: 'WooCommerce',
-      logo: 'https://via.placeholder.com/200x80/1e293b/ffffff?text=WooCommerce',
-      website: 'https://woocommerce.com'
+      name: 'Brand Name',
+      logo: 'https://images.unsplash.com/photo-1707061229211-25325f7134ce',
+      website: 'https://sunilkumarthz.com',
+      featured: true,
     },
     {
-      name: 'WPML',
-      logo: 'https://via.placeholder.com/200x80/1e293b/ffffff?text=WPML',
-      website: 'https://wpml.org'
-    }
+      name: 'Brand Name',
+      logo: 'https://images.unsplash.com/photo-1714929818396-6584073c1c9c',
+      website: 'https://sunilkumarthz.com',
+      featured: false,
+    },
+    {
+      name: 'Brand Name',
+      logo: 'https://images.unsplash.com/photo-1707061229211-25325f7134ce',
+      website: 'https://sunilkumarthz.com',
+      featured: true,
+    },
+    {
+      name: 'Brand Name',
+      logo: 'https://images.unsplash.com/photo-1714929818396-6584073c1c9c',
+      website: 'https://sunilkumarthz.com',
+      featured: false,
+    },
+    {
+      name: 'Brand Name',
+      logo: 'https://images.unsplash.com/photo-1629095540208-028942b0d68d',
+      website: 'https://sunilkumarthz.com',
+      featured: true,
+    },
+    {
+      name: 'Brand Name',
+      logo: 'https://images.unsplash.com/photo-1707061229453-853fc706b6fc',
+      website: 'https://sunilkumarthz.com',
+      featured: false,
+    },
+    {
+      name: 'Brand Name',
+      logo: 'https://images.unsplash.com/photo-1707061229211-25325f7134ce',
+      website: 'https://sunilkumarthz.com',
+      featured: true,
+    },
+    {
+      name: 'Brand Name',
+      logo: 'https://images.unsplash.com/photo-1714929818396-6584073c1c9c',
+      website: 'https://sunilkumarthz.com',
+      featured: false,
+    },
   ];
 
   return (
@@ -43,11 +83,12 @@ const SponsorsGrid = () => {
           Trusted by Industry Leaders
         </h2>
         <p className="text-muted-foreground max-w-2xl mx-auto">
-          Join these amazing companies who trust WPSimplified to reach their target audience effectively.
+          Join these amazing companies who trust WPSimplified to reach their
+          target audience effectively.
         </p>
       </div>
-      
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+
+      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8">
         {sponsors.map((sponsor, index) => (
           <SponsorLogo
             key={index}

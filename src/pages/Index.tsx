@@ -46,10 +46,7 @@ const Index = () => {
         <PodcastSection />
       </section>
 
-      <section
-        id="sponsers"
-        className="bg-slate-800/50 relative py-12 sm:py-16 lg:py-20"
-      >
+      <section className="bg-slate-800/50 py-12 sm:py-16 lg:py-20">
         <SponsorsSection />
       </section>
 

@@ -24,10 +24,10 @@ const ContactInfo = () => {
             <div>
               <h4 className="font-semibold text-white font-roboto">Email</h4>
               <a
-                href="mailto:contact@wpsimplified.in"
+                href="mailto:sunilkumarthz@gmail.com"
                 className="text-slate-300 hover:text-wp-teal transition-colors font-roboto"
               >
-                contact@wpsimplified.in
+                sunilkumarthz@gmail.com
               </a>
             </div>
           </div>

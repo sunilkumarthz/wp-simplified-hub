@@ -70,7 +70,7 @@ const Shorts = () => {
 
       <div className="bg-background min-h-screen">
         <Header />
-        
+
         {/* Hero Section */}
         <section className="relative bg-muted/30">
           <HeroBackground />
@@ -80,26 +80,26 @@ const Shorts = () => {
         </section>
 
         {/* Stats Bar */}
-        <section className="py-12 bg-muted/50">
+        {/* <section className="py-12 bg-muted/50">
           <div className="container mx-auto px-4">
-            <ShortsStatsBar 
+            <ShortsStatsBar
               totalViews="2.5M+"
               totalDuration="25+ Hours"
               subscriberGrowth="+15%"
             />
           </div>
-        </section>
-        
+        </section> */}
+
         {/* Shorts Content */}
         <section className="py-20">
           <div className="container mx-auto px-4">
             {/* Filters */}
-            <ShortsFilters 
+            {/* <ShortsFilters
               activeFilter={activeFilter}
               onFilterChange={setActiveFilter}
               shortsCount={allShorts.length}
-            />
-            
+            /> */}
+
             {/* Content */}
             {isLoading && (
               <LoadingSpinner message="Loading WordPress shorts..." size="lg" />
@@ -116,7 +116,8 @@ const Shorts = () => {
             {allShorts.length === 0 && !isLoading && !error && (
               <div className="text-center py-16">
                 <p className="text-muted-foreground text-lg">
-                  No shorts available yet. Check back soon for amazing WordPress content!
+                  No shorts available yet. Check back soon for amazing WordPress
+                  content!
                 </p>
               </div>
             )}
@@ -124,15 +125,16 @@ const Shorts = () => {
             {visibleShorts.length > 0 && (
               <>
                 <ShortsGrid shorts={visibleShorts} />
-                
+
                 {hasMore && (
                   <div className="text-center mt-16">
-                    <Button 
-                      onClick={loadMore} 
+                    <Button
+                      onClick={loadMore}
                       size="lg"
                       className="px-12 py-4 text-lg"
                     >
-                      Load More WordPress Shorts ({allShorts.length - displayCount} remaining)
+                      Load More WordPress Shorts (
+                      {allShorts.length - displayCount} remaining)
                     </Button>
                   </div>
                 )}
@@ -140,7 +142,7 @@ const Shorts = () => {
             )}
           </div>
         </section>
-        
+
         <Footer />
       </div>
     </>

@@ -20,43 +20,45 @@ const SponsorsSection = () => {
 
   return (
     <>
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-10 left-10 w-32 h-32 border border-wp-teal rounded-full"></div>
-        <div className="absolute bottom-10 right-10 w-24 h-24 border border-cyan-400 rounded-full"></div>
-        <div className="absolute top-1/2 left-1/4 w-16 h-16 border border-emerald-400 rounded-full"></div>
-      </div>
-
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="text-center mb-16">
-          <div className="flex justify-center mb-6">
-            <Badge className="bg-gradient-to-r from-wp-teal to-cyan-400 text-white px-4 py-2 text-lg font-semibold animate-pulse">
-              <Handshake className="w-5 h-5 mr-2" />
-              Partnership Opportunities
-            </Badge>
-          </div>
-
-          <h2 className="text-3xl md:text-4xl font-baloo font-bold text-white mb-4">
-            Partner with
-            <span className="text-transparent bg-gradient-to-r from-wp-teal via-cyan-400 to-emerald-400 bg-clip-text">
-              {' '}
-              WPSimplified
-            </span>
+      <div className="container mx-auto px-6 text-center">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+            Ready to <span className="text-primary">Accelerate</span> Your
+            WordPress Business?
           </h2>
-
-          <p className="text-lg text-slate-300 max-w-3xl mx-auto mb-8">
-            Join industry leaders in sponsoring the most trusted WordPress
-            education platform. Reach passionate developers and business owners
-            who rely on our expertise.
+          <p className="text-xl text-muted-foreground mb-12 leading-relaxed">
+            Join successful companies who trust WPSimplified to connect them
+            with their ideal audience. Let's create something amazing together
+            and drive real results for your brand.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/sponsors" className="no-link-styles">
-              <Button variant="solid" size="lg">
-                <Handshake className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
-                Explore Packages
-                <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-              </Button>
-            </Link>
+          <div className="flex flex-col sm:flex-row gap-6 justify-center">
+            <Button
+              variant="solid"
+              size="lg"
+              className="text-lg px-8 py-4 h-auto"
+              onClick={() =>
+                window.open(
+                  'mailto:sponsor@wpsimplified.in?subject=Partnership Inquiry - Become a Sponsor&body=Hi, I would like to become a sponsor for WPSimplified. Please provide more information about your partnership opportunities and next steps.',
+                  '_blank'
+                )
+              }
+            >
+              <Award className="w-6 h-6 mr-2" />
+              Become a Partner
+            </Button>
+            <Button
+              variant="outline"
+              size="lg"
+              className="text-lg px-8 py-4 h-auto"
+              onClick={() =>
+                window.open(
+                  'mailto:sponsor@wpsimplified.in?subject=General Partnership Inquiry',
+                  '_blank'
+                )
+              }
+            >
+              Schedule a Call
+            </Button>
           </div>
         </div>
       </div>
