@@ -7,7 +7,7 @@ const sourcemaps = require('gulp-sourcemaps');
 const concat = require('gulp-concat');
 const uglify = require('gulp-uglify');
 const imagemin = require('gulp-imagemin');
-const del = require('del');
+const { deleteSync } = require('del');
 const browserSync = require('browser-sync').create();
 
 // Paths
@@ -32,8 +32,9 @@ const paths = {
 };
 
 // Clean dist directory
-function clean() {
-    return del(['dist']);
+function clean(cb) {
+    deleteSync(['dist']);
+    cb();
 }
 
 // Compile SCSS
