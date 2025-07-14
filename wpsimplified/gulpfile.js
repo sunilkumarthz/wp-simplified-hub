@@ -85,8 +85,8 @@ function images() {
             imagemin.optipng({optimizationLevel: 5}),
             imagemin.svgo({
                 plugins: [
-                    {removeViewBox: true},
-                    {cleanupIDs: false}
+                    {name: 'removeViewBox', active: true},
+                    {name: 'cleanupIDs', active: false}
                 ]
             })
         ]))
