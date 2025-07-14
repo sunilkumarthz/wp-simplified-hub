@@ -1,394 +1,183 @@
-// Main JavaScript functionality
-class WPSimplified {
+// Index page functionality
+class IndexPage {
     constructor() {
         this.init();
     }
 
     init() {
         this.setupMobileMenu();
-        this.setupSmoothScrolling();
-        this.loadFeaturedContent();
-        this.loadLatestContent();
+        this.loadLatestVideos();
         this.initializeLucideIcons();
+        this.setupSmoothScrolling();
     }
 
-    // Initialize Lucide icons
     initializeLucideIcons() {
         if (typeof lucide !== 'undefined') {
             lucide.createIcons();
         }
     }
 
-    // Mobile menu functionality
     setupMobileMenu() {
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const mobileMenu = document.getElementById('mobileMenu');
         const mobileMenuClose = document.getElementById('mobileMenuClose');
-        const overlay = mobileMenu.querySelector('.mobile-menu__overlay');
+        const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
 
         const openMenu = () => {
-            mobileMenu.classList.add('mobile-menu--active');
+            mobileMenu.classList.remove('translate-x-full');
+            mobileMenu.classList.add('translate-x-0');
+            mobileMenuOverlay.classList.remove('hidden');
             document.body.style.overflow = 'hidden';
         };
 
         const closeMenu = () => {
-            mobileMenu.classList.remove('mobile-menu--active');
+            mobileMenu.classList.add('translate-x-full');
+            mobileMenu.classList.remove('translate-x-0');
+            mobileMenuOverlay.classList.add('hidden');
             document.body.style.overflow = '';
         };
 
         mobileMenuBtn?.addEventListener('click', openMenu);
         mobileMenuClose?.addEventListener('click', closeMenu);
-        overlay?.addEventListener('click', closeMenu);
+        mobileMenuOverlay?.addEventListener('click', closeMenu);
 
-        // Close menu on nav item click
-        const navItems = mobileMenu.querySelectorAll('.mobile-menu__nav-item');
-        navItems.forEach(item => {
-            item.addEventListener('click', closeMenu);
-        });
-
-        // Close menu on escape key
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && mobileMenu.classList.contains('mobile-menu--active')) {
+            if (e.key === 'Escape' && !mobileMenu.classList.contains('translate-x-full')) {
                 closeMenu();
             }
         });
     }
 
-    // Smooth scrolling for anchor links
     setupSmoothScrolling() {
-        document.addEventListener('click', (e) => {
-            const target = e.target.closest('[href^="#"]');
-            if (target && target.hash) {
+        const scrollLinks = document.querySelectorAll('a[href^="#"]');
+        scrollLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
                 e.preventDefault();
-                const element = document.querySelector(target.hash);
-                if (element) {
-                    element.scrollIntoView({
+                const targetId = link.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
                         behavior: 'smooth',
                         block: 'start'
                     });
                 }
-            }
+            });
         });
     }
 
-    // Load featured content (videos and podcasts)
-    async loadFeaturedContent() {
-        const featuredContent = document.getElementById('featuredContent');
-        const featuredLoading = document.getElementById('featuredLoading');
-
-        if (!featuredContent || !featuredLoading) return;
-
-        try {
-            // Simulate API call - replace with actual API endpoints
-            const [videos, podcasts] = await Promise.all([
-                this.fetchLatestVideos(2),
-                this.fetchLatestPodcasts(1)
-            ]);
-
-            const content = this.renderFeaturedContent(videos, podcasts);
-            featuredContent.innerHTML = content;
-            
-            featuredLoading.style.display = 'none';
-            featuredContent.classList.add('featured-content__items--loaded');
-            
-            // Re-initialize icons after content load
-            this.initializeLucideIcons();
-        } catch (error) {
-            console.error('Error loading featured content:', error);
-            featuredLoading.innerHTML = '<p>Failed to load featured content</p>';
-        }
-    }
-
-    // Load latest content for sections
-    async loadLatestContent() {
-        await Promise.all([
-            this.loadLatestVideos(),
-            this.loadLatestPodcasts(),
-            this.loadFeaturedPlaylists()
-        ]);
-    }
-
-    // Load latest videos
     async loadLatestVideos() {
-        const container = document.getElementById('latestVideos');
-        if (!container) return;
-
         try {
-            const videos = await this.fetchLatestVideos(6);
-            container.innerHTML = this.renderVideosGrid(videos);
-            this.initializeLucideIcons();
+            const videosContainer = document.getElementById('latestVideos');
+            if (!videosContainer) return;
+
+            videosContainer.innerHTML = this.getLoadingHTML();
+            await this.delay(1500);
+            const videos = await this.fetchLatestVideos();
+            videosContainer.innerHTML = videos.map(video => this.renderVideoCard(video)).join('');
+            
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
         } catch (error) {
             console.error('Error loading videos:', error);
-            container.innerHTML = '<p class="text-center">Failed to load videos</p>';
         }
     }
 
-    // Load latest podcasts
-    async loadLatestPodcasts() {
-        const container = document.getElementById('latestPodcasts');
-        if (!container) return;
-
-        try {
-            const podcasts = await this.fetchLatestPodcasts(3);
-            container.innerHTML = this.renderPodcastsGrid(podcasts);
-            this.initializeLucideIcons();
-        } catch (error) {
-            console.error('Error loading podcasts:', error);
-            container.innerHTML = '<p class="text-center">Failed to load podcasts</p>';
-        }
+    async fetchLatestVideos() {
+        return [
+            {
+                id: '1',
+                title: 'Complete WordPress Gutenberg Tutorial 2024',
+                description: 'Learn how to master WordPress Gutenberg editor with this comprehensive tutorial.',
+                thumbnail: 'https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg',
+                duration: '45:30',
+                views: '25.4K',
+                publishedAt: '2 days ago'
+            },
+            {
+                id: '2',
+                title: 'WordPress Performance Optimization Guide',
+                description: 'Boost your WordPress site speed with proven optimization techniques.',
+                thumbnail: 'https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg',
+                duration: '32:15',
+                views: '18.2K',
+                publishedAt: '5 days ago'
+            },
+            {
+                id: '3',
+                title: 'Custom WordPress Theme Development',
+                description: 'Build a custom WordPress theme from scratch using modern practices.',
+                thumbnail: 'https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg',
+                duration: '1:12:45',
+                views: '31.7K',
+                publishedAt: '1 week ago'
+            }
+        ];
     }
 
-    // Load featured playlists
-    async loadFeaturedPlaylists() {
-        const container = document.getElementById('featuredPlaylists');
-        if (!container) return;
-
-        try {
-            const playlists = await this.fetchFeaturedPlaylists(6);
-            container.innerHTML = this.renderPlaylistsGrid(playlists);
-            this.initializeLucideIcons();
-        } catch (error) {
-            console.error('Error loading playlists:', error);
-            container.innerHTML = '<p class="text-center">Failed to load playlists</p>';
-        }
+    renderVideoCard(video) {
+        return `
+            <div class="bg-slate-800/50 rounded-xl overflow-hidden border border-slate-700 hover:border-slate-600 transition-all duration-300 hover:transform hover:scale-105 group">
+                <div class="relative">
+                    <img 
+                        src="${video.thumbnail}" 
+                        alt="${this.escapeHtml(video.title)}"
+                        class="w-full aspect-video object-cover group-hover:scale-105 transition-transform duration-300"
+                        onerror="this.src='https://via.placeholder.com/640x360/1e293b/04d98b?text=Video+Thumbnail'"
+                    >
+                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <div class="w-16 h-16 bg-wp-teal rounded-full flex items-center justify-center shadow-2xl">
+                            <i data-lucide="play" class="w-6 h-6 text-white ml-1"></i>
+                        </div>
+                    </div>
+                    <div class="absolute bottom-2 right-2 bg-black/80 text-white px-2 py-1 rounded text-sm">
+                        ${video.duration}
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="font-baloo font-bold text-lg mb-3 line-clamp-2 group-hover:text-wp-teal transition-colors">
+                        ${this.escapeHtml(video.title)}
+                    </h3>
+                    <p class="text-slate-400 text-sm mb-4 line-clamp-3">
+                        ${this.escapeHtml(video.description)}
+                    </p>
+                    <div class="flex items-center justify-between text-sm text-slate-500">
+                        <span>${video.views} views</span>
+                        <span>${video.publishedAt}</span>
+                    </div>
+                </div>
+            </div>
+        `;
     }
 
-    // Mock API functions - replace with actual API calls
-    async fetchLatestVideos(limit = 10) {
-        // Simulate API delay
-        await this.delay(1000);
-        
-        // Mock data - replace with actual API call
-        return Array.from({ length: limit }, (_, i) => ({
-            id: i + 1,
-            title: `WordPress Tutorial ${i + 1}: Advanced Techniques`,
-            description: `Learn advanced WordPress techniques in this comprehensive tutorial covering themes, plugins, and optimization.`,
-            thumbnail: `https://picsum.photos/400/225?random=${i + 1}`,
-            videourl: `https://youtube.com/watch?v=example${i + 1}`,
-            duration: `${Math.floor(Math.random() * 20 + 5)}:${Math.floor(Math.random() * 60).toString().padStart(2, '0')}`,
-            views: `${Math.floor(Math.random() * 10000 + 1000).toLocaleString()} views`,
-            published_date: this.getRandomDate()
-        }));
+    getLoadingHTML() {
+        return Array(3).fill().map(() => `
+            <div class="bg-slate-800/50 rounded-xl overflow-hidden border border-slate-700 animate-pulse">
+                <div class="aspect-video bg-slate-700"></div>
+                <div class="p-6">
+                    <div class="h-6 bg-slate-700 rounded mb-3"></div>
+                    <div class="h-4 bg-slate-700 rounded mb-2"></div>
+                    <div class="h-4 bg-slate-700 rounded w-3/4 mb-4"></div>
+                    <div class="flex justify-between">
+                        <div class="h-4 bg-slate-700 rounded w-20"></div>
+                        <div class="h-4 bg-slate-700 rounded w-16"></div>
+                    </div>
+                </div>
+            </div>
+        `).join('');
     }
 
-    async fetchLatestPodcasts(limit = 10) {
-        await this.delay(1200);
-        
-        return Array.from({ length: limit }, (_, i) => ({
-            id: i + 1,
-            title: `WordPress Podcast Episode ${i + 1}: Expert Interview`,
-            description: `In-depth conversation with WordPress experts about the latest trends and best practices.`,
-            thumbnail: `https://picsum.photos/400/400?random=${i + 20}`,
-            videourl: `https://youtube.com/watch?v=podcast${i + 1}`,
-            duration: `${Math.floor(Math.random() * 30 + 20)}:${Math.floor(Math.random() * 60).toString().padStart(2, '0')}`,
-            published_date: this.getRandomDate()
-        }));
+    escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
     }
 
-    async fetchFeaturedPlaylists(limit = 10) {
-        await this.delay(800);
-        
-        return Array.from({ length: limit }, (_, i) => ({
-            id: i + 1,
-            title: `WordPress ${['Basics', 'Advanced', 'Themes', 'Plugins', 'Security', 'Performance'][i] || 'Complete'} Course`,
-            description: `Complete playlist covering all aspects of WordPress development and management.`,
-            thumbnail: `https://picsum.photos/400/225?random=${i + 40}`,
-            video_count: Math.floor(Math.random() * 25 + 5),
-            total_duration: `${Math.floor(Math.random() * 10 + 2)} hours`
-        }));
-    }
-
-    // Utility functions
     delay(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
     }
-
-    getRandomDate() {
-        const start = new Date(2023, 0, 1);
-        const end = new Date();
-        const date = new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
-        return date.toISOString().split('T')[0];
-    }
-
-    decodeHtmlEntities(text) {
-        const textArea = document.createElement('textarea');
-        textArea.innerHTML = text;
-        return textArea.value;
-    }
-
-    // Content rendering functions
-    renderFeaturedContent(videos, podcasts) {
-        let content = '<div class="featured-content__tabs">';
-        
-        if (videos.length > 0) {
-            content += `
-                <div class="featured-item">
-                    <h3>Latest Video</h3>
-                    <div class="card">
-                        <div class="card__image">
-                            <img src="${videos[0].thumbnail}" alt="${this.decodeHtmlEntities(videos[0].title)}">
-                            <div class="card__overlay">
-                                <a href="${videos[0].videourl}" target="_blank" class="card__play-btn">
-                                    <i data-lucide="play"></i>
-                                </a>
-                            </div>
-                            <div class="card__badge">
-                                <i data-lucide="play"></i>
-                                Video
-                            </div>
-                            <div class="card__duration">${videos[0].duration}</div>
-                        </div>
-                        <div class="card__content">
-                            <h4 class="card__title">${this.decodeHtmlEntities(videos[0].title)}</h4>
-                            <div class="card__meta">
-                                <span>${videos[0].views}</span>
-                            </div>
-                            <a href="${videos[0].videourl}" target="_blank" class="btn btn--primary">
-                                <i data-lucide="play"></i>
-                                Watch Now
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            `;
-        }
-
-        if (podcasts.length > 0) {
-            content += `
-                <div class="featured-item">
-                    <h3>Latest Podcast</h3>
-                    <div class="card">
-                        <div class="card__image">
-                            <img src="${podcasts[0].thumbnail}" alt="${this.decodeHtmlEntities(podcasts[0].title)}">
-                            <div class="card__overlay">
-                                <a href="${podcasts[0].videourl}" target="_blank" class="card__play-btn">
-                                    <i data-lucide="mic"></i>
-                                </a>
-                            </div>
-                            <div class="card__badge">
-                                <i data-lucide="mic"></i>
-                                Podcast
-                            </div>
-                            <div class="card__duration">${podcasts[0].duration}</div>
-                        </div>
-                        <div class="card__content">
-                            <h4 class="card__title">${this.decodeHtmlEntities(podcasts[0].title)}</h4>
-                            <a href="${podcasts[0].videourl}" target="_blank" class="btn btn--primary">
-                                <i data-lucide="mic"></i>
-                                Listen Now
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            `;
-        }
-
-        content += '</div>';
-        return content;
-    }
-
-    renderVideosGrid(videos) {
-        return videos.map(video => `
-            <div class="card">
-                <div class="card__image">
-                    <img src="${video.thumbnail}" alt="${this.decodeHtmlEntities(video.title)}">
-                    <div class="card__overlay">
-                        <a href="${video.videourl}" target="_blank" class="card__play-btn">
-                            <i data-lucide="play"></i>
-                        </a>
-                    </div>
-                    <div class="card__badge">
-                        <i data-lucide="play"></i>
-                        Video
-                    </div>
-                    <div class="card__duration">${video.duration}</div>
-                </div>
-                <div class="card__content">
-                    <h3 class="card__title">${this.decodeHtmlEntities(video.title)}</h3>
-                    <div class="card__meta">
-                        <span>${video.views}</span>
-                    </div>
-                    <a href="${video.videourl}" target="_blank" class="btn btn--primary">
-                        <i data-lucide="play"></i>
-                        Watch Now
-                    </a>
-                </div>
-            </div>
-        `).join('');
-    }
-
-    renderPodcastsGrid(podcasts) {
-        return podcasts.map(podcast => `
-            <div class="card">
-                <div class="card__image">
-                    <img src="${podcast.thumbnail}" alt="${this.decodeHtmlEntities(podcast.title)}">
-                    <div class="card__overlay">
-                        <a href="${podcast.videourl}" target="_blank" class="card__play-btn">
-                            <i data-lucide="mic"></i>
-                        </a>
-                    </div>
-                    <div class="card__badge">
-                        <i data-lucide="mic"></i>
-                        Podcast
-                    </div>
-                    <div class="card__duration">${podcast.duration}</div>
-                </div>
-                <div class="card__content">
-                    <h3 class="card__title">${this.decodeHtmlEntities(podcast.title)}</h3>
-                    <a href="${podcast.videourl}" target="_blank" class="btn btn--primary">
-                        <i data-lucide="mic"></i>
-                        Listen Now
-                    </a>
-                </div>
-            </div>
-        `).join('');
-    }
-
-    renderPlaylistsGrid(playlists) {
-        return playlists.map(playlist => `
-            <div class="card">
-                <div class="card__image">
-                    <img src="${playlist.thumbnail}" alt="${this.decodeHtmlEntities(playlist.title)}">
-                    <div class="card__overlay">
-                        <a href="playlists.html" class="card__play-btn">
-                            <i data-lucide="list"></i>
-                        </a>
-                    </div>
-                    <div class="card__badge">
-                        <i data-lucide="list"></i>
-                        ${playlist.video_count} videos
-                    </div>
-                </div>
-                <div class="card__content">
-                    <h3 class="card__title">${this.decodeHtmlEntities(playlist.title)}</h3>
-                    <div class="card__meta">
-                        <span>${playlist.total_duration}</span>
-                    </div>
-                    <a href="playlists.html" class="btn btn--primary">
-                        <i data-lucide="list"></i>
-                        View Playlist
-                    </a>
-                </div>
-            </div>
-        `).join('');
-    }
 }
 
-// Global utility functions
-function scrollToSection(sectionId) {
-    const element = document.getElementById(sectionId);
-    if (element) {
-        element.scrollIntoView({ 
-            behavior: 'smooth',
-            block: 'start'
-        });
-    }
-}
-
-// Initialize app when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-    new WPSimplified();
+    new IndexPage();
 });
-
-// Export for other scripts if needed
-window.WPSimplified = WPSimplified;
