@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found - WPSimplified</title>
+    <meta name="description" content="The page you're looking for doesn't exist. Explore WPSimplified's WordPress tutorials, guides, and resources.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/lucide.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header__content">
+                <!-- Logo -->
+                <a href="index.html" class="header__logo">
+                    <img src="images/logo-white.png" alt="WPSimplified Logo">
+                </a>
+                
+                <!-- Desktop Navigation -->
+                <nav class="header__nav">
+                    <a href="index.html" class="header__nav-item">
+                        <i data-lucide="home"></i>
+                        <span>Home</span>
+                    </a>
+                    <a href="playlists.html" class="header__nav-item">
+                        <i data-lucide="list"></i>
+                        <span>Playlists</span>
+                    </a>
+                    <a href="videos.html" class="header__nav-item">
+                        <i data-lucide="play"></i>
+                        <span>Videos</span>
+                    </a>
+                    <a href="podcasts.html" class="header__nav-item">
+                        <i data-lucide="mic"></i>
+                        <span>Podcasts</span>
+                    </a>
+                    <a href="shorts.html" class="header__nav-item">
+                        <i data-lucide="play"></i>
+                        <span>Shorts</span>
+                    </a>
+                    <a href="sponsors.html" class="header__nav-item">
+                        <i data-lucide="award"></i>
+                        <span>Sponsors</span>
+                    </a>
+                    <a href="contact.html" class="header__nav-item">
+                        <i data-lucide="message-circle"></i>
+                        <span>Contact</span>
+                    </a>
+                </nav>
+                
+                <!-- Subscribe Button -->
+                <a href="https://www.youtube.com/@wpsimplifiedbysunil" target="_blank" class="header__subscribe">
+                    🔔 Subscribe
+                </a>
+                
+                <!-- Mobile Menu Button -->
+                <button class="header__mobile-btn" id="mobileMenuBtn">
+                    <i data-lucide="menu"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu__overlay"></div>
+        <div class="mobile-menu__content">
+            <div class="mobile-menu__header">
+                <img src="images/logo-white.png" alt="WPSimplified Logo">
+                <button class="mobile-menu__close" id="mobileMenuClose">
+                    <i data-lucide="x"></i>
+                </button>
+            </div>
+            <nav class="mobile-menu__nav">
+                <a href="index.html" class="mobile-menu__nav-item">
+                    <i data-lucide="home"></i>
+                    <span>Home</span>
+                </a>
+                <a href="playlists.html" class="mobile-menu__nav-item">
+                    <i data-lucide="list"></i>
+                    <span>Playlists</span>
+                </a>
+                <a href="videos.html" class="mobile-menu__nav-item">
+                    <i data-lucide="play"></i>
+                    <span>Videos</span>
+                </a>
+                <a href="podcasts.html" class="mobile-menu__nav-item">
+                    <i data-lucide="mic"></i>
+                    <span>Podcasts</span>
+                </a>
+                <a href="shorts.html" class="mobile-menu__nav-item">
+                    <i data-lucide="play"></i>
+                    <span>Shorts</span>
+                </a>
+                <a href="sponsors.html" class="mobile-menu__nav-item">
+                    <i data-lucide="award"></i>
+                    <span>Sponsors</span>
+                </a>
+                <a href="contact.html" class="mobile-menu__nav-item">
+                    <i data-lucide="message-circle"></i>
+                    <span>Contact</span>
+                </a>
+            </nav>
+            <div class="mobile-menu__subscribe">
+                <a href="https://www.youtube.com/@wpsimplifiedbysunil" target="_blank" class="btn btn--primary btn--lg">
+                    🔔 Subscribe to Channel
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Main Content -->
+    <main>
+        <!-- 404 Section -->
+        <section class="hero error-page">
+            <div class="hero__background">
+                <div class="hero__grid"></div>
+                <div class="hero__orb hero__orb--1"></div>
+                <div class="hero__orb hero__orb--2"></div>
+                <div class="hero__orb hero__orb--3"></div>
+            </div>
+            
+            <div class="container">
+                <div class="error-content">
+                    <div class="error-content__main">
+                        <div class="error-code">404</div>
+                        <h1>Page Not Found</h1>
+                        <p>Oops! The page you're looking for doesn't exist. It might have been moved, deleted, or you entered a wrong URL.</p>
+                        
+                        <div class="error-actions">
+                            <a href="index.html" class="btn btn--primary btn--lg">
+                                <i data-lucide="home"></i>
+                                Go Home
+                            </a>
+                            <button id="goBackBtn" class="btn btn--outline btn--lg">
+                                <i data-lucide="arrow-left"></i>
+                                Go Back
+                            </button>
+                        </div>
+                        
+                        <!-- Search Form -->
+                        <div class="error-search">
+                            <h3>Or search for content:</h3>
+                            <form class="search-form" id="errorSearchForm">
+                                <div class="search-form__wrapper">
+                                    <input 
+                                        type="text" 
+                                        id="searchInput"
+                                        placeholder="Search WordPress tutorials..."
+                                        class="search-form__input"
+                                    >
+                                    <button type="submit" class="search-form__button">
+                                        <i data-lucide="search"></i>
+                                        Search
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Popular Content Section -->
+        <section class="section">
+            <div class="container">
+                <div class="popular-content">
+                    <div class="section__header">
+                        <h2>Popular Content</h2>
+                        <p>Check out some of our most popular WordPress tutorials and guides</p>
+                    </div>
+                    
+                    <div class="popular-links">
+                        <div class="popular-links__category">
+                            <h3>
+                                <i data-lucide="play"></i>
+                                Popular Videos
+                            </h3>
+                            <div class="links-list">
+                                <a href="videos.html">
+                                    <i data-lucide="arrow-right"></i>
+                                    WordPress for Beginners
+                                </a>
+                                <a href="videos.html">
+                                    <i data-lucide="arrow-right"></i>
+                                    Theme Development Guide
+                                </a>
+                                <a href="videos.html">
+                                    <i data-lucide="arrow-right"></i>
+                                    Plugin Creation Tutorial
+                                </a>
+                                <a href="videos.html">
+                                    <i data-lucide="arrow-right"></i>
+                                    WordPress Security Tips
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="popular-links__category">
+                            <h3>
+                                <i data-lucide="list"></i>
+                                Popular Playlists
+                            </h3>
+                            <div class="links-list">
+                                <a href="playlists.html">
+                                    <i data-lucide="arrow-right"></i>
+                                    Complete WordPress Course
+                                </a>
+                                <a href="playlists.html">
+                                    <i data-lucide="arrow-right"></i>
+                                    WooCommerce Mastery
+                                </a>
+                                <a href="playlists.html">
+                                    <i data-lucide="arrow-right"></i>
+                                    Advanced Development
+                                </a>
+                                <a href="playlists.html">
+                                    <i data-lucide="arrow-right"></i>
+                                    Performance Optimization
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="popular-links__category">
+                            <h3>
+                                <i data-lucide="mic"></i>
+                                Popular Podcasts
+                            </h3>
+                            <div class="links-list">
+                                <a href="podcasts.html">
+                                    <i data-lucide="arrow-right"></i>
+                                    WordPress Expert Interviews
+                                </a>
+                                <a href="podcasts.html">
+                                    <i data-lucide="arrow-right"></i>
+                                    Community Discussions
+                                </a>
+                                <a href="podcasts.html">
+                                    <i data-lucide="arrow-right"></i>
+                                    Industry Insights
+                                </a>
+                                <a href="podcasts.html">
+                                    <i data-lucide="arrow-right"></i>
+                                    Developer Stories
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="popular-links__category">
+                            <h3>
+                                <i data-lucide="zap"></i>
+                                Quick Tips
+                            </h3>
+                            <div class="links-list">
+                                <a href="shorts.html">
+                                    <i data-lucide="arrow-right"></i>
+                                    WordPress Shorts
+                                </a>
+                                <a href="contact.html">
+                                    <i data-lucide="arrow-right"></i>
+                                    Contact Support
+                                </a>
+                                <a href="sponsors.html">
+                                    <i data-lucide="arrow-right"></i>
+                                    Partnership Info
+                                </a>
+                                <a href="index.html">
+                                    <i data-lucide="arrow-right"></i>
+                                    Latest Updates
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__content">
+                <div class="footer__left">
+                    <div class="footer__brand">
+                        <img src="images/logo-white.png" alt="WPSimplified Logo">
+                        <p>Simplifying WordPress for everyone</p>
+                    </div>
+                    
+                    <div class="footer__social">
+                        <a href="https://www.youtube.com/@wpsimplifiedbysunil" target="_blank">
+                            <i data-lucide="youtube"></i>
+                        </a>
+                        <a href="https://twitter.com/sunilkumar" target="_blank">
+                            <i data-lucide="twitter"></i>
+                        </a>
+                        <a href="https://linkedin.com/in/sunilkumar" target="_blank">
+                            <i data-lucide="linkedin"></i>
+                        </a>
+                        <a href="https://github.com/sunilkumar" target="_blank">
+                            <i data-lucide="github"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer__links">
+                    <div class="footer__links-group">
+                        <h4>Quick Links</h4>
+                        <a href="index.html">Home</a>
+                        <a href="videos.html">Videos</a>
+                        <a href="playlists.html">Playlists</a>
+                        <a href="podcasts.html">Podcasts</a>
+                    </div>
+                    
+                    <div class="footer__links-group">
+                        <h4>More</h4>
+                        <a href="shorts.html">Shorts</a>
+                        <a href="sponsors.html">Sponsors</a>
+                        <a href="contact.html">Contact</a>
+                    </div>
+                </div>
+                
+                <div class="footer__newsletter">
+                    <h4>Join the Community</h4>
+                    <p>Subscribe to my YouTube channel for the latest WordPress tutorials</p>
+                    <a href="https://www.youtube.com/@wpsimplifiedbysunil" target="_blank" class="btn btn--primary">
+                        <i data-lucide="youtube"></i>
+                        Subscribe
+                    </a>
+                </div>
+            </div>
+            
+            <div class="footer__bottom">
+                <p>&copy; 2024 WPSimplified. All rights reserved.</p>
+                <div class="footer__bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Cookies</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Scripts -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <script src="404.js"></script>
+</body>
+</html>

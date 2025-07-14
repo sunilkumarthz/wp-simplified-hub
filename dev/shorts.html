@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WordPress Shorts - Quick Tutorial Videos | WPSimplified</title>
+    <meta name="description" content="Quick, bite-sized WordPress tutorials and tips. Perfect for learning on the go and getting instant solutions to common WordPress challenges.">
+    <meta name="keywords" content="WordPress shorts, WordPress tips, quick WordPress tutorials, WordPress solutions, WordPress hacks">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/lucide.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header__content">
+                <!-- Logo -->
+                <a href="index.html" class="header__logo">
+                    <img src="images/logo-white.png" alt="WPSimplified Logo">
+                </a>
+                
+                <!-- Desktop Navigation -->
+                <nav class="header__nav">
+                    <a href="index.html" class="header__nav-item">
+                        <i data-lucide="home"></i>
+                        <span>Home</span>
+                    </a>
+                    <a href="playlists.html" class="header__nav-item">
+                        <i data-lucide="list"></i>
+                        <span>Playlists</span>
+                    </a>
+                    <a href="videos.html" class="header__nav-item">
+                        <i data-lucide="play"></i>
+                        <span>Videos</span>
+                    </a>
+                    <a href="podcasts.html" class="header__nav-item">
+                        <i data-lucide="mic"></i>
+                        <span>Podcasts</span>
+                    </a>
+                    <a href="shorts.html" class="header__nav-item header__nav-item--active">
+                        <i data-lucide="play"></i>
+                        <span>Shorts</span>
+                    </a>
+                    <a href="sponsors.html" class="header__nav-item">
+                        <i data-lucide="award"></i>
+                        <span>Sponsors</span>
+                    </a>
+                    <a href="contact.html" class="header__nav-item">
+                        <i data-lucide="message-circle"></i>
+                        <span>Contact</span>
+                    </a>
+                </nav>
+                
+                <!-- Subscribe Button -->
+                <a href="https://www.youtube.com/@wpsimplifiedbysunil" target="_blank" class="header__subscribe">
+                    🔔 Subscribe
+                </a>
+                
+                <!-- Mobile Menu Button -->
+                <button class="header__mobile-btn" id="mobileMenuBtn">
+                    <i data-lucide="menu"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu__overlay"></div>
+        <div class="mobile-menu__content">
+            <div class="mobile-menu__header">
+                <img src="images/logo-white.png" alt="WPSimplified Logo">
+                <button class="mobile-menu__close" id="mobileMenuClose">
+                    <i data-lucide="x"></i>
+                </button>
+            </div>
+            <nav class="mobile-menu__nav">
+                <a href="index.html" class="mobile-menu__nav-item">
+                    <i data-lucide="home"></i>
+                    <span>Home</span>
+                </a>
+                <a href="playlists.html" class="mobile-menu__nav-item">
+                    <i data-lucide="list"></i>
+                    <span>Playlists</span>
+                </a>
+                <a href="videos.html" class="mobile-menu__nav-item">
+                    <i data-lucide="play"></i>
+                    <span>Videos</span>
+                </a>
+                <a href="podcasts.html" class="mobile-menu__nav-item">
+                    <i data-lucide="mic"></i>
+                    <span>Podcasts</span>
+                </a>
+                <a href="shorts.html" class="mobile-menu__nav-item mobile-menu__nav-item--active">
+                    <i data-lucide="play"></i>
+                    <span>Shorts</span>
+                </a>
+                <a href="sponsors.html" class="mobile-menu__nav-item">
+                    <i data-lucide="award"></i>
+                    <span>Sponsors</span>
+                </a>
+                <a href="contact.html" class="mobile-menu__nav-item">
+                    <i data-lucide="message-circle"></i>
+                    <span>Contact</span>
+                </a>
+            </nav>
+            <div class="mobile-menu__subscribe">
+                <a href="https://www.youtube.com/@wpsimplifiedbysunil" target="_blank" class="btn btn--primary btn--lg">
+                    🔔 Subscribe to Channel
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero hero--shorts">
+            <div class="hero__background">
+                <div class="hero__grid"></div>
+                <div class="hero__orb hero__orb--1"></div>
+                <div class="hero__orb hero__orb--2"></div>
+                <div class="hero__orb hero__orb--3"></div>
+            </div>
+            
+            <div class="container">
+                <div class="shorts-hero">
+                    <div class="shorts-hero__content">
+                        <h1>WordPress <span class="text-gradient">Shorts</span></h1>
+                        <p>Quick, bite-sized WordPress tutorials and tips. Perfect for learning on the go and getting instant solutions to common WordPress challenges.</p>
+                        
+                        <div class="shorts-hero__features">
+                            <div class="feature">
+                                <i data-lucide="zap"></i>
+                                <span>Quick Tips</span>
+                            </div>
+                            <div class="feature">
+                                <i data-lucide="target"></i>
+                                <span>Focused Solutions</span>
+                            </div>
+                            <div class="feature">
+                                <i data-lucide="smartphone"></i>
+                                <span>Mobile Friendly</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Shorts Grid Section -->
+        <section class="section">
+            <div class="container">
+                <!-- Loading State -->
+                <div class="loading-state" id="loadingState">
+                    <div class="loading-spinner"></div>
+                    <p>Loading WordPress shorts...</p>
+                </div>
+                
+                <!-- Error State -->
+                <div class="error-state" id="errorState" style="display: none;">
+                    <p>Failed to load shorts. Please try again later.</p>
+                </div>
+                
+                <!-- Empty State -->
+                <div class="empty-state" id="emptyState" style="display: none;">
+                    <p>No shorts available yet. Check back soon for amazing WordPress content!</p>
+                </div>
+                
+                <!-- Shorts Grid -->
+                <div class="shorts-grid" id="shortsGrid"></div>
+                
+                <!-- Load More Button -->
+                <div class="load-more" id="loadMoreSection" style="display: none;">
+                    <button class="btn btn--outline btn--lg" id="loadMoreBtn">
+                        Load More WordPress Shorts (<span id="remainingCount">0</span> remaining)
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__content">
+                <div class="footer__left">
+                    <div class="footer__brand">
+                        <img src="images/logo-white.png" alt="WPSimplified Logo">
+                        <p>Simplifying WordPress for everyone</p>
+                    </div>
+                    
+                    <div class="footer__social">
+                        <a href="https://www.youtube.com/@wpsimplifiedbysunil" target="_blank">
+                            <i data-lucide="youtube"></i>
+                        </a>
+                        <a href="https://twitter.com/sunilkumar" target="_blank">
+                            <i data-lucide="twitter"></i>
+                        </a>
+                        <a href="https://linkedin.com/in/sunilkumar" target="_blank">
+                            <i data-lucide="linkedin"></i>
+                        </a>
+                        <a href="https://github.com/sunilkumar" target="_blank">
+                            <i data-lucide="github"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer__links">
+                    <div class="footer__links-group">
+                        <h4>Quick Links</h4>
+                        <a href="index.html">Home</a>
+                        <a href="videos.html">Videos</a>
+                        <a href="playlists.html">Playlists</a>
+                        <a href="podcasts.html">Podcasts</a>
+                    </div>
+                    
+                    <div class="footer__links-group">
+                        <h4>More</h4>
+                        <a href="shorts.html">Shorts</a>
+                        <a href="sponsors.html">Sponsors</a>
+                        <a href="contact.html">Contact</a>
+                    </div>
+                </div>
+                
+                <div class="footer__newsletter">
+                    <h4>Join the Community</h4>
+                    <p>Subscribe to my YouTube channel for the latest WordPress tutorials</p>
+                    <a href="https://www.youtube.com/@wpsimplifiedbysunil" target="_blank" class="btn btn--primary">
+                        <i data-lucide="youtube"></i>
+                        Subscribe
+                    </a>
+                </div>
+            </div>
+            
+            <div class="footer__bottom">
+                <p>&copy; 2024 WPSimplified. All rights reserved.</p>
+                <div class="footer__bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Cookies</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Scripts -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <script src="shorts.js"></script>
+</body>
+</html>
