@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WPSimplified - Master WordPress with Expert Tutorials</title>
+    <meta name="description" content="Learn WordPress from beginner to expert with Sunil Kumar Sharma. Comprehensive tutorials, themes, plugins, and optimization guides.">
+    <meta name="keywords" content="WordPress tutorials, WordPress development, WooCommerce, Gutenberg, WordPress themes, WordPress plugins">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/lucide.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header__content">
+                <!-- Logo -->
+                <a href="index.html" class="header__logo">
+                    <img src="images/logo-white.png" alt="WPSimplified Logo">
+                </a>
+                
+                <!-- Desktop Navigation -->
+                <nav class="header__nav">
+                    <a href="index.html" class="header__nav-item header__nav-item--active">
+                        <i data-lucide="home"></i>
+                        <span>Home</span>
+                    </a>
+                    <a href="playlists.html" class="header__nav-item">
+                        <i data-lucide="list"></i>
+                        <span>Playlists</span>
+                    </a>
+                    <a href="videos.html" class="header__nav-item">
+                        <i data-lucide="play"></i>
+                        <span>Videos</span>
+                    </a>
+                    <a href="podcasts.html" class="header__nav-item">
+                        <i data-lucide="mic"></i>
+                        <span>Podcasts</span>
+                    </a>
+                    <a href="shorts.html" class="header__nav-item">
+                        <i data-lucide="play"></i>
+                        <span>Shorts</span>
+                    </a>
+                    <a href="sponsors.html" class="header__nav-item">
+                        <i data-lucide="award"></i>
+                        <span>Sponsors</span>
+                    </a>
+                    <a href="contact.html" class="header__nav-item">
+                        <i data-lucide="message-circle"></i>
+                        <span>Contact</span>
+                    </a>
+                </nav>
+                
+                <!-- Subscribe Button -->
+                <a href="https://www.youtube.com/@wpsimplifiedbysunil" target="_blank" class="header__subscribe">
+                    🔔 Subscribe
+                </a>
+                
+                <!-- Mobile Menu Button -->
+                <button class="header__mobile-btn" id="mobileMenuBtn">
+                    <i data-lucide="menu"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu__overlay"></div>
+        <div class="mobile-menu__content">
+            <div class="mobile-menu__header">
+                <img src="images/logo-white.png" alt="WPSimplified Logo">
+                <button class="mobile-menu__close" id="mobileMenuClose">
+                    <i data-lucide="x"></i>
+                </button>
+            </div>
+            <nav class="mobile-menu__nav">
+                <a href="index.html" class="mobile-menu__nav-item mobile-menu__nav-item--active">
+                    <i data-lucide="home"></i>
+                    <span>Home</span>
+                </a>
+                <a href="playlists.html" class="mobile-menu__nav-item">
+                    <i data-lucide="list"></i>
+                    <span>Playlists</span>
+                </a>
+                <a href="videos.html" class="mobile-menu__nav-item">
+                    <i data-lucide="play"></i>
+                    <span>Videos</span>
+                </a>
+                <a href="podcasts.html" class="mobile-menu__nav-item">
+                    <i data-lucide="mic"></i>
+                    <span>Podcasts</span>
+                </a>
+                <a href="shorts.html" class="mobile-menu__nav-item">
+                    <i data-lucide="play"></i>
+                    <span>Shorts</span>
+                </a>
+                <a href="sponsors.html" class="mobile-menu__nav-item">
+                    <i data-lucide="award"></i>
+                    <span>Sponsors</span>
+                </a>
+                <a href="contact.html" class="mobile-menu__nav-item">
+                    <i data-lucide="message-circle"></i>
+                    <span>Contact</span>
+                </a>
+            </nav>
+            <div class="mobile-menu__subscribe">
+                <a href="https://www.youtube.com/@wpsimplifiedbysunil" target="_blank" class="btn btn--primary btn--lg">
+                    🔔 Subscribe to Channel
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero__background">
+                <div class="hero__grid"></div>
+                <div class="hero__orb hero__orb--1"></div>
+                <div class="hero__orb hero__orb--2"></div>
+                <div class="hero__orb hero__orb--3"></div>
+            </div>
+            
+            <div class="container">
+                <div class="hero__content">
+                    <div class="hero__left">
+                        <div class="hero__badge">
+                            <i data-lucide="award"></i>
+                            <span>WordPress Expert & Content Creator</span>
+                            <i data-lucide="star"></i>
+                        </div>
+                        
+                        <div class="hero__heading">
+                            <h1>
+                                Master
+                                <span class="hero__heading-gradient">WordPress</span>
+                            </h1>
+                            <p class="hero__subheading">
+                                with <span class="hero__name">Sunil Kumar Sharma</span>
+                            </p>
+                        </div>
+                        
+                        <p class="hero__description">
+                            Transform your WordPress journey from beginner to expert with comprehensive tutorials, 
+                            practical guides, and insider insights that <span class="text-accent">actually work</span>.
+                        </p>
+                        
+                        <div class="hero__buttons">
+                            <button class="btn btn--primary btn--lg" onclick="scrollToSection('latest-videos')">
+                                <i data-lucide="play"></i>
+                                <span>Start Learning Now</span>
+                                <i data-lucide="arrow-right"></i>
+                            </button>
+                            <button class="btn btn--outline btn--lg">
+                                <i data-lucide="globe"></i>
+                                <span>Explore Content</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="hero__right">
+                        <div class="featured-content">
+                            <div class="featured-content__loading" id="featuredLoading">
+                                <div class="loading-spinner"></div>
+                                <p>Loading featured content...</p>
+                            </div>
+                            <div class="featured-content__items" id="featuredContent"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Latest Videos Section -->
+        <section id="latest-videos" class="section">
+            <div class="container">
+                <div class="section__header">
+                    <h2>Latest Videos</h2>
+                    <p>Stay updated with the newest WordPress tutorials and guides</p>
+                    <a href="videos.html" class="btn btn--outline">View All Videos</a>
+                </div>
+                
+                <div class="videos-grid" id="latestVideos">
+                    <div class="loading-spinner"></div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- About Section -->
+        <section id="about" class="section section--alt">
+            <div class="container">
+                <div class="about">
+                    <div class="about__content">
+                        <h2>About WPSimplified</h2>
+                        <p class="about__intro">
+                            Welcome to WPSimplified, where WordPress mastery becomes achievable for everyone. 
+                            I'm Sunil Kumar Sharma, and I've dedicated my career to demystifying WordPress 
+                            through practical, easy-to-follow tutorials.
+                        </p>
+                        
+                        <div class="about__details">
+                            <p>
+                                With over <strong>8+ years</strong> of experience in WordPress development, 
+                                I've helped thousands of beginners transform into confident WordPress users. 
+                                From creating stunning websites to optimizing performance, my tutorials cover 
+                                every aspect of WordPress you need to know.
+                            </p>
+                            
+                            <p>
+                                Whether you're a complete beginner looking to build your first website or 
+                                an experienced developer wanting to enhance your skills, you'll find valuable 
+                                content here that's both practical and immediately applicable.
+                            </p>
+                        </div>
+                        
+                        <div class="about__stats">
+                            <div class="stat">
+                                <div class="stat__number">500+</div>
+                                <div class="stat__label">Tutorial Videos</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat__number">50K+</div>
+                                <div class="stat__label">Students Helped</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat__number">8+</div>
+                                <div class="stat__label">Years Experience</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="about__image">
+                        <div class="card">
+                            <img src="images/profile.png" alt="Sunil Kumar Sharma - WordPress Expert">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Latest Podcasts Section -->
+        <section id="latest-podcasts" class="section">
+            <div class="container">
+                <div class="section__header">
+                    <h2>Latest Podcasts</h2>
+                    <p>In-depth conversations with WordPress experts and community leaders</p>
+                    <a href="podcasts.html" class="btn btn--outline">View All Podcasts</a>
+                </div>
+                
+                <div class="podcasts-grid" id="latestPodcasts">
+                    <div class="loading-spinner"></div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Featured Playlists Section -->
+        <section id="playlists" class="section section--alt">
+            <div class="container">
+                <div class="section__header">
+                    <h2>Featured Playlists</h2>
+                    <p>Structured learning paths for comprehensive WordPress mastery</p>
+                    <a href="playlists.html" class="btn btn--outline">View All Playlists</a>
+                </div>
+                
+                <div class="playlists-grid" id="featuredPlaylists">
+                    <div class="loading-spinner"></div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Community Involvement Section -->
+        <section id="community-involvement" class="section">
+            <div class="container">
+                <div class="community">
+                    <div class="community__content">
+                        <h2>Community Involvement</h2>
+                        <p class="community__intro">
+                            Active in the WordPress community, contributing to its growth and helping fellow developers.
+                        </p>
+                        
+                        <div class="community__items">
+                            <div class="community__item">
+                                <div class="community__item-icon">
+                                    <i data-lucide="users"></i>
+                                </div>
+                                <div class="community__item-content">
+                                    <h3>WordPress Meetups</h3>
+                                    <p>Regular speaker at WordPress meetups and WordCamps</p>
+                                </div>
+                            </div>
+                            
+                            <div class="community__item">
+                                <div class="community__item-icon">
+                                    <i data-lucide="code"></i>
+                                </div>
+                                <div class="community__item-content">
+                                    <h3>Open Source Contributor</h3>
+                                    <p>Contributing to WordPress core and community plugins</p>
+                                </div>
+                            </div>
+                            
+                            <div class="community__item">
+                                <div class="community__item-icon">
+                                    <i data-lucide="heart"></i>
+                                </div>
+                                <div class="community__item-content">
+                                    <h3>Mentoring</h3>
+                                    <p>Helping new developers start their WordPress journey</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Social Section -->
+        <section id="social" class="section section--alt">
+            <div class="container">
+                <div class="social">
+                    <div class="social__content">
+                        <h2>Connect With Me</h2>
+                        <p>Follow me on social media for the latest updates and WordPress tips</p>
+                        
+                        <div class="social__links">
+                            <a href="https://www.youtube.com/@wpsimplifiedbysunil" target="_blank" class="social__link social__link--youtube">
+                                <i data-lucide="youtube"></i>
+                                <span>YouTube</span>
+                            </a>
+                            <a href="https://twitter.com/sunilkumar" target="_blank" class="social__link social__link--twitter">
+                                <i data-lucide="twitter"></i>
+                                <span>Twitter</span>
+                            </a>
+                            <a href="https://linkedin.com/in/sunilkumar" target="_blank" class="social__link social__link--linkedin">
+                                <i data-lucide="linkedin"></i>
+                                <span>LinkedIn</span>
+                            </a>
+                            <a href="https://github.com/sunilkumar" target="_blank" class="social__link social__link--github">
+                                <i data-lucide="github"></i>
+                                <span>GitHub</span>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="social__cta">
+                        <h3>Join the Community</h3>
+                        <p>Subscribe to my YouTube channel for regular WordPress tutorials</p>
+                        <a href="https://www.youtube.com/@wpsimplifiedbysunil" target="_blank" class="btn btn--primary btn--lg">
+                            <i data-lucide="youtube"></i>
+                            Subscribe Now
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__content">
+                <div class="footer__left">
+                    <div class="footer__brand">
+                        <img src="images/logo-white.png" alt="WPSimplified Logo">
+                        <p>Simplifying WordPress for everyone</p>
+                    </div>
+                    
+                    <div class="footer__social">
+                        <a href="https://www.youtube.com/@wpsimplifiedbysunil" target="_blank">
+                            <i data-lucide="youtube"></i>
+                        </a>
+                        <a href="https://twitter.com/sunilkumar" target="_blank">
+                            <i data-lucide="twitter"></i>
+                        </a>
+                        <a href="https://linkedin.com/in/sunilkumar" target="_blank">
+                            <i data-lucide="linkedin"></i>
+                        </a>
+                        <a href="https://github.com/sunilkumar" target="_blank">
+                            <i data-lucide="github"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer__links">
+                    <div class="footer__links-group">
+                        <h4>Quick Links</h4>
+                        <a href="index.html">Home</a>
+                        <a href="videos.html">Videos</a>
+                        <a href="playlists.html">Playlists</a>
+                        <a href="podcasts.html">Podcasts</a>
+                    </div>
+                    
+                    <div class="footer__links-group">
+                        <h4>More</h4>
+                        <a href="shorts.html">Shorts</a>
+                        <a href="sponsors.html">Sponsors</a>
+                        <a href="contact.html">Contact</a>
+                    </div>
+                </div>
+                
+                <div class="footer__newsletter">
+                    <h4>Join the Community</h4>
+                    <p>Subscribe to my YouTube channel for the latest WordPress tutorials</p>
+                    <a href="https://www.youtube.com/@wpsimplifiedbysunil" target="_blank" class="btn btn--primary">
+                        <i data-lucide="youtube"></i>
+                        Subscribe
+                    </a>
+                </div>
+            </div>
+            
+            <div class="footer__bottom">
+                <p>&copy; 2024 WPSimplified. All rights reserved.</p>
+                <div class="footer__bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Cookies</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Scripts -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
