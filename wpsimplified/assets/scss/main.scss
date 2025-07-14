@@ -1,5 +1,5 @@
-// WPSimplified Theme SCSS
-// Main stylesheet compiled from multiple SCSS files
+// WPSimplified Theme SCSS - Complete React-like styling
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
 
 // Variables
 @import 'variables';
@@ -8,29 +8,25 @@
 // Base styles
 @import 'base';
 @import 'typography';
+@import 'utilities';
 
 // Layout components
-@import 'header';
-@import 'footer';
-@import 'hero';
-
-// Content components
-@import 'cards';
-@import 'forms';
-@import 'buttons';
+@import 'components/header';
+@import 'components/footer';
+@import 'components/hero';
+@import 'components/cards';
+@import 'components/buttons';
+@import 'components/forms';
 
 // Page specific styles
 @import 'pages/home';
-@import 'pages/blog';
 @import 'pages/videos';
 @import 'pages/podcasts';
 @import 'pages/playlists';
 @import 'pages/shorts';
 @import 'pages/sponsors';
 @import 'pages/contact';
-
-// Utility classes
-@import 'utilities';
+@import 'pages/blog';
 
 // Responsive design
 @import 'responsive';

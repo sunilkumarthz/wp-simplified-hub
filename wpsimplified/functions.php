@@ -1,8 +1,7 @@
 <?php
 /**
  * WPSimplified Theme Functions
- * 
- * Theme setup, enqueue scripts/styles, and custom functionality
+ * Enhanced version with complete React-like functionality
  */
 
 // Prevent direct access
@@ -43,14 +42,17 @@ add_action('after_setup_theme', 'wpsimplified_setup');
  * Enqueue Scripts and Styles
  */
 function wpsimplified_scripts() {
-    // Main stylesheet
-    wp_enqueue_style('wpsimplified-style', get_stylesheet_uri(), array(), '1.0.0');
+    // Compiled SCSS - Main stylesheet
+    wp_enqueue_style('wpsimplified-style', get_template_directory_uri() . '/dist/css/main.css', array(), '1.0.0');
+    
+    // Google Fonts
+    wp_enqueue_style('wpsimplified-fonts', 'https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap', array(), null);
     
     // Lucide Icons
     wp_enqueue_script('lucide-icons', 'https://unpkg.com/lucide@latest/dist/umd/lucide.js', array(), null, true);
     
-    // Main theme script
-    wp_enqueue_script('wpsimplified-script', get_template_directory_uri() . '/assets/js/theme.js', array('lucide-icons'), '1.0.0', true);
+    // Enhanced theme script
+    wp_enqueue_script('wpsimplified-script', get_template_directory_uri() . '/assets/js/enhanced-theme.js', array('lucide-icons'), '1.0.0', true);
     
     // Localize script for AJAX
     wp_localize_script('wpsimplified-script', 'wpsimplified_ajax', array(
@@ -84,6 +86,7 @@ function wpsimplified_post_types() {
         'supports' => array('title', 'editor', 'thumbnail', 'excerpt'),
         'menu_icon' => 'dashicons-video-alt3',
         'rewrite' => array('slug' => 'videos'),
+        'show_in_rest' => true,
     ));
 
     // Podcasts Post Type
@@ -105,6 +108,7 @@ function wpsimplified_post_types() {
         'supports' => array('title', 'editor', 'thumbnail', 'excerpt'),
         'menu_icon' => 'dashicons-microphone',
         'rewrite' => array('slug' => 'podcasts'),
+        'show_in_rest' => true,
     ));
 
     // Playlists Post Type
@@ -126,6 +130,7 @@ function wpsimplified_post_types() {
         'supports' => array('title', 'editor', 'thumbnail', 'excerpt'),
         'menu_icon' => 'dashicons-playlist-video',
         'rewrite' => array('slug' => 'playlists'),
+        'show_in_rest' => true,
     ));
 
     // Shorts Post Type
@@ -147,41 +152,10 @@ function wpsimplified_post_types() {
         'supports' => array('title', 'editor', 'thumbnail', 'excerpt'),
         'menu_icon' => 'dashicons-format-video',
         'rewrite' => array('slug' => 'shorts'),
+        'show_in_rest' => true,
     ));
 }
 add_action('init', 'wpsimplified_post_types');
-
-/**
- * Custom Taxonomies
- */
-function wpsimplified_taxonomies() {
-    // Video Categories
-    register_taxonomy('video_category', 'video', array(
-        'hierarchical' => true,
-        'labels' => array(
-            'name' => 'Video Categories',
-            'singular_name' => 'Video Category',
-        ),
-        'show_ui' => true,
-        'show_admin_column' => true,
-        'query_var' => true,
-        'rewrite' => array('slug' => 'video-category'),
-    ));
-
-    // Podcast Categories
-    register_taxonomy('podcast_category', 'podcast', array(
-        'hierarchical' => true,
-        'labels' => array(
-            'name' => 'Podcast Categories',
-            'singular_name' => 'Podcast Category',
-        ),
-        'show_ui' => true,
-        'show_admin_column' => true,
-        'query_var' => true,
-        'rewrite' => array('slug' => 'podcast-category'),
-    ));
-}
-add_action('init', 'wpsimplified_taxonomies');
 
 /**
  * Custom Meta Fields
@@ -201,6 +175,15 @@ function wpsimplified_meta_boxes() {
         'Podcast Details',
         'wpsimplified_podcast_meta_callback',
         'podcast',
+        'normal',
+        'high'
+    );
+
+    add_meta_box(
+        'short_details',
+        'Short Details',
+        'wpsimplified_short_meta_callback',
+        'short',
         'normal',
         'high'
     );
@@ -253,6 +236,29 @@ function wpsimplified_podcast_meta_callback($post) {
     <?php
 }
 
+function wpsimplified_short_meta_callback($post) {
+    wp_nonce_field('save_short_meta', 'short_meta_nonce');
+    $youtube_url = get_post_meta($post->ID, '_youtube_url', true);
+    $duration = get_post_meta($post->ID, '_duration', true);
+    $views = get_post_meta($post->ID, '_views', true);
+    ?>
+    <table class="form-table">
+        <tr>
+            <th><label for="youtube_url">YouTube URL</label></th>
+            <td><input type="url" id="youtube_url" name="youtube_url" value="<?php echo esc_attr($youtube_url); ?>" style="width: 100%;" /></td>
+        </tr>
+        <tr>
+            <th><label for="duration">Duration (seconds)</label></th>
+            <td><input type="text" id="duration" name="duration" value="<?php echo esc_attr($duration); ?>" placeholder="e.g., 60" /></td>
+        </tr>
+        <tr>
+            <th><label for="views">Views</label></th>
+            <td><input type="text" id="views" name="views" value="<?php echo esc_attr($views); ?>" placeholder="e.g., 5.2K" /></td>
+        </tr>
+    </table>
+    <?php
+}
+
 /**
  * Save Meta Fields
  */
@@ -282,21 +288,35 @@ function wpsimplified_save_meta($post_id) {
             update_post_meta($post_id, '_guest', sanitize_text_field($_POST['guest']));
         }
     }
+
+    // Save short meta
+    if (isset($_POST['short_meta_nonce']) && wp_verify_nonce($_POST['short_meta_nonce'], 'save_short_meta')) {
+        if (isset($_POST['youtube_url'])) {
+            update_post_meta($post_id, '_youtube_url', sanitize_url($_POST['youtube_url']));
+        }
+        if (isset($_POST['duration'])) {
+            update_post_meta($post_id, '_duration', sanitize_text_field($_POST['duration']));
+        }
+        if (isset($_POST['views'])) {
+            update_post_meta($post_id, '_views', sanitize_text_field($_POST['views']));
+        }
+    }
 }
 add_action('save_post', 'wpsimplified_save_meta');
 
 /**
  * AJAX Functions for Dynamic Content Loading
  */
-function wpsimplified_load_videos() {
+function wpsimplified_load_content() {
     check_ajax_referer('wpsimplified_nonce', 'nonce');
     
+    $post_type = sanitize_text_field($_POST['post_type'] ?? '');
     $page = intval($_POST['page'] ?? 1);
-    $posts_per_page = intval($_POST['posts_per_page'] ?? 9);
+    $posts_per_page = intval($_POST['posts_per_page'] ?? 12);
     $search = sanitize_text_field($_POST['search'] ?? '');
     
     $args = array(
-        'post_type' => 'video',
+        'post_type' => $post_type,
         'posts_per_page' => $posts_per_page,
         'paged' => $page,
         'post_status' => 'publish',
@@ -306,110 +326,52 @@ function wpsimplified_load_videos() {
         $args['s'] = $search;
     }
     
-    $videos = new WP_Query($args);
-    $response = array();
-    
-    if ($videos->have_posts()) {
-        while ($videos->have_posts()) {
-            $videos->the_post();
-            $response[] = array(
-                'id' => get_the_ID(),
-                'title' => get_the_title(),
-                'excerpt' => get_the_excerpt(),
-                'thumbnail' => get_the_post_thumbnail_url(get_the_ID(), 'large'),
-                'permalink' => get_permalink(),
-                'duration' => get_post_meta(get_the_ID(), '_duration', true),
-                'views' => get_post_meta(get_the_ID(), '_views', true),
-                'date' => get_the_date('j M Y'),
-            );
-        }
-        wp_reset_postdata();
-    }
-    
-    wp_send_json_success($response);
-}
-add_action('wp_ajax_load_videos', 'wpsimplified_load_videos');
-add_action('wp_ajax_nopriv_load_videos', 'wpsimplified_load_videos');
-
-function wpsimplified_load_podcasts() {
-    check_ajax_referer('wpsimplified_nonce', 'nonce');
-    
-    $page = intval($_POST['page'] ?? 1);
-    $posts_per_page = intval($_POST['posts_per_page'] ?? 9);
-    
-    $args = array(
-        'post_type' => 'podcast',
-        'posts_per_page' => $posts_per_page,
-        'paged' => $page,
-        'post_status' => 'publish',
+    $query = new WP_Query($args);
+    $response = array(
+        'posts' => array(),
+        'total_pages' => $query->max_num_pages,
+        'current_page' => $page,
+        'total_posts' => $query->found_posts
     );
     
-    $podcasts = new WP_Query($args);
-    $response = array();
-    
-    if ($podcasts->have_posts()) {
-        while ($podcasts->have_posts()) {
-            $podcasts->the_post();
-            $response[] = array(
+    if ($query->have_posts()) {
+        while ($query->have_posts()) {
+            $query->the_post();
+            $post_data = array(
                 'id' => get_the_ID(),
                 'title' => get_the_title(),
                 'excerpt' => get_the_excerpt(),
+                'content' => get_the_content(),
                 'thumbnail' => get_the_post_thumbnail_url(get_the_ID(), 'large'),
                 'permalink' => get_permalink(),
-                'duration' => get_post_meta(get_the_ID(), '_duration', true),
-                'guest' => get_post_meta(get_the_ID(), '_guest', true),
                 'date' => get_the_date('j M Y'),
+                'author' => get_the_author(),
             );
+            
+            // Add post type specific meta
+            switch ($post_type) {
+                case 'video':
+                case 'short':
+                    $post_data['youtube_url'] = get_post_meta(get_the_ID(), '_youtube_url', true);
+                    $post_data['duration'] = get_post_meta(get_the_ID(), '_duration', true);
+                    $post_data['views'] = get_post_meta(get_the_ID(), '_views', true);
+                    break;
+                case 'podcast':
+                    $post_data['audio_url'] = get_post_meta(get_the_ID(), '_audio_url', true);
+                    $post_data['duration'] = get_post_meta(get_the_ID(), '_duration', true);
+                    $post_data['guest'] = get_post_meta(get_the_ID(), '_guest', true);
+                    break;
+            }
+            
+            $response['posts'][] = $post_data;
         }
         wp_reset_postdata();
     }
     
     wp_send_json_success($response);
 }
-add_action('wp_ajax_load_podcasts', 'wpsimplified_load_podcasts');
-add_action('wp_ajax_nopriv_load_podcasts', 'wpsimplified_load_podcasts');
-
-/**
- * Get YouTube Thumbnail from URL
- */
-function wpsimplified_get_youtube_thumbnail($youtube_url) {
-    if (preg_match('/(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]+)/', $youtube_url, $matches)) {
-        $video_id = $matches[1];
-        return "https://img.youtube.com/vi/{$video_id}/maxresdefault.jpg";
-    }
-    return '';
-}
-
-/**
- * Custom Walker for Navigation Menu
- */
-class WPSimplified_Walker_Nav_Menu extends Walker_Nav_Menu {
-    function start_el(&$output, $item, $depth = 0, $args = null, $id = 0) {
-        $indent = ($depth) ? str_repeat("\t", $depth) : '';
-        
-        $classes = empty($item->classes) ? array() : (array) $item->classes;
-        $classes[] = 'nav-item';
-        
-        $class_names = join(' ', apply_filters('nav_menu_css_class', array_filter($classes), $item, $args));
-        $class_names = $class_names ? ' class="' . esc_attr($class_names) . '"' : '';
-        
-        $id = apply_filters('nav_menu_item_id', 'menu-item-'. $item->ID, $item, $args);
-        $id = $id ? ' id="' . esc_attr($id) . '"' : '';
-        
-        $attributes = ! empty($item->attr_title) ? ' title="'  . esc_attr($item->attr_title) .'"' : '';
-        $attributes .= ! empty($item->target) ? ' target="' . esc_attr($item->target) .'"' : '';
-        $attributes .= ! empty($item->xfn) ? ' rel="'    . esc_attr($item->xfn) .'"' : '';
-        $attributes .= ! empty($item->url) ? ' href="'   . esc_attr($item->url) .'"' : '';
-        
-        $item_output = isset($args->before) ? $args->before : '';
-        $item_output .= '<a'. $attributes .'>';
-        $item_output .= (isset($args->link_before) ? $args->link_before : '') . apply_filters('the_title', $item->title, $item->ID) . (isset($args->link_after) ? $args->link_after : '');
-        $item_output .= '</a>';
-        $item_output .= isset($args->after) ? $args->after : '';
-        
-        $output .= $indent . '<li' . $id . $class_names .'>' . $item_output;
-    }
-}
+add_action('wp_ajax_load_content', 'wpsimplified_load_content');
+add_action('wp_ajax_nopriv_load_content', 'wpsimplified_load_content');
 
 /**
  * Customizer Settings
@@ -421,67 +383,44 @@ function wpsimplified_customize_register($wp_customize) {
         'priority' => 30,
     ));
 
-    // YouTube URL
-    $wp_customize->add_setting('youtube_url', array(
-        'default' => 'https://www.youtube.com/@wpsimplifiedbysunil',
-        'sanitize_callback' => 'esc_url',
-    ));
-    
-    $wp_customize->add_control('youtube_url', array(
-        'label' => __('YouTube URL', 'wpsimplified'),
-        'section' => 'wpsimplified_social',
-        'type' => 'url',
-    ));
+    $social_links = array(
+        'youtube_url' => array('label' => 'YouTube URL', 'default' => 'https://www.youtube.com/@wpsimplifiedbysunil'),
+        'twitter_url' => array('label' => 'Twitter URL', 'default' => 'https://x.com/sunilkumarthz'),
+        'linkedin_url' => array('label' => 'LinkedIn URL', 'default' => 'https://www.linkedin.com/in/sunilkumarthz/'),
+        'github_url' => array('label' => 'GitHub URL', 'default' => 'https://github.com/sunilkumarthz'),
+        'website_url' => array('label' => 'Website URL', 'default' => 'https://sunilkumarthz.com'),
+    );
 
-    // Twitter URL
-    $wp_customize->add_setting('twitter_url', array(
-        'default' => 'https://x.com/sunilkumarthz',
-        'sanitize_callback' => 'esc_url',
-    ));
-    
-    $wp_customize->add_control('twitter_url', array(
-        'label' => __('Twitter URL', 'wpsimplified'),
-        'section' => 'wpsimplified_social',
-        'type' => 'url',
-    ));
-
-    // LinkedIn URL
-    $wp_customize->add_setting('linkedin_url', array(
-        'default' => 'https://www.linkedin.com/in/sunilkumarthz/',
-        'sanitize_callback' => 'esc_url',
-    ));
-    
-    $wp_customize->add_control('linkedin_url', array(
-        'label' => __('LinkedIn URL', 'wpsimplified'),
-        'section' => 'wpsimplified_social',
-        'type' => 'url',
-    ));
-
-    // GitHub URL
-    $wp_customize->add_setting('github_url', array(
-        'default' => 'https://github.com/sunilkumarthz',
-        'sanitize_callback' => 'esc_url',
-    ));
-    
-    $wp_customize->add_control('github_url', array(
-        'label' => __('GitHub URL', 'wpsimplified'),
-        'section' => 'wpsimplified_social',
-        'type' => 'url',
-    ));
-
-    // Website URL
-    $wp_customize->add_setting('website_url', array(
-        'default' => 'https://sunilkumarthz.com',
-        'sanitize_callback' => 'esc_url',
-    ));
-    
-    $wp_customize->add_control('website_url', array(
-        'label' => __('Website URL', 'wpsimplified'),
-        'section' => 'wpsimplified_social',
-        'type' => 'url',
-    ));
+    foreach ($social_links as $key => $link) {
+        $wp_customize->add_setting($key, array(
+            'default' => $link['default'],
+            'sanitize_callback' => 'esc_url',
+        ));
+        
+        $wp_customize->add_control($key, array(
+            'label' => __($link['label'], 'wpsimplified'),
+            'section' => 'wpsimplified_social',
+            'type' => 'url',
+        ));
+    }
 }
 add_action('customize_register', 'wpsimplified_customize_register');
+
+/**
+ * Get YouTube Video ID from URL
+ */
+function wpsimplified_get_youtube_id($url) {
+    preg_match('/(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]+)/', $url, $matches);
+    return isset($matches[1]) ? $matches[1] : '';
+}
+
+/**
+ * Get YouTube Thumbnail from URL
+ */
+function wpsimplified_get_youtube_thumbnail($youtube_url) {
+    $video_id = wpsimplified_get_youtube_id($youtube_url);
+    return $video_id ? "https://img.youtube.com/vi/{$video_id}/maxresdefault.jpg" : '';
+}
 
 /**
  * Body Classes
@@ -498,4 +437,4 @@ function wpsimplified_body_classes($classes) {
     
     return $classes;
 }
-add_filter('body_class', 'wpsimplified_body_classes');
+add_action('body_class', 'wpsimplified_body_classes');
