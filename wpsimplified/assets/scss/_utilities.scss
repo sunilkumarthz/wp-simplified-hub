@@ -1,0 +1,232 @@
+// Utility classes
+.wp-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 $spacing-md;
+  
+  @include mobile {
+    padding: 0 $spacing-sm;
+  }
+}
+
+.wp-container-wide {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 $spacing-md;
+}
+
+// Spacing utilities
+.wp-mb-0 { margin-bottom: 0; }
+.wp-mb-1 { margin-bottom: $spacing-xs; }
+.wp-mb-2 { margin-bottom: $spacing-sm; }
+.wp-mb-3 { margin-bottom: $spacing-md; }
+.wp-mb-4 { margin-bottom: $spacing-lg; }
+.wp-mb-5 { margin-bottom: $spacing-xl; }
+.wp-mb-6 { margin-bottom: $spacing-2xl; }
+.wp-mb-8 { margin-bottom: $spacing-3xl; }
+
+.wp-mt-0 { margin-top: 0; }
+.wp-mt-1 { margin-top: $spacing-xs; }
+.wp-mt-2 { margin-top: $spacing-sm; }
+.wp-mt-3 { margin-top: $spacing-md; }
+.wp-mt-4 { margin-top: $spacing-lg; }
+.wp-mt-5 { margin-top: $spacing-xl; }
+.wp-mt-6 { margin-top: $spacing-2xl; }
+.wp-mt-8 { margin-top: $spacing-3xl; }
+
+.wp-py-0 { padding-top: 0; padding-bottom: 0; }
+.wp-py-1 { padding-top: $spacing-xs; padding-bottom: $spacing-xs; }
+.wp-py-2 { padding-top: $spacing-sm; padding-bottom: $spacing-sm; }
+.wp-py-3 { padding-top: $spacing-md; padding-bottom: $spacing-md; }
+.wp-py-4 { padding-top: $spacing-lg; padding-bottom: $spacing-lg; }
+.wp-py-5 { padding-top: $spacing-xl; padding-bottom: $spacing-xl; }
+.wp-py-6 { padding-top: $spacing-2xl; padding-bottom: $spacing-2xl; }
+.wp-py-8 { padding-top: $spacing-3xl; padding-bottom: $spacing-3xl; }
+
+// Display utilities
+.wp-hidden { display: none !important; }
+.wp-block { display: block; }
+.wp-inline { display: inline; }
+.wp-inline-block { display: inline-block; }
+.wp-flex { display: flex; }
+.wp-grid { display: grid; }
+
+// Flex utilities
+.wp-flex-center {
+  @include flexCenter;
+}
+
+.wp-flex-between {
+  @include flexBetween;
+}
+
+.wp-flex-col {
+  flex-direction: column;
+}
+
+.wp-flex-wrap {
+  flex-wrap: wrap;
+}
+
+.wp-justify-center {
+  justify-content: center;
+}
+
+.wp-justify-between {
+  justify-content: space-between;
+}
+
+.wp-items-center {
+  align-items: center;
+}
+
+// Grid utilities
+.wp-grid-2 {
+  @include responsive-grid;
+  
+  @include tablet {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  @include desktop {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.wp-grid-3 {
+  @include responsive-grid;
+  
+  @include tablet {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  @include desktop {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.wp-grid-4 {
+  @include responsive-grid;
+  
+  @include tablet {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  @include desktop {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+// Position utilities
+.wp-relative { position: relative; }
+.wp-absolute { position: absolute; }
+.wp-fixed { position: fixed; }
+.wp-sticky { position: sticky; }
+
+// Background utilities
+.wp-bg-gradient {
+  @include gradient-bg;
+}
+
+.wp-bg-dark {
+  background-color: $background;
+}
+
+.wp-bg-darker {
+  background-color: $background-alt;
+}
+
+// Border utilities
+.wp-border {
+  border: 1px solid $border;
+}
+
+.wp-border-light {
+  border: 1px solid $border-light;
+}
+
+.wp-rounded {
+  border-radius: $radius-md;
+}
+
+.wp-rounded-lg {
+  border-radius: $radius-lg;
+}
+
+.wp-rounded-full {
+  border-radius: $radius-full;
+}
+
+// Shadow utilities
+.wp-shadow {
+  box-shadow: $shadow-md;
+}
+
+.wp-shadow-lg {
+  box-shadow: $shadow-lg;
+}
+
+.wp-shadow-xl {
+  box-shadow: $shadow-xl;
+}
+
+// Transition utilities
+.wp-transition {
+  transition: all 0.3s ease;
+}
+
+.wp-transition-fast {
+  transition: all 0.15s ease;
+}
+
+.wp-transition-slow {
+  transition: all 0.5s ease;
+}
+
+// Animation utilities
+.wp-hover-scale {
+  @include hover-scale;
+}
+
+.wp-fade-in {
+  opacity: 0;
+  animation: fadeIn 0.6s ease forwards;
+}
+
+.wp-slide-up {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: slideUp 0.6s ease forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Loading utilities
+.wp-loading {
+  @include flexCenter;
+  min-height: 200px;
+}
+
+.wp-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba($primary, 0.2);
+  border-left-color: $primary;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
