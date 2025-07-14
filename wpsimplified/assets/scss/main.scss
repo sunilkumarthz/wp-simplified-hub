@@ -1,0 +1,36 @@
+// WPSimplified Theme SCSS
+// Main stylesheet compiled from multiple SCSS files
+
+// Variables
+@import 'variables';
+@import 'mixins';
+
+// Base styles
+@import 'base';
+@import 'typography';
+
+// Layout components
+@import 'header';
+@import 'footer';
+@import 'hero';
+
+// Content components
+@import 'cards';
+@import 'forms';
+@import 'buttons';
+
+// Page specific styles
+@import 'pages/home';
+@import 'pages/blog';
+@import 'pages/videos';
+@import 'pages/podcasts';
+@import 'pages/playlists';
+@import 'pages/shorts';
+@import 'pages/sponsors';
+@import 'pages/contact';
+
+// Utility classes
+@import 'utilities';
+
+// Responsive design
+@import 'responsive';
