@@ -1,4 +1,10 @@
-<?php get_header(); ?>
+<?php
+/**
+ * Front Page Template
+ * This template is used for the static front page when set in WordPress settings
+ */
+
+get_header(); ?>
 
 <div class="min-h-screen bg-slate-900">
     <!-- Hero Section -->
@@ -210,17 +216,24 @@
             <div class="sponsors-grid">
                 <div class="sponsor-card">
                     <div class="sponsor-logo">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/wp-logo.png" alt="WordPress" />
+                        <i data-lucide="wordpress" style="width: 2rem; height: 2rem; color: #04d98b;"></i>
                     </div>
                     <h3>WordPress.org</h3>
                     <p>The foundation of our community</p>
                 </div>
                 <div class="sponsor-card">
                     <div class="sponsor-logo">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/woocommerce-logo.png" alt="WooCommerce" />
+                        <i data-lucide="shopping-cart" style="width: 2rem; height: 2rem; color: #04d98b;"></i>
                     </div>
                     <h3>WooCommerce</h3>
                     <p>Powering online stores</p>
+                </div>
+                <div class="sponsor-card">
+                    <div class="sponsor-logo">
+                        <i data-lucide="server" style="width: 2rem; height: 2rem; color: #04d98b;"></i>
+                    </div>
+                    <h3>WP Engine</h3>
+                    <p>Premium hosting solutions</p>
                 </div>
             </div>
             
