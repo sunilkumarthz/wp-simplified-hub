@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WordPress Tutorials - Learn WordPress Step by Step | WPSimplified</title>
+    <meta name="description" content="Comprehensive WordPress tutorials for beginners to advanced users. Learn WordPress step by step with our easy-to-follow playlists.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'baloo': ['Baloo 2', 'cursive'],
+                        'roboto': ['Roboto', 'sans-serif'],
+                    },
+                    colors: {
+                        'wp-teal': '#04d98b',
+                        'wp-blue': '#037f8c',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="min-h-screen bg-slate-900 font-roboto">
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-slate-900/95 backdrop-blur-md border-b border-slate-800">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-gradient-to-br from-wp-teal to-wp-blue rounded-lg flex items-center justify-center">
+                        <i data-lucide="wordpress" class="w-6 h-6 text-white"></i>
+                    </div>
+                    <span class="text-xl font-baloo font-bold text-white">WPSimplified</span>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-slate-300 hover:text-wp-teal transition-colors">Home</a>
+                    <a href="videos.html" class="text-slate-300 hover:text-wp-teal transition-colors">Videos</a>
+                    <a href="podcasts.html" class="text-slate-300 hover:text-wp-teal transition-colors">Podcasts</a>
+                    <a href="playlists.html" class="text-white hover:text-wp-teal transition-colors">Playlists</a>
+                    <a href="shorts.html" class="text-slate-300 hover:text-wp-teal transition-colors">Shorts</a>
+                    <a href="sponsors.html" class="text-slate-300 hover:text-wp-teal transition-colors">Sponsors</a>
+                    <a href="contact.html" class="text-slate-300 hover:text-wp-teal transition-colors">Contact</a>
+                </nav>
+
+                <!-- Subscribe Button & Mobile Menu -->
+                <div class="flex items-center space-x-4">
+                    <a href="#" class="hidden sm:inline-flex bg-wp-teal hover:bg-wp-teal/90 text-slate-900 px-6 py-2 rounded-lg font-medium transition-colors">
+                        Subscribe
+                    </a>
+                    <button id="mobile-menu-toggle" class="md:hidden text-white">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden bg-slate-800 border-t border-slate-700 hidden">
+            <div class="container mx-auto px-4 py-4 space-y-4">
+                <a href="index.html" class="block text-slate-300 hover:text-wp-teal">Home</a>
+                <a href="videos.html" class="block text-slate-300 hover:text-wp-teal">Videos</a>
+                <a href="podcasts.html" class="block text-slate-300 hover:text-wp-teal">Podcasts</a>
+                <a href="playlists.html" class="block text-white font-medium">Playlists</a>
+                <a href="shorts.html" class="block text-slate-300 hover:text-wp-teal">Shorts</a>
+                <a href="sponsors.html" class="block text-slate-300 hover:text-wp-teal">Sponsors</a>
+                <a href="contact.html" class="block text-slate-300 hover:text-wp-teal">Contact</a>
+                <a href="#" class="inline-block bg-wp-teal hover:bg-wp-teal/90 text-slate-900 px-6 py-2 rounded-lg font-medium mt-4">
+                    Subscribe
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="pt-16">
+        <!-- Hero Section -->
+        <section class="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 py-20 lg:py-32">
+            <!-- Background Effects -->
+            <div class="absolute inset-0 overflow-hidden">
+                <div class="absolute top-20 left-20 w-64 h-64 bg-wp-teal/10 rounded-full blur-3xl"></div>
+                <div class="absolute bottom-20 right-20 w-96 h-96 bg-wp-blue/10 rounded-full blur-3xl"></div>
+            </div>
+
+            <div class="container mx-auto px-4 relative">
+                <div class="max-w-4xl mx-auto text-center">
+                    <h1 class="text-5xl md:text-7xl font-baloo font-bold text-white mb-6">
+                        WordPress <span class="bg-gradient-to-r from-wp-teal to-wp-blue bg-clip-text text-transparent">Playlists</span>
+                    </h1>
+                    <p class="text-xl md:text-2xl text-slate-300 mb-8 leading-relaxed">
+                        Comprehensive WordPress tutorials organized into structured learning paths. 
+                        Master WordPress step by step with our curated playlists.
+                    </p>
+
+                    <!-- Stats -->
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-2xl mx-auto mb-12">
+                        <div class="text-center">
+                            <div class="text-3xl font-baloo font-bold text-wp-teal">25+</div>
+                            <div class="text-slate-400 text-sm">Learning Playlists</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-baloo font-bold text-wp-teal">200+</div>
+                            <div class="text-slate-400 text-sm">Total Videos</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-baloo font-bold text-wp-teal">50+</div>
+                            <div class="text-slate-400 text-sm">Hours Content</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-baloo font-bold text-wp-teal">100%</div>
+                            <div class="text-slate-400 text-sm">Free Access</div>
+                        </div>
+                    </div>
+
+                    <!-- Featured Playlist -->
+                    <div class="bg-slate-800/50 border border-slate-700 rounded-2xl p-8 max-w-2xl mx-auto">
+                        <h3 class="text-2xl font-baloo font-bold text-white mb-4">🌟 Featured Playlist</h3>
+                        <div class="bg-slate-800/50 border border-slate-600 rounded-xl p-6">
+                            <h4 class="text-xl font-semibold text-white mb-2">WordPress for Beginners</h4>
+                            <p class="text-slate-400 mb-4">Complete beginner's guide to WordPress development with hands-on projects</p>
+                            <div class="flex items-center justify-between text-sm text-slate-500 mb-4">
+                                <span>12 videos • 3h 45m</span>
+                                <span>Beginner level</span>
+                            </div>
+                            <a href="#" class="bg-wp-teal hover:bg-wp-teal/90 text-slate-900 px-6 py-2 rounded-lg font-medium transition-colors inline-flex items-center">
+                                <i data-lucide="play" class="w-4 h-4 mr-2"></i>
+                                Start Learning
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Filter Section -->
+        <section class="py-12">
+            <div class="container mx-auto px-4">
+                <div class="flex justify-center gap-4 flex-wrap">
+                    <button class="filter-btn active" data-filter="all">
+                        <i data-lucide="grid" class="w-4 h-4 mr-2"></i>
+                        All Playlists
+                    </button>
+                    <button class="filter-btn" data-filter="beginner">
+                        <i data-lucide="play-circle" class="w-4 h-4 mr-2"></i>
+                        Beginner
+                    </button>
+                    <button class="filter-btn" data-filter="intermediate">
+                        <i data-lucide="code" class="w-4 h-4 mr-2"></i>
+                        Intermediate
+                    </button>
+                    <button class="filter-btn" data-filter="advanced">
+                        <i data-lucide="zap" class="w-4 h-4 mr-2"></i>
+                        Advanced
+                    </button>
+                    <button class="filter-btn" data-filter="ecommerce">
+                        <i data-lucide="shopping-cart" class="w-4 h-4 mr-2"></i>
+                        E-commerce
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Playlists Grid Section -->
+        <section class="pb-12 sm:pb-16 lg:pb-20">
+            <div class="container mx-auto px-4">
+                <!-- Loading State -->
+                <div id="loading-playlists" class="text-center py-12">
+                    <div class="inline-flex items-center justify-center w-16 h-16 bg-wp-teal/20 rounded-full mb-4">
+                        <div class="loading-spinner"></div>
+                    </div>
+                    <div class="text-white font-roboto text-lg">Loading playlists...</div>
+                </div>
+
+                <!-- Error State -->
+                <div id="error-playlists" class="text-center py-12 hidden">
+                    <div class="text-red-400 font-roboto text-lg">Failed to load playlists. Please try again later.</div>
+                </div>
+
+                <!-- Empty State -->
+                <div id="empty-playlists" class="text-center py-12 hidden">
+                    <div class="text-slate-400 font-roboto">No playlists found. Check back soon for new learning content!</div>
+                </div>
+
+                <!-- Playlists Grid -->
+                <div id="playlists-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 hidden">
+                    <!-- Playlist cards will be loaded here by JavaScript -->
+                </div>
+
+                <!-- Load More Button -->
+                <div id="load-more-container" class="text-center mt-12 hidden">
+                    <button id="load-more-btn" 
+                            class="bg-slate-800 hover:bg-slate-700 text-white border border-slate-600 hover:border-wp-teal px-8 py-3 rounded-lg font-semibold text-lg transition-colors inline-flex items-center">
+                        Load More Playlists
+                        <i data-lucide="arrow-down" class="w-5 h-5 ml-2"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-800 border-t border-slate-700 py-16">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-5 gap-8">
+                <!-- Logo & Description -->
+                <div class="md:col-span-2">
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="w-10 h-10 bg-gradient-to-br from-wp-teal to-wp-blue rounded-lg flex items-center justify-center">
+                            <i data-lucide="wordpress" class="w-6 h-6 text-white"></i>
+                        </div>
+                        <span class="text-xl font-baloo font-bold text-white">WPSimplified</span>
+                    </div>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-6 max-w-md">
+                        Master WordPress development with comprehensive tutorials, expert podcasts, and community support. 
+                        From beginner to advanced - learn WordPress the right way.
+                    </p>
+                    
+                    <!-- Social Links -->
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-slate-700 hover:bg-wp-teal rounded-lg flex items-center justify-center text-slate-400 hover:text-slate-900 transition-colors">
+                            <i data-lucide="youtube" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-slate-700 hover:bg-wp-teal rounded-lg flex items-center justify-center text-slate-400 hover:text-slate-900 transition-colors">
+                            <i data-lucide="twitter" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-slate-700 hover:bg-wp-teal rounded-lg flex items-center justify-center text-slate-400 hover:text-slate-900 transition-colors">
+                            <i data-lucide="instagram" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-slate-700 hover:bg-wp-teal rounded-lg flex items-center justify-center text-slate-400 hover:text-slate-900 transition-colors">
+                            <i data-lucide="linkedin" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="font-semibold text-white mb-4">Content</h3>
+                    <ul class="space-y-3 text-sm text-slate-400">
+                        <li><a href="videos.html" class="hover:text-wp-teal transition-colors">Video Tutorials</a></li>
+                        <li><a href="podcasts.html" class="hover:text-wp-teal transition-colors">Podcasts</a></li>
+                        <li><a href="playlists.html" class="hover:text-wp-teal transition-colors">Learning Paths</a></li>
+                        <li><a href="shorts.html" class="hover:text-wp-teal transition-colors">Quick Tips</a></li>
+                    </ul>
+                </div>
+
+                <!-- Resources -->
+                <div>
+                    <h3 class="font-semibold text-white mb-4">Resources</h3>
+                    <ul class="space-y-3 text-sm text-slate-400">
+                        <li><a href="#" class="hover:text-wp-teal transition-colors">WordPress Docs</a></li>
+                        <li><a href="#" class="hover:text-wp-teal transition-colors">Code Snippets</a></li>
+                        <li><a href="#" class="hover:text-wp-teal transition-colors">Tools & Plugins</a></li>
+                        <li><a href="contact.html" class="hover:text-wp-teal transition-colors">Get Support</a></li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter -->
+                <div>
+                    <h3 class="font-semibold text-white mb-4">Stay Updated</h3>
+                    <p class="text-slate-400 text-sm mb-4">Get the latest WordPress tips, tutorials, and industry insights delivered to your inbox.</p>
+                    <form class="space-y-3" id="newsletter">
+                        <input type="email" placeholder="Enter your email" 
+                               class="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:border-wp-teal focus:ring-2 focus:ring-wp-teal/20 text-sm">
+                        <button type="submit" 
+                                class="w-full bg-wp-teal hover:bg-wp-teal/90 text-slate-900 py-2 rounded-lg font-medium transition-colors text-sm">
+                            Subscribe
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Bottom Footer -->
+            <div class="border-t border-slate-700 mt-12 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+                    <p class="text-slate-400 text-sm">
+                        © 2024 WPSimplified. All rights reserved. Made with ❤️ for the WordPress community.
+                    </p>
+                    <div class="flex space-x-6 text-sm text-slate-400">
+                        <a href="#" class="hover:text-wp-teal transition-colors">Privacy Policy</a>
+                        <a href="#" class="hover:text-wp-teal transition-colors">Terms of Service</a>
+                        <a href="contact.html" class="hover:text-wp-teal transition-colors">Contact</a>
+                        <a href="sponsors.html" class="hover:text-wp-teal transition-colors">Sponsor</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/playlists.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>
