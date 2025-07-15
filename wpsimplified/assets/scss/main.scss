@@ -30,3 +30,180 @@
 
 // Responsive design
 @import 'responsive';
+
+// Global Layout Classes (React-like structure)
+.content-section {
+  padding: $spacing-3xl 0;
+  
+  &.alt-bg {
+    background: rgba($background-alt, 0.3);
+    position: relative;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba($primary, 0.05) 0%, rgba($accent, 0.02) 100%);
+      pointer-events: none;
+    }
+  }
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: $spacing-3xl;
+  
+  .section-title {
+    font-family: $font-family-heading;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    color: $foreground;
+    margin-bottom: $spacing-md;
+    line-height: 1.2;
+  }
+  
+  .section-description {
+    font-size: $font-size-lg;
+    color: $foreground-muted;
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}
+
+.section-cta {
+  text-align: center;
+  margin-top: $spacing-3xl;
+}
+
+.content-grid {
+  @include responsive-grid(300px);
+  margin-bottom: $spacing-xl;
+}
+
+.shorts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: $spacing-lg;
+  margin-bottom: $spacing-xl;
+  
+  @include mobile {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: $spacing-md;
+  }
+}
+
+.about-content {
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+  
+  .about-description {
+    font-size: $font-size-lg;
+    color: $foreground-muted;
+    line-height: 1.8;
+    margin-bottom: $spacing-3xl;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.about-features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: $spacing-xl;
+  
+  .feature-card {
+    background: rgba($background-alt, 0.5);
+    border: 1px solid $border;
+    border-radius: $radius-xl;
+    padding: $spacing-xl;
+    text-align: center;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      transform: translateY(-8px);
+      box-shadow: $shadow-xl;
+      border-color: rgba($primary, 0.3);
+    }
+    
+    .feature-icon {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto $spacing-lg;
+      background: rgba($primary, 0.1);
+      border-radius: $radius-full;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      
+      i {
+        width: 32px;
+        height: 32px;
+        color: $primary;
+      }
+    }
+    
+    h3 {
+      font-family: $font-family-heading;
+      font-size: $font-size-xl;
+      font-weight: 600;
+      color: $foreground;
+      margin-bottom: $spacing-md;
+    }
+    
+    p {
+      color: $foreground-muted;
+      line-height: 1.6;
+    }
+  }
+}
+
+// Loading States
+.empty-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: $spacing-3xl;
+  color: $foreground-muted;
+  
+  .loading-spinner {
+    margin: 0 auto $spacing-lg;
+  }
+  
+  p {
+    font-size: $font-size-lg;
+  }
+}
+
+// Animation Classes
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.8s ease-out;
+  
+  &.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Hover Effects
+.hover-scale {
+  transition: transform 0.3s ease;
+  
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+.hover-lift {
+  transition: transform 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-5px);
+  }
+}

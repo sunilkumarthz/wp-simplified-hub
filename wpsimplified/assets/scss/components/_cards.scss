@@ -1,22 +1,25 @@
-// Card component styles
-.wp-card {
-  background: $background-alt;
+// Card component styles - React-like design system
+.card-base {
+  background: rgba($background-alt, 0.5);
   border: 1px solid $border;
-  border-radius: $radius-lg;
+  border-radius: $radius-xl;
   overflow: hidden;
   transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
   
   &:hover {
-    transform: translateY(-5px);
-    box-shadow: $shadow-xl;
-    border-color: $border-light;
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba($primary, 0.1);
+    border-color: rgba($primary, 0.3);
   }
 }
 
-.wp-video-card {
-  @extend .wp-card;
+// Video Card
+.video-card {
+  @extend .card-base;
   
-  .wp-card-thumbnail {
+  .card-image {
     position: relative;
     aspect-ratio: 16/9;
     overflow: hidden;
@@ -32,129 +35,258 @@
       transform: scale(1.05);
     }
     
-    .wp-play-overlay {
+    .play-overlay {
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      background: rgba($background, 0.8);
-      color: $primary;
-      width: 60px;
-      height: 60px;
+      width: 64px;
+      height: 64px;
+      background: rgba($background, 0.9);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       opacity: 0;
-      transition: opacity 0.3s ease;
+      transition: all 0.3s ease;
       
-      svg {
-        width: 24px;
-        height: 24px;
-        margin-left: 3px;
+      .play-button {
+        @include flexCenter;
+        width: 100%;
+        height: 100%;
+        color: $primary;
+        
+        i {
+          width: 24px;
+          height: 24px;
+          margin-left: 3px;
+        }
       }
     }
     
-    &:hover .wp-play-overlay {
+    &:hover .play-overlay {
       opacity: 1;
+      transform: translate(-50%, -50%) scale(1.1);
     }
     
-    .wp-duration {
+    .card-duration {
       position: absolute;
-      bottom: $spacing-xs;
-      right: $spacing-xs;
+      bottom: $spacing-sm;
+      right: $spacing-sm;
       background: rgba($background, 0.9);
       color: $foreground;
-      padding: $spacing-xs/2 $spacing-xs;
+      padding: 4px $spacing-sm;
       border-radius: $radius-sm;
       font-size: $font-size-xs;
-      font-weight: 500;
+      font-weight: 600;
+      font-family: $font-family-body;
+    }
+    
+    .card-category {
+      position: absolute;
+      top: $spacing-sm;
+      left: $spacing-sm;
+      background: $primary;
+      color: white;
+      padding: 4px $spacing-sm;
+      border-radius: $radius-sm;
+      font-size: $font-size-xs;
+      font-weight: 600;
+      font-family: $font-family-body;
     }
   }
   
-  .wp-card-content {
+  .card-content {
     padding: $spacing-lg;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
     
-    h3 {
+    .card-title {
+      font-family: $font-family-heading;
       font-size: $font-size-lg;
       font-weight: 600;
-      color: $foreground;
+      line-height: 1.4;
       margin-bottom: $spacing-sm;
-      @include text-clamp(2);
+      flex: 1;
+      
+      a {
+        color: $foreground;
+        text-decoration: none;
+        transition: color 0.3s ease;
+        @include text-clamp(2);
+        
+        &:hover {
+          color: $primary;
+        }
+      }
     }
     
-    p {
+    .card-description {
       color: $foreground-muted;
       font-size: $font-size-sm;
+      line-height: 1.6;
       margin-bottom: $spacing-md;
       @include text-clamp(3);
     }
     
-    .wp-card-meta {
+    .card-meta {
       display: flex;
       justify-content: space-between;
       align-items: center;
       font-size: $font-size-xs;
       color: $foreground-muted;
+      margin-top: auto;
+      
+      span {
+        &:not(:last-child)::after {
+          content: '•';
+          margin: 0 $spacing-xs;
+          opacity: 0.5;
+        }
+      }
     }
   }
 }
 
-.wp-podcast-card {
-  @extend .wp-card;
+// Podcast Card
+.podcast-card {
+  @extend .card-base;
   
-  .wp-card-thumbnail {
-    width: 100px;
-    height: 100px;
-    border-radius: $radius-md;
+  .card-image {
+    position: relative;
+    aspect-ratio: 16/9;
     overflow: hidden;
-    flex-shrink: 0;
     
     img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+    
+    &:hover img {
+      transform: scale(1.05);
+    }
+    
+    .play-overlay {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 64px;
+      height: 64px;
+      background: rgba($background, 0.9);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: all 0.3s ease;
+      
+      .play-button {
+        @include flexCenter;
+        width: 100%;
+        height: 100%;
+        color: $primary;
+        
+        i {
+          width: 24px;
+          height: 24px;
+        }
+      }
+    }
+    
+    &:hover .play-overlay {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1.1);
+    }
+    
+    .card-duration {
+      position: absolute;
+      bottom: $spacing-sm;
+      right: $spacing-sm;
+      background: rgba($background, 0.9);
+      color: $foreground;
+      padding: 4px $spacing-sm;
+      border-radius: $radius-sm;
+      font-size: $font-size-xs;
+      font-weight: 600;
+      font-family: $font-family-body;
+    }
+    
+    .card-category {
+      position: absolute;
+      top: $spacing-sm;
+      left: $spacing-sm;
+      background: $accent;
+      color: white;
+      padding: 4px $spacing-sm;
+      border-radius: $radius-sm;
+      font-size: $font-size-xs;
+      font-weight: 600;
+      font-family: $font-family-body;
     }
   }
   
-  .wp-card-content {
-    display: flex;
-    gap: $spacing-md;
+  .card-content {
     padding: $spacing-lg;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
     
-    .wp-card-info {
+    .card-title {
+      font-family: $font-family-heading;
+      font-size: $font-size-lg;
+      font-weight: 600;
+      line-height: 1.4;
+      margin-bottom: $spacing-sm;
       flex: 1;
       
-      h3 {
-        font-size: $font-size-lg;
-        font-weight: 600;
+      a {
         color: $foreground;
-        margin-bottom: $spacing-sm;
+        text-decoration: none;
+        transition: color 0.3s ease;
         @include text-clamp(2);
+        
+        &:hover {
+          color: $primary;
+        }
       }
+    }
+    
+    .card-description {
+      color: $foreground-muted;
+      font-size: $font-size-sm;
+      line-height: 1.6;
+      margin-bottom: $spacing-md;
+      @include text-clamp(3);
+    }
+    
+    .card-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: $font-size-xs;
+      color: $foreground-muted;
+      margin-top: auto;
       
-      p {
-        color: $foreground-muted;
-        font-size: $font-size-sm;
-        margin-bottom: $spacing-md;
-        @include text-clamp(2);
-      }
-      
-      .wp-card-meta {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        font-size: $font-size-xs;
-        color: $foreground-muted;
+      span {
+        &:not(:last-child)::after {
+          content: '•';
+          margin: 0 $spacing-xs;
+          opacity: 0.5;
+        }
       }
     }
   }
 }
 
-.wp-playlist-card {
-  @extend .wp-card;
+// Playlist Card
+.playlist-card {
+  @extend .card-base;
   
-  .wp-card-thumbnail {
+  .card-image {
     position: relative;
     aspect-ratio: 1;
     overflow: hidden;
@@ -163,53 +295,93 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      transition: transform 0.3s ease;
     }
     
-    .wp-playlist-count {
+    &:hover img {
+      transform: scale(1.05);
+    }
+    
+    .playlist-count {
       position: absolute;
       top: $spacing-sm;
       right: $spacing-sm;
       background: rgba($background, 0.9);
       color: $foreground;
-      padding: $spacing-xs/2 $spacing-xs;
+      padding: 4px $spacing-sm;
       border-radius: $radius-sm;
       font-size: $font-size-xs;
-      font-weight: 500;
+      font-weight: 600;
+      font-family: $font-family-body;
+    }
+    
+    .card-category {
+      position: absolute;
+      top: $spacing-sm;
+      left: $spacing-sm;
+      background: $primary;
+      color: white;
+      padding: 4px $spacing-sm;
+      border-radius: $radius-sm;
+      font-size: $font-size-xs;
+      font-weight: 600;
+      font-family: $font-family-body;
     }
   }
   
-  .wp-card-content {
+  .card-content {
     padding: $spacing-lg;
     
-    h3 {
+    .card-title {
+      font-family: $font-family-heading;
       font-size: $font-size-lg;
       font-weight: 600;
-      color: $foreground;
+      line-height: 1.4;
       margin-bottom: $spacing-sm;
-      @include text-clamp(2);
+      
+      a {
+        color: $foreground;
+        text-decoration: none;
+        transition: color 0.3s ease;
+        @include text-clamp(2);
+        
+        &:hover {
+          color: $primary;
+        }
+      }
     }
     
-    p {
+    .card-description {
       color: $foreground-muted;
       font-size: $font-size-sm;
+      line-height: 1.6;
       margin-bottom: $spacing-md;
       @include text-clamp(2);
     }
     
-    .wp-card-meta {
+    .card-meta {
       display: flex;
       justify-content: space-between;
       align-items: center;
       font-size: $font-size-xs;
       color: $foreground-muted;
+      
+      span {
+        &:not(:last-child)::after {
+          content: '•';
+          margin: 0 $spacing-xs;
+          opacity: 0.5;
+        }
+      }
     }
   }
 }
 
-.wp-short-card {
-  @extend .wp-card;
+// Short Card
+.short-card {
+  @extend .card-base;
   
-  .wp-card-thumbnail {
+  .card-image {
     position: relative;
     aspect-ratio: 9/16;
     overflow: hidden;
@@ -218,131 +390,89 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      transition: transform 0.3s ease;
     }
     
-    .wp-play-overlay {
+    &:hover img {
+      transform: scale(1.05);
+    }
+    
+    .play-overlay {
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      background: rgba($background, 0.8);
-      color: $primary;
-      width: 50px;
-      height: 50px;
+      width: 48px;
+      height: 48px;
+      background: rgba($background, 0.9);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       opacity: 0;
-      transition: opacity 0.3s ease;
+      transition: all 0.3s ease;
       
-      svg {
-        width: 20px;
-        height: 20px;
-        margin-left: 2px;
-      }
-    }
-    
-    &:hover .wp-play-overlay {
-      opacity: 1;
-    }
-    
-    .wp-views {
-      position: absolute;
-      bottom: $spacing-xs;
-      left: $spacing-xs;
-      background: rgba($background, 0.9);
-      color: $foreground;
-      padding: $spacing-xs/2 $spacing-xs;
-      border-radius: $radius-sm;
-      font-size: $font-size-xs;
-      font-weight: 500;
-    }
-  }
-  
-  .wp-card-content {
-    padding: $spacing-md;
-    
-    h3 {
-      font-size: $font-size-base;
-      font-weight: 600;
-      color: $foreground;
-      margin-bottom: $spacing-xs;
-      @include text-clamp(2);
-    }
-    
-    p {
-      color: $foreground-muted;
-      font-size: $font-size-xs;
-      margin: 0;
-    }
-  }
-}
-
-.wp-sponsor-card {
-  @extend .wp-card;
-  text-align: center;
-  
-  .wp-card-content {
-    padding: $spacing-xl;
-    
-    .wp-sponsor-logo {
-      width: 80px;
-      height: 80px;
-      margin: 0 auto $spacing-lg;
-      border-radius: $radius-lg;
-      overflow: hidden;
-      background: rgba($primary, 0.1);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      
-      img {
-        max-width: 60px;
-        max-height: 60px;
-        object-fit: contain;
-      }
-    }
-    
-    h3 {
-      font-size: $font-size-xl;
-      font-weight: 700;
-      color: $foreground;
-      margin-bottom: $spacing-sm;
-    }
-    
-    p {
-      color: $foreground-muted;
-      margin-bottom: $spacing-lg;
-      line-height: 1.6;
-    }
-    
-    .wp-sponsor-price {
-      font-size: $font-size-2xl;
-      font-weight: 800;
-      color: $primary;
-      margin-bottom: $spacing-lg;
-    }
-    
-    .wp-sponsor-features {
-      list-style: none;
-      padding: 0;
-      margin: 0 0 $spacing-lg;
-      
-      li {
-        color: $foreground-muted;
-        margin-bottom: $spacing-sm;
-        padding-left: $spacing-lg;
-        position: relative;
+      .play-button {
+        @include flexCenter;
+        width: 100%;
+        height: 100%;
+        color: $primary;
         
-        &::before {
-          content: '✓';
-          position: absolute;
-          left: 0;
-          color: $primary;
-          font-weight: bold;
+        i {
+          width: 20px;
+          height: 20px;
+          margin-left: 2px;
         }
       }
+    }
+    
+    &:hover .play-overlay {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1.1);
+    }
+    
+    .card-views {
+      position: absolute;
+      bottom: $spacing-sm;
+      left: $spacing-sm;
+      background: rgba($background, 0.9);
+      color: $foreground;
+      padding: 2px $spacing-xs;
+      border-radius: $radius-sm;
+      font-size: $font-size-xs;
+      font-weight: 600;
+      font-family: $font-family-body;
+    }
+  }
+  
+  .card-content {
+    padding: $spacing-md;
+    
+    .card-title {
+      font-family: $font-family-heading;
+      font-size: $font-size-base;
+      font-weight: 600;
+      line-height: 1.4;
+      margin-bottom: $spacing-xs;
+      
+      a {
+        color: $foreground;
+        text-decoration: none;
+        transition: color 0.3s ease;
+        @include text-clamp(2);
+        
+        &:hover {
+          color: $primary;
+        }
+      }
+    }
+    
+    .card-description {
+      color: $foreground-muted;
+      font-size: $font-size-xs;
+      line-height: 1.4;
+      margin: 0;
+      @include text-clamp(2);
     }
   }
 }

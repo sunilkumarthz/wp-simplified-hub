@@ -1,13 +1,14 @@
-<section class="hero-section">
-    <div class="hero-background">
-        <div class="hero-grid"></div>
-        <div class="hero-orb hero-orb-1"></div>
-        <div class="hero-orb hero-orb-2"></div>
-        <div class="hero-orb hero-orb-3"></div>
-    </div>
+<div class="hero-background">
+    <div class="hero-grid"></div>
+    <div class="hero-orb hero-orb-1"></div>
+    <div class="hero-orb hero-orb-2"></div>
+    <div class="hero-orb hero-orb-3"></div>
+</div>
 
-    <div class="container">
-        <div class="hero-content">
+<div class="container">
+    <div class="hero-content">
+        <!-- 2-Column Layout -->
+        <div class="hero-layout">
             <!-- Left Column - Content -->
             <div class="hero-text">
                 <h1 class="hero-title fade-in">
@@ -21,7 +22,7 @@
                     <a href="#latest-videos" class="btn-primary">
                         Explore Tutorials
                     </a>
-                    <a href="<?php echo get_post_type_archive_link('playlist'); ?>" class="btn-outline">
+                    <a href="<?php echo home_url('/playlists'); ?>" class="btn-outline">
                         View Playlists
                     </a>
                 </div>
@@ -42,15 +43,28 @@
                     if ($latest_video->have_posts()) :
                         while ($latest_video->have_posts()) : $latest_video->the_post(); ?>
                             <div class="featured-item">
-                                <h4>Latest Video</h4>
-                                <p><?php echo wp_trim_words(get_the_title(), 8, '...'); ?></p>
+                                <?php if (has_post_thumbnail()) : ?>
+                                    <div class="featured-thumbnail">
+                                        <img src="<?php the_post_thumbnail_url('medium'); ?>" 
+                                             alt="<?php echo esc_attr(get_the_title()); ?>">
+                                    </div>
+                                <?php endif; ?>
+                                <div class="featured-info">
+                                    <h4>Latest Video</h4>
+                                    <p><?php echo wp_trim_words(get_the_title(), 8, '...'); ?></p>
+                                </div>
                             </div>
                         <?php endwhile;
                         wp_reset_postdata();
                     else : ?>
                         <div class="featured-item">
-                            <h4>Latest Video</h4>
-                            <p>Master WordPress Gutenberg Block Development</p>
+                            <div class="featured-thumbnail">
+                                <div class="placeholder-thumbnail"></div>
+                            </div>
+                            <div class="featured-info">
+                                <h4>Latest Video</h4>
+                                <p>Master WordPress Gutenberg Block Development</p>
+                            </div>
                         </div>
                     <?php endif; ?>
 
@@ -65,26 +79,39 @@
                     if ($latest_podcast->have_posts()) :
                         while ($latest_podcast->have_posts()) : $latest_podcast->the_post(); ?>
                             <div class="featured-item">
-                                <h4>Latest Podcast</h4>
-                                <p><?php echo wp_trim_words(get_the_title(), 8, '...'); ?></p>
+                                <?php if (has_post_thumbnail()) : ?>
+                                    <div class="featured-thumbnail">
+                                        <img src="<?php the_post_thumbnail_url('medium'); ?>" 
+                                             alt="<?php echo esc_attr(get_the_title()); ?>">
+                                    </div>
+                                <?php endif; ?>
+                                <div class="featured-info">
+                                    <h4>Latest Podcast</h4>
+                                    <p><?php echo wp_trim_words(get_the_title(), 8, '...'); ?></p>
+                                </div>
                             </div>
                         <?php endwhile;
                         wp_reset_postdata();
                     else : ?>
                         <div class="featured-item">
-                            <h4>Latest Podcast</h4>
-                            <p>WordPress Performance Optimization Tips</p>
+                            <div class="featured-thumbnail">
+                                <div class="placeholder-thumbnail"></div>
+                            </div>
+                            <div class="featured-info">
+                                <h4>Latest Podcast</h4>
+                                <p>WordPress Performance Optimization Tips</p>
+                            </div>
                         </div>
                     <?php endif; ?>
                 </div>
             </div>
         </div>
-
-        <!-- Scroll Indicator -->
-        <div class="scroll-indicator">
-            <a href="#latest-videos">
-                <i data-lucide="chevron-down"></i>
-            </a>
-        </div>
     </div>
-</section>
+
+    <!-- Scroll Indicator -->
+    <div class="scroll-indicator">
+        <a href="#latest-videos">
+            <i data-lucide="chevron-down"></i>
+        </a>
+    </div>
+</div>

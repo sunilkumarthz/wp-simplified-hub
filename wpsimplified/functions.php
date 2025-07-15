@@ -43,7 +43,7 @@ add_action('after_setup_theme', 'wpsimplified_setup');
  */
 function wpsimplified_scripts() {
     // Compiled SCSS - Main stylesheet
-    wp_enqueue_style('wpsimplified-style', get_template_directory_uri() . '/dist/css/main.css', array(), '1.0.0');
+    wp_enqueue_style('wpsimplified-style', get_template_directory_uri() . '/dist/css/main.css', array(), '1.0.1');
     
     // Google Fonts
     wp_enqueue_style('wpsimplified-fonts', 'https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap', array(), null);
@@ -52,7 +52,7 @@ function wpsimplified_scripts() {
     wp_enqueue_script('lucide-icons', 'https://unpkg.com/lucide@latest/dist/umd/lucide.js', array(), null, true);
     
     // Enhanced theme script
-    wp_enqueue_script('wpsimplified-script', get_template_directory_uri() . '/assets/js/enhanced-theme.js', array('lucide-icons'), '1.0.0', true);
+    wp_enqueue_script('wpsimplified-script', get_template_directory_uri() . '/assets/js/enhanced-theme.js', array('lucide-icons'), '1.0.1', true);
     
     // Localize script for AJAX
     wp_localize_script('wpsimplified-script', 'wpsimplified_ajax', array(
