@@ -5,30 +5,33 @@
 
 get_header(); ?>
 
-<main>
-    <!-- Hero Section -->
+<div class="min-h-screen bg-slate-900">
+    <!-- Videos Hero Section -->
     <section class="hero-section">
         <div class="hero-background">
             <div class="hero-grid"></div>
             <div class="hero-orb hero-orb-1"></div>
             <div class="hero-orb hero-orb-2"></div>
-            <div class="hero-orb hero-orb-3"></div>
         </div>
         
         <div class="container">
             <div class="hero-content">
-                <div class="hero-text">
-                    <h1 class="hero-title">WordPress <span class="text-gradient">Video Tutorials</span></h1>
-                    <p class="hero-description">
-                        Comprehensive WordPress video tutorials covering everything from basics to advanced development. 
-                        Learn WordPress with step-by-step video guides.
+                <div class="hero-text" style="text-align: center; max-width: 800px; margin: 0 auto;">
+                    <h1 class="hero-title fade-in">
+                        WordPress <span class="text-gradient">Video Tutorials</span>
+                    </h1>
+                    <p class="hero-description fade-in">
+                        Master WordPress development with our comprehensive video library. From beginner basics to advanced techniques, find the perfect tutorial for your skill level.
                     </p>
                     
                     <!-- Search Form -->
-                    <form class="search-form" data-post-type="video">
-                        <div class="search-wrapper">
-                            <input type="text" class="search-input" placeholder="Search videos..." />
-                            <button type="submit" class="search-button">
+                    <form class="search-form fade-in" method="get" data-post-type="video" style="margin-top: 2rem;">
+                        <div class="search-wrapper" style="display: flex; max-width: 500px; margin: 0 auto; gap: 0.5rem;">
+                            <input type="text" name="s" class="search-input" 
+                                   placeholder="Search video tutorials..." 
+                                   value="<?php echo get_search_query(); ?>"
+                                   style="flex: 1; padding: 0.75rem 1rem; border: 1px solid #334155; border-radius: 0.5rem; background: rgba(30, 41, 59, 0.5); color: #f8fafc;">
+                            <button type="submit" class="btn-primary">
                                 <i data-lucide="search"></i>
                                 Search
                             </button>
@@ -42,22 +45,13 @@ get_header(); ?>
     <!-- Videos Grid Section -->
     <section class="content-section">
         <div class="container">
-            <!-- Search Results Info -->
-            <div id="search-info" style="display: none;">
-                <p>Search results for "<span id="search-term"></span>"</p>
-                <button class="clear-search">
-                    <i data-lucide="x"></i>
-                    Clear Search
-                </button>
-            </div>
-            
-            <!-- Videos Grid -->
-            <div class="content-grid" id="video-grid">
+            <div class="content-grid" id="videos-grid">
                 <?php
                 $videos = new WP_Query(array(
                     'post_type' => 'video',
                     'posts_per_page' => 12,
-                    'post_status' => 'publish'
+                    'post_status' => 'publish',
+                    's' => get_search_query()
                 ));
                 
                 if ($videos->have_posts()) :
@@ -67,21 +61,22 @@ get_header(); ?>
                     wp_reset_postdata();
                 else : ?>
                     <div class="empty-state">
-                        <p>No videos found. Check back soon for new content!</p>
+                        <i data-lucide="video" style="width: 4rem; height: 4rem; color: #94a3b8; margin-bottom: 1rem;"></i>
+                        <h3>No videos found</h3>
+                        <p>No video tutorials found. Check back soon for new content!</p>
                     </div>
                 <?php endif; ?>
             </div>
             
-            <!-- Load More Button -->
-            <?php if ($videos->found_posts > 12) : ?>
-                <div class="load-more">
-                    <button class="load-more-btn" data-post-type="video" data-page="1">
+            <?php if ($videos->max_num_pages > 1) : ?>
+                <div class="section-cta">
+                    <button class="btn-primary" data-load-more data-post-type="video" data-page="1">
                         Load More Videos
                     </button>
                 </div>
             <?php endif; ?>
         </div>
     </section>
-</main>
+</div>
 
 <?php get_footer(); ?>
